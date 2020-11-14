@@ -4,7 +4,7 @@ Upload URL to C-Panel Host
 One click ready solution to upload a file from URL to your hosting provider storage.
 
  
-![](docs/screenshot.png)
+![](screenshot.png)
  
 
 **How to use?** Easily upload the `upload.php` file to your hosting area and enter its address, then
