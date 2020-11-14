@@ -1,9 +1,3 @@
-Upload URL to C-Panel Host
-==========================
-
-One click ready solution to upload a file from URL to your hosting provider storage.
-
- 
 ![](screenshot.png)
  
 
