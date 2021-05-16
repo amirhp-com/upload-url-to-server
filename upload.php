@@ -10,7 +10,8 @@
 	
 <?php 
     if (isset($_POST['url'])){
-    	$url = $_POST['url'];
+    	set_time_limit (24 * 60 * 60);
+		$url = $_POST['url'];
     	$name = $_POST['name'];
         ob_implicit_flush(true);
         ob_start();
