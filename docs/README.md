@@ -6,7 +6,7 @@ storage.
 
 Version 2: Added Real-time progress while uploading!
 
-![](docs/screenshot.png)
+![](screenshot.png)
 
 **How to use?** Easily upload the `upload.php` file to your hosting area and
 open it in new tab, then all you need is to paste the URL you want to download
