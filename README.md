@@ -1,5 +1,8 @@
-Upload File from URL to WebServer v.5
+Upload File from URL to WebServer v.6
 =====================================
+
+Publish Date: 2021/05/19 12:30:19
+---------------------------------
 
 One click ready solution to upload a file from URL to your hosting provider
 storage.
@@ -24,3 +27,5 @@ Change-log:
 -   Ver.4: Fixed get file size error
 
 -   Ver.5: More stability on large files processing
+
+-   Ver.6: Added Timer, showing elapsed and total time
