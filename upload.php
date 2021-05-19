@@ -4,7 +4,7 @@
 # @Date:   2020/11/15 02:49:02
 # @Email:  its@hpv.im
 # @Last modified by:   Amirhosseinhpv
-# @Last modified time: 2021/05/19 12:30:19
+# @Last modified time: 2021/05/19 12:40:35
 # @License: GPLv2
 # @Copyright: Copyright © 2020 Amirhosseinhpv, All rights reserved.
 ?>
@@ -25,7 +25,7 @@
           ob_implicit_flush(true);
           ob_start();
           echo "<script>document.title = 'Uploading ...'; document.querySelector('h1').innerHTML += '<div style=\"font-size: 0;margin-top: 3rem;\"><small style=\"font-size: 1rem;font-family: initial;font-weight: initial;\">Transferring <u>{$url}</u> as <strong>{$name}</strong><br><span style=\"margin-top: 1rem;display: block;\">Please wait until process complete or Press ESC key to cancel</span></small></div><div id=\"progress\"></div>';</script>";
-          $time = strtotime('now');
+          $time = microtime(true);
           $remote = fopen($url, 'r');
           $local = fopen($name, 'w');
           $headers = get_headers($url, true);
@@ -79,22 +79,12 @@
       }
       function human_timing($time)
       {
-        $time = time() - $time; // to get the time since that moment
-        $time = ($time<1)? 1 : $time;
-        $tokens = array (
-          31536000 => 'year',
-          2592000 => 'month',
-          604800 => 'week',
-          86400 => 'day',
-          3600 => 'hour',
-          60 => 'minute',
-          1 => 'second'
-        );
-        foreach ($tokens as $unit => $text) {
-          if ($time < $unit) continue;
-          $numberOfUnits = floor($time / $unit);
-          return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
-        }
+        $s = microtime(true) - $time;
+        $h = floor($s / 3600);
+        $s -= $h * 3600;
+        $m = floor($s / 60);
+        $s -= $m * 60;
+        return ($h > 0 ? "$h:" : "") .sprintf('%02d', $m).':'.sprintf('%02d', $s);
       }
     ?>
     <form style="margin-top: 1rem;" name='upload' method='post' action="<?php echo strtok($_SERVER['REQUEST_URI'], '?');?>">
