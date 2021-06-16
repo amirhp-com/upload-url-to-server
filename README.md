@@ -1,4 +1,4 @@
-Upload File from URL to WebServer v.6
+Upload File from URL to WebServer v.7
 =====================================
 
 Publish Date: 2021/05/19 12:30:19
@@ -29,3 +29,5 @@ Change-log:
 -   Ver.5: More stability on large files processing
 
 -   Ver.6: Added Timer, showing elapsed and total time
+
+-   Ver.7: Added Auto file-name filler and Back to Root button
