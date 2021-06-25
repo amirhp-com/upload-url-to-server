@@ -1,4 +1,4 @@
-Upload File from URL to WebServer v.7
+Upload File from URL to WebServer v. 7.0
 =====================================
 
 #### One click ready solution to upload a file from URL to your hosting storage (e.g. CPanel).
