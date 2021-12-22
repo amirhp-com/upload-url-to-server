@@ -55,7 +55,8 @@ error_reporting(E_ERROR);
           ob_flush();
           flush();
           ob_start();
-          $read_bytes = 0;
+          if ($filesize < 1){ die(print_r($headers, 1)); }
+		  $read_bytes = 0;
           $num   = 0;
           $steps = floor($filesize/2048)/300;
           while(!feof($remote)) {
