@@ -7,9 +7,9 @@ Upload File from URL to WebServer v. 8.0
 
 
 
-[View Demo Video](https://amirhosseinhpv.ir/htdocs/img/2021/06/upload-to-cpanel-by-amirhosseinhpv.ir_.mp4)
+[View Demo Video](https://iranwpacademy.com/htdocs/img/2021/06/upload-to-cpanel-by-amirhosseinhpv.ir_.mp4)
 
-[Related Post](https://amirhosseinhpv.ir/kb/echo-on-loop-pure-php/)
+[Related Post](https://iranwpacademy.com/kb/echo-on-loop-pure-php/)
 
 
 
