@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <?php
-# @Author: Amirhosseinhpv
+# @Author: amirhp-com
 # @Date:   2020/11/15 02:49:02
-# @Email:  its@hpv.im
-# @Last modified by:   Amirhosseinhpv
+# @Email:  its@amirhp.com
+# @Last modified by:   amirhp-com
 # @Last modified time: 2021/11/06 15:07:22
 # @License: GPLv2
-# @Copyright: Copyright © 2020 Amirhosseinhpv, All rights reserved.
+# @Copyright: Copyright © 2022 amirhp-com, All rights reserved.
 @ini_set('display_errors', 1);
 error_reporting(E_ERROR);
 ?>
@@ -18,7 +18,7 @@ error_reporting(E_ERROR);
   </head>
   <body style="font-family: Calibri;text-align: center;margin-top: 5rem;" id="upload-file-from-url-to-webserver v-8">
     <h1 style="font-size: 3rem;  margin: 0;">Upload File from URL to WebServer</h1>
-    <small>Developed by <a href="https://hpv.im/" target="_blank">Amirhosseinhpv</a> | Give star on <a href="https://github.com/amirhosseinhpv/upload-file-from-url-to-webserver" target="_blank">Github</a> | Version 8.0 / 2021-11-06 | <a href="./">Root</a> / <a href="?r=<?=time();?>">New?</a></small><br><br>
+    <small>Developed by <a href="https://amirhp.com" target="_blank">amirhp-com</a> | Give star on <a href="https://github.com/amirhp-com/upload-file-from-url-to-webserver" target="_blank">Github</a> | Version 8.0 / 2021-11-06 | <a href="./">Root</a> / <a href="?r=<?=time();?>">New?</a></small><br><br>
     <?php
       if (isset($_POST['url'])) {
           set_time_limit(24 * 60 * 60);
