@@ -1,10 +1,10 @@
-Upload File from URL to WebServer v. 8.0
+Upload File from URL to WebServer v. 12.0
 ========================================
 
 #### One click ready solution to upload a file from URL to your hosting storage (e.g. CPanel).
 
-> Latest Publish Date: 2021/11/06 1400/08/15
-
+~~ Latest Publish Date: 2021/11/06 1400/08/15 ~~
+> Latest Publish Date: 2024/05/10 1403/02/21
 
 
 [View Demo Video](https://iranwpacademy.com/htdocs/img/2021/06/upload-to-cpanel-by-amirhosseinhpv.ir_.mp4)
@@ -37,3 +37,5 @@ serious about security bugs and stuff ;)
 -   Ver. 7.0: Added Auto file-name filler and Back to Root button
 
 -   Ver. 8.0: Added Compatibility with NON-SSL and DirectAdmin hosting
+
+-   Ver. 12.0: Added New features and stability.
