@@ -3,7 +3,7 @@ Upload File from URL to WebServer v. 12.0
 
 #### One click ready solution to upload a file from URL to your hosting storage (e.g. CPanel).
 
-~~Latest Publish Date: 2021/11/06 1400/08/15
+~~ Latest Publish Date: 2021/11/06 1400/08/15
 > Latest Publish Date: 2024/05/10 1403/02/21
 
 
