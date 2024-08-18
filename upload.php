@@ -4,7 +4,7 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15 19:31:15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/08/18 22:47:30
+ * @Last modified time: 2024/08/18 23:17:34
  */
 
 @ini_set("display_errors", 1);
@@ -112,9 +112,8 @@ error_reporting(E_ERROR);
 
 <body class="uffutw upload-file-from-url-to-webserver v-13">
   <h1 class="aw">
-    <span class="dw">
-      Upload File Script v.13</span><br>URL-Address to WebServer
-  </h1>
+    <div style="background: url('https://raw.githubusercontent.com/amirhp-com/upload-file-from-url-to-webserver/main/blackswan.png') no-repeat center/contain;padding-top: 5rem;margin-bottom: 0.5rem;"></div>
+    <span class="dw">BlackSwan Upload File from URL to Web Server v.13</span><br>URL-Address to WebServer</h1>
   <?php
   if (isset($_GET["delete"]) && "true" == $_GET["delete"]) {
     unlink(__FILE__);
