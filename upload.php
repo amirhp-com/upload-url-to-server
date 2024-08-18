@@ -4,7 +4,7 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15 19:31:15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/08/18 22:40:58
+ * @Last modified time: 2024/08/18 22:44:10
  */
 
 @ini_set("display_errors", 1);
@@ -106,8 +106,8 @@ error_reporting(E_ERROR);
       color: #e32121;
     }
   </style>
-  <link rel="icon" href="blackswan.png" sizes="32x32" />
-  <link rel="icon" href="blackswan.png" sizes="192x192" />
+  <link rel="icon" href="https://raw.githubusercontent.com/amirhp-com/upload-file-from-url-to-webserver/main/blackswan.png" sizes="32x32" />
+  <link rel="icon" href="https://raw.githubusercontent.com/amirhp-com/upload-file-from-url-to-webserver/main/blackswan.png" sizes="192x192" />
 </head>
 
 <body class="uffutw upload-file-from-url-to-webserver v-12">
