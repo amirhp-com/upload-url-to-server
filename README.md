@@ -2,8 +2,6 @@
 
 <img src='screenshot.png' width=450 style="border-radius: 0.5rem;" />
 
-&nbsp;
-
 A simple and efficient solution for uploading files directly from a URL to your web server (e.g., CPanel). This tool is perfect for quick tasks where you need to download and store files on your hosting environment with minimal effort.
 
 **Latest Publish Date:** 2024/08/18 (1403/05/28)
