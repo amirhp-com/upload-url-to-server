@@ -1,10 +1,9 @@
-Upload File from URL to WebServer v. 12.0
+Upload File from URL to WebServer v.13
 ========================================
 
 #### One click ready solution to upload a file from URL to your hosting storage (e.g. CPanel).
 
-> ~~Latest Publish Date: 2021/11/06 1400/08/15~~<br>
-> Latest Publish Date: 2024/05/10 1403/02/21
+> Latest Publish Date: 2024/08/18 1403/05/28
 
 
 [View Demo Video](https://iranwpacademy.com/htdocs/img/2021/06/upload-to-cpanel-by-amirhosseinhpv.ir_.mp4)
@@ -20,22 +19,17 @@ new tab, then paste the URL you want to download and upload to your server, give
 it a name and hit UPLOAD. Easy as pie!
 
 Hope you enjoy it, and BTW this tool is for personal use, so don’t get too
-serious about security bugs and stuff ;)
+serious about security bugs and stuff ;) PS> don't forget to remove after you're done.
 
-#### Change-log:
+#### Changelog:
 
--   Ver. 2.0: Added Real-time progress while uploading
-
--   Ver. 3.0: Added Some styling and visuals
-
--   Ver. 4.0: Fixed get file size error
-
--   Ver. 5.0: More stability on large files processing
-
--   Ver. 6.0: Added Timer, showing elapsed and total time
-
--   Ver. 7.0: Added Auto file-name filler and Back to Root button
-
--   Ver. 8.0: Added Compatibility with NON-SSL and DirectAdmin hosting
-
--   Ver. 12.0: Added New features and stability.
+-   Version 13: Added Self Destruct feature
+-   Version 12: Added New features and stability.
+-   Version 08: Added Compatibility with NON-SSL and DirectAdmin hosting
+-   Version 07: Added Auto file-name filler and Back to Root button
+-   Version 06: Added Timer, showing elapsed and total time
+-   Version 05: More stability on large files processing
+-   Version 04: Fixed get file size error
+-   Version 03: Added Some styling and visuals
+-   Version 02: Added Real-time progress while uploading
+-   Version 01: Initiate release, at 2020/11/15 - 1399/08/25
