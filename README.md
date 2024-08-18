@@ -1,6 +1,6 @@
 # **Upload File from URL to Web Server v.13**
 
-<img src='screenshot.png' width=450 style="border-radius: 0.5rem;" />
+![screenshot.png](screenshot.png)
 
 A simple and efficient solution for uploading files directly from a URL to your web server (e.g., CPanel). This tool is perfect for quick tasks where you need to download and store files on your hosting environment with minimal effort.
 
