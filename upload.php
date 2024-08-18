@@ -4,7 +4,7 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15 19:31:15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/08/18 22:44:10
+ * @Last modified time: 2024/08/18 22:47:30
  */
 
 @ini_set("display_errors", 1);
@@ -110,7 +110,7 @@ error_reporting(E_ERROR);
   <link rel="icon" href="https://raw.githubusercontent.com/amirhp-com/upload-file-from-url-to-webserver/main/blackswan.png" sizes="192x192" />
 </head>
 
-<body class="uffutw upload-file-from-url-to-webserver v-12">
+<body class="uffutw upload-file-from-url-to-webserver v-13">
   <h1 class="aw">
     <span class="dw">
       Upload File Script v.13</span><br>URL-Address to WebServer
@@ -121,8 +121,7 @@ error_reporting(E_ERROR);
     die('<h3 class="red-alert" style="font-size: 1.5rem;">SELF-DESTRUCTION WAS SUCCESSFUL, BYE &#x1F44B;!</h3>');
   }
   ?>
-  <small>Developed by <a href="https://amirhp.com/" target="_blank">amirhp-com</a> | Give star on <a href="https://github.com/amirhp-com/upload-file-from-url-to-webserver" target="_blank">Github</a><br>
-  Version 12.0 / Your IP: <?= get_real_IP_address(); ?><br> [ <a href="./">root</a> / <a href="?r=<?= time(); ?>">new?</a> ]</small>
+  <small>Developed by <a href="https://amirhp.com/" target="_blank">amirhp-com</a> | Give star on <a href="https://github.com/amirhp-com/upload-file-from-url-to-webserver" target="_blank">Github</a> | your_ip: <?= get_real_IP_address(); ?> [ <a href="./">root</a> / <a href="?r=<?= time(); ?>">new?</a> ]</small>
   <br><br>
   <?php
   if (isset($_POST['url'], $_POST["name"])) {
