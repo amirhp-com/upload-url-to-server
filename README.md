@@ -5,7 +5,7 @@
 
 A simple and efficient solution for uploading files directly from a URL to your web server (e.g., CPanel). This tool is perfect for quick tasks where you need to download and store files on your hosting environment with minimal effort.
 
-**Latest Publish Date:** 2025-01-08 | 1403-10-19
+**Latest Publish Date:** | 2025-01-08 | 1403-10-19
 
 ## Features
 
