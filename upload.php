@@ -4,7 +4,7 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15 19:31:15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/08/18 23:17:34
+ * @Last modified time: 2025/01/08 14:08:56
  */
 
 @ini_set("display_errors", 1);
@@ -13,7 +13,7 @@ error_reporting(E_ERROR);
 <html>
 
 <head>
-  <title>Upload File from URL to WebServer v13</title>
+  <title>Upload File from URL to WebServer v14</title>
   <style>
     * {
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -110,10 +110,10 @@ error_reporting(E_ERROR);
   <link rel="icon" href="https://raw.githubusercontent.com/amirhp-com/upload-file-from-url-to-webserver/main/blackswan.png" sizes="192x192" />
 </head>
 
-<body class="uffutw upload-file-from-url-to-webserver v-13">
+<body class="uffutw upload-file-from-url-to-webserver v-14">
   <h1 class="aw">
     <div style="background: url('https://raw.githubusercontent.com/amirhp-com/upload-file-from-url-to-webserver/main/blackswan.png') no-repeat center/contain;padding-top: 5rem;margin-bottom: 0.5rem;"></div>
-    <span class="dw">BlackSwan Upload File from URL to Web Server v.13</span><br>URL-Address to WebServer</h1>
+    <span class="dw">BlackSwan Upload File from URL to Web Server v.14</span><br>URL-Address to WebServer</h1>
   <?php
   if (isset($_GET["delete"]) && "true" == $_GET["delete"]) {
     unlink(__FILE__);
@@ -128,22 +128,24 @@ error_reporting(E_ERROR);
     $url  = $_POST["url"];
     $name = $_POST["name"];
     $folder = $_POST["folder"] ?? "";
-    $folder = !empty($folder) ? rtrim($folder, '/\\') . "/" : "";
+    $folder = !empty($folder) ? rtrim(ltrim($folder, '/\\'), '/\\') : "";
     ob_implicit_flush(true);
     ob_start();
     $server = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
     echo "<script>
-          document.title = 'Uploading ...'; 
+          document.title = 'Uploading ...';
           document.querySelector('h1').innerHTML += `
           <div style=\"font-size: 0;margin-top: 3rem;\"><small style=\"font-size: 1rem;\">
-          Transferring <a href='$url' target='_blank'>Origin URL-Address</a> as <a href='{$server}/{$folder}{$name}' target='_blank'><strong>{$folder}{$name}</strong></a><br>
+          Transferring <a href='$url' target='_blank'>Origin URL-Address</a> as <a href='{$server}/".(!empty($folder)?"{$folder}/":"")."{$name}' target='_blank'><strong>".(!empty($folder)?"{$folder}/":"")."{$name}</strong></a><br>
           <span style=\"margin-top: 1rem;display: block;\">Please wait until process complete or Press ESC key to cancel</span></small></div>
           <div id=\"progress\"></div>`;</script>";
     $time = microtime(true);
     $remote = fopen($url, 'r');
-    if (!is_dir($dirname)) mkdir($folder, 0777, true);
-    if (file_exists($folder . $name)) unlink($folder . $name);
-    $local = fopen($folder . $name, 'w');
+    if (empty($folder)) { $folder = __DIR__; }
+    if (!is_dir($folder)) mkdir($folder, 0777, true);
+    $path_full = $folder . "/" . $name;
+    if (file_exists($path_full)) @unlink($path_full);
+    $local = fopen($path_full, 'w');
     stream_context_set_default(array('http' => array('method' => 'HEAD')));
     $headers = get_headers($url, true);
 
@@ -152,9 +154,8 @@ error_reporting(E_ERROR);
       ob_end_flush();
       ob_flush();
       flush();
-      ob_start();
       $ch = curl_init($url);
-      $fp = fopen($folder . $name, 'wb');
+      $fp = fopen($path_full, 'wb');
       curl_setopt($ch, CURLOPT_FILE, $fp);
       curl_setopt($ch, CURLOPT_HEADER, 0);
       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -168,19 +169,14 @@ error_reporting(E_ERROR);
 
     $headers = array_change_key_case(get_headers($url, 1));
     $filesize = $headers['content-length'];
-    ob_end_flush();
-    ob_flush();
-    flush();
-    ob_start();
+    ob_end_flush(); ob_flush(); flush(); ob_start();
     if ($filesize < 1) {
       echo "<pre style='text-align: left; direction: ltr; border:1px solid #1e45cf; padding: 1rem; color: #1e45cf;'>" . print_r($headers, 1) . "</pre>";
       echo "<pre style='text-align: left; direction: ltr; border:1px solid #c34f1e; padding: 1rem; color: #c34f1e;'>" . print_r($_SERVER, 1) . "</pre>";
       exit;
     }
-    $read_bytes = 0;
-    $num = 0;
+    $read_bytes = 0; $num = 0; $progress = 1;
     $steps = floor($filesize / 2048) / 300 < 0 ? 3 : floor($filesize / 2048) / 300;
-    $progress = 1;
     echo "<script>
       document.title = 'Uploading " . sprintf("%'05.2f%%", $progress) . "';
       document.querySelector('#progress').innerHTML = '( " . sprintf("%'05.2f%%", $progress) . " — " . human_filesize($filesize) . " )<br><small style=\"text-transform: capitalize;\">Elapsed Time: " . human_timing($time) . "</small>';
@@ -201,21 +197,104 @@ error_reporting(E_ERROR);
           </script>";
         }
       }
-      ob_end_flush();
-      ob_flush();
-      flush();
-      ob_start();
+      ob_end_flush(); ob_flush(); flush(); ob_start();
     }
     fclose($remote);
     fclose($local);
+
+    $should_extract = "https://wordpress.org/latest.zip" == $url;
+
     echo "<script>
       document.title = 'Transferring Done!';
-      document.querySelector('#progress').innerHTML = '( 100.00% — " . human_filesize($filesize) . " / " . human_filesize($filesize) . " )<br><small style=\"text-transform: capitalize;\">Total Time: " . human_timing($time) . "</small>';
+      document.querySelector('#progress').innerHTML = '( 100.00% — " . human_filesize($filesize) . " / " . human_filesize($filesize) . " )';
       document.querySelector('body').style.backgroundImage = 'linear-gradient(to right, rgba(0, 223, 56, 0.18) $progress%, white $progress%)';
-      document.querySelector('h1').innerHTML += '<div style=\"font-size: 0;margin-bottom: 3rem;\"><small style=\"font-size: 1rem;\">✅ Transferring Done! 👍</small></div>';
-      document.querySelector('h1').innerHTML += '<div style=\"font-size: 0;margin-bottom: 3rem;\"><small style=\"font-size: 1rem;\"><a href=\"?r=" . time() . "\" style=\"background: #0060df;color: white;text-decoration: none; padding: 0.5rem 2rem;border: none;border-radius: 3px;box-shadow: 0 0 8px -3px #00000069;margin: 0 1rem;cursor: pointer;\">Upload another file</a></small></div>';
+      document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">✅ Transferring done successfully in ".human_timing($time).($should_extract ? ", wait ..." : ".")."</small></div>';
     </script>";
-    ob_end_flush();
+    ob_end_flush(); ob_flush(); flush();
+
+    if ($should_extract) {
+
+      echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">⏳ PLEASE WAIT, Extracting Wordpress ZIP archive ...</small></div>';</script>";
+      ob_end_flush(); ob_flush(); flush(); ob_start();
+
+      $rootDir = __DIR__;
+      $zipFile = $path_full;
+      $tempDir = $rootDir . '/temp/wordpress';
+      $continue = false;
+      $zip = new ZipArchive;
+      if ($zip->open($zipFile) === TRUE) {
+        $zip->extractTo($rootDir . '/temp');
+        $zip->close();
+        $continue = true;
+        echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">✅ WordPress ZIP file extracted successfully.</small></div>';</script>";
+        echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">⏳ PLEASE WAIT, Moving wordpress files & folders to root ...</small></div>';</script>";
+        ob_end_flush(); ob_flush(); flush(); ob_start();
+      } else {
+        echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">⛔️ Error: Failed to extract ZIP file ({$local}).</small></div>';</script>";
+        ob_end_flush(); ob_flush(); flush(); ob_start();
+      }
+      if ($continue) {
+
+        if (!is_dir($tempDir)) {
+          echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">⛔️ Error: 'wordpress' folder not found in the ZIP file.</small></div>';</script>";
+          ob_end_flush(); ob_flush(); flush(); ob_start();
+        }
+        // Step 3: Move files from the 'wordpress' folder to the root directory
+        $files = scandir($tempDir); $jf = 0; $jfl = 0;
+        foreach ($files as $file) {
+          if ($file !== '.' && $file !== '..') {
+            $source = $tempDir . '/' . $file;
+            $destination = $rootDir . '/' . $file;
+            // Move the file or directory
+            if (is_dir($source)) {
+              $jfl++; rename($source, $destination);
+            } else {
+              $jf++; rename($source, $destination);
+            }
+          }
+        }
+        echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">✅ <strong>".number_format($jf)."</strong> Files & <strong>".number_format($jfl)."</strong> Folders moved successfully to the root directory.</small></div>';</script>";
+        ob_end_flush(); ob_flush(); flush(); ob_start();
+
+        // Step 4: Remove the temporary folder
+        $tempPath = $rootDir . '/temp';
+        if (is_dir($tempPath)) {
+          if (rmdir($tempPath)) {
+            echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">✅ Temporary 'temp' folder removed successfully.</small></div>';</script>";
+            ob_end_flush(); ob_flush(); flush(); ob_start();
+          } else {
+            // Fallback to recursive deletion if the folder isn't empty
+            rmdir_recursive($tempPath);
+            echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">✅ Temporary 'temp' folder removed recursively.</small></div>';</script>";
+            ob_end_flush(); ob_flush(); flush(); ob_start();
+          }
+        }else{
+          echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">⛔️ Could not remove Temporary 'temp' folder.</small></div>';</script>";
+          ob_end_flush(); ob_flush(); flush(); ob_start();
+        }
+
+        // Step 5: Optionally, delete the ZIP file
+        if (file_exists($zipFile)) {
+          @unlink($zipFile);
+          @unlink($folder . "/license.txt");
+          @unlink($folder . "/readme.html");
+          @unlink($folder . "/xmlrpc.php");
+          echo "<script>document.querySelector('h1').innerHTML += '<div style=\"margin-bottom: 0.5rem;\"><small style=\"font-size: 1rem;\">✅ Uploaded ZIP file deleted, extra WordPress files deleted.</small></div>';</script>";
+          ob_end_flush(); ob_flush(); flush(); ob_start();
+        }
+      }
+
+    }
+    ob_end_flush();ob_flush(); flush();
+    echo "<script>
+      document.querySelector('h1').innerHTML += `
+      <div style=\"font-size: 0;margin: 2rem; padding:1rem;\">
+        <small style=\"font-size: 1rem;\">
+          <a href=\"?r=" . time() . "\" style=\"background: #0060df;color: white;text-decoration: none; padding: 0.5rem 2rem;border: none;border-radius: 3px;box-shadow: 0 0 8px -3px #00000069;margin: 0 1rem;cursor: pointer;\">Upload another file</a>
+          <a href=\"?delete=true\" style=\"background:#df0025;color: white;text-decoration: none; padding: 0.5rem 2rem;border: none;border-radius: 3px;box-shadow: 0 0 8px -3px #00000069;margin: 0 1rem;cursor: pointer;\">Self Destruct?</a>
+        </small>
+      </div>`;</script>";
+    echo "all done ./";
     exit;
   }
   ?>
@@ -275,6 +354,14 @@ function human_timing($time) {
   $m = floor($s / 60);
   $s -= $m * 60;
   return ($h > 0 ? "$h:" : "") . sprintf('%02d', $m) . ':' . sprintf('%02d', $s);
+}
+function rmdir_recursive($dir) {
+  $files = array_diff(scandir($dir), ['.', '..']);
+  foreach ($files as $file) {
+      $path = $dir . '/' . $file;
+      is_dir($path) ? rmdir_recursive($path) : unlink($path);
+  }
+  return rmdir($dir);
 }
 /*##################################################
 Lead Developer: [amirhp-com](https://amirhp.com/)

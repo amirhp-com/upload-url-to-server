@@ -1,13 +1,15 @@
-# **Upload File from URL to Web Server v.13**
+# **Upload File from URL to Web Server v.14**
 
 ![screenshot.png](screenshot.png)
+![screenshot-2.png](screenshot-2.png)
 
 A simple and efficient solution for uploading files directly from a URL to your web server (e.g., CPanel). This tool is perfect for quick tasks where you need to download and store files on your hosting environment with minimal effort.
 
-**Latest Publish Date:** 2024/08/18 (1403/05/28)
+**Latest Publish Date:** 2025-01-08 | 1403-10-19
 
 ## Features
 
+- **WordPress-Ready:** Upload Latest WordPress and UnZip its archive and move content to root.
 - **One-Click Upload:** Effortlessly upload files from a URL to your hosting storage.
 - **Self-Destruct Feature:** The script can self-destruct after use, enhancing security.
 - **Auto File-Name Filler:** Automatically suggests a file name based on the URL.
@@ -45,8 +47,10 @@ This tool is provided as-is, and is intended for personal use only. The author t
 
 ## Changelog:
 
+-   Version 14: Added WordPress-Ready mode, UnZip Archive and move its content to root
+-   Version 14: Added Self Destruct link to finish screen after upload done
 -   Version 13: Added Self Destruct feature
--   Version 12: Added New features and stability.
+-   Version 12: Added New features and stability
 -   Version 08: Added Compatibility with NON-SSL and DirectAdmin hosting
 -   Version 07: Added Auto file-name filler and Back to Root button
 -   Version 06: Added Timer, showing elapsed and total time
