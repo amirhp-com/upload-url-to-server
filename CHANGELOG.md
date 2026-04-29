@@ -2,119 +2,130 @@
 
 All notable changes to **BlackSwan Upload File from URL to Web Server** are documented here.
 
-The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-
 ---
 
-## v18
+## v1.9.0 — 2026-04-30
 
 ### Added
-- **Inline SVG BlackSwan icon** — favicon and header logo are served as a single base64-free `data:image/svg+xml,…` URI. No more external GitHub-raw asset fetches; the logo renders even on air-gapped servers.
-- **Delete-File action** — completion screen now offers a "Delete File" button that removes the just-uploaded file (`?delete_file=…`). Secured with `realpath()` + scope check so only files inside the script's own directory can be deleted, and `upload.php` itself is excluded.
-- **Output-buffer padding** — `flush_buffers(true)` periodically emits a 4 KB HTML comment to defeat output buffering on nginx/Cloudflare/proxy layers that hold the response back. Padding is throttled to ~once per 8 seconds so it costs almost nothing on fast links.
-- `set_time_limit(0)` — removes the artificial 24 h cap; downloads can run as long as the host allows.
+- **Dark theme** — GitHub-dark-style color palette (`#0d1117` background, `#161b22` cards, orange `#f0883e` accent). Replaces the previous light design.
+- **Top-bar progress line** — 3 px fixed line at the top of the page fills left-to-right during download. Replaces the old body-background gradient approach.
+- **ETA display** — progress area now shows percentage, bytes transferred / total, elapsed time, and estimated time remaining.
+- **File browser popup** — AJAX-powered modal (`Files` button in header) to navigate the server filesystem: list dirs/files with human-readable sizes and modification dates, copy HTTP URL per file, delete with confirmation dialog, multi-select checkboxes with bulk "Delete Selected" and "Copy Selected URLs".
+- **PHP Info modal** — `PHP Info` button in header opens a dark, curated info panel as a popup instead of navigating away. Full `phpinfo()` still opens in a new tab.
+- **Help / CLI guide popup** — `? Help` button opens a modal with PHP CLI usage and all web endpoint references.
+- **PHP CLI mode** — run `php upload.php --url=... --name=... [--folder=...] [--extract] [--wpinstall] [--delete] [--help]` directly from the terminal with a progress bar in the console.
+- **iOS-style pill buttons** — all buttons use `border-radius: 980px` with filled, system-color backgrounds.
+- **Minified CSS/JS** — all inline styles and scripts are minified; HTML whitespace is compressed.
 
 ### Changed
-- The "Self-destruction" and "File deletion" exit screens are now self-styled (inline CSS) so they look right even when the page styles haven't loaded.
-- Header logo moved into a real CSS class (`.aw .swan`) instead of a duplicated inline-style data URI.
+- Version scheme changed to semver (`v1.9.0`) across all files.
+- Header redesigned: compact sticky bar with logo left, nav buttons right.
+- Footer redesigned: minimal single-line with author and GitHub links.
+- `PHP Info` action is now a popup modal; `?info=1` query param is no longer used.
+- Progress container is pre-rendered in the page; no longer injected into `h1` via JS.
+- `human_timing` refactored into `human_timing2(seconds)` + `human_timing(start)` wrapper.
 
 ### Security
-- `?delete_file=` strictly path-scopes deletions to `__DIR__` and refuses to delete the script itself; previous variants accepted any path the PHP user could write to.
+- File browser uses PHP filesystem permissions as the access boundary; the script itself cannot be deleted via the browser.
 
 ---
 
-## v17 *(unreleased — superseded by v18)*
+## v1.8.0
 
 ### Added
-- **iOS-style toggles** for opt-in features (default OFF) — replaces inline checkboxes.
-- **Universal archive extraction** toggle — supports `.zip`, `.tar`, `.tar.gz`, `.tgz`, and `.gz` (via `ZipArchive` and `PharData`).
-- **WordPress installer** as a separate, explicit toggle — works with any WordPress zip URL, not just `wordpress.org/latest.zip`.
-- WordPress installer now **keeps only the latest default theme** (natural-sort, last entry) and removes older bundled themes.
-- WordPress installer **wipes every default plugin** and drops a `Silence is golden` `index.php` placeholder back into `wp-content/plugins/`.
-- WordPress installer **writes a `robots.txt`** that blocks all crawlers (`User-agent: * / Disallow: /`).
-- **Copy buttons** on the completion screen for both source URL and destination URL.
-- **Toast notification** ("Copied to clipboard") with iOS-style fade in/out.
-- **PHP Info panel** (`?info=1`) — curated, two-column view of PHP environment, server software, disk space, loaded extensions, and key `$_SERVER` values.
-- **Full `phpinfo()` view** (`?phpinfo=1`) for deeper debugging.
-- Cleanup also removes `wp-config-sample.php` in addition to `license.txt`, `readme.html`, `xmlrpc.php`.
-- Mobile-responsive layout for the form on small screens.
+- **Inline SVG BlackSwan icon** — favicon and header logo served as a single `data:image/svg+xml,…` URI. No external fetches; renders on air-gapped servers.
+- **Delete-File action** — completion screen offers a "Delete File" button (`?delete_file=…`). Secured with `realpath()` + scope check.
+- **Output-buffer padding** — `flush_buffers(true)` emits a 4 KB HTML comment ~once per 8 seconds to defeat proxy buffering.
+- `set_time_limit(0)` — removes the PHP execution time cap.
 
 ### Changed
-- **Download engine rewritten on cURL** with a 64 KB buffer and `CURLOPT_PROGRESSFUNCTION` — replaces the dual `fopen`/`fread` + manual fallback path. One code path now serves SSL, non-SSL, DirectAdmin, and follows redirects automatically.
-- Progress UI updates are throttled to ~5 fps instead of every 2 KB chunk — dramatically less DOM thrashing on fast links.
-- All inline `document.querySelector('h1').innerHTML +=` calls replaced with reusable `updateProgress()` / `appendStatus()` JS helpers.
-- Destination URL is now built from `dirname($_SERVER['PHP_SELF'])` so the link is correct when `upload.php` lives in a subdirectory.
-- Toggle-row UI replaces the old inline checkbox-and-label pattern.
+- Self-destruction and file-deletion exit screens carry inline CSS so they render correctly before page styles load.
+- Header logo moved to a CSS class instead of a duplicated inline `data:` URI.
+
+### Security
+- `?delete_file=` strictly path-scopes deletions to `__DIR__` and refuses to delete the script itself.
+
+---
+
+## v1.7.0 *(unreleased — superseded by v1.8.0)*
+
+### Added
+- **iOS-style toggles** for opt-in features (default OFF).
+- **Universal archive extraction** toggle — `.zip`, `.tar`, `.tar.gz`, `.tgz`, `.gz`.
+- **WordPress installer** as a separate explicit toggle.
+- WordPress installer keeps only the latest default theme, wipes default plugins, writes `robots.txt` blocking all crawlers.
+- **Copy buttons** on the completion screen for source and destination URL.
+- **Toast notification** ("Copied to clipboard").
+- **PHP Info panel** (`?info=1`) — curated two-column view.
+- **Full `phpinfo()` view** (`?phpinfo=1`).
+- Mobile-responsive layout.
+
+### Changed
+- **Download engine rewritten on cURL** with `CURLOPT_PROGRESSFUNCTION` — replaces the old dual `fopen`/`fread` path.
+- Progress UI throttled to ~5 fps.
+- Destination URL built from `dirname($_SERVER['PHP_SELF'])`.
 
 ### Fixed
-- **Path traversal** hardening on both the destination folder and filename inputs (`..`, `\0`, mixed slashes, leading slashes are stripped).
-- URL validation via `filter_var(... FILTER_VALIDATE_URL)` before any I/O.
-- File handles are now always closed on the cURL error path (no leaked descriptors on failed downloads).
-- WordPress mover safely overwrites pre-existing files/dirs at the destination instead of silently failing on `rename()`.
-- `human_filesize()` no longer returns `"ERR"` for legitimate small files; it returns `"0 B"` only for zero-byte input.
-- Output buffering (`ob_*`) cleanup is now consistent — `flush_buffers()` helper centralises the dance.
-- Self-destruct page no longer relies on the `<head>` styles already being parsed (it carries inline styles).
-
-### Security
-- `<meta name="robots" content="noindex,nofollow">` added to the page itself.
-- Self-destruct link still works exactly as before, with no extra confirmation step (intentional).
+- Path traversal hardening on destination folder and filename inputs.
+- URL validation via `filter_var(... FILTER_VALIDATE_URL)`.
+- File handles closed on cURL error path.
+- `human_filesize()` returns `"0 B"` for zero-byte input.
 
 ---
 
-## v16
+## v1.6.0
 
-- Added a `?delete_file=` action to remove the just-uploaded file from the completion screen.
-- Added a `?force=1` switch that forces the cURL-based download path (useful when `get_headers()` was unreliable on some hosts).
-- Replaced the externally-hosted PNG favicon with an inline SVG `data:` URI.
-- Periodic output padding (`str_pad`) every 10 s during download to keep buffered proxies from holding the response.
-- Polishing pass on UI labels.
+- Added `?delete_file=` action to remove the just-uploaded file.
+- Added `?force=1` switch to force the cURL download path.
+- Replaced externally-hosted PNG favicon with inline SVG `data:` URI.
+- Periodic output padding during download to keep buffered proxies from holding the response.
 
-## v15
+## v1.5.0
 
-- Internal refactors and stability improvements (no public-facing changes).
+- Internal refactors and stability improvements.
 
-## v14
+## v1.4.0
 
-- Added WordPress-Ready mode: extract the latest WordPress ZIP and move its contents to root.
-- Added Self-Destruct link to the finish screen after upload completes.
+- Added WordPress-Ready mode: extract WordPress ZIP and move contents to root.
+- Added Self-Destruct link to the finish screen.
 
-## v13
+## v1.3.0
 
 - Added Self-Destruct feature.
 
-## v12
+## v1.2.0
 
 - New features and stability improvements.
 
-## v8
+## v0.8.0
 
-- Compatibility with non-SSL servers and DirectAdmin hosting (cURL fallback path).
+- Compatibility with non-SSL servers and DirectAdmin hosting (cURL fallback).
 
-## v7
+## v0.7.0
 
 - Auto file-name filler from URL.
 - Back-to-Root button.
 
-## v6
+## v0.6.0
 
-- Timer display: shows elapsed and total time.
+- Timer display: elapsed and total time.
 
-## v5
+## v0.5.0
 
-- More stability when processing large files.
+- Stability improvements for large files.
 
-## v4
+## v0.4.0
 
 - Fixed file-size detection error.
 
-## v3
+## v0.3.0
 
 - Initial styling and visual pass.
 
-## v2
+## v0.2.0
 
 - Real-time progress bar while uploading.
 
-## v1
+## v0.1.0
 
 - Initial release — 2020-11-15 (1399-08-25).
