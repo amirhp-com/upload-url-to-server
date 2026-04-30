@@ -1,10 +1,10 @@
 # BlackSwan — Upload File from URL to Web Server
 
-> A single-file PHP utility that pulls any file from a remote URL straight onto your web server, with live progress, optional archive extraction, a built-in WordPress installer, file browser, PHP CLI support, and a one-click self-destruct.
+> A single-file PHP utility that pulls any file from a remote URL straight onto your web server, with live progress, MITM relay mode, optional archive extraction, a built-in WordPress installer, file browser, PHP CLI support, and a one-click self-destruct.
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius: 0.5rem;" alt="Screenshot of the upload.php interface showing the upload form, progress bar, and file browser popup." width="400"></a>
 
-> **Latest release:** v1.9.2 · 2026-04-30<br>
+> **Latest release:** v2.0.0 · 2026-04-30<br>
 > **Single file:** `upload.php` — drop it in, run it, delete it.<br>
 > **Zero dependencies:** pure PHP, vanilla JS, vanilla CSS. No Composer, no CDN, no build step.
 
@@ -30,6 +30,7 @@ Sometimes you need to get a file *onto* a server but `wget` and `ssh` aren't ava
 - **Copy-to-clipboard** buttons for source and destination URL on the completion screen, with toast confirmation.
 - **iOS-style toggles**, mobile-responsive form, keyboard-accessible.
 - **Self-destruct** — one click (or `--delete` from CLI) and the script removes itself from the server.
+- **MITM relay mode** — when your server can't reach a URL directly, route the transfer through a second server running this same script. Server A asks the MITM server to fetch the source, then downloads the file from MITM to A, and optionally auto-deletes it from the relay. Exposes `_a=fetch` and `_a=del_by_name` JSON API endpoints used by the caller.
 - **Path-traversal hardening** on folder and filename inputs.
 - **Auto file-name** suggested from the URL.
 
@@ -63,6 +64,8 @@ Options:
   --extract          Extract archive after download
   --wpinstall        WordPress installer mode
   --delete           Self-destruct (removes upload.php)
+  --mitm=<URL>       MITM server upload.php URL (required for MITM mode)
+  --mitm-keep        Keep file on MITM server after transfer
   --help             Show help
 ```
 
@@ -77,6 +80,9 @@ php upload.php --url=https://example.com/app.zip --name=app.zip --folder=downloa
 
 # Download a file
 php upload.php --url=https://example.com/file.tar.gz --name=archive.tar.gz --extract
+
+# MITM relay — route through a proxy server
+php upload.php --mitm=https://turkey.example.com/upload.php --url=https://iran.example.com/file.zip --name=file.zip
 ```
 
 ## URL endpoints
@@ -87,6 +93,8 @@ php upload.php --url=https://example.com/file.tar.gz --name=archive.tar.gz --ext
 | `upload.php?phpinfo=1`   | Full native `phpinfo()` in new tab.             |
 | `upload.php?delete=true` | Self-destruct — deletes the script.             |
 | `upload.php?r=…`         | Cache-busting reload of the form.               |
+| `upload.php` (`_a=fetch`) | MITM API: fetch a URL to this server and return JSON with file URL. |
+| `upload.php` (`_a=del_by_name`) | MITM API: delete a file by name/folder from this server. |
 
 ## Usage tips
 
@@ -113,6 +121,7 @@ Full history: [CHANGELOG.md](CHANGELOG.md).
 
 Recent highlights:
 
+- **v2.0.0** — MITM relay mode (proxy-server transfers via `_a=fetch`/`_a=del_by_name` API), Phosphor SVG icons (fully local, no external resources), larger fonts, Direct/MITM tab switcher with localStorage persistence, wider content area (700px), CLI `--mitm`/`--mitm-keep` flags.
 - **v1.9.2** — Dark iOS UI, top-bar progress with ETA, file browser popup (AJAX), PHP Info modal, Help/CLI guide popup, PHP CLI mode, minified CSS/JS, semver versioning.
 - **v1.8.0** — Inline SVG icon, scoped `delete_file` action with realpath safety, output-buffer padding for proxied hosts.
 - **v1.7.0** *(folded into v1.8.0)* — cURL engine, iOS toggles, universal archive extraction, copy buttons, PHP info panel.

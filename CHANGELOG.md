@@ -4,6 +4,27 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v2.0.0 — 2026-04-30
+
+### Added
+- **MITM relay mode** — new "MITM Relay" tab in the form. Provide a MITM server URL (another server running `upload.php`), the source URL, and a filename. The current server POSTs `_a=fetch` to the MITM server, waits for it to download the file, then downloads from the MITM server directly. Optionally auto-deletes from MITM when done.
+- **`_a=fetch` AJAX endpoint** — accepts `url`, `_name`, `_folder`; downloads the URL to this server; returns JSON `{ok, url, path, size, name, folder}`. Used by the MITM caller.
+- **`_a=del_by_name` AJAX endpoint** — accepts `_name`, `_folder`; deletes a file by name; returns JSON `{ok, msg}`. Used for MITM cleanup.
+- **CLI `--mitm=<URL>`** — MITM relay mode from the terminal; `--mitm-keep` to skip MITM cleanup.
+- **Phosphor SVG icons** — all emoji in buttons and modal headers replaced with inline Phosphor SVG paths via a `ph()` helper function. Zero external requests; icons are embedded directly in the PHP file.
+- **Mode tab switcher** — "Direct Upload" and "MITM Relay" tabs above the form, with selection persisted in `localStorage`.
+- **Wider content area** — `.main` max-width increased from 600 px to 700 px.
+
+### Changed
+- Font sizes bumped ~6 % across the board (base `16px` → `17px`; all rem values scaled).
+- Version bumped to 2.0.0.
+
+### Notes
+- No ZIP extraction or WordPress installer in MITM mode by design.
+- Both servers (caller and relay) must run upload.php v2.0.0+.
+
+---
+
 ## v1.9.2 — 2026-04-30
 
 ### Added
