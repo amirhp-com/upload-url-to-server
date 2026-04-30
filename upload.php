@@ -3,7 +3,7 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/04/30 04:33:21
+ * @Last modified time: 2026/04/30 04:53:20
  * @Version: 1.9.2
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
@@ -26,7 +26,7 @@ if(isset($_POST['_a'])){
 
 if(isset($_GET['delete'])&&$_GET['delete']==='true'){
   @unlink(__FILE__);
-  die('<h3 style="color:#f85149;font:800 1.4rem/2 system-ui;text-align:center;margin:5rem auto">Self-destruction successful &#x2713;</h3>');
+  die('<title>Bye - BlackSwan Upload</title><style>body{background:#0d1117;}</style><link rel="icon" href="'.$_svg.'" sizes="any"><h3 style="color:#f85149;font:800 1.4rem/2 system-ui;text-align:center;margin:5rem auto">Self-destruction successful &#x2713;</h3>');
 }
 
 if(isset($_GET['delete_file'])){
