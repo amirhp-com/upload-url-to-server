@@ -2,12 +2,11 @@
 
 > A single-file PHP utility that pulls any file from a remote URL straight onto your web server, with live progress, optional archive extraction, a built-in WordPress installer, file browser, PHP CLI support, and a one-click self-destruct.
 
-![screenshot.png](screenshot.png)
-![screenshot-2.png](screenshot-2.png)
+<img src="screenshot.jpeg" style="border-radius: 0.5rem;" alt="Screenshot of the upload.php interface showing the upload form, progress bar, and file browser popup." width="400">
 
-**Latest release:** v1.9.0 · 2026-04-30
-**Single file:** `upload.php` — drop it in, run it, delete it.
-**Zero dependencies:** pure PHP, vanilla JS, vanilla CSS. No Composer, no CDN, no build step.
+> **Latest release:** v1.9.2 · 2026-04-30<br>
+> **Single file:** `upload.php` — drop it in, run it, delete it.<br>
+> **Zero dependencies:** pure PHP, vanilla JS, vanilla CSS. No Composer, no CDN, no build step.
 
 ---
 
@@ -27,7 +26,7 @@ Sometimes you need to get a file *onto* a server but `wget` and `ssh` aren't ava
 - **PHP Info popup** — curated server diagnostics in a modal, full `phpinfo()` in a new tab.
 - **Help & CLI guide popup** — documents all PHP CLI flags and web endpoints.
 - **PHP CLI mode** — run `php upload.php --url=... --name=...` directly from the terminal.
-- **Dark theme** — GitHub-dark-style color palette with orange brand accent.
+- **Dark theme** — GitHub-dark-style color palette with brand accent color (my favorite orange).
 - **Copy-to-clipboard** buttons for source and destination URL on the completion screen, with toast confirmation.
 - **iOS-style toggles**, mobile-responsive form, keyboard-accessible.
 - **Self-destruct** — one click (or `--delete` from CLI) and the script removes itself from the server.
@@ -98,7 +97,7 @@ php upload.php --url=https://example.com/file.tar.gz --name=archive.tar.gz --ext
 - **PHP Info**: click **PHP Info** in the header to see a curated diagnostics panel in a popup.
 - **Help**: click **? Help** in the header for CLI usage and web endpoint reference.
 
-## Security notes
+## ⚠️ Security notes
 
 > This tool is **intentionally permissive** — it is designed to be uploaded, used, and immediately deleted. Treat it as a temporary utility, not as part of your application.
 
@@ -114,7 +113,7 @@ Full history: [CHANGELOG.md](CHANGELOG.md).
 
 Recent highlights:
 
-- **v1.9.0** — Dark iOS UI, top-bar progress with ETA, file browser popup (AJAX), PHP Info modal, Help/CLI guide popup, PHP CLI mode, minified CSS/JS, semver versioning.
+- **v1.9.2** — Dark iOS UI, top-bar progress with ETA, file browser popup (AJAX), PHP Info modal, Help/CLI guide popup, PHP CLI mode, minified CSS/JS, semver versioning.
 - **v1.8.0** — Inline SVG icon, scoped `delete_file` action with realpath safety, output-buffer padding for proxied hosts.
 - **v1.7.0** *(folded into v1.8.0)* — cURL engine, iOS toggles, universal archive extraction, copy buttons, PHP info panel.
 - **v1.6.0** — `delete_file` action, `?force=1` cURL switch, inline SVG favicon.

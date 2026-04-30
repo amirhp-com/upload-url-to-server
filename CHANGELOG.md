@@ -4,7 +4,7 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
-## v1.9.0 — 2026-04-30
+## v1.9.2 — 2026-04-30
 
 ### Added
 - **Dark theme** — GitHub-dark-style color palette (`#0d1117` background, `#161b22` cards, orange `#f0883e` accent). Replaces the previous light design.
@@ -18,6 +18,7 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 - **Minified CSS/JS** — all inline styles and scripts are minified; HTML whitespace is compressed.
 
 ### Changed
+- Some UI elements and colors updated for better contrast and a more modern look.
 - Version scheme changed to semver (`v1.9.0`) across all files.
 - Header redesigned: compact sticky bar with logo left, nav buttons right.
 - Footer redesigned: minimal single-line with author and GitHub links.
