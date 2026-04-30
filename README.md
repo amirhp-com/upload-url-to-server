@@ -2,7 +2,7 @@
 
 > A single-file PHP utility that pulls any file from a remote URL straight onto your web server, with live progress, optional archive extraction, a built-in WordPress installer, file browser, PHP CLI support, and a one-click self-destruct.
 
-<img src="screenshot.jpeg" style="border-radius: 0.5rem;" alt="Screenshot of the upload.php interface showing the upload form, progress bar, and file browser popup." width="400">
+<a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius: 0.5rem;" alt="Screenshot of the upload.php interface showing the upload form, progress bar, and file browser popup." width="400"></a>
 
 > **Latest release:** v1.9.2 · 2026-04-30<br>
 > **Single file:** `upload.php` — drop it in, run it, delete it.<br>
