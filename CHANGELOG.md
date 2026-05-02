@@ -4,6 +4,21 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v2.4.0 — 2026-05-03
+
+### Fixed
+- **FTP folder navigation** — folder names and breadcrumb segments were using inline `onclick` attributes. Clicks landing on the embedded SVG icon instead of the text didn't reliably bubble to the span's handler in all browsers. Replaced with `data-ftpnav` attributes + `addEventListener` delegation attached after each `innerHTML` render. Both the file table and the breadcrumb bar use this pattern.
+
+### Added
+- **FTP Download-to Folder** — new "Download-to Folder" input in the FTP connection form. The entered subfolder is passed as `_folder` to every "Copy to Server" (`_a=ftp_copy`) call, so remote files land in a specific directory on this server instead of always the root. Saved and restored via `localStorage`.
+
+### Changed
+- Layout max-width widened from 700 px to 1000 px.
+- Direct Upload bulk mode now hides the "Destination Filename" field (it is unused when uploading multiple URLs).
+- Version bumped to 2.4.0.
+
+---
+
 ## v2.3.0 — 2026-05-03
 
 ### Added

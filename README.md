@@ -4,7 +4,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius: 0.5rem;" alt="Screenshot of the upload.php interface showing the upload form, progress bar, and file browser popup." width="400"></a>
 
-> **Latest release:** v2.3.0 · 2026-05-03<br>
+> **Latest release:** v2.4.0 · 2026-05-03<br>
 > **Single file:** `upload.php` — drop it in, run it, delete it.<br>
 > **Zero dependencies:** pure PHP, vanilla JS, vanilla CSS. No Composer, no CDN, no build step.
 
@@ -127,6 +127,7 @@ Full history: [CHANGELOG.md](CHANGELOG.md).
 
 Recent highlights:
 
+- **v2.4.0** — Fixed FTP folder navigation (SVG click delegation); configurable "Download-to Folder" for FTP Copy-to-Server; wider 1000px layout; bulk mode hides unused filename field.
 - **v2.3.0** — FTP bulk actions (checkboxes, bulk Copy URLs, bulk Delete); Direct Upload bulk mode (multi-URL textarea, per-item progress, sequential AJAX downloads); configurable FTP path strip-prefix; numeric (octal) permissions with human-readable tooltips in both file browsers; self-update from GitHub latest release with backup.
 - **v2.1.0** — FTP Browser tab: connect to FTP/FTPS/SFTP servers, browse the remote file tree, copy path or full HTTP URL, delete files, and pull any file to the local server. Stateless credential passing, self-signed cert acceptance, localStorage persistence for all fields except password.
 - **v2.0.0** — MITM relay mode (proxy-server transfers via `_a=fetch`/`_a=del_by_name` API), Phosphor SVG icons (fully local, no external resources), larger fonts, Direct/MITM tab switcher with localStorage persistence, wider content area (700px), CLI `--mitm`/`--mitm-keep` flags.
