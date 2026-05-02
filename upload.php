@@ -3,13 +3,13 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/05/02 00:00:00
- * @Version: 2.1.0
+ * @Last modified time: 2026/05/03 00:00:00
+ * @Version: 2.3.0
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 error_reporting(E_ERROR);
-define('APP_VER','2.1.0');
-define('BUILD_DATE','released on 2026-05-02 &middot; 1405-02-12');
+define('APP_VER','2.3.0');
+define('BUILD_DATE','released on 2026-05-03 &middot; 1405-02-13');
 
 $_svg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 593.98 611.09'%3E%3Cdefs%3E%3ClinearGradient id='b71a6815-b2dd-4cdc-8829-681ded6965f8' x1='3.19' y1='309' x2='597.16' y2='309' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3ClinearGradient id='a74c5198-c584-4949-bbfa-abba96f490d8' x1='228.39' y1='243.82' x2='250.14' y2='224.92' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='0' stop-color='%23f37248'/%3E%3Cstop offset='0.03' stop-color='%23f3764c'/%3E%3Cstop offset='0.48' stop-color='%23f4a47f'/%3E%3Cstop offset='0.81' stop-color='%23f5c19e'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%3E%3Cpath d='M198.81,7.32C154.67,24.69,117.57,57.52,96.74,97.7A212.73,212.73,0,0,0,76.6,157.22c-2.09,11.8-1.79,55.26.49,68.75a334.57,334.57,0,0,0,10.42,42.56c1.69,4.86,2.68,8.92,2.28,9.12-1.19.8-10.42-3.67-16.57-8C58.34,259.3,48.52,238.76,43,206.82c-3.38-19.54-3.08-54.06.69-67.95l.6-2-1.39,2C39.4,143.73,32.35,168.63,29.28,187c-1.09,6.25-2.48,18-3.18,26-2.87,36.51,5.76,74.9,22.52,100.1,8.53,12.89,3,8.23-9.62-8a368.39,368.39,0,0,1-25-37.2c-2.48-4.36-5.95-10.42-7.64-13.39L3.19,249l.59,10.91c1.69,34.13,15,70.74,36.61,100.89C48.13,371.7,63.7,389.06,72.83,397c8.43,7.44,11,11,7,9.72-7-2.18-42.26-6.25-43.55-5-.3.39.4,1.28,1.59,2.08s7,9,13.19,18.15,13.59,19.94,16.67,24c28.67,39,64.68,69.14,106.54,89,4.17,2,7.64,4.27,7.64,5a1.22,1.22,0,0,1-1.09,1.29c-.6,0-9.43,4-19.64,8.83s-20.44,9.43-22.92,10.12c-10.32,2.88-5.55,4.47,10.12,3.47a108.54,108.54,0,0,0,40.08-10.41c9.72-4.66,16.27-6.85,16.27-5.66,0,1.69-11.31,24.21-13.2,26.29a41.9,41.9,0,0,1-6.64,5.26l-4.47,3,7.94-.7c15.47-1.39,33.53-7.14,50-16,4.56-2.48,8.53-4.17,8.92-3.87,1.29,1.29.2,9.23-2.28,16.27l-2.58,7.34L254.17,573c8-8.33,12.3-12,13.79-12,3.07,0,6.35,4.77,11.41,16.37,2.58,6,5.75,11.41,8,13.79a33.14,33.14,0,0,1,3.67,4.27c0,.2-2.48,4.46-5.45,9.42s-5.26,9.23-5.06,9.43c.59.69,8.53-3.57,14.68-7.94l5.56-4,4.86,3.47c5.15,3.77,13.49,8.73,14.48,8.73,1.49,0,.5-2.08-4.27-9.82-2.67-4.36-5-8.53-5-9.12s1.69-3.08,3.87-5.46a61.39,61.39,0,0,0,7.64-13.49c3.77-9.13,8.33-15.68,10.81-15.68,2.19,0,10.62,7.35,17.86,15.68,3.87,4.36,7,7.84,7.24,7.64s-.79-3.47-2.18-7.44c-2.58-7.05-3.37-14.29-1.69-15.28.5-.3,3.48.89,6.75,2.68,14.48,8.13,32.34,14.38,47.62,16.57,10.91,1.58,12.89,1.09,7.64-1.89-6.55-3.67-11.71-11.61-18-27.18-.89-2.08-1.29-4.07-.89-4.37s2.77.3,5.35,1.39,8.34,3.67,12.8,5.66a124.91,124.91,0,0,0,17.76,6.05c11,2.88,30.65,4.36,33.73,2.68,1.49-.9,1.58-1.19.39-1.49-7.83-2.48-16.66-6.15-28.76-12.2-7.94-3.87-15.38-7.44-16.57-7.84-4.37-1.29-2.38-3.47,7.14-7.84,15.87-7.44,37.4-21.13,53.07-33.63,11.12-8.92,35.12-33.43,44.55-45.63,4.66-5.85,13.88-18.75,20.63-28.77S561.2,406.52,562.59,405s2.28-3.08,2-3.47c-.89-.8-29.46,2.28-38.09,4.06-3.37.7-6.35,1.09-6.65.9s4.67-5.46,11-11.61c31.74-30.46,51.28-62.5,61.6-100.79,3.47-12.6,5.26-27.18,4.56-35.32l-.69-7.44-4.56,8.73c-5,9.33-5.56,10.22-13.89,23.12-6.25,9.62-15.87,22.71-20.54,27.77-1.78,1.89-4.16,4.77-5.35,6.25-4.07,5.16-3.08,2,1.48-4.66a74.82,74.82,0,0,0,4.47-6.94c0-.2,1.49-3.67,3.37-7.74,16.07-34.23,18.75-80.65,7.54-127.28-3.27-13.69-7.14-26-9.42-30l-1.59-2.77.69,4c2,12.4,2.38,17.26,2.38,30.76,0,22.42-3.47,46.22-9.32,62.59-6.05,17.26-16.77,31.65-27.48,37.2-5,2.48-12,5.06-12.5,4.47-.2-.2.5-2.78,1.59-5.66,4.36-12.3,6.84-22.12,10-39.08,12.4-67.86-5.36-131.54-49.41-177.28C454,34.21,429,17.44,403.27,7.52c-5.75-2.28-10.61-4.06-10.81-4.06-1.19,0,1,2.28,6.74,7,38.69,31.84,74.11,99.8,82.44,158.43,1.39,10.31.6,38.19-1.39,45.83-5.75,22.12-11.31,33.63-24.4,50.59-8.73,11.21-23.61,26-39.19,38.69-35.81,29.17-43.55,35.81-52.28,44.74l-9.52,9.82-6.94-3.47-6.85-3.37,1.19-11.71c9.43-86.6-2.58-140.37-39.68-178.66-17.46-18.06-32.74-26-50.2-26-22.61,0-41,14.88-49.89,40.37-5.06,14.58-4.07,30.06,2.57,40.87l2.09,3.47.69-2.48a30.94,30.94,0,0,1,3.37-6.84,38,38,0,0,0,3.87-10.12c.6-3.17,1.39-5.75,1.79-5.75s2.58,2.38,4.76,5.35c6.35,8.34,12.5,10.32,21.93,6.85,4.26-1.49,4.66-1.89,5.25-5.66,1-5.85,5-11.3,9.82-13.59,7.74-3.47,11.31-2.18,19.94,7,6.65,7.24,10,13.39,12.6,23.61,4.07,16.07,1.59,36-9,71.13-6.64,21.82-11,40.87-11.7,50.09l-.7,9.43-4,1.29a119.24,119.24,0,0,0-11.61,4.86l-7.74,3.57-6.64-7.24c-7.74-8.34-23.32-22.13-41-36.21-56.64-45.14-75.09-72-79.56-115.47C114.59,154.14,139.39,84.7,177.88,35.7c6.65-8.53,24.31-26.19,28.67-28.77,2.88-1.79,4.27-3.57,2.48-3.38C208.54,3.55,204,5.34,198.81,7.32Z' transform='translate(-3.19 -3.46)' style='fill:url(%23b71a6815-b2dd-4cdc-8829-681ded6965f8)'/%3E%3Cpath d='M222.62,213.67c-4.06.79-5.45,1.58-10,5.45l-3.27,2.78,2.38,2a55,55,0,0,0,7,4.37c6.75,3.37,14.49,12.6,21.13,25.1,6.25,11.7,7.74,12.89,11.41,8.93s4.47-10.72,2.58-23.52l-1.78-11.6L246,221.4C237.31,213.07,233,211.68,222.62,213.67Z' transform='translate(-3.19 -3.46)' style='fill:url(%23a74c5198-c584-4949-bbfa-abba96f490d8)'/%3E%3C/g%3E%3C/svg%3E";
 
@@ -23,9 +23,11 @@ if(isset($_POST['_a'])){
   if($a==='info')        {echo json_encode(ajax_info());exit;}
   if($a==='fetch')       {echo json_encode(ajax_fetch());exit;}
   if($a==='del_by_name') {echo json_encode(ajax_del_by_name());exit;}
-  if($a==='ftp_ls')     {echo json_encode(ajax_ftp_ls());exit;}
-  if($a==='ftp_del')    {echo json_encode(ajax_ftp_del());exit;}
-  if($a==='ftp_copy')   {echo json_encode(ajax_ftp_copy_to_server());exit;}
+  if($a==='ftp_ls')      {echo json_encode(ajax_ftp_ls());exit;}
+  if($a==='ftp_del')     {echo json_encode(ajax_ftp_del());exit;}
+  if($a==='ftp_copy')    {echo json_encode(ajax_ftp_copy_to_server());exit;}
+  if($a==='check_update'){echo json_encode(ajax_check_update());exit;}
+  if($a==='do_update')   {echo json_encode(ajax_do_update());exit;}
   echo '{"ok":false}';exit;
 }
 
@@ -56,6 +58,7 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0d1117;--s1:#161b22;--s2:#21262d;--bd:#30363d;--t1:#e6edf3;--t2:#8b949e;--ac:#e3650b;--gr:#3fb950;--rd:#f85149;--rw:#c7ff01;--bl:#58a6ff}body{background:var(--bg);color:var(--t1);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.5;min-height:100vh}a{color:var(--bl);text-decoration:none}a:hover{text-decoration:underline}#pgbar{position:absolute;bottom:-4px;left:0;width:0;height:3px;background:linear-gradient(90deg,#f0883e,#f5c47a);z-index:9999;transition:width .25s ease;pointer-events:none;box-shadow:0 0 8px rgba(240,136,62,.5)}.hdr{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.5rem;background:var(--s1);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100;gap:.75rem}.hdr-logo{display:flex;align-items:center;gap:.45rem;text-decoration:none;flex-shrink:0}.hdr-logo img{width:24px;height:24px}.hdr-title{font-size:.97rem;font-weight:700;color:var(--t1);letter-spacing:-.3px}.hdr-nav{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}.ip-badge{font-size:.76rem;color:var(--t2);padding:.2rem .55rem;background:var(--s2);border:1px solid var(--bd);border-radius:20px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.main{max-width:700px;margin:0 auto;padding:2rem 1rem 1rem}.page-hd{text-align:center;margin-bottom:1.5rem}.page-hd h1{font-size:1.3rem;font-weight:900;color:var(--t1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.45rem}.page-hd img{width:72px;height:auto;display:block}.page-hd p{font-size:.84rem;color:var(--t2);margin-top:.3rem}.field{margin-bottom:.85rem}.field label{display:block;font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.32rem}.field input{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none}.field input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(240,136,62,.15)}.field input::placeholder{color:var(--t2)}.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:.65rem .95rem;background:var(--s1);border:1px solid var(--bd);border-radius:12px;margin-bottom:.55rem;gap:1rem}.tgl-lbl{font-size:.9rem;color:var(--t1);flex:1}.tgl-hint{display:block;font-size:.78rem;color:var(--t2);margin-top:2px}.sw{position:relative;display:inline-block;width:51px;height:31px;flex-shrink:0}.sw input{opacity:0;width:0;height:0}.sw-s{position:absolute;cursor:pointer;inset:0;background:#3a3a3c;border-radius:31px;transition:background .25s}.sw-s::before{content:'';position:absolute;width:27px;height:27px;bottom:2px;left:2px;background:#fff;border-radius:50%;box-shadow:0 3px 8px rgba(0,0,0,.4);transition:transform .25s cubic-bezier(.32,.72,0,1)}.sw input:checked+.sw-s{background:var(--gr)}.sw input:checked+.sw-s::before{transform:translateX(20px)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;padding:.52rem 1.2rem;border:none;border-radius:980px;font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;white-space:nowrap;line-height:1}.btn:hover{text-decoration:none;}.btn:active{transform:scale(.96)}.btn-p{background:var(--ac);color:#fff;}.btn-p.root{padding:1rem 2.5rem}.btn-p:hover{opacity:.88}.btn-g{background:var(--s2);color:var(--t1);border:1px solid var(--bd)}.btn-g:hover{border-color:var(--t2)}.btn-d{background:var(--rd);color:#fff}.btn-d:hover{opacity:.88}.btn-sm{padding:.32rem .8rem;font-size:.82rem}.btn-icon{padding:.38rem .55rem;border-radius:8px}.form-wrap{display:flex;justify-content:center;margin-top:1.1rem}.upload-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem;margin-bottom:.9rem}.upload-meta{font-size:.86rem;color:var(--t2);margin-bottom:.75rem;line-height:1.65}.upload-meta a{color:var(--bl)}.upload-meta strong{color:var(--t1)}#progress{font-size:1rem;font-weight:700;color:var(--ac);margin:.5rem 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}#progress small{font-weight:400;color:var(--t2);font-size:.82rem}.status-line{margin:.22rem 0;font-size:.88rem;color:var(--t2)}.result-box{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:.9rem;margin:.75rem 0}.url-row{display:flex;align-items:center;gap:.35rem;margin:.3rem 0}.url-lbl{font-size:.72rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;min-width:72px;flex-shrink:0}.url-inp{flex:1;padding:.35rem .6rem;background:var(--s2);border:1px solid var(--bd);border-radius:7px;color:var(--t1);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;outline:none;min-width:0}.copy-btn{padding:.3rem .7rem;background:var(--s2);color:var(--t2);border:1px solid var(--bd);border-radius:7px;cursor:pointer;font-size:.78rem;transition:background .15s,color .15s;flex-shrink:0;white-space:nowrap}.copy-btn:hover,.copy-btn.ok{background:var(--gr);color:#fff;border-color:var(--gr)}.done-btns{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem;justify-content:center}.toast{position:fixed;bottom:1.4rem;right:1.4rem;background:var(--s1);color:var(--t1);border:1px solid var(--bd);padding:.6rem 1rem;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.6);transform:translateY(80px);opacity:0;transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .25s;z-index:9999;font-size:.88rem;pointer-events:none}.toast.show{transform:translateY(0);opacity:1}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}.modal-bg.open{display:flex}.modal{background:var(--s1);border:1px solid var(--bd);border-radius:16px;width:100%;max-width:860px;margin:auto;display:flex;flex-direction:column;overflow:hidden}.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;border-bottom:1px solid var(--bd);flex-shrink:0}.modal-hdr h3{font-size:.95rem;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:.4rem}.modal-hdr-r{display:flex;gap:.35rem;align-items:center}.modal-body{overflow-y:auto;padding:.9rem 1.1rem;max-height:78vh}.modal-x{background:none;border:none;color:var(--t2);cursor:pointer;padding:.28rem .4rem;border-radius:6px;line-height:1;display:inline-flex;align-items:center}.modal-x:hover{color:var(--t1);background:var(--s2)}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}.info-panel{background:var(--s2);border-radius:9px;overflow:hidden;border:1px solid var(--bd)}.info-panel h4{padding:.45rem .85rem;background:var(--s1);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t2);border-bottom:1px solid var(--bd);margin:0}.info-panel table{width:100%;border-collapse:collapse;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.info-panel td{padding:.3rem .85rem;border-bottom:1px solid var(--bd);font-size:.78rem;vertical-align:top;word-break:break-all}.info-panel td:first-child{color:var(--t2);width:140px;word-break:normal;white-space:nowrap}.info-panel tr:last-child td{border-bottom:none}@media(max-width:580px){.info-grid{grid-template-columns:1fr}}.fb-bar{display:flex;align-items:center;gap:.4rem;margin-bottom:.55rem;flex-wrap:wrap}.fb-path{display:flex;align-items:center;gap:.22rem;flex-wrap:wrap;padding:.4rem .7rem;background:var(--s2);border-radius:8px;font-size:.8rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;flex:1;min-width:0}.fb-crumb{color:var(--bl);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:.2rem}.fb-crumb:hover{text-decoration:underline}.fb-sep{color:var(--t2)}.fb-bulk{display:none;align-items:center;gap:.38rem;padding:.38rem .7rem;background:var(--s2);border:1px solid var(--bd);border-radius:8px;margin-bottom:.45rem;font-size:.84rem;color:var(--t2)}.fb-bulk.show{display:flex}.fb-tbl{width:100%;border-collapse:collapse}.fb-tbl th{padding:.38rem .6rem;text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2);border-bottom:1px solid var(--bd)}.fb-tbl td{padding:.42rem .6rem;border-bottom:1px solid var(--bd);font-size:.86rem;vertical-align:middle}.fb-tbl tr:last-child td{border-bottom:none}.fb-tbl tbody tr:hover td{background:rgba(255,255,255,.025)}.fb-dn{color:var(--ac);cursor:pointer;display:inline-flex;align-items:center;gap:.22rem}.fb-dn:hover{text-decoration:underline}.fb-fn{color:var(--t1);display:inline-flex;align-items:center;gap:.22rem}.fb-sz{color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;white-space:nowrap}.fb-mt{color:var(--t2);font-size:.78rem;white-space:nowrap}.fb-acts{display:flex;gap:.22rem;justify-content:flex-end}.fb-empty{text-align:center;padding:2rem;color:var(--t2);font-size:.88rem}.help-sec{margin-bottom:1.1rem}.help-sec h4{font-size:.8rem;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.45rem}.help-code{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:.7rem .95rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;color:var(--t1);overflow-x:auto;white-space:pre;line-height:1.65}.red-warn{color:var(--rw);padding:.65rem .95rem;background:var(--s1);border:1px solid var(--bd);border-radius:12px;font-size:.76rem;font-weight:700;text-transform:uppercase;text-align:center;margin:1.8rem auto .8rem;display:block}.red-warn a{transition:all .3s ease-in-out;color:var(--rd)}.red-warn a:hover{text-decoration:none;color:#bc2019}.ftr{text-align:center;padding:1.1rem;font-size:.78rem;color:var(--t2);border-top:1px solid var(--bd)}.ftr a{color:var(--t2)}.ftr a:hover{color:var(--t1)}.mode-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.25rem}.mode-tab{padding:.45rem 1.3rem;border-radius:980px;font-size:.9rem;font-weight:600;cursor:pointer;border:1px solid var(--bd);background:var(--s2);color:var(--t2);transition:all .15s;display:inline-flex;align-items:center;gap:.35rem}.mode-tab.active{background:var(--ac);color:#fff;border-color:var(--ac)}.mitm-info{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:.7rem .95rem;margin-bottom:.9rem;font-size:.84rem;color:var(--t2);line-height:1.7}.mitm-info strong{color:var(--t1)}@media(max-width:600px){.hdr{padding:.55rem .9rem}.hdr-title{display:none}.main{padding:1.1rem .7rem .7rem}.hdr-nav{gap:.22rem}.btn-sm{padding:.28rem .6rem;font-size:.78rem}}
 .flex-du{display:flex;flex-direction:row;gap:1rem;}.flex-du>div{flex:1 1 45%;}@media only screen and (max-width:600px){.flex-du{flex-direction:column;gap:0.25rem;}}
 .ftp-conn-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem;margin-bottom:.9rem}.ftp-conn-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem .75rem}@media(max-width:520px){.ftp-conn-grid{grid-template-columns:1fr}}.ftp-conn-grid .field{margin-bottom:0}.field select{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .15s,box-shadow .15s}.field select:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(240,136,62,.15)}.ftp-browser{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.9rem;margin-bottom:.9rem;min-height:180px}.ftp-log-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:10px;overflow:hidden;margin-top:.75rem}.ftp-log-hdr{display:flex;align-items:center;justify-content:space-between;padding:.38rem .75rem;background:var(--s2);border-bottom:1px solid var(--bd);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2)}.ftp-log{height:150px;overflow-y:auto;padding:.5rem .75rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;color:var(--t2);line-height:1.65}.ftp-log-entry{margin:.1rem 0;word-break:break-all}.ftp-log-entry.ok{color:var(--gr)}.ftp-log-entry.err{color:var(--rd)}.ftp-log-entry.info{color:var(--t2)}.ftp-perms{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;color:var(--t2);letter-spacing:.5px}.ftp-acts{display:flex;gap:.2rem;justify-content:flex-end;flex-wrap:wrap}.ftp-empty{text-align:center;padding:2.5rem;color:var(--t2);font-size:.88rem}.btn-url{background:var(--s2);color:var(--bl);border:1px solid var(--bd)}.btn-url:hover{border-color:var(--bl);opacity:.88}.btn-url.disabled-url{opacity:.35;cursor:not-allowed;pointer-events:none}
+.bulk-toggle-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}.bulk-toggle-row label{font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}.bulk-url-area{display:none;margin-bottom:.75rem}.bulk-url-area textarea{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.88rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical;outline:none;min-height:90px;transition:border-color .15s}.bulk-url-area textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(240,136,62,.15)}.bulk-progress-wrap{height:4px;background:var(--s2);border-radius:2px;margin:.55rem 0;overflow:hidden;display:none}.bulk-bar{height:100%;background:linear-gradient(90deg,var(--ac),#f5c47a);width:0%;transition:width .3s ease;border-radius:2px}.bulk-counter{font-size:.8rem;color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;display:none;margin-bottom:.4rem}.bulk-status{margin-top:.55rem}.bulk-item{display:flex;align-items:flex-start;gap:.5rem;padding:.35rem .5rem;border-radius:7px;margin-bottom:.28rem;font-size:.82rem;background:var(--s2);border:1px solid var(--bd)}.bulk-item-ic{flex-shrink:0;width:16px;text-align:center}.bulk-item-name{flex:1;word-break:break-all;color:var(--t1)}.bulk-item-meta{font-size:.76rem;color:var(--t2);white-space:nowrap}.bulk-item.ok .bulk-item-ic{color:var(--gr)}.bulk-item.err .bulk-item-ic{color:var(--rd)}.bulk-item.busy .bulk-item-ic{color:var(--ac)}@keyframes spin{to{transform:rotate(360deg)}}.spin{animation:spin .8s linear infinite;display:inline-block}.perms-octal{font-weight:700;color:var(--t1);margin-left:.3rem}
 </style>
 <script>
 var _icFolder=<?=json_encode(ph('folder',14))?>;
@@ -65,6 +68,12 @@ var _icCopy=<?=json_encode(ph('copy',13))?>;
 var _icTrash=<?=json_encode(ph('trash',13))?>;
 var _icRefresh=<?=json_encode(ph('arrow-clockwise',14))?>;
 var _icDownload=<?=json_encode(ph('download-simple',13))?>;
+var _icUpdate=<?=json_encode(ph('arrow-clockwise',14))?>;
+function permsHuman(sym){
+  if(!sym||sym.length<10)return'';
+  var b=function(r,w,x){var s='';if(r==='r')s+='read ';if(w==='w')s+='write ';if(x!=='-')s+='exec';return s.trim()||'none';};
+  return'Owner: '+b(sym[1],sym[2],sym[3])+' \xb7 Group: '+b(sym[4],sym[5],sym[6])+' \xb7 Others: '+b(sym[7],sym[8],sym[9]);
+}
 function setPg(p){var b=document.getElementById('pgbar');if(b)b.style.width=Math.min(100,Number(p))+'%';}
 function eH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function updateProgress(pct,cur,tot,elapsed,eta){
@@ -119,23 +128,28 @@ function fbRender(d){
   var crumbs='<span class="fb-crumb" onclick="fbLoad(\'__ROOT__\')">'+_icHome+' root</span>';
   if(d.breadcrumbs){d.breadcrumbs.forEach(function(b){crumbs+='<span class="fb-sep"> / </span><span class="fb-crumb" onclick=\'fbLoad('+JSON.stringify(b.path)+')\'>'+_esc(b.name)+'</span>';});}
   document.getElementById('fb-path').innerHTML=crumbs;
-  var h='<table class="fb-tbl"><thead><tr><th style="width:2rem"><input type="checkbox" id="fb-all" onchange="fbSelAll(this)"></th><th>Name</th><th>Size</th><th>Modified</th><th style="text-align:right">Actions</th></tr></thead><tbody>';
+  var h='<table class="fb-tbl"><thead><tr><th style="width:2rem"><input type="checkbox" id="fb-all" onchange="fbSelAll(this)"></th><th>Name</th><th>Size</th><th>Modified</th><th>Permissions</th><th style="text-align:right">Actions</th></tr></thead><tbody>';
   if(d.parent!==null&&d.parent!==undefined){
     var pp=d.parent||'__ROOT__';
-    h+='<tr><td></td><td colspan="3"><span class="fb-dn" onclick=\'fbLoad('+JSON.stringify(pp)+')\'>'+_icFolder+' ..</span></td><td></td></tr>';
+    h+='<tr><td></td><td colspan="4"><span class="fb-dn" onclick=\'fbLoad('+JSON.stringify(pp)+')\'>'+_icFolder+' ..</span></td><td></td></tr>';
   }
-  if(!d.items||!d.items.length){h+='<tr><td colspan="5" class="fb-empty">Empty directory</td></tr>';}
+  if(!d.items||!d.items.length){h+='<tr><td colspan="6" class="fb-empty">Empty directory</td></tr>';}
   else{
     d.items.forEach(function(item){
       var isDir=item.type==='dir';
       var nm=isDir?'<span class="fb-dn" onclick=\'fbLoad('+JSON.stringify(item.path)+')\'>'+_icFolder+' '+_esc(item.name)+'</span>':'<span class="fb-fn">'+_icFile+' '+_esc(item.name)+'</span>';
       var urlAttr=(item.url||'').replace(/"/g,'&quot;');
       var pathAttr=item.path.replace(/"/g,'&quot;');
+      var permsOctal=item.perms_octal||'';
+      var permsSym=item.perms_sym||'';
+      var permsTitle=permsSym?permsHuman(permsSym):'';
+      var permsCell=permsOctal?'<span class="ftp-perms" title="'+_esc(permsTitle)+'">'+_esc(permsSym)+' <b class="perms-octal">'+_esc(permsOctal)+'</b></span>':'<span class="ftp-perms">—</span>';
       h+='<tr data-path="'+pathAttr+'" data-url="'+urlAttr+'">'
         +'<td><input type="checkbox" class="fb-chk" onchange="fbChkChg()" value="'+pathAttr+'"></td>'
         +'<td>'+nm+'</td>'
         +'<td class="fb-sz">'+(isDir?'&mdash;':_esc(item.size))+'</td>'
         +'<td class="fb-mt">'+_esc(item.mtime)+'</td>'
+        +'<td>'+permsCell+'</td>'
         +'<td class="fb-acts">'
         +(item.url?'<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy URL" onclick=\'copyText('+JSON.stringify(item.url)+', this)\'>'+_icCopy+'</button>':'')
         +'<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'fbDel('+JSON.stringify(item.path)+','+JSON.stringify(item.name)+')\'>'+_icTrash+'</button>'
@@ -199,6 +213,7 @@ function ftpSaveFields(){
     localStorage.setItem('bsu_ftp_u',document.getElementById('ftp-user').value);
     localStorage.setItem('bsu_ftp_method',document.getElementById('ftp-method').value);
     localStorage.setItem('bsu_ftp_baseurl',document.getElementById('ftp-baseurl').value);
+    var st=document.getElementById('ftp-strip');if(st)localStorage.setItem('bsu_ftp_strip',st.value);
   }catch(e){}
 }
 function ftpRestoreFields(){
@@ -208,6 +223,7 @@ function ftpRestoreFields(){
     var u=localStorage.getItem('bsu_ftp_u');if(u)document.getElementById('ftp-user').value=u;
     var m=localStorage.getItem('bsu_ftp_method');if(m)document.getElementById('ftp-method').value=m;
     var b=localStorage.getItem('bsu_ftp_baseurl');if(b)document.getElementById('ftp-baseurl').value=b;
+    var st=document.getElementById('ftp-strip');if(st){var sv=localStorage.getItem('bsu_ftp_strip');if(sv)st.value=sv;}
   }catch(e){}
 }
 function ftpConnect(){
@@ -245,28 +261,46 @@ function ftpLoad(path){
     })
     .catch(function(e){if(loading)loading.style.display='none';ftpLog('Network error: '+(e.message||e),'err');});
 }
+function ftpUrlPath(remotePath){
+  var strip=(document.getElementById('ftp-strip')||{value:''}).value.trim().replace(/\/+$/,'');
+  if(strip&&remotePath.indexOf(strip)===0)return remotePath.slice(strip.length)||'/';
+  return remotePath;
+}
 function ftpRender(d){
   var wrap=document.getElementById('ftp-tbl-wrap');
-  if(!d.ok){wrap.innerHTML='<div class="ftp-empty">'+_esc(d.msg||'Error')+'</div>';return;}
+  var bulk=document.getElementById('ftp-bulk');
+  if(!d.ok){wrap.innerHTML='<div class="ftp-empty">'+_esc(d.msg||'Error')+'</div>';if(bulk)bulk.classList.remove('show');return;}
   var baseUrl=(document.getElementById('ftp-baseurl').value||'').trim().replace(/\/$/,'');
   var crumbs='<span class="fb-crumb" onclick="ftpLoad(\'/\')">'+_icHome+' root</span>';
   if(d.breadcrumbs){d.breadcrumbs.forEach(function(b){crumbs+='<span class="fb-sep"> / </span><span class="fb-crumb" onclick=\'ftpLoad('+JSON.stringify(b.path)+')\'>'+_esc(b.name)+'</span>';});}
   document.getElementById('ftp-path').innerHTML=crumbs;
-  var h='<table class="fb-tbl"><thead><tr><th>Name</th><th>Size</th><th>Modified</th><th>Permissions</th><th style="text-align:right">Actions</th></tr></thead><tbody>';
+  if(bulk)bulk.classList.remove('show');
+  var h='<table class="fb-tbl"><thead><tr>'
+    +'<th style="width:2rem"><input type="checkbox" id="ftp-chk-all" onchange="ftpSelAll(this)"></th>'
+    +'<th>Name</th><th>Size</th><th>Modified</th><th>Permissions</th><th style="text-align:right">Actions</th>'
+    +'</tr></thead><tbody>';
   if(d.parent!==null&&d.parent!==undefined){
-    h+='<tr><td colspan="4"><span class="fb-dn" onclick=\'ftpLoad('+JSON.stringify(d.parent)+')\'>'+_icFolder+' ..</span></td><td></td></tr>';
+    h+='<tr><td></td><td colspan="4"><span class="fb-dn" onclick=\'ftpLoad('+JSON.stringify(d.parent)+')\'>'+_icFolder+' ..</span></td><td></td></tr>';
   }
-  if(!d.items||!d.items.length){h+='<tr><td colspan="5" class="ftp-empty">Empty directory</td></tr>';}
+  if(!d.items||!d.items.length){h+='<tr><td colspan="6" class="ftp-empty">Empty directory</td></tr>';}
   else{
     d.items.forEach(function(item){
       var isDir=item.type==='dir';
       var nm=isDir?'<span class="fb-dn" onclick=\'ftpLoad('+JSON.stringify(item.path)+')\'>'+_icFolder+' '+_esc(item.name)+'</span>':'<span class="fb-fn">'+_icFile+' '+_esc(item.name)+'</span>';
-      var webUrl=baseUrl?(baseUrl+item.path):'';
+      var urlPath=ftpUrlPath(item.path);
+      var webUrl=baseUrl?(baseUrl+urlPath):'';
+      var permsOctal=item.perms_octal||'';
+      var permsSym=item.perms||'';
+      var permsTitle=permsSym?permsHuman(permsSym):'';
+      var permsCell=permsSym?'<span class="ftp-perms" title="'+_esc(permsTitle)+'">'+_esc(permsSym)+(permsOctal?' <b class="perms-octal">'+_esc(permsOctal)+'</b>':'')+'</span>':'<span class="ftp-perms">—</span>';
+      var pathAttr=item.path.replace(/"/g,'&quot;');
+      var urlAttr=webUrl.replace(/"/g,'&quot;');
       h+='<tr>'
+        +'<td><input type="checkbox" class="ftp-chk" data-path="'+pathAttr+'" data-url="'+urlAttr+'" data-type="'+(isDir?'dir':'file')+'" onchange="ftpChkChg()"></td>'
         +'<td>'+nm+'</td>'
         +'<td class="fb-sz">'+(isDir?'&mdash;':_esc(item.size||''))+'</td>'
         +'<td class="fb-mt">'+_esc(item.mtime||'')+'</td>'
-        +'<td><span class="ftp-perms">'+_esc(item.perms||'')+'</span></td>'
+        +'<td>'+permsCell+'</td>'
         +'<td class="ftp-acts">';
       if(!isDir){
         h+='<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy path" onclick=\'copyText('+JSON.stringify(item.path)+',this)\'>'+_icCopy+'</button>';
@@ -280,6 +314,37 @@ function ftpRender(d){
   }
   h+='</tbody></table>';
   wrap.innerHTML=h;
+}
+function ftpSelAll(cb){document.querySelectorAll('.ftp-chk').forEach(function(c){c.checked=cb.checked;});ftpChkChg();}
+function ftpChkChg(){
+  var cc=document.querySelectorAll('.ftp-chk:checked');
+  var bulk=document.getElementById('ftp-bulk');
+  if(cc.length>0){if(bulk)bulk.classList.add('show');var sn=document.getElementById('ftp-sel-n');if(sn)sn.textContent=cc.length+' selected';}
+  else{if(bulk)bulk.classList.remove('show');}
+}
+function ftpBulkCopyUrls(){
+  var urls=[];
+  document.querySelectorAll('.ftp-chk:checked').forEach(function(c){if(c.dataset.url)urls.push(c.dataset.url);});
+  if(!urls.length){showToast('No web URLs available (set Web Base URL first)');return;}
+  copyText(urls.join('\n'));ftpLog('Copied '+urls.length+' URL(s) to clipboard','ok');
+}
+function ftpBulkDelete(){
+  var items=[];
+  document.querySelectorAll('.ftp-chk:checked').forEach(function(c){items.push({path:c.dataset.path,type:c.dataset.type});});
+  if(!items.length)return;
+  if(!confirm('Delete '+items.length+' item(s)?\nThis cannot be undone.'))return;
+  ftpLog('Deleting '+items.length+' item(s)…','info');
+  var done=0;
+  items.forEach(function(it){
+    var fd=new FormData();
+    fd.append('_a','ftp_del');fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');
+    fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');
+    fd.append('_method',ftpCreds.method||'ftp');fd.append('_p',it.path);fd.append('_type',it.type||'file');
+    fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+      done++;ftpLog((d.ok?'Deleted: ':'Failed: ')+it.path,d.ok?'ok':'err');
+      if(done===items.length){showToast('Deleted '+items.length+' item(s)');ftpLoad(ftpCwd);}
+    }).catch(function(){done++;if(done===items.length)ftpLoad(ftpCwd);});
+  });
 }
 function ftpDel(path,name,type){
   if(!confirm('Delete "'+name+'"?\nThis cannot be undone.'))return;
@@ -324,6 +389,96 @@ function ftpHumanSize(b){
   var i=b>0?Math.min(Math.floor(Math.log(b)/Math.log(1024)),u.length-1):0;
   return(b/Math.pow(1024,i)).toFixed(i?1:0)+' '+u[i];
 }
+var _bulkMode=false;
+function bulkToggle(){
+  _bulkMode=!_bulkMode;
+  document.getElementById('single-url-wrap').style.display=_bulkMode?'none':'';
+  document.getElementById('bulk-url-area').style.display=_bulkMode?'':'none';
+  document.getElementById('bulk-toggle').textContent=_bulkMode?'Single':'Bulk';
+  try{localStorage.setItem('bsu_bulk_mode',_bulkMode?'1':'');}catch(e){}
+}
+function bulkRestoreMode(){try{if(localStorage.getItem('bsu_bulk_mode')==='1'){_bulkMode=true;var sw=document.getElementById('single-url-wrap');if(sw)sw.style.display='none';var ba=document.getElementById('bulk-url-area');if(ba)ba.style.display='';var bt=document.getElementById('bulk-toggle');if(bt)bt.textContent='Single';}}catch(e){}}
+function bulkUploadStart(){
+  var ta=document.getElementById('bulk-urls');
+  if(!ta)return;
+  var lines=ta.value.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>0;});
+  if(!lines.length){showToast('No URLs entered');return;}
+  var folder=document.getElementById('folder')?document.getElementById('folder').value:'';
+  var status=document.getElementById('bulk-status');
+  var bar=document.getElementById('bulk-bar');
+  var counter=document.getElementById('bulk-counter');
+  var pw=document.getElementById('bulk-progress-wrap');
+  if(status)status.innerHTML='';
+  if(bar){bar.style.width='0%';bar.parentElement.style.display='';}
+  if(pw)pw.style.display='';
+  if(counter){counter.textContent='0 / '+lines.length+' done';counter.style.display='';}
+  var items=lines.map(function(url){
+    var name=url.split('?')[0].split('#')[0].split('/').pop()||('file_'+Date.now());
+    var el=document.createElement('div');el.className='bulk-item busy';
+    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(url)+'</span><span class="bulk-item-meta">queued</span>';
+    if(status)status.appendChild(el);
+    return{url:url,name:name,el:el};
+  });
+  bulkUploadNext(items,0,folder,bar,counter);
+}
+function bulkUploadNext(items,i,folder,bar,counter){
+  if(i>=items.length)return;
+  var it=items[i];
+  it.el.className='bulk-item busy';
+  it.el.querySelector('.bulk-item-ic').innerHTML='<span class="spin">&#8635;</span>';
+  it.el.querySelector('.bulk-item-meta').textContent='uploading…';
+  var fd=new FormData();
+  fd.append('_a','fetch');fd.append('url',it.url);fd.append('_name',it.name);
+  if(folder)fd.append('_folder',folder);
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    var done=i+1;
+    if(d.ok){
+      it.el.className='bulk-item ok';
+      it.el.querySelector('.bulk-item-ic').textContent='✓';
+      var sz=d.size?ftpHumanSize(d.size):'';
+      it.el.querySelector('.bulk-item-meta').textContent=sz;
+      if(d.url){var a=document.createElement('a');a.href=d.url;a.target='_blank';a.style.cssText='color:var(--bl);font-size:.76rem;display:block;word-break:break-all';a.textContent=d.url;it.el.appendChild(a);}
+    }else{
+      it.el.className='bulk-item err';
+      it.el.querySelector('.bulk-item-ic').textContent='✗';
+      it.el.querySelector('.bulk-item-meta').textContent=d.error||'failed';
+    }
+    if(bar)bar.style.width=Math.round((done/items.length)*100)+'%';
+    if(counter)counter.textContent=done+' / '+items.length+' done';
+    bulkUploadNext(items,i+1,folder,bar,counter);
+  }).catch(function(e){
+    it.el.className='bulk-item err';
+    it.el.querySelector('.bulk-item-ic').textContent='✗';
+    it.el.querySelector('.bulk-item-meta').textContent=e.message||'network error';
+    var done=i+1;
+    if(bar)bar.style.width=Math.round((done/items.length)*100)+'%';
+    if(counter)counter.textContent=done+' / '+items.length+' done';
+    bulkUploadNext(items,i+1,folder,bar,counter);
+  });
+}
+function checkUpdate(){
+  showToast('Checking for updates…');
+  var fd=new FormData();fd.append('_a','check_update');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    if(!d.ok){showToast('Update check failed: '+(d.msg||'error'));return;}
+    if(d.needs_update){
+      if(confirm('Update available!\nCurrent: v'+d.current+'\nLatest: v'+d.latest+'\n\nUpdate now? (current file will be backed up as upload.php.bak)')){
+        doUpdate(d.download_url);
+      }
+    }else{
+      showToast('Up to date ✓ (v'+d.current+')');
+    }
+  }).catch(function(e){showToast('Update check failed: '+(e.message||e));});
+}
+function doUpdate(url){
+  showToast('Downloading update…');
+  var fd=new FormData();fd.append('_a','do_update');fd.append('_url',url);fd.append('_confirm','yes');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    if(d.ok){
+      if(confirm('Updated to v'+d.to+'!\nReload page to use the new version?')){location.reload();}
+    }else{showToast('Update failed: '+(d.msg||'error'));}
+  }).catch(function(e){showToast('Update failed: '+(e.message||e));});
+}
 </script>
 </head>
 <body>
@@ -337,6 +492,7 @@ function ftpHumanSize(b){
     <button class="btn btn-g btn-sm" onclick="openFileBrowser()"><?=ph('folder-open',15)?> File Explorer</button>
     <button class="btn btn-g btn-sm" onclick="openInfoModal()"><?=ph('gear-six',15)?> PHP Info</button>
     <button class="btn btn-g btn-sm" onclick="openModal('modal-help')"><?=ph('question',15)?> Help</button>
+    <button class="btn btn-g btn-sm" onclick="checkUpdate()" title="Check for updates"><?=ph('arrow-clockwise',15)?> Update</button>
   </nav>
   <div id="pgbar"></div>
 </header>
@@ -468,10 +624,17 @@ function render_form(){
     <button type="button" class="mode-tab" data-mode="ftp" onclick="switchMode('ftp')"><?=ph('hard-drives',15)?> FTP Browser</button>
   </div>
 
-  <form name="upload" method="post" action="<?=$action?>" id="form-direct">
-    <div class="field"><label>Origin URL</label><input type="url" id="url" name="url" required autofocus tabindex="1" value="https://wordpress.org/latest.zip" placeholder="https://example.com/file.zip" onclick="this.select()"></div>
+  <form name="upload" method="post" action="<?=$action?>" id="form-direct" onsubmit="if(_bulkMode){event.preventDefault();bulkUploadStart();}">
+    <div class="field">
+      <div class="bulk-toggle-row"><label>Origin URL</label><button type="button" id="bulk-toggle" class="btn btn-g btn-sm" onclick="bulkToggle()" style="margin-left:auto">Bulk</button></div>
+      <div id="single-url-wrap"><input type="url" id="url" name="url" autofocus tabindex="1" value="https://wordpress.org/latest.zip" placeholder="https://example.com/file.zip" onclick="this.select()"></div>
+      <div class="bulk-url-area" id="bulk-url-area"><textarea id="bulk-urls" placeholder="Paste URLs here, one per line&#10;https://example.com/file1.zip&#10;https://example.com/file2.tar.gz" tabindex="1"></textarea>
+      <div class="bulk-counter" id="bulk-counter"></div>
+      <div class="bulk-progress-wrap" id="bulk-progress-wrap"><div class="bulk-bar" id="bulk-bar"></div></div>
+      <div class="bulk-status" id="bulk-status"></div></div>
+    </div>
     <div class="field"><label>Destination Folder</label><input type="text" id="folder" name="folder" tabindex="2" placeholder="subdirectory (optional)"></div>
-    <div class="field"><label>Destination Filename</label><input type="text" id="name" name="name" required tabindex="3" value="wordpress_latest.zip" placeholder="filename.zip"></div>
+    <div id="single-name-wrap" class="field"><label>Destination Filename</label><input type="text" id="name" name="name" tabindex="3" value="wordpress_latest.zip" placeholder="filename.zip"></div>
     <div class="flex-du">
       <div class="toggle-row"><div class="tgl-lbl">Extract archive after upload<span class="tgl-hint">Supports .zip .tar .tar.gz .tgz .gz</span></div><label class="sw"><input type="checkbox" name="extract" value="1" tabindex="4"><span class="sw-s"></span></label></div>
       <div class="toggle-row"><div class="tgl-lbl">WordPress installer mode<span class="tgl-hint">Move WP to root, clean themes, wipe plugins, no indexing</span></div><label class="sw"><input type="checkbox" name="wpinstall" value="1" tabindex="5"><span class="sw-s"></span></label></div>
@@ -499,6 +662,7 @@ function render_form(){
         <div class="field"><label>Password</label><input type="password" id="ftp-pass" placeholder="password" autocomplete="new-password"></div>
         <div class="field"><label>Connection Method</label><select id="ftp-method" onchange="ftpMethodChange()"><option value="ftp">FTP (plain)</option><option value="ftps">FTPS (TLS/SSL)</option><option value="sftp">SFTP (SSH)</option></select></div>
         <div class="field"><label>Web Base URL <span style="font-weight:400;text-transform:none;font-size:.9em">(optional &mdash; for Copy URL)</span></label><input type="text" id="ftp-baseurl" placeholder="https://dl.example.com" autocomplete="off" onclick="this.select()"></div>
+        <div class="field"><label>Strip Path Prefix <span style="font-weight:400;text-transform:none;font-size:.9em">(optional &mdash; removed from URL path)</span></label><input type="text" id="ftp-strip" placeholder="/www" autocomplete="off" onclick="this.select()" oninput="ftpSaveFields()"></div>
       </div>
       <div class="form-wrap" style="margin-top:.9rem">
         <button type="button" class="btn btn-p root" onclick="ftpConnect()"><?=ph('arrow-right',18)?> Connect &amp; Browse</button>
@@ -509,6 +673,11 @@ function render_form(){
       <div class="fb-bar">
         <div id="ftp-path" class="fb-path"><span style="color:var(--t2)">Not connected</span></div>
         <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
+      </div>
+      <div id="ftp-bulk" class="fb-bulk">
+        <span id="ftp-sel-n"></span>
+        <button class="btn btn-g btn-sm" onclick="ftpBulkCopyUrls()"><?=ph('copy',13)?> Copy URLs</button>
+        <button class="btn btn-d btn-sm" onclick="ftpBulkDelete()"><?=ph('trash',13)?> Delete Selected</button>
       </div>
       <div id="ftp-loading" style="display:none;text-align:center;padding:1.5rem;color:var(--t2)">Loading&hellip;</div>
       <div id="ftp-tbl-wrap"></div>
@@ -524,7 +693,8 @@ function render_form(){
   </div>
 
   <script>
-  setTimeout(function(){var u=document.querySelector('#url');if(u&&document.getElementById('form-direct').style.display!=='none')u.select();},200);
+  bulkRestoreMode();
+  setTimeout(function(){var u=document.querySelector('#url');if(u&&document.getElementById('form-direct').style.display!=='none'&&!_bulkMode)u.select();},200);
   (function(){
     var u=document.querySelector('#url'),n=document.querySelector('#name');
     if(u&&n){function sync(){var v=u.value.split('?')[0].split('#')[0].split('/').pop();if(v)n.value=v;}u.addEventListener('change',sync);u.addEventListener('keyup',sync);}
@@ -849,7 +1019,10 @@ function ajax_ls(){
         $url=rtrim($proto.'://'.$host,'/').'/'.(ltrim($rel,'/'));
       }
     }
-    $items[]=['name'=>$entry,'type'=>$is_dir?'dir':'file','path'=>$full,'size'=>$is_dir?'':human_filesize((int)$sz),'size_bytes'=>(int)$sz,'mtime'=>$mt?date('Y-m-d H:i',$mt):'','url'=>$url];
+    $fp_int=@fileperms($full);
+    $perms_octal=$fp_int!==false?substr(sprintf('%o',$fp_int),-4):'';
+    $perms_sym=$fp_int!==false?perms_int_to_sym($fp_int):'';
+    $items[]=['name'=>$entry,'type'=>$is_dir?'dir':'file','path'=>$full,'size'=>$is_dir?'':human_filesize((int)$sz),'size_bytes'=>(int)$sz,'mtime'=>$mt?date('Y-m-d H:i',$mt):'','url'=>$url,'perms_octal'=>$perms_octal,'perms_sym'=>$perms_sym];
   }
   usort($items,function($a,$b){if($a['type']!==$b['type'])return $a['type']==='dir'?-1:1;return strnatcasecmp($a['name'],$b['name']);});
   return['ok'=>true,'path'=>$dir,'parent'=>$parent,'breadcrumbs'=>$crumbs,'items'=>$items];
@@ -1081,7 +1254,7 @@ function parse_ftp_rawlist($raw){
     $mtime=$parts[5].' '.$parts[6].' '.$parts[7];
     $name=trim($parts[8]);
     if($name==='.'||$name==='..')continue;
-    $items[]=['name'=>$name,'type'=>$type,'perms'=>$perms,'size'=>$size,'mtime'=>$mtime];
+    $items[]=['name'=>$name,'type'=>$type,'perms'=>$perms,'perms_octal'=>perms_sym_to_octal($perms),'size'=>$size,'mtime'=>$mtime];
   }
   return $items;
 }
@@ -1218,6 +1391,76 @@ function ajax_ftp_copy_to_server(){
   if(!$sz){@unlink($local);return['ok'=>false,'msg'=>'Downloaded file is empty'];}
   $url=build_base_url().'/'.($folder?"$folder/":'').$name;
   return['ok'=>true,'name'=>$name,'size'=>(int)$sz,'url'=>$url,'elapsed'=>human_timing($start)];
+}
+
+function perms_sym_to_octal($s){
+  if(strlen($s)<10)return'';
+  $m=0;
+  if($s[1]==='r')$m+=0400;if($s[2]==='w')$m+=0200;if($s[3]==='x'||$s[3]==='s')$m+=0100;
+  if($s[4]==='r')$m+=040; if($s[5]==='w')$m+=020; if($s[6]==='x'||$s[6]==='s')$m+=010;
+  if($s[7]==='r')$m+=04;  if($s[8]==='w')$m+=02;  if($s[9]==='x'||$s[9]==='t')$m+=01;
+  return decoct($m);
+}
+
+function perms_int_to_sym($p){
+  $s=($p&0x4000)?'d':(($p&0xA000)?'l':'-');
+  $s.=($p&0400)?'r':'-';$s.=($p&0200)?'w':'-';$s.=($p&0100)?(($p&04000)?'s':'x'):(($p&04000)?'S':'-');
+  $s.=($p&040)?'r':'-'; $s.=($p&020)?'w':'-'; $s.=($p&010)?(($p&02000)?'s':'x'):(($p&02000)?'S':'-');
+  $s.=($p&04)?'r':'-';  $s.=($p&02)?'w':'-';  $s.=($p&01)?(($p&01000)?'t':'x'):(($p&01000)?'T':'-');
+  return $s;
+}
+
+function ajax_check_update(){
+  $api='https://api.github.com/repos/amirhp-com/upload-url-to-server/releases/latest';
+  $ch=curl_init($api);
+  if(!$ch)return['ok'=>false,'msg'=>'curl init failed'];
+  curl_setopt_array($ch,[
+    CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>15,CURLOPT_CONNECTTIMEOUT=>10,
+    CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,
+    CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER,
+    CURLOPT_HTTPHEADER=>['Accept: application/vnd.github+json'],
+  ]);
+  $resp=curl_exec($ch);$err=curl_error($ch);curl_close($ch);
+  if(!$resp||$err)return['ok'=>false,'msg'=>'Could not reach GitHub: '.($err?:'empty response')];
+  $data=@json_decode($resp,true);
+  if(!$data||empty($data['tag_name']))return['ok'=>false,'msg'=>'Invalid GitHub response'];
+  $latest=ltrim($data['tag_name'],'v');
+  $dl_url='';
+  if(!empty($data['assets'])&&is_array($data['assets'])){
+    foreach($data['assets'] as $asset){
+      if(($asset['name']??'')===('upload.php')){$dl_url=$asset['browser_download_url']??'';break;}
+    }
+  }
+  if(!$dl_url){
+    // Fall back to raw source from tag
+    $dl_url='https://raw.githubusercontent.com/amirhp-com/upload-url-to-server/refs/tags/v'.$latest.'/upload.php';
+  }
+  $needs=version_compare($latest,APP_VER,'>');
+  return['ok'=>true,'current'=>APP_VER,'latest'=>$latest,'download_url'=>$dl_url,'needs_update'=>$needs];
+}
+
+function ajax_do_update(){
+  if(($_POST['_confirm']??'')!=='yes')return['ok'=>false,'msg'=>'Confirmation required'];
+  $url=trim((string)($_POST['_url']??''));
+  if(!filter_var($url,FILTER_VALIDATE_URL))return['ok'=>false,'msg'=>'Invalid download URL'];
+  if(!is_writable(__FILE__))return['ok'=>false,'msg'=>'Script file is not writable'];
+  $ch=curl_init($url);
+  if(!$ch)return['ok'=>false,'msg'=>'curl init failed'];
+  curl_setopt_array($ch,[
+    CURLOPT_RETURNTRANSFER=>true,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_MAXREDIRS=>5,
+    CURLOPT_TIMEOUT=>60,CURLOPT_CONNECTTIMEOUT=>15,
+    CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,
+    CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER,
+  ]);
+  $content=curl_exec($ch);$err=curl_error($ch);curl_close($ch);
+  if($content===false||$err)return['ok'=>false,'msg'=>'Download failed: '.($err?:'empty')];
+  if(!preg_match("/define\('APP_VER','([^']+)'\)/",$content,$m))return['ok'=>false,'msg'=>'Downloaded file does not look like upload.php (no APP_VER)'];
+  $new_ver=$m[1];
+  if(version_compare($new_ver,APP_VER,'<='))return['ok'=>false,'msg'=>"Downloaded version ($new_ver) is not newer than current (".APP_VER.")"];
+  $bak=__DIR__.'/upload.php.bak';
+  @copy(__FILE__,$bak);
+  if(file_put_contents(__FILE__,$content)===false)return['ok'=>false,'msg'=>'Failed to write new version'];
+  return['ok'=>true,'from'=>APP_VER,'to'=>$new_ver,'msg'=>'Updated from '.APP_VER.' to '.$new_ver.'. Backup saved as upload.php.bak'];
 }
 
 /*

@@ -4,7 +4,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius: 0.5rem;" alt="Screenshot of the upload.php interface showing the upload form, progress bar, and file browser popup." width="400"></a>
 
-> **Latest release:** v2.1.0 · 2026-05-02<br>
+> **Latest release:** v2.3.0 · 2026-05-03<br>
 > **Single file:** `upload.php` — drop it in, run it, delete it.<br>
 > **Zero dependencies:** pure PHP, vanilla JS, vanilla CSS. No Composer, no CDN, no build step.
 
@@ -32,6 +32,11 @@ Sometimes you need to get a file *onto* a server but `wget` and `ssh` aren't ava
 - **Self-destruct** — one click (or `--delete` from CLI) and the script removes itself from the server.
 - **MITM relay mode** — when your server can't reach a URL directly, route the transfer through a second server running this same script. Server A asks the MITM server to fetch the source, then downloads the file from MITM to A, and optionally auto-deletes it from the relay. Exposes `_a=fetch` and `_a=del_by_name` JSON API endpoints used by the caller.
 - **FTP Browser tab** — connect to any FTP, FTPS (TLS), or SFTP server and browse its remote file tree. View Name / Size / Modified / Permissions columns, navigate directories with a breadcrumb bar, delete files, copy the bare remote path or a full HTTP URL (Web Base URL + path) to the clipboard, and pull any file down to the local server in one click. Accepts self-signed and unknown SSL certificates.
+- **FTP bulk actions** — checkboxes on every FTP browser row with select-all; bulk Copy URLs and bulk Delete with a single confirmation.
+- **Configurable path strip-prefix** — enter a prefix (e.g. `/www`) in the FTP connection form to strip it from remote paths when building Copy URL links.
+- **Bulk URL upload** — switch Direct Upload to bulk mode, paste multiple URLs (one per line), and download them to the server sequentially with per-item status rows, progress bar, and counter.
+- **Numeric permissions** — both the local file browser and the FTP browser now show symbolic permissions alongside the octal number (e.g. `-rwxr-xr-x 755`) with a hover tooltip describing each access level in plain language.
+- **Self-update** — "Update" button in the header checks the GitHub latest release via API; if a newer version is available, downloads and replaces the script in-place (backing up the current file as `upload.php.bak`).
 - **Path-traversal hardening** on folder and filename inputs.
 - **Auto file-name** suggested from the URL.
 
@@ -122,6 +127,7 @@ Full history: [CHANGELOG.md](CHANGELOG.md).
 
 Recent highlights:
 
+- **v2.3.0** — FTP bulk actions (checkboxes, bulk Copy URLs, bulk Delete); Direct Upload bulk mode (multi-URL textarea, per-item progress, sequential AJAX downloads); configurable FTP path strip-prefix; numeric (octal) permissions with human-readable tooltips in both file browsers; self-update from GitHub latest release with backup.
 - **v2.1.0** — FTP Browser tab: connect to FTP/FTPS/SFTP servers, browse the remote file tree, copy path or full HTTP URL, delete files, and pull any file to the local server. Stateless credential passing, self-signed cert acceptance, localStorage persistence for all fields except password.
 - **v2.0.0** — MITM relay mode (proxy-server transfers via `_a=fetch`/`_a=del_by_name` API), Phosphor SVG icons (fully local, no external resources), larger fonts, Direct/MITM tab switcher with localStorage persistence, wider content area (700px), CLI `--mitm`/`--mitm-keep` flags.
 - **v1.9.2** — Dark iOS UI, top-bar progress with ETA, file browser popup (AJAX), PHP Info modal, Help/CLI guide popup, PHP CLI mode, minified CSS/JS, semver versioning.

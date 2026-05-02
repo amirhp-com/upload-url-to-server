@@ -4,6 +4,26 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v2.3.0 — 2026-05-03
+
+### Added
+- **FTP bulk actions** — checkboxes on every row in the FTP Browser, with a select-all toggle in the table header. A bulk action bar (hidden until at least one item is checked) exposes two actions: **Copy URLs** (collects all checked web URLs, applies strip prefix, copies to clipboard) and **Delete Selected** (single confirm dialog → serial delete of all checked items → list reload).
+- **Direct Upload bulk mode** — a "Bulk" toggle button next to the URL field switches between single-URL input and a multi-URL textarea. Each URL is downloaded sequentially via the existing `_a=fetch` AJAX endpoint. Status updates per item (queued → spinner → ✓ size + clickable local URL / ✗ error message), an animated progress bar, and a "X / N done" counter. Bulk mode preference is persisted in `localStorage`.
+- **Configurable FTP path strip-prefix** — new "Strip Path Prefix" input in the FTP connection form. The entered prefix (e.g. `/www`) is stripped from the left of every remote path before building the Copy URL, so `/www/1/file.mp4` becomes `https://dl.example.com/1/file.mp4`. Saved and restored via `localStorage`.
+- **Numeric (octal) permissions** — both the local file browser and the FTP browser now display permissions as `symbolic octal` (e.g. `-rwxr-xr-x 755`). Hovering shows a human-readable tooltip (`Owner: read write exec · Group: read exec · Others: read exec`).
+  - PHP `perms_sym_to_octal()` converts symbolic FTP rawlist strings to octal.
+  - PHP `perms_int_to_sym()` converts `fileperms()` integers to symbolic strings for the local browser.
+- **Self-update from GitHub** — "Update" button in the header nav triggers `_a=check_update`, which queries the GitHub Releases API for the latest version. If a newer release is found, a confirmation dialog offers to run `_a=do_update`: the new `upload.php` is downloaded, its `APP_VER` is verified, the current file is backed up as `upload.php.bak`, and the script is replaced in-place.
+- **New AJAX endpoints**: `_a=check_update`, `_a=do_update`.
+
+### Changed
+- `ftpRender()` rewritten to support checkboxes, bulk bar, strip prefix, and octal permissions.
+- `ajax_ls()` (local file browser) now returns `perms_octal` and `perms_sym` fields alongside existing item data.
+- `parse_ftp_rawlist()` now returns `perms_octal` per item.
+- Version bumped to 2.2.0.
+
+---
+
 ## v2.1.0 — 2026-05-02
 
 ### Added
