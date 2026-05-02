@@ -393,11 +393,11 @@ var _bulkMode=false;
 function bulkToggle(){
   _bulkMode=!_bulkMode;
   document.getElementById('single-url-wrap').style.display=_bulkMode?'none':'';
-  document.getElementById('bulk-url-area').style.display=_bulkMode?'':'none';
+  document.getElementById('bulk-url-area').style.display=_bulkMode?'block':'none';
   document.getElementById('bulk-toggle').textContent=_bulkMode?'Single':'Bulk';
   try{localStorage.setItem('bsu_bulk_mode',_bulkMode?'1':'');}catch(e){}
 }
-function bulkRestoreMode(){try{if(localStorage.getItem('bsu_bulk_mode')==='1'){_bulkMode=true;var sw=document.getElementById('single-url-wrap');if(sw)sw.style.display='none';var ba=document.getElementById('bulk-url-area');if(ba)ba.style.display='';var bt=document.getElementById('bulk-toggle');if(bt)bt.textContent='Single';}}catch(e){}}
+function bulkRestoreMode(){try{if(localStorage.getItem('bsu_bulk_mode')==='1'){_bulkMode=true;var sw=document.getElementById('single-url-wrap');if(sw)sw.style.display='none';var ba=document.getElementById('bulk-url-area');if(ba)ba.style.display='block';var bt=document.getElementById('bulk-toggle');if(bt)bt.textContent='Single';}}catch(e){}}
 function bulkUploadStart(){
   var ta=document.getElementById('bulk-urls');
   if(!ta)return;
