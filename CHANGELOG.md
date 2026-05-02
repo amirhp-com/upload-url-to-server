@@ -4,6 +4,27 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v2.1.0 — 2026-05-02
+
+### Added
+- **FTP Browser tab** — third tab in the form alongside "Direct Upload" and "MITM Relay". Connect to any FTP, FTPS (TLS), or SFTP server and browse its file tree without leaving the page.
+- **Connection form** — host, port (default 21), username, password, protocol selector (FTP / FTPS / SFTP), and an optional Web Base URL field. All credentials are posted per-request; no session storage.
+- **File tree view** — columns for Name, Size, Modified (human-readable), and Permissions. Directories are clickable; a breadcrumb bar shows the current path with click-to-navigate segments.
+- **`_a=ftp_ls` AJAX endpoint** — lists a remote directory. FTP/FTPS uses PHP native `ftp_rawlist()`; SFTP uses `curl sftp://` with libssh2. Returns items sorted directories-first.
+- **`_a=ftp_del` AJAX endpoint** — deletes a remote file or directory. FTP/FTPS via `ftp_delete()`/`ftp_rmdir()`; SFTP via the `ssh2` PHP extension if available, otherwise returns a clear unsupported message.
+- **`_a=ftp_copy` AJAX endpoint** — pulls a remote file down to the local server using `curl` with an `ftp://`, `ftps://`, or `sftp://` URL. Returns the resulting local HTTP URL.
+- **Copy Path button** — copies the bare remote path (e.g. `/backups/db.sql.gz`) to the clipboard.
+- **Copy URL button** — combines the optional Web Base URL with the remote path to produce a full HTTP URL (e.g. `https://dl.example.com/backups/db.sql.gz`). Disabled when no base URL is set.
+- **Copy to Server button** — transfers the remote file to the directory where `upload.php` lives; shows the resulting local URL in the activity log.
+- **Activity log panel** — scrollable, monospace, timestamped entries (connect, list, delete, copy) below the file tree. Includes a Clear button.
+- **SSL/TLS acceptance** — FTPS skips peer/host verification via PHP stream context; SFTP and FTP-over-curl use `CURLOPT_SSL_VERIFYPEER=0` / `CURLOPT_SSL_VERIFYHOST=0`. Self-signed and unknown certs are accepted.
+- **localStorage persistence** — host, port, username, protocol, and Web Base URL are saved and restored on every tab switch and page reload. Password is never persisted.
+
+### Changed
+- Version bumped to 2.1.0.
+
+---
+
 ## v2.0.0 — 2026-04-30
 
 ### Added
