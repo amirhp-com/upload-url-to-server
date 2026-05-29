@@ -8,7 +8,7 @@
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 error_reporting(E_ERROR);
-define('APP_VER','2.4.0');
+define('APP_VER','2.5.0');
 define('BUILD_DATE','released on 2026-05-03 &middot; 1405-02-13');
 
 $_svg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 593.98 611.09'%3E%3Cdefs%3E%3ClinearGradient id='b71a6815-b2dd-4cdc-8829-681ded6965f8' x1='3.19' y1='309' x2='597.16' y2='309' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3ClinearGradient id='a74c5198-c584-4949-bbfa-abba96f490d8' x1='228.39' y1='243.82' x2='250.14' y2='224.92' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='0' stop-color='%23f37248'/%3E%3Cstop offset='0.03' stop-color='%23f3764c'/%3E%3Cstop offset='0.48' stop-color='%23f4a47f'/%3E%3Cstop offset='0.81' stop-color='%23f5c19e'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%3E%3Cpath d='M198.81,7.32C154.67,24.69,117.57,57.52,96.74,97.7A212.73,212.73,0,0,0,76.6,157.22c-2.09,11.8-1.79,55.26.49,68.75a334.57,334.57,0,0,0,10.42,42.56c1.69,4.86,2.68,8.92,2.28,9.12-1.19.8-10.42-3.67-16.57-8C58.34,259.3,48.52,238.76,43,206.82c-3.38-19.54-3.08-54.06.69-67.95l.6-2-1.39,2C39.4,143.73,32.35,168.63,29.28,187c-1.09,6.25-2.48,18-3.18,26-2.87,36.51,5.76,74.9,22.52,100.1,8.53,12.89,3,8.23-9.62-8a368.39,368.39,0,0,1-25-37.2c-2.48-4.36-5.95-10.42-7.64-13.39L3.19,249l.59,10.91c1.69,34.13,15,70.74,36.61,100.89C48.13,371.7,63.7,389.06,72.83,397c8.43,7.44,11,11,7,9.72-7-2.18-42.26-6.25-43.55-5-.3.39.4,1.28,1.59,2.08s7,9,13.19,18.15,13.59,19.94,16.67,24c28.67,39,64.68,69.14,106.54,89,4.17,2,7.64,4.27,7.64,5a1.22,1.22,0,0,1-1.09,1.29c-.6,0-9.43,4-19.64,8.83s-20.44,9.43-22.92,10.12c-10.32,2.88-5.55,4.47,10.12,3.47a108.54,108.54,0,0,0,40.08-10.41c9.72-4.66,16.27-6.85,16.27-5.66,0,1.69-11.31,24.21-13.2,26.29a41.9,41.9,0,0,1-6.64,5.26l-4.47,3,7.94-.7c15.47-1.39,33.53-7.14,50-16,4.56-2.48,8.53-4.17,8.92-3.87,1.29,1.29.2,9.23-2.28,16.27l-2.58,7.34L254.17,573c8-8.33,12.3-12,13.79-12,3.07,0,6.35,4.77,11.41,16.37,2.58,6,5.75,11.41,8,13.79a33.14,33.14,0,0,1,3.67,4.27c0,.2-2.48,4.46-5.45,9.42s-5.26,9.23-5.06,9.43c.59.69,8.53-3.57,14.68-7.94l5.56-4,4.86,3.47c5.15,3.77,13.49,8.73,14.48,8.73,1.49,0,.5-2.08-4.27-9.82-2.67-4.36-5-8.53-5-9.12s1.69-3.08,3.87-5.46a61.39,61.39,0,0,0,7.64-13.49c3.77-9.13,8.33-15.68,10.81-15.68,2.19,0,10.62,7.35,17.86,15.68,3.87,4.36,7,7.84,7.24,7.64s-.79-3.47-2.18-7.44c-2.58-7.05-3.37-14.29-1.69-15.28.5-.3,3.48.89,6.75,2.68,14.48,8.13,32.34,14.38,47.62,16.57,10.91,1.58,12.89,1.09,7.64-1.89-6.55-3.67-11.71-11.61-18-27.18-.89-2.08-1.29-4.07-.89-4.37s2.77.3,5.35,1.39,8.34,3.67,12.8,5.66a124.91,124.91,0,0,0,17.76,6.05c11,2.88,30.65,4.36,33.73,2.68,1.49-.9,1.58-1.19.39-1.49-7.83-2.48-16.66-6.15-28.76-12.2-7.94-3.87-15.38-7.44-16.57-7.84-4.37-1.29-2.38-3.47,7.14-7.84,15.87-7.44,37.4-21.13,53.07-33.63,11.12-8.92,35.12-33.43,44.55-45.63,4.66-5.85,13.88-18.75,20.63-28.77S561.2,406.52,562.59,405s2.28-3.08,2-3.47c-.89-.8-29.46,2.28-38.09,4.06-3.37.7-6.35,1.09-6.65.9s4.67-5.46,11-11.61c31.74-30.46,51.28-62.5,61.6-100.79,3.47-12.6,5.26-27.18,4.56-35.32l-.69-7.44-4.56,8.73c-5,9.33-5.56,10.22-13.89,23.12-6.25,9.62-15.87,22.71-20.54,27.77-1.78,1.89-4.16,4.77-5.35,6.25-4.07,5.16-3.08,2,1.48-4.66a74.82,74.82,0,0,0,4.47-6.94c0-.2,1.49-3.67,3.37-7.74,16.07-34.23,18.75-80.65,7.54-127.28-3.27-13.69-7.14-26-9.42-30l-1.59-2.77.69,4c2,12.4,2.38,17.26,2.38,30.76,0,22.42-3.47,46.22-9.32,62.59-6.05,17.26-16.77,31.65-27.48,37.2-5,2.48-12,5.06-12.5,4.47-.2-.2.5-2.78,1.59-5.66,4.36-12.3,6.84-22.12,10-39.08,12.4-67.86-5.36-131.54-49.41-177.28C454,34.21,429,17.44,403.27,7.52c-5.75-2.28-10.61-4.06-10.81-4.06-1.19,0,1,2.28,6.74,7,38.69,31.84,74.11,99.8,82.44,158.43,1.39,10.31.6,38.19-1.39,45.83-5.75,22.12-11.31,33.63-24.4,50.59-8.73,11.21-23.61,26-39.19,38.69-35.81,29.17-43.55,35.81-52.28,44.74l-9.52,9.82-6.94-3.47-6.85-3.37,1.19-11.71c9.43-86.6-2.58-140.37-39.68-178.66-17.46-18.06-32.74-26-50.2-26-22.61,0-41,14.88-49.89,40.37-5.06,14.58-4.07,30.06,2.57,40.87l2.09,3.47.69-2.48a30.94,30.94,0,0,1,3.37-6.84,38,38,0,0,0,3.87-10.12c.6-3.17,1.39-5.75,1.79-5.75s2.58,2.38,4.76,5.35c6.35,8.34,12.5,10.32,21.93,6.85,4.26-1.49,4.66-1.89,5.25-5.66,1-5.85,5-11.3,9.82-13.59,7.74-3.47,11.31-2.18,19.94,7,6.65,7.24,10,13.39,12.6,23.61,4.07,16.07,1.59,36-9,71.13-6.64,21.82-11,40.87-11.7,50.09l-.7,9.43-4,1.29a119.24,119.24,0,0,0-11.61,4.86l-7.74,3.57-6.64-7.24c-7.74-8.34-23.32-22.13-41-36.21-56.64-45.14-75.09-72-79.56-115.47C114.59,154.14,139.39,84.7,177.88,35.7c6.65-8.53,24.31-26.19,28.67-28.77,2.88-1.79,4.27-3.57,2.48-3.38C208.54,3.55,204,5.34,198.81,7.32Z' transform='translate(-3.19 -3.46)' style='fill:url(%23b71a6815-b2dd-4cdc-8829-681ded6965f8)'/%3E%3Cpath d='M222.62,213.67c-4.06.79-5.45,1.58-10,5.45l-3.27,2.78,2.38,2a55,55,0,0,0,7,4.37c6.75,3.37,14.49,12.6,21.13,25.1,6.25,11.7,7.74,12.89,11.41,8.93s4.47-10.72,2.58-23.52l-1.78-11.6L246,221.4C237.31,213.07,233,211.68,222.62,213.67Z' transform='translate(-3.19 -3.46)' style='fill:url(%23a74c5198-c584-4949-bbfa-abba96f490d8)'/%3E%3C/g%3E%3C/svg%3E";
@@ -22,6 +22,7 @@ if(isset($_POST['_a'])){
   if($a==='del')         {echo json_encode(ajax_del());exit;}
   if($a==='info')        {echo json_encode(ajax_info());exit;}
   if($a==='fetch')       {echo json_encode(ajax_fetch());exit;}
+  if($a==='mitm_fetch')  {echo json_encode(ajax_mitm_fetch());exit;}
   if($a==='del_by_name') {echo json_encode(ajax_del_by_name());exit;}
   if($a==='ftp_ls')      {echo json_encode(ajax_ftp_ls());exit;}
   if($a==='ftp_del')     {echo json_encode(ajax_ftp_del());exit;}
@@ -467,6 +468,80 @@ function bulkUploadNext(items,i,folder,bar,counter){
     bulkUploadNext(items,i+1,folder,bar,counter);
   });
 }
+var _mitmBulkMode=false;
+function mitmBulkToggle(){
+  _mitmBulkMode=!_mitmBulkMode;
+  var sw=document.getElementById('m-single-url-wrap');if(sw)sw.style.display=_mitmBulkMode?'none':'';
+  var ba=document.getElementById('mitm-bulk-url-area');if(ba)ba.style.display=_mitmBulkMode?'block':'none';
+  var bt=document.getElementById('mitm-bulk-toggle');if(bt)bt.textContent=_mitmBulkMode?'Single':'Bulk';
+  var sn=document.getElementById('m-single-name-wrap');if(sn)sn.style.display=_mitmBulkMode?'none':'';
+  var mu=document.getElementById('m-url');if(mu)mu.required=!_mitmBulkMode;
+  var mn=document.getElementById('m-name');if(mn)mn.required=!_mitmBulkMode;
+  try{localStorage.setItem('bsu_mitm_bulk_mode',_mitmBulkMode?'1':'');}catch(e){}
+}
+function mitmBulkRestoreMode(){try{if(localStorage.getItem('bsu_mitm_bulk_mode')==='1'){_mitmBulkMode=true;var sw=document.getElementById('m-single-url-wrap');if(sw)sw.style.display='none';var ba=document.getElementById('mitm-bulk-url-area');if(ba)ba.style.display='block';var bt=document.getElementById('mitm-bulk-toggle');if(bt)bt.textContent='Single';var sn=document.getElementById('m-single-name-wrap');if(sn)sn.style.display='none';var mu=document.getElementById('m-url');if(mu)mu.required=false;var mn=document.getElementById('m-name');if(mn)mn.required=false;}}catch(e){}}
+function mitmBulkStart(){
+  var mitmUrl=document.getElementById('m-mitm-url')?document.getElementById('m-mitm-url').value.trim():'';
+  if(!mitmUrl){showToast('Enter the MITM server URL');return;}
+  var ta=document.getElementById('mitm-bulk-urls');
+  if(!ta)return;
+  var lines=ta.value.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>0;});
+  if(!lines.length){showToast('No URLs entered');return;}
+  var folder=document.getElementById('m-folder')?document.getElementById('m-folder').value:'';
+  var del=document.getElementById('m-delete')&&document.getElementById('m-delete').checked?'1':'';
+  var status=document.getElementById('mitm-bulk-status');
+  var bar=document.getElementById('mitm-bulk-bar');
+  var counter=document.getElementById('mitm-bulk-counter');
+  var pw=document.getElementById('mitm-bulk-progress-wrap');
+  if(status)status.innerHTML='';
+  if(bar){bar.style.width='0%';bar.parentElement.style.display='';}
+  if(pw)pw.style.display='';
+  if(counter){counter.textContent='0 / '+lines.length+' done';counter.style.display='';}
+  var items=lines.map(function(url){
+    var name=url.split('?')[0].split('#')[0].split('/').pop()||('file_'+Date.now());
+    var el=document.createElement('div');el.className='bulk-item busy';
+    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(url)+'</span><span class="bulk-item-meta">queued</span>';
+    if(status)status.appendChild(el);
+    return{url:url,name:name,el:el};
+  });
+  mitmBulkNext(items,0,{mitmUrl:mitmUrl,folder:folder,del:del},bar,counter);
+}
+function mitmBulkNext(items,i,cfg,bar,counter){
+  if(i>=items.length)return;
+  var it=items[i];
+  it.el.className='bulk-item busy';
+  it.el.querySelector('.bulk-item-ic').innerHTML='<span class="spin">&#8635;</span>';
+  it.el.querySelector('.bulk-item-meta').textContent='relaying…';
+  var fd=new FormData();
+  fd.append('_a','mitm_fetch');fd.append('mitm_url',cfg.mitmUrl);fd.append('url',it.url);fd.append('_name',it.name);
+  if(cfg.folder)fd.append('_folder',cfg.folder);
+  if(cfg.del)fd.append('mitm_delete','1');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    var done=i+1;
+    if(d.ok){
+      it.el.className='bulk-item ok';
+      it.el.querySelector('.bulk-item-ic').textContent='✓';
+      var sz=d.size?ftpHumanSize(d.size):'';
+      it.el.querySelector('.bulk-item-meta').textContent=sz+(d.mitm_deleted===false?' (MITM not cleaned)':'');
+      if(d.url){var a=document.createElement('a');a.href=d.url;a.target='_blank';a.style.cssText='color:var(--bl);font-size:.76rem;display:block;word-break:break-all';a.textContent=d.url;it.el.appendChild(a);}
+    }else{
+      it.el.className='bulk-item err';
+      it.el.querySelector('.bulk-item-ic').textContent='✗';
+      it.el.querySelector('.bulk-item-meta').textContent=d.error||'failed';
+    }
+    if(bar)bar.style.width=Math.round((done/items.length)*100)+'%';
+    if(counter)counter.textContent=done+' / '+items.length+' done';
+    mitmBulkNext(items,i+1,cfg,bar,counter);
+  }).catch(function(e){
+    it.el.className='bulk-item err';
+    it.el.querySelector('.bulk-item-ic').textContent='✗';
+    it.el.querySelector('.bulk-item-meta').textContent=e.message||'network error';
+    var done=i+1;
+    if(bar)bar.style.width=Math.round((done/items.length)*100)+'%';
+    if(counter)counter.textContent=done+' / '+items.length+' done';
+    mitmBulkNext(items,i+1,cfg,bar,counter);
+  });
+}
 function checkUpdate(){
   showToast('Checking for updates…');
   var fd=new FormData();fd.append('_a','check_update');
@@ -653,14 +728,21 @@ function render_form(){
     <div class="form-wrap"><button type="submit" class="btn btn-p root" tabindex="6"><?=ph('arrow-up',18)?> Upload File</button></div>
   </form>
 
-  <form name="mitm" method="post" action="<?=$action?>" id="form-mitm" style="display:none">
+  <form name="mitm" method="post" action="<?=$action?>" id="form-mitm" style="display:none" onsubmit="if(_mitmBulkMode){event.preventDefault();mitmBulkStart();}">
     <input type="hidden" name="_mode" value="mitm">
     <div class="mitm-info"><?=ph('shuffle',15)?> <strong>MITM Relay:</strong> Current server asks the MITM server to fetch the source URL, then downloads the file from the MITM server to here, and optionally cleans it from MITM. No extraction or WP install in this mode. Both servers must run this script.</div>
-    <div class="field"><label>MITM Server URL</label><input type="url" name="mitm_url" required tabindex="1" placeholder="https://turkey-server.com/upload.php" onclick="this.select()"></div>
-    <div class="field"><label>Source URL</label><input type="url" id="m-url" name="url" required tabindex="2" placeholder="https://restricted-source.com/file.zip" onclick="this.select()"></div>
-    <div class="field"><label>Destination Folder</label><input type="text" name="folder" tabindex="3" placeholder="subdirectory (optional)"></div>
-    <div class="field"><label>Destination Filename</label><input type="text" id="m-name" name="name" required tabindex="4" placeholder="filename.zip"></div>
-    <div class="toggle-row"><div class="tgl-lbl">Delete from MITM after transfer<span class="tgl-hint">Auto-clean the relay server when done</span></div><label class="sw"><input type="checkbox" name="mitm_delete" value="1" checked tabindex="5"><span class="sw-s"></span></label></div>
+    <div class="field"><label>MITM Server URL</label><input type="url" id="m-mitm-url" name="mitm_url" required tabindex="1" placeholder="https://turkey-server.com/upload.php" onclick="this.select()"></div>
+    <div class="field">
+      <div class="bulk-toggle-row"><label>Source URL</label><button type="button" id="mitm-bulk-toggle" class="btn btn-g btn-sm" onclick="mitmBulkToggle()" style="margin-left:auto">Bulk</button></div>
+      <div id="m-single-url-wrap"><input type="url" id="m-url" name="url" required tabindex="2" placeholder="https://restricted-source.com/file.zip" onclick="this.select()"></div>
+      <div class="bulk-url-area" id="mitm-bulk-url-area"><textarea id="mitm-bulk-urls" placeholder="Paste source URLs here, one per line&#10;https://restricted-source.com/file1.zip&#10;https://restricted-source.com/file2.tar.gz"></textarea>
+      <div class="bulk-counter" id="mitm-bulk-counter"></div>
+      <div class="bulk-progress-wrap" id="mitm-bulk-progress-wrap"><div class="bulk-bar" id="mitm-bulk-bar"></div></div>
+      <div class="bulk-status" id="mitm-bulk-status"></div></div>
+    </div>
+    <div class="field"><label>Destination Folder</label><input type="text" id="m-folder" name="folder" tabindex="3" placeholder="subdirectory (optional)"></div>
+    <div id="m-single-name-wrap" class="field"><label>Destination Filename</label><input type="text" id="m-name" name="name" required tabindex="4" placeholder="filename.zip"></div>
+    <div class="toggle-row"><div class="tgl-lbl">Delete from MITM after transfer<span class="tgl-hint">Auto-clean the relay server when done</span></div><label class="sw"><input type="checkbox" id="m-delete" name="mitm_delete" value="1" checked tabindex="5"><span class="sw-s"></span></label></div>
     <div class="form-wrap"><button type="submit" class="btn btn-p root" tabindex="6"><?=ph('shuffle',18)?> MITM Transfer</button></div>
   </form>
 
@@ -706,6 +788,7 @@ function render_form(){
 
   <script>
   bulkRestoreMode();
+  mitmBulkRestoreMode();
   setTimeout(function(){var u=document.querySelector('#url');if(u&&document.getElementById('form-direct').style.display!=='none'&&!_bulkMode)u.select();},200);
   (function(){
     var u=document.querySelector('#url'),n=document.querySelector('#name');
@@ -1076,6 +1159,54 @@ function ajax_fetch(){
   if(!$sz){@unlink($path);return['ok'=>false,'error'=>'Downloaded file is empty'];}
   $file_url=build_base_url().'/'.($folder?"$folder/":'').$name;
   return['ok'=>true,'path'=>$path,'size'=>$sz,'url'=>$file_url,'name'=>$name,'folder'=>$folder];
+}
+
+function ajax_mitm_fetch(){
+  set_time_limit(0);
+  $mitm_url=trim((string)($_POST['mitm_url']??''));
+  $url=trim((string)($_POST['url']??''));
+  $name=sanitize_filename((string)($_POST['_name']??''));
+  $folder=sanitize_folder((string)($_POST['_folder']??''));
+  $delete_after=!empty($_POST['mitm_delete']);
+  if(!filter_var($mitm_url,FILTER_VALIDATE_URL))return['ok'=>false,'error'=>'Invalid MITM URL'];
+  if(!filter_var($url,FILTER_VALIDATE_URL))return['ok'=>false,'error'=>'Invalid source URL'];
+  if($name==='')return['ok'=>false,'error'=>'Name required'];
+
+  $fd=['_a'=>'fetch','url'=>$url,'_name'=>$name];
+  if($folder!=='')$fd['_folder']=$folder;
+  $r=mitm_post($mitm_url,$fd);
+  if(!$r||empty($r['ok']))return['ok'=>false,'error'=>'MITM fetch failed: '.($r['error']??'no response')];
+  $mitm_file_url=$r['url']??'';
+  if(!$mitm_file_url)return['ok'=>false,'error'=>'MITM server returned no file URL'];
+
+  $dir=$folder!==''?__DIR__.'/'.$folder:__DIR__;
+  if(!is_dir($dir))@mkdir($dir,0755,true);
+  $path=rtrim($dir,'/\\').'/'.$name;
+  if(file_exists($path))@unlink($path);
+  $fp=fopen($path,'wb');if(!$fp)return['ok'=>false,'error'=>'Cannot write destination'];
+  $ch=curl_init($mitm_file_url);
+  if(!$ch){fclose($fp);return['ok'=>false,'error'=>'curl init failed'];}
+  curl_setopt_array($ch,[
+    CURLOPT_FILE=>$fp,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_MAXREDIRS=>10,
+    CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_SSL_VERIFYPEER=>0,
+    CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,
+    CURLOPT_USERAGENT=>'Mozilla/5.0 (compatible; BlackSwanUpload/'.APP_VER.')',
+  ]);
+  $ok=curl_exec($ch);$http=curl_getinfo($ch,CURLINFO_HTTP_CODE);$err=curl_error($ch);
+  curl_close($ch);fclose($fp);
+  if(!$ok||($http>=400&&$http!==0)){@unlink($path);return['ok'=>false,'error'=>"HTTP $http ".($err?:'')];}
+  $sz=@filesize($path);
+  if(!$sz){@unlink($path);return['ok'=>false,'error'=>'Downloaded file is empty'];}
+
+  $deleted=null;
+  if($delete_after){
+    $del_fd=['_a'=>'del_by_name','_name'=>$name];
+    if($folder!=='')$del_fd['_folder']=$folder;
+    $dr=mitm_post($mitm_url,$del_fd);
+    $deleted=($dr&&!empty($dr['ok']));
+  }
+  $file_url=build_base_url().'/'.($folder?"$folder/":'').$name;
+  return['ok'=>true,'path'=>$path,'size'=>$sz,'url'=>$file_url,'name'=>$name,'folder'=>$folder,'mitm_deleted'=>$deleted];
 }
 
 function ajax_del_by_name(){

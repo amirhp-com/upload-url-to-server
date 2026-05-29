@@ -4,6 +4,17 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v2.5.0 — 2026-05-29
+
+### Added
+- **MITM Relay bulk mode** — a "Bulk" toggle next to the Source URL field in MITM Relay mode switches between single-URL input and a multi-URL textarea (one URL per line). Each URL is relayed through the MITM server sequentially: the per-item destination filename is derived from the URL, and the shared MITM Server URL, Destination Folder, and "Delete from MITM after transfer" settings apply to every item. Per-item status rows (queued → spinner → ✓ size / ✗ error), an animated progress bar, a "X / N done" counter, and a clickable local URL per success — mirroring Direct Upload bulk mode. Bulk preference is persisted in `localStorage`; the single-input `required` attributes are toggled off in bulk mode so the hidden fields don't block submission.
+- **New AJAX endpoint** `_a=mitm_fetch` — relays a single source URL through the MITM server to this server (fetch on relay → download to here → optional delete from relay) and returns JSON (`ok`, `url`, `size`, `mitm_deleted`).
+
+### Changed
+- Version bumped to 2.5.0.
+
+---
+
 ## v2.4.0 — 2026-05-03
 
 ### Fixed

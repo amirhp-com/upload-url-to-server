@@ -30,11 +30,11 @@ Sometimes you need to get a file *onto* a server but `wget` and `ssh` aren't ava
 - **Copy-to-clipboard** buttons for source and destination URL on the completion screen, with toast confirmation.
 - **iOS-style toggles**, mobile-responsive form, keyboard-accessible.
 - **Self-destruct** — one click (or `--delete` from CLI) and the script removes itself from the server.
-- **MITM relay mode** — when your server can't reach a URL directly, route the transfer through a second server running this same script. Server A asks the MITM server to fetch the source, then downloads the file from MITM to A, and optionally auto-deletes it from the relay. Exposes `_a=fetch` and `_a=del_by_name` JSON API endpoints used by the caller.
+- **MITM relay mode** — when your server can't reach a URL directly, route the transfer through a second server running this same script. Server A asks the MITM server to fetch the source, then downloads the file from MITM to A, and optionally auto-deletes it from the relay. Exposes `_a=fetch`, `_a=mitm_fetch`, and `_a=del_by_name` JSON API endpoints used by the caller. Supports bulk mode — paste multiple source URLs (one per line) and relay them through the MITM server sequentially with per-item status, progress bar, and counter.
 - **FTP Browser tab** — connect to any FTP, FTPS (TLS), or SFTP server and browse its remote file tree. View Name / Size / Modified / Permissions columns, navigate directories with a breadcrumb bar, delete files, copy the bare remote path or a full HTTP URL (Web Base URL + path) to the clipboard, and pull any file down to the local server in one click. Accepts self-signed and unknown SSL certificates.
 - **FTP bulk actions** — checkboxes on every FTP browser row with select-all; bulk Copy URLs and bulk Delete with a single confirmation.
 - **Configurable path strip-prefix** — enter a prefix (e.g. `/www`) in the FTP connection form to strip it from remote paths when building Copy URL links.
-- **Bulk URL upload** — switch Direct Upload to bulk mode, paste multiple URLs (one per line), and download them to the server sequentially with per-item status rows, progress bar, and counter.
+- **Bulk URL upload** — switch Direct Upload (or MITM Relay) to bulk mode, paste multiple URLs (one per line), and download/relay them to the server sequentially with per-item status rows, progress bar, and counter.
 - **Numeric permissions** — both the local file browser and the FTP browser now show symbolic permissions alongside the octal number (e.g. `-rwxr-xr-x 755`) with a hover tooltip describing each access level in plain language.
 - **Self-update** — "Update" button in the header checks the GitHub latest release via API; if a newer version is available, downloads and replaces the script in-place (backing up the current file as `upload.php.bak`).
 - **Path-traversal hardening** on folder and filename inputs.
@@ -100,6 +100,7 @@ php upload.php --mitm=https://turkey.example.com/upload.php --url=https://iran.e
 | `upload.php?delete=true` | Self-destruct — deletes the script.             |
 | `upload.php?r=…`         | Cache-busting reload of the form.               |
 | `upload.php` (`_a=fetch`) | MITM API: fetch a URL to this server and return JSON with file URL. |
+| `upload.php` (`_a=mitm_fetch`) | Relay one source URL through a MITM server to this server (fetch → download → optional delete), returns JSON. Used by MITM bulk mode. |
 | `upload.php` (`_a=del_by_name`) | MITM API: delete a file by name/folder from this server. |
 
 ## Usage tips
@@ -127,6 +128,7 @@ Full history: [CHANGELOG.md](CHANGELOG.md).
 
 Recent highlights:
 
+- **v2.5.0** — MITM Relay bulk mode: paste multiple source URLs and relay them through the MITM server sequentially with per-item progress (new `_a=mitm_fetch` endpoint).
 - **v2.4.0** — Fixed FTP folder navigation (SVG click delegation); configurable "Download-to Folder" for FTP Copy-to-Server; wider 1000px layout; bulk mode hides unused filename field.
 - **v2.3.0** — FTP bulk actions (checkboxes, bulk Copy URLs, bulk Delete); Direct Upload bulk mode (multi-URL textarea, per-item progress, sequential AJAX downloads); configurable FTP path strip-prefix; numeric (octal) permissions with human-readable tooltips in both file browsers; self-update from GitHub latest release with backup.
 - **v2.1.0** — FTP Browser tab: connect to FTP/FTPS/SFTP servers, browse the remote file tree, copy path or full HTTP URL, delete files, and pull any file to the local server. Stateless credential passing, self-signed cert acceptance, localStorage persistence for all fields except password.
