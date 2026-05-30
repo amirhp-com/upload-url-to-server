@@ -1,10 +1,10 @@
 # BlackSwan — Upload File from URL to Web Server
 
-> A single-file PHP utility that pulls any file from a remote URL straight onto your web server, with live progress, MITM relay mode, optional archive extraction, a built-in WordPress installer, file browser, PHP CLI support, and a one-click self-destruct.
+> A single-file PHP utility that pulls any file from a remote URL — or straight from your PC — onto your web server, with live progress, MITM relay mode, optional archive extraction, a built-in WordPress installer, an expandable file-tree browser, a two-pane FTP/local Compare &amp; Sync engine, saved connections, a GitHub-style light/dark UI with a collapsible sidebar, PHP CLI support (including CLI compare/sync), and a one-click self-destruct.
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius: 0.5rem;" alt="Screenshot of the upload.php interface showing the upload form, progress bar, and file browser popup." width="400"></a>
 
-> **Latest release:** v2.4.0 · 2026-05-03<br>
+> **Latest release:** v2.9.0 · 2026-05-31<br>
 > **Single file:** `upload.php` — drop it in, run it, delete it.<br>
 > **Zero dependencies:** pure PHP, vanilla JS, vanilla CSS. No Composer, no CDN, no build step.
 
@@ -18,15 +18,21 @@ Sometimes you need to get a file *onto* a server but `wget` and `ssh` aren't ava
 
 ## Features
 
-- **Direct URL → server transfer** with live top-bar progress, file-size readout, elapsed time, and ETA.
+- **Upload from URL → server transfer** with live top-bar progress, file-size readout, elapsed time, and ETA.
+- **Upload from PC** — pick one or more files from your device and upload them **directly** to the server, with a destination folder/filename, per-file status, and a live progress bar (bulk multi-file supported).
+- **GitHub-style UI** — light/dark theme with a left sidebar app shell; Modes (Upload from URL, Upload from PC, MITM Relay, FTP Browser, Compare &amp; Sync) and Tools (File Explorer, PHP Info, Help, Update) render as full-width inline pages. The sidebar collapses to an icon rail that expands on hover.
 - **cURL-based engine** — works on SSL, non-SSL, DirectAdmin, follows redirects, 64 KB buffer, throttled UI updates.
 - **Universal archive extraction** (toggle): `.zip`, `.tar`, `.tar.gz`, `.tgz`, `.gz`.
 - **WordPress installer mode** (toggle): downloads, extracts, moves to root, keeps only the latest default theme, wipes default plugins, writes a `Disallow: /` `robots.txt`.
-- **File browser popup** — navigate directories (including parent dirs), copy file HTTP URLs, delete files/folders with confirmation, multi-select with bulk delete / copy URLs.
+- **Expandable file-tree browser** — the File Browser, FTP Browser, and Compare panes render an inline collapsible **tree**: click a folder to lazy-load just that folder, or hit **Load full tree** to recursively load every folder at once (server-side walk, capped for safety). Copy file HTTP URLs, multi-select with bulk delete / copy URLs.
+- **File operations** — rename, duplicate, and move files/folders, both on the local server and over FTP/FTPS/SFTP, plus delete with confirmation.
+- **Compare &amp; Sync** — a two-pane tab where each side is independently **Local** or an **FTP/FTPS/SFTP** connection, each with its own **Root folder**. Compare diffs the entire tree by each file's path **relative to its root** (so servers with different web roots like `/public_html` vs `/w2w` line up), flagging identical / size-differs / only-left / only-right. Tick files (or a folder to select its whole subtree) and **Sync** in either direction — recreating the sub-folder structure on the destination — using **Direct** (download+upload through this server), **Plain FTP**, **Relay (MITM)**, or **FXP** (best-effort, auto-falls back to Direct).
+- **Saved connections** — store FTP credentials + settings locally as named profiles and reload them into the FTP Browser or either Compare side in one click (stored unencrypted in your browser only).
+- **iOS light &amp; dark theme** — Apple-style design that follows the system `prefers-color-scheme`, with a manual Auto / Light / Dark toggle in the header (persisted), keeping the brand orange accent. Tabs use a connected segmented control.
+- **Startup permission check** — a dismissible banner warns if the script cannot read/write its own folder.
 - **PHP Info popup** — curated server diagnostics in a modal, full `phpinfo()` in a new tab.
 - **Help & CLI guide popup** — documents all PHP CLI flags and web endpoints.
-- **PHP CLI mode** — run `php upload.php --url=... --name=...` directly from the terminal.
-- **Dark theme** — GitHub-dark-style color palette with brand accent color (my favorite orange).
+- **PHP CLI mode** — run `php upload.php --url=... --name=...` directly from the terminal, including **CLI compare &amp; sync**: `php upload.php --compare --left=local:/var/www --right=ftp://u:p@host/public_html [--sync --dir=lr --method=direct --yes]`.
 - **Copy-to-clipboard** buttons for source and destination URL on the completion screen, with toast confirmation.
 - **iOS-style toggles**, mobile-responsive form, keyboard-accessible.
 - **Self-destruct** — one click (or `--delete` from CLI) and the script removes itself from the server.

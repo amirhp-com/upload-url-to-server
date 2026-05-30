@@ -3,13 +3,15 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/05/29 12:00:00
- * @Version: 2.6.1
+ * @Last modified time: 2026/05/31 12:00:00
+ * @Version: 2.9.0
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 error_reporting(E_ERROR);
-define('APP_VER','2.6.1');
-define('BUILD_DATE','released on 2026-05-29 &middot; 1405-03-08');
+define('APP_VER','2.9.0');
+define('BUILD_DATE','released on 2026-05-31 &middot; 1405-03-10');
+define('TREE_MAX_NODES',2000);
+define('TREE_MAX_DEPTH',20);
 
 $_svg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 593.98 611.09'%3E%3Cdefs%3E%3ClinearGradient id='b71a6815-b2dd-4cdc-8829-681ded6965f8' x1='3.19' y1='309' x2='597.16' y2='309' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3ClinearGradient id='a74c5198-c584-4949-bbfa-abba96f490d8' x1='228.39' y1='243.82' x2='250.14' y2='224.92' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='0' stop-color='%23f37248'/%3E%3Cstop offset='0.03' stop-color='%23f3764c'/%3E%3Cstop offset='0.48' stop-color='%23f4a47f'/%3E%3Cstop offset='0.81' stop-color='%23f5c19e'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%3E%3Cpath d='M198.81,7.32C154.67,24.69,117.57,57.52,96.74,97.7A212.73,212.73,0,0,0,76.6,157.22c-2.09,11.8-1.79,55.26.49,68.75a334.57,334.57,0,0,0,10.42,42.56c1.69,4.86,2.68,8.92,2.28,9.12-1.19.8-10.42-3.67-16.57-8C58.34,259.3,48.52,238.76,43,206.82c-3.38-19.54-3.08-54.06.69-67.95l.6-2-1.39,2C39.4,143.73,32.35,168.63,29.28,187c-1.09,6.25-2.48,18-3.18,26-2.87,36.51,5.76,74.9,22.52,100.1,8.53,12.89,3,8.23-9.62-8a368.39,368.39,0,0,1-25-37.2c-2.48-4.36-5.95-10.42-7.64-13.39L3.19,249l.59,10.91c1.69,34.13,15,70.74,36.61,100.89C48.13,371.7,63.7,389.06,72.83,397c8.43,7.44,11,11,7,9.72-7-2.18-42.26-6.25-43.55-5-.3.39.4,1.28,1.59,2.08s7,9,13.19,18.15,13.59,19.94,16.67,24c28.67,39,64.68,69.14,106.54,89,4.17,2,7.64,4.27,7.64,5a1.22,1.22,0,0,1-1.09,1.29c-.6,0-9.43,4-19.64,8.83s-20.44,9.43-22.92,10.12c-10.32,2.88-5.55,4.47,10.12,3.47a108.54,108.54,0,0,0,40.08-10.41c9.72-4.66,16.27-6.85,16.27-5.66,0,1.69-11.31,24.21-13.2,26.29a41.9,41.9,0,0,1-6.64,5.26l-4.47,3,7.94-.7c15.47-1.39,33.53-7.14,50-16,4.56-2.48,8.53-4.17,8.92-3.87,1.29,1.29.2,9.23-2.28,16.27l-2.58,7.34L254.17,573c8-8.33,12.3-12,13.79-12,3.07,0,6.35,4.77,11.41,16.37,2.58,6,5.75,11.41,8,13.79a33.14,33.14,0,0,1,3.67,4.27c0,.2-2.48,4.46-5.45,9.42s-5.26,9.23-5.06,9.43c.59.69,8.53-3.57,14.68-7.94l5.56-4,4.86,3.47c5.15,3.77,13.49,8.73,14.48,8.73,1.49,0,.5-2.08-4.27-9.82-2.67-4.36-5-8.53-5-9.12s1.69-3.08,3.87-5.46a61.39,61.39,0,0,0,7.64-13.49c3.77-9.13,8.33-15.68,10.81-15.68,2.19,0,10.62,7.35,17.86,15.68,3.87,4.36,7,7.84,7.24,7.64s-.79-3.47-2.18-7.44c-2.58-7.05-3.37-14.29-1.69-15.28.5-.3,3.48.89,6.75,2.68,14.48,8.13,32.34,14.38,47.62,16.57,10.91,1.58,12.89,1.09,7.64-1.89-6.55-3.67-11.71-11.61-18-27.18-.89-2.08-1.29-4.07-.89-4.37s2.77.3,5.35,1.39,8.34,3.67,12.8,5.66a124.91,124.91,0,0,0,17.76,6.05c11,2.88,30.65,4.36,33.73,2.68,1.49-.9,1.58-1.19.39-1.49-7.83-2.48-16.66-6.15-28.76-12.2-7.94-3.87-15.38-7.44-16.57-7.84-4.37-1.29-2.38-3.47,7.14-7.84,15.87-7.44,37.4-21.13,53.07-33.63,11.12-8.92,35.12-33.43,44.55-45.63,4.66-5.85,13.88-18.75,20.63-28.77S561.2,406.52,562.59,405s2.28-3.08,2-3.47c-.89-.8-29.46,2.28-38.09,4.06-3.37.7-6.35,1.09-6.65.9s4.67-5.46,11-11.61c31.74-30.46,51.28-62.5,61.6-100.79,3.47-12.6,5.26-27.18,4.56-35.32l-.69-7.44-4.56,8.73c-5,9.33-5.56,10.22-13.89,23.12-6.25,9.62-15.87,22.71-20.54,27.77-1.78,1.89-4.16,4.77-5.35,6.25-4.07,5.16-3.08,2,1.48-4.66a74.82,74.82,0,0,0,4.47-6.94c0-.2,1.49-3.67,3.37-7.74,16.07-34.23,18.75-80.65,7.54-127.28-3.27-13.69-7.14-26-9.42-30l-1.59-2.77.69,4c2,12.4,2.38,17.26,2.38,30.76,0,22.42-3.47,46.22-9.32,62.59-6.05,17.26-16.77,31.65-27.48,37.2-5,2.48-12,5.06-12.5,4.47-.2-.2.5-2.78,1.59-5.66,4.36-12.3,6.84-22.12,10-39.08,12.4-67.86-5.36-131.54-49.41-177.28C454,34.21,429,17.44,403.27,7.52c-5.75-2.28-10.61-4.06-10.81-4.06-1.19,0,1,2.28,6.74,7,38.69,31.84,74.11,99.8,82.44,158.43,1.39,10.31.6,38.19-1.39,45.83-5.75,22.12-11.31,33.63-24.4,50.59-8.73,11.21-23.61,26-39.19,38.69-35.81,29.17-43.55,35.81-52.28,44.74l-9.52,9.82-6.94-3.47-6.85-3.37,1.19-11.71c9.43-86.6-2.58-140.37-39.68-178.66-17.46-18.06-32.74-26-50.2-26-22.61,0-41,14.88-49.89,40.37-5.06,14.58-4.07,30.06,2.57,40.87l2.09,3.47.69-2.48a30.94,30.94,0,0,1,3.37-6.84,38,38,0,0,0,3.87-10.12c.6-3.17,1.39-5.75,1.79-5.75s2.58,2.38,4.76,5.35c6.35,8.34,12.5,10.32,21.93,6.85,4.26-1.49,4.66-1.89,5.25-5.66,1-5.85,5-11.3,9.82-13.59,7.74-3.47,11.31-2.18,19.94,7,6.65,7.24,10,13.39,12.6,23.61,4.07,16.07,1.59,36-9,71.13-6.64,21.82-11,40.87-11.7,50.09l-.7,9.43-4,1.29a119.24,119.24,0,0,0-11.61,4.86l-7.74,3.57-6.64-7.24c-7.74-8.34-23.32-22.13-41-36.21-56.64-45.14-75.09-72-79.56-115.47C114.59,154.14,139.39,84.7,177.88,35.7c6.65-8.53,24.31-26.19,28.67-28.77,2.88-1.79,4.27-3.57,2.48-3.38C208.54,3.55,204,5.34,198.81,7.32Z' transform='translate(-3.19 -3.46)' style='fill:url(%23b71a6815-b2dd-4cdc-8829-681ded6965f8)'/%3E%3Cpath d='M222.62,213.67c-4.06.79-5.45,1.58-10,5.45l-3.27,2.78,2.38,2a55,55,0,0,0,7,4.37c6.75,3.37,14.49,12.6,21.13,25.1,6.25,11.7,7.74,12.89,11.41,8.93s4.47-10.72,2.58-23.52l-1.78-11.6L246,221.4C237.31,213.07,233,211.68,222.62,213.67Z' transform='translate(-3.19 -3.46)' style='fill:url(%23a74c5198-c584-4949-bbfa-abba96f490d8)'/%3E%3C/g%3E%3C/svg%3E";
 
@@ -20,13 +22,26 @@ if(isset($_POST['_a'])){
   $a=trim((string)($_POST['_a']??''));
   if($a==='ls')          {echo json_encode(ajax_ls());exit;}
   if($a==='del')         {echo json_encode(ajax_del());exit;}
+  if($a==='rename')      {echo json_encode(ajax_rename());exit;}
+  if($a==='move')        {echo json_encode(ajax_move());exit;}
+  if($a==='dup')         {echo json_encode(ajax_dup());exit;}
+  if($a==='ls_tree')     {echo json_encode(ajax_ls_tree());exit;}
   if($a==='info')        {echo json_encode(ajax_info());exit;}
   if($a==='fetch')       {echo json_encode(ajax_fetch());exit;}
+  if($a==='upload_local'){echo json_encode(ajax_upload_local());exit;}
   if($a==='mitm_fetch')  {echo json_encode(ajax_mitm_fetch());exit;}
   if($a==='del_by_name') {echo json_encode(ajax_del_by_name());exit;}
   if($a==='ftp_ls')      {echo json_encode(ajax_ftp_ls());exit;}
   if($a==='ftp_del')     {echo json_encode(ajax_ftp_del());exit;}
   if($a==='ftp_copy')    {echo json_encode(ajax_ftp_copy_to_server());exit;}
+  if($a==='ftp_tree')    {echo json_encode(ajax_ftp_tree());exit;}
+  if($a==='ftp_rename')  {echo json_encode(ajax_ftp_rename());exit;}
+  if($a==='ftp_move')    {echo json_encode(ajax_ftp_move());exit;}
+  if($a==='ftp_dup')     {echo json_encode(ajax_ftp_dup());exit;}
+  if($a==='xfer_direct') {echo json_encode(ajax_xfer_direct());exit;}
+  if($a==='xfer_relay')  {echo json_encode(ajax_xfer_relay());exit;}
+  if($a==='xfer_ftp')    {echo json_encode(ajax_xfer_ftp());exit;}
+  if($a==='xfer_fxp')    {echo json_encode(ajax_xfer_fxp());exit;}
   if($a==='check_update'){echo json_encode(ajax_check_update());exit;}
   if($a==='do_update')   {echo json_encode(ajax_do_update());exit;}
   echo '{"ok":false}';exit;
@@ -54,14 +69,124 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
 <title>BlackSwan Upload - v<?=APP_VER?></title>
 <link rel="icon" href="<?=$_svg?>" sizes="any">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0d1117;--s1:#161b22;--s2:#21262d;--bd:#30363d;--t1:#e6edf3;--t2:#8b949e;--ac:#e3650b;--gr:#3fb950;--rd:#f85149;--rw:#c7ff01;--bl:#58a6ff}body{background:var(--bg);color:var(--t1);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.5;min-height:100vh}a{color:var(--bl);text-decoration:none}a:hover{text-decoration:underline}#pgbar{position:absolute;bottom:-4px;left:0;width:0;height:3px;background:linear-gradient(90deg,#f0883e,#f5c47a);z-index:9999;transition:width .25s ease;pointer-events:none;box-shadow:0 0 8px rgba(240,136,62,.5)}.hdr{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.5rem;background:var(--s1);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100;gap:.75rem}.hdr-logo{display:flex;align-items:center;gap:.45rem;text-decoration:none;flex-shrink:0}.hdr-logo img{width:24px;height:24px}.hdr-title{font-size:.97rem;font-weight:700;color:var(--t1);letter-spacing:-.3px}.hdr-nav{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}.ip-badge{font-size:.76rem;color:var(--t2);padding:.2rem .55rem;background:var(--s2);border:1px solid var(--bd);border-radius:20px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.main{max-width:1000px;margin:0 auto;padding:2rem 1rem 1rem}.page-hd{text-align:center;margin-bottom:1.5rem}.page-hd h1{font-size:1.3rem;font-weight:900;color:var(--t1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.45rem}.page-hd img{width:72px;height:auto;display:block}.page-hd p{font-size:.84rem;color:var(--t2);margin-top:.3rem}.field{margin-bottom:.85rem}.field label{display:block;font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.32rem}.field input{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none}.field input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(240,136,62,.15)}.field input::placeholder{color:var(--t2)}.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:.65rem .95rem;background:var(--s1);border:1px solid var(--bd);border-radius:12px;margin-bottom:.55rem;gap:1rem}.tgl-lbl{font-size:.9rem;color:var(--t1);flex:1}.tgl-hint{display:block;font-size:.78rem;color:var(--t2);margin-top:2px}.sw{position:relative;display:inline-block;width:51px;height:31px;flex-shrink:0}.sw input{opacity:0;width:0;height:0}.sw-s{position:absolute;cursor:pointer;inset:0;background:#3a3a3c;border-radius:31px;transition:background .25s}.sw-s::before{content:'';position:absolute;width:27px;height:27px;bottom:2px;left:2px;background:#fff;border-radius:50%;box-shadow:0 3px 8px rgba(0,0,0,.4);transition:transform .25s cubic-bezier(.32,.72,0,1)}.sw input:checked+.sw-s{background:var(--gr)}.sw input:checked+.sw-s::before{transform:translateX(20px)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;padding:.52rem 1.2rem;border:none;border-radius:980px;font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;white-space:nowrap;line-height:1}.btn:hover{text-decoration:none;}.btn:active{transform:scale(.96)}.btn-p{background:var(--ac);color:#fff;}.btn-p.root{padding:1rem 2.5rem}.btn-p:hover{opacity:.88}.btn-g{background:var(--s2);color:var(--t1);border:1px solid var(--bd)}.btn-g:hover{border-color:var(--t2)}.btn-d{background:var(--rd);color:#fff}.btn-d:hover{opacity:.88}.btn-sm{padding:.32rem .8rem;font-size:.82rem}.btn-icon{padding:.38rem .55rem;border-radius:8px}.form-wrap{display:flex;justify-content:center;margin-top:1.1rem}.upload-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem;margin-bottom:.9rem}.upload-meta{font-size:.86rem;color:var(--t2);margin-bottom:.75rem;line-height:1.65}.upload-meta a{color:var(--bl)}.upload-meta strong{color:var(--t1)}#progress{font-size:1rem;font-weight:700;color:var(--ac);margin:.5rem 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}#progress small{font-weight:400;color:var(--t2);font-size:.82rem}.status-line{margin:.22rem 0;font-size:.88rem;color:var(--t2)}.result-box{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:.9rem;margin:.75rem 0}.url-row{display:flex;align-items:center;gap:.35rem;margin:.3rem 0}.url-lbl{font-size:.72rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;min-width:72px;flex-shrink:0}.url-inp{flex:1;padding:.35rem .6rem;background:var(--s2);border:1px solid var(--bd);border-radius:7px;color:var(--t1);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;outline:none;min-width:0}.copy-btn{padding:.3rem .7rem;background:var(--s2);color:var(--t2);border:1px solid var(--bd);border-radius:7px;cursor:pointer;font-size:.78rem;transition:background .15s,color .15s;flex-shrink:0;white-space:nowrap}.copy-btn:hover,.copy-btn.ok{background:var(--gr);color:#fff;border-color:var(--gr)}.done-btns{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem;justify-content:center}.toast{position:fixed;bottom:1.4rem;right:1.4rem;background:var(--s1);color:var(--t1);border:1px solid var(--bd);padding:.6rem 1rem;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.6);transform:translateY(80px);opacity:0;transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .25s;z-index:9999;font-size:.88rem;pointer-events:none}.toast.show{transform:translateY(0);opacity:1}.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}.modal-bg.open{display:flex}.modal{background:var(--s1);border:1px solid var(--bd);border-radius:16px;width:100%;max-width:860px;margin:auto;display:flex;flex-direction:column;overflow:hidden}.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;border-bottom:1px solid var(--bd);flex-shrink:0}.modal-hdr h3{font-size:.95rem;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:.4rem}.modal-hdr-r{display:flex;gap:.35rem;align-items:center}.modal-body{overflow-y:auto;padding:.9rem 1.1rem;max-height:78vh}.modal-x{background:none;border:none;color:var(--t2);cursor:pointer;padding:.28rem .4rem;border-radius:6px;line-height:1;display:inline-flex;align-items:center}.modal-x:hover{color:var(--t1);background:var(--s2)}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}.info-panel{background:var(--s2);border-radius:9px;overflow:hidden;border:1px solid var(--bd)}.info-panel h4{padding:.45rem .85rem;background:var(--s1);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t2);border-bottom:1px solid var(--bd);margin:0}.info-panel table{width:100%;border-collapse:collapse;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.info-panel td{padding:.3rem .85rem;border-bottom:1px solid var(--bd);font-size:.78rem;vertical-align:top;word-break:break-all}.info-panel td:first-child{color:var(--t2);width:140px;word-break:normal;white-space:nowrap}.info-panel tr:last-child td{border-bottom:none}@media(max-width:580px){.info-grid{grid-template-columns:1fr}}.fb-bar{display:flex;align-items:center;gap:.4rem;margin-bottom:.55rem;flex-wrap:wrap}.fb-path{display:flex;align-items:center;gap:.22rem;flex-wrap:wrap;padding:.4rem .7rem;background:var(--s2);border-radius:8px;font-size:.8rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;flex:1;min-width:0}.fb-crumb{color:var(--bl);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:.2rem}.fb-crumb:hover{text-decoration:underline}.fb-sep{color:var(--t2)}.fb-bulk{display:none;align-items:center;gap:.38rem;padding:.38rem .7rem;background:var(--s2);border:1px solid var(--bd);border-radius:8px;margin-bottom:.45rem;font-size:.84rem;color:var(--t2)}.fb-bulk.show{display:flex}.fb-tbl{width:100%;border-collapse:collapse}.fb-tbl th{padding:.38rem .6rem;text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2);border-bottom:1px solid var(--bd)}.fb-tbl td{padding:.42rem .6rem;border-bottom:1px solid var(--bd);font-size:.86rem;vertical-align:middle}.fb-tbl tr:last-child td{border-bottom:none}.fb-tbl tbody tr:hover td{background:rgba(255,255,255,.025)}.fb-dn{color:var(--ac);cursor:pointer;display:inline-flex;align-items:center;gap:.22rem}.fb-dn:hover{text-decoration:underline}.fb-fn{color:var(--t1);display:inline-flex;align-items:center;gap:.22rem}.fb-sz{color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;white-space:nowrap}.fb-mt{color:var(--t2);font-size:.78rem;white-space:nowrap}.fb-acts{display:flex;gap:.22rem;justify-content:flex-end}.fb-empty{text-align:center;padding:2rem;color:var(--t2);font-size:.88rem}.help-sec{margin-bottom:1.1rem}.help-sec h4{font-size:.8rem;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.45rem}.help-code{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:.7rem .95rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;color:var(--t1);overflow-x:auto;white-space:pre;line-height:1.65}.red-warn{color:var(--rw);padding:.65rem .95rem;background:var(--s1);border:1px solid var(--bd);border-radius:12px;font-size:.76rem;font-weight:700;text-transform:uppercase;text-align:center;margin:1.8rem auto .8rem;display:block}.red-warn a{transition:all .3s ease-in-out;color:var(--rd)}.red-warn a:hover{text-decoration:none;color:#bc2019}.ftr{text-align:center;padding:1.1rem;font-size:.78rem;color:var(--t2);border-top:1px solid var(--bd)}.ftr a{color:var(--t2)}.ftr a:hover{color:var(--t1)}.mode-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.25rem}.mode-tab{padding:.45rem 1.3rem;border-radius:980px;font-size:.9rem;font-weight:600;cursor:pointer;border:1px solid var(--bd);background:var(--s2);color:var(--t2);transition:all .15s;display:inline-flex;align-items:center;gap:.35rem}.mode-tab.active{background:var(--ac);color:#fff;border-color:var(--ac)}.mitm-info{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:.7rem .95rem;margin-bottom:.9rem;font-size:.84rem;color:var(--t2);line-height:1.7}.mitm-info strong{color:var(--t1)}@media(max-width:600px){.hdr{padding:.55rem .9rem}.hdr-title{display:none}.main{padding:1.1rem .7rem .7rem}.hdr-nav{gap:.22rem}.btn-sm{padding:.28rem .6rem;font-size:.78rem}}
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#f2f2f7;--s1:#fff;--s2:#e9e9ef;--bd:#d1d1d6;--t1:#1c1c1e;--t2:#8e8e93;--ac:#e3650b;--gr:#34c759;--rd:#ff3b30;--rw:#9a6a00;--bl:#007aff;--ac-glow:rgba(227,101,11,.18);--shadow:rgba(0,0,0,.12);--ovl:rgba(0,0,0,.4);--rowhover:rgba(0,0,0,.03)}@media(prefers-color-scheme:dark){:root{--bg:#000;--s1:#1c1c1e;--s2:#2c2c2e;--bd:#38383a;--t1:#f2f2f7;--t2:#8e8e93;--ac:#e3650b;--gr:#30d158;--rd:#ff453a;--rw:#c7ff01;--bl:#0a84ff;--ac-glow:rgba(227,101,11,.3);--shadow:rgba(0,0,0,.5);--ovl:rgba(0,0,0,.72);--rowhover:rgba(255,255,255,.04)}}html[data-theme="light"]{--bg:#f2f2f7;--s1:#fff;--s2:#e9e9ef;--bd:#d1d1d6;--t1:#1c1c1e;--t2:#8e8e93;--ac:#e3650b;--gr:#34c759;--rd:#ff3b30;--rw:#9a6a00;--bl:#007aff;--ac-glow:rgba(227,101,11,.18);--shadow:rgba(0,0,0,.12);--ovl:rgba(0,0,0,.4);--rowhover:rgba(0,0,0,.03)}html[data-theme="dark"]{--bg:#000;--s1:#1c1c1e;--s2:#2c2c2e;--bd:#38383a;--t1:#f2f2f7;--t2:#8e8e93;--ac:#e3650b;--gr:#30d158;--rd:#ff453a;--rw:#c7ff01;--bl:#0a84ff;--ac-glow:rgba(227,101,11,.3);--shadow:rgba(0,0,0,.5);--ovl:rgba(0,0,0,.72);--rowhover:rgba(255,255,255,.04)}body{background:var(--bg);color:var(--t1);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.5;min-height:100vh}a{color:var(--bl);text-decoration:none}a:hover{text-decoration:underline}#pgbar{position:absolute;bottom:-4px;left:0;width:0;height:3px;background:linear-gradient(90deg,#f0883e,#f5c47a);z-index:9999;transition:width .25s ease;pointer-events:none;box-shadow:0 0 8px rgba(240,136,62,.5)}.hdr{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.5rem;background:var(--s1);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100;gap:.75rem}.hdr-logo{display:flex;align-items:center;gap:.45rem;text-decoration:none;flex-shrink:0}.hdr-logo img{width:24px;height:24px}.hdr-title{font-size:.97rem;font-weight:700;color:var(--t1);letter-spacing:-.3px}.hdr-nav{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}.ip-badge{font-size:.76rem;color:var(--t2);padding:.2rem .55rem;background:var(--s2);border:1px solid var(--bd);border-radius:20px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.main{max-width:1000px;margin:0 auto;padding:2rem 1rem 1rem}.page-hd{text-align:center;margin-bottom:1.5rem}.page-hd h1{font-size:1.3rem;font-weight:900;color:var(--t1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.45rem}.page-hd img{width:72px;height:auto;display:block}.page-hd p{font-size:.84rem;color:var(--t2);margin-top:.3rem}.field{margin-bottom:.85rem}.field label{display:block;font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.32rem}.field input{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none}.field input:focus{border-color:var(--ac)}.field input::placeholder{color:var(--t2)}.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:.65rem .95rem;background:var(--s1);border:1px solid var(--bd);border-radius:12px;margin-bottom:.55rem;gap:1rem}.tgl-lbl{font-size:.9rem;color:var(--t1);flex:1}.tgl-hint{display:block;font-size:.78rem;color:var(--t2);margin-top:2px}.sw{position:relative;display:inline-block;width:51px;height:31px;flex-shrink:0}.sw input{opacity:0;width:0;height:0}.sw-s{position:absolute;cursor:pointer;inset:0;background:#3a3a3c;border-radius:31px;transition:background .25s}.sw-s::before{content:'';position:absolute;width:27px;height:27px;bottom:2px;left:2px;background:#fff;border-radius:50%;box-shadow:0 3px 8px rgba(0,0,0,.4);transition:transform .25s cubic-bezier(.32,.72,0,1)}.sw input:checked+.sw-s{background:var(--gr)}.sw input:checked+.sw-s::before{transform:translateX(20px)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;padding:.52rem 1.2rem;border:none;border-radius:980px;font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;white-space:nowrap;line-height:1}.btn:hover{text-decoration:none;}.btn:active{transform:scale(.96)}.btn-p{background:var(--ac);color:#fff;}.btn-p.root{padding:1rem 2.5rem}.btn-p:hover{opacity:.88}.btn-g{background:var(--s2);color:var(--t1);border:1px solid var(--bd)}.btn-g:hover{border-color:var(--t2)}.btn-d{background:var(--rd);color:#fff}.btn-d:hover{opacity:.88}.btn-sm{padding:.32rem .8rem;font-size:.82rem}.btn-icon{padding:.38rem .55rem;border-radius:8px}.form-wrap{display:flex;justify-content:center;margin-top:1.1rem}.upload-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem;margin-bottom:.9rem}.upload-meta{font-size:.86rem;color:var(--t2);margin-bottom:.75rem;line-height:1.65}.upload-meta a{color:var(--bl)}.upload-meta strong{color:var(--t1)}#progress{font-size:1rem;font-weight:700;color:var(--ac);margin:.5rem 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}#progress small{font-weight:400;color:var(--t2);font-size:.82rem}.status-line{margin:.22rem 0;font-size:.88rem;color:var(--t2)}.result-box{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:.9rem;margin:.75rem 0}.url-row{display:flex;align-items:center;gap:.35rem;margin:.3rem 0}.url-lbl{font-size:.72rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;min-width:72px;flex-shrink:0}.url-inp{flex:1;padding:.35rem .6rem;background:var(--s2);border:1px solid var(--bd);border-radius:7px;color:var(--t1);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;outline:none;min-width:0}.copy-btn{padding:.3rem .7rem;background:var(--s2);color:var(--t2);border:1px solid var(--bd);border-radius:7px;cursor:pointer;font-size:.78rem;transition:background .15s,color .15s;flex-shrink:0;white-space:nowrap}.copy-btn:hover,.copy-btn.ok{background:var(--gr);color:#fff;border-color:var(--gr)}.done-btns{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem;justify-content:center}.toast{position:fixed;bottom:1.4rem;right:1.4rem;background:var(--s1);color:var(--t1);border:1px solid var(--bd);padding:.6rem 1rem;border-radius:12px;box-shadow:0 8px 28px var(--shadow);transform:translateY(80px);opacity:0;transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .25s;z-index:9999;font-size:.88rem;pointer-events:none}.toast.show{transform:translateY(0);opacity:1}.modal-bg{position:fixed;inset:0;background:var(--ovl);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}.modal-bg.open{display:flex}.modal{background:var(--s1);border:1px solid var(--bd);border-radius:16px;width:100%;max-width:860px;margin:auto;display:flex;flex-direction:column;overflow:hidden}.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;border-bottom:1px solid var(--bd);flex-shrink:0}.modal-hdr h3{font-size:.95rem;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:.4rem}.modal-hdr-r{display:flex;gap:.35rem;align-items:center}.modal-body{overflow-y:auto;padding:.9rem 1.1rem;max-height:78vh}.modal-x{background:none;border:none;color:var(--t2);cursor:pointer;padding:.28rem .4rem;border-radius:6px;line-height:1;display:inline-flex;align-items:center}.modal-x:hover{color:var(--t1);background:var(--s2)}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}.info-panel{background:var(--s2);border-radius:9px;overflow:hidden;border:1px solid var(--bd)}.info-panel h4{padding:.45rem .85rem;background:var(--s1);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t2);border-bottom:1px solid var(--bd);margin:0}.info-panel table{width:100%;border-collapse:collapse;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.info-panel td{padding:.3rem .85rem;border-bottom:1px solid var(--bd);font-size:.78rem;vertical-align:top;word-break:break-all}.info-panel td:first-child{color:var(--t2);width:140px;word-break:normal;white-space:nowrap}.info-panel tr:last-child td{border-bottom:none}@media(max-width:580px){.info-grid{grid-template-columns:1fr}}.fb-bar{display:flex;align-items:center;gap:.4rem;margin-bottom:.55rem;flex-wrap:wrap}.fb-path{display:flex;align-items:center;gap:.22rem;flex-wrap:wrap;padding:.4rem .7rem;background:var(--s2);border-radius:8px;font-size:.8rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;flex:1;min-width:0}.fb-crumb{color:var(--bl);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:.2rem}.fb-crumb:hover{text-decoration:underline}.fb-sep{color:var(--t2)}.fb-bulk{display:none;align-items:center;gap:.38rem;padding:.38rem .7rem;background:var(--s2);border:1px solid var(--bd);border-radius:8px;margin-bottom:.45rem;font-size:.84rem;color:var(--t2)}.fb-bulk.show{display:flex}.fb-tbl{width:100%;border-collapse:collapse}.fb-tbl th{padding:.38rem .6rem;text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2);border-bottom:1px solid var(--bd)}.fb-tbl td{padding:.42rem .6rem;border-bottom:1px solid var(--bd);font-size:.86rem;vertical-align:middle}.fb-tbl tr:last-child td{border-bottom:none}.fb-tbl tbody tr:hover td{background:var(--rowhover)}.fb-dn{color:var(--ac);cursor:pointer;display:inline-flex;align-items:center;gap:.22rem}.fb-dn:hover{text-decoration:underline}.fb-fn{color:var(--t1);display:inline-flex;align-items:center;gap:.22rem}.fb-sz{color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;white-space:nowrap}.fb-mt{color:var(--t2);font-size:.78rem;white-space:nowrap}.fb-acts{display:flex;gap:.22rem;justify-content:flex-end}.fb-empty{text-align:center;padding:2rem;color:var(--t2);font-size:.88rem}.help-sec{margin-bottom:1.1rem}.help-sec h4{font-size:.8rem;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.45rem}.help-code{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:.7rem .95rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;color:var(--t1);overflow-x:auto;white-space:pre;line-height:1.65}.red-warn{color:var(--rw);padding:.65rem .95rem;background:var(--s1);border:1px solid var(--bd);border-radius:12px;font-size:.76rem;font-weight:700;text-transform:uppercase;text-align:center;margin:1.8rem auto .8rem;display:block}.red-warn a{transition:all .3s ease-in-out;color:var(--rd)}.red-warn a:hover{text-decoration:none;color:#bc2019}.ftr{text-align:center;padding:1.1rem;font-size:.78rem;color:var(--t2);border-top:1px solid var(--bd)}.ftr a{color:var(--t2)}.ftr a:hover{color:var(--t1)}.mode-tabs{display:flex;width:fit-content;max-width:100%;margin:0 auto 1.25rem;flex-wrap:nowrap}.mode-tab{padding:.5rem 1.15rem;border:1px solid var(--bd);border-right:none;background:var(--s2);color:var(--t2);font-size:.86rem;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s;display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap}.mode-tab:first-child{border-top-left-radius:10px;border-bottom-left-radius:10px}.mode-tab:last-child{border-right:1px solid var(--bd);border-top-right-radius:10px;border-bottom-right-radius:10px}.mode-tab:hover{color:var(--t1)}.mode-tab.active{background:var(--ac);color:#fff;border-color:var(--ac)}.mode-tab.active:hover{color:#fff}.mode-tab.active+.mode-tab{border-left-color:var(--ac)}@media(max-width:600px){.mode-tab{padding:.45rem .7rem;font-size:.8rem}.mode-tab svg{display:none}}.mitm-info{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:.7rem .95rem;margin-bottom:.9rem;font-size:.84rem;color:var(--t2);line-height:1.7}.mitm-info strong{color:var(--t1)}@media(max-width:600px){.hdr{padding:.55rem .9rem}.hdr-title{display:none}.main{padding:1.1rem .7rem .7rem}.hdr-nav{gap:.22rem}.btn-sm{padding:.28rem .6rem;font-size:.78rem}}
 .flex-du{display:flex;flex-direction:row;gap:1rem;}.flex-du>div{flex:1 1 45%;}@media only screen and (max-width:600px){.flex-du{flex-direction:column;gap:0.25rem;}}
-.ftp-conn-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem;margin-bottom:.9rem}.ftp-conn-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem .75rem}@media(max-width:520px){.ftp-conn-grid{grid-template-columns:1fr}}.ftp-conn-grid .field{margin-bottom:0}.field select{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .15s,box-shadow .15s}.field select:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(240,136,62,.15)}.ftp-browser{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.9rem;margin-bottom:.9rem;min-height:180px}.ftp-log-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:10px;overflow:hidden;margin-top:.75rem}.ftp-log-hdr{display:flex;align-items:center;justify-content:space-between;padding:.38rem .75rem;background:var(--s2);border-bottom:1px solid var(--bd);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2)}.ftp-log{height:150px;overflow-y:auto;padding:.5rem .75rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;color:var(--t2);line-height:1.65}.ftp-log-entry{margin:.1rem 0;word-break:break-all}.ftp-log-entry.ok{color:var(--gr)}.ftp-log-entry.err{color:var(--rd)}.ftp-log-entry.info{color:var(--t2)}.ftp-perms{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;color:var(--t2);letter-spacing:.5px}.ftp-acts{display:flex;gap:.2rem;justify-content:flex-end;flex-wrap:wrap}.ftp-empty{text-align:center;padding:2.5rem;color:var(--t2);font-size:.88rem}.btn-url{background:var(--s2);color:var(--bl);border:1px solid var(--bd)}.btn-url:hover{border-color:var(--bl);opacity:.88}.btn-url.disabled-url{opacity:.35;cursor:not-allowed;pointer-events:none}
-.bulk-toggle-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}.bulk-toggle-row label{font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}.bulk-url-area{display:none;margin-bottom:.75rem}.bulk-url-area textarea{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.88rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical;outline:none;min-height:90px;transition:border-color .15s}.bulk-url-area textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(240,136,62,.15)}.bulk-progress-wrap{height:4px;background:var(--s2);border-radius:2px;margin:.55rem 0;overflow:hidden;display:none}.bulk-bar{height:100%;background:linear-gradient(90deg,var(--ac),#f5c47a);width:0%;transition:width .3s ease;border-radius:2px}.bulk-counter{font-size:.8rem;color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;display:none;margin-bottom:.4rem}.bulk-status{margin-top:.55rem}.bulk-item{display:flex;align-items:flex-start;gap:.5rem;padding:.35rem .5rem;border-radius:7px;margin-bottom:.28rem;font-size:.82rem;background:var(--s2);border:1px solid var(--bd)}.bulk-item-ic{flex-shrink:0;width:16px;text-align:center}.bulk-item-name{flex:1;word-break:break-all;color:var(--t1)}.bulk-item-meta{font-size:.76rem;color:var(--t2);white-space:nowrap}.bulk-item.ok .bulk-item-ic{color:var(--gr)}.bulk-item.err .bulk-item-ic{color:var(--rd)}.bulk-item.busy .bulk-item-ic{color:var(--ac)}.bulk-item-retry{flex-shrink:0;background:var(--s2);color:var(--rd);border:1px solid var(--rd);border-radius:6px;padding:.15rem .55rem;font-size:.74rem;cursor:pointer;white-space:nowrap;line-height:1.4}.bulk-item-retry:hover{background:var(--rd);color:#fff}.bulk-retry-all{margin-top:.6rem;display:none}@keyframes spin{to{transform:rotate(360deg)}}.spin{animation:spin .8s linear infinite;display:inline-block}.perms-octal{font-weight:700;color:var(--t1);margin-left:.3rem}
+.ftp-conn-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem;margin-bottom:.9rem}.ftp-conn-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem .75rem}@media(max-width:520px){.ftp-conn-grid{grid-template-columns:1fr}}.ftp-conn-grid .field{margin-bottom:0}.field select{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .15s,box-shadow .15s}.field select:focus{border-color:var(--ac)}.ftp-browser{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.9rem;margin-bottom:.9rem;min-height:180px}.ftp-log-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:10px;overflow:hidden;margin-top:.75rem}.ftp-log-hdr{display:flex;align-items:center;justify-content:space-between;padding:.38rem .75rem;background:var(--s2);border-bottom:1px solid var(--bd);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2)}.ftp-log{height:150px;overflow-y:auto;padding:.5rem .75rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;color:var(--t2);line-height:1.65}.ftp-log-entry{margin:.1rem 0;word-break:break-all}.ftp-log-entry.ok{color:var(--gr)}.ftp-log-entry.err{color:var(--rd)}.ftp-log-entry.info{color:var(--t2)}.ftp-perms{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;color:var(--t2);letter-spacing:.5px}.ftp-acts{display:flex;gap:.2rem;justify-content:flex-end;flex-wrap:wrap}.ftp-empty{text-align:center;padding:2.5rem;color:var(--t2);font-size:.88rem}.btn-url{background:var(--s2);color:var(--bl);border:1px solid var(--bd)}.btn-url:hover{border-color:var(--bl);opacity:.88}.btn-url.disabled-url{opacity:.35;cursor:not-allowed;pointer-events:none}
+.bulk-toggle-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}.bulk-toggle-row label{font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}.bulk-url-area{display:none;margin-bottom:.75rem}.bulk-url-area textarea{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.88rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical;outline:none;min-height:90px;transition:border-color .15s}.bulk-url-area textarea:focus{border-color:var(--ac)}.bulk-progress-wrap{height:4px;background:var(--s2);border-radius:2px;margin:.55rem 0;overflow:hidden;display:none}.bulk-bar{height:100%;background:linear-gradient(90deg,var(--ac),#f5c47a);width:0%;transition:width .3s ease;border-radius:2px}.bulk-counter{font-size:.8rem;color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;display:none;margin-bottom:.4rem}.bulk-status{margin-top:.55rem}.bulk-item{display:flex;align-items:flex-start;gap:.5rem;padding:.35rem .5rem;border-radius:7px;margin-bottom:.28rem;font-size:.82rem;background:var(--s2);border:1px solid var(--bd)}.bulk-item-ic{flex-shrink:0;width:16px;text-align:center}.bulk-item-name{flex:1;word-break:break-all;color:var(--t1)}.bulk-item-meta{font-size:.76rem;color:var(--t2);white-space:nowrap}.bulk-item.ok .bulk-item-ic{color:var(--gr)}.bulk-item.err .bulk-item-ic{color:var(--rd)}.bulk-item.busy .bulk-item-ic{color:var(--ac)}.bulk-item-retry{flex-shrink:0;background:var(--s2);color:var(--rd);border:1px solid var(--rd);border-radius:6px;padding:.15rem .55rem;font-size:.74rem;cursor:pointer;white-space:nowrap;line-height:1.4}.bulk-item-retry:hover{background:var(--rd);color:#fff}.bulk-retry-all{margin-top:.6rem;display:none}@keyframes spin{to{transform:rotate(360deg)}}.spin{animation:spin .8s linear infinite;display:inline-block}.perms-octal{font-weight:700;color:var(--t1);margin-left:.3rem}
+.banner{display:flex;align-items:center;gap:.6rem;max-width:1000px;margin:0 auto 1rem;padding:.7rem 1rem;border-radius:12px;font-size:.86rem;line-height:1.45}.banner-err{background:rgba(255,59,48,.12);border:1px solid var(--rd);color:var(--rd)}.banner-warn{background:rgba(154,106,0,.12);border:1px solid var(--rw);color:var(--rw)}.banner-ic{flex-shrink:0;display:inline-flex}.banner-msg{flex:1}.banner-msg code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82em;opacity:.85}.banner-msg b{color:inherit}.banner-x{background:none;border:none;color:inherit;cursor:pointer;padding:.2rem;opacity:.7;display:inline-flex;flex-shrink:0}.banner-x:hover{opacity:1}
+.cmp-grid{display:flex;gap:1rem;align-items:flex-start}@media(max-width:820px){.cmp-grid{flex-direction:column}}.cmp-pane{flex:1 1 0;min-width:0;background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.85rem}.cmp-pane-hd{display:flex;align-items:center;gap:.45rem;margin-bottom:.6rem}.cmp-pane-hd select{flex:1}.cmp-creds{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .6rem;margin-bottom:.6rem}.cmp-creds .field{margin-bottom:0}.cmp-creds .full{grid-column:1/-1}.cmp-pane .fb-bar{margin-bottom:.5rem}.cmp-tbl-wrap{max-height:46vh;overflow:auto;border:1px solid var(--bd);border-radius:10px}.cmp-tbl-wrap .fb-empty{padding:1.4rem}.cmp-bar{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;justify-content:center;margin:1rem auto;max-width:1000px}.cmp-legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center;font-size:.76rem;color:var(--t2);margin:.4rem 0}.cmp-legend span{display:inline-flex;align-items:center;gap:.3rem}.cmp-dot{width:11px;height:11px;border-radius:3px;display:inline-block}.cmp-dot.only-l{background:var(--bl)}.cmp-dot.only-r{background:var(--t2)}.cmp-dot.diff{background:var(--ac)}.cmp-dot.same{background:var(--gr)}tr.cmp-only-l td{background:rgba(0,122,255,.1)}tr.cmp-only-r td{background:rgba(142,142,147,.12)}tr.cmp-diff td{background:rgba(227,101,11,.13)}tr.cmp-same td{background:rgba(52,199,89,.1)}.cmp-opts{display:flex;flex-wrap:wrap;gap:.6rem;align-items:flex-end;justify-content:center;margin:.6rem auto;max-width:1000px}.cmp-opts .field{margin-bottom:0;min-width:150px}.cmp-tag{font-size:.7rem;font-weight:700;padding:.05rem .4rem;border-radius:5px;text-transform:uppercase;letter-spacing:.3px}
+.seg{display:inline-flex;border:1px solid var(--bd);border-radius:9px;overflow:hidden}.seg button{border:none;background:var(--s2);color:var(--t2);padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}.seg button+button{border-left:1px solid var(--bd)}.seg button.active{background:var(--ac);color:#fff}
+/* ===== sidebar app shell (v2.8 UI) ===== */
+:root{--ac-soft:rgba(227,101,11,.10);--ac-glow:rgba(227,101,11,.10)}
+@media(prefers-color-scheme:dark){:root{--ac-soft:rgba(227,101,11,.18);--ac-glow:rgba(227,101,11,.20)}}
+html[data-theme="light"]{--ac-soft:rgba(227,101,11,.10);--ac-glow:rgba(227,101,11,.10)}
+html[data-theme="dark"]{--ac-soft:rgba(227,101,11,.18);--ac-glow:rgba(227,101,11,.20)}
+.hdr-ver{font-size:.68rem;font-weight:600;color:var(--t2);background:var(--s2);border:1px solid var(--bd);padding:.08rem .42rem;border-radius:20px;letter-spacing:.2px}
+.app-body{display:flex;align-items:flex-start;max-width:1180px;margin:0 auto;width:100%}
+.sidebar{width:236px;flex:0 0 236px;position:sticky;top:46px;align-self:flex-start;min-height:calc(100vh - 46px);padding:1.1rem .75rem 1rem;display:flex;flex-direction:column;gap:.15rem;border-right:1px solid var(--bd)}
+.nav-group{margin-bottom:.7rem}
+.nav-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--t2);padding:.35rem .7rem .25rem;opacity:.7}
+.nav-item{display:flex;align-items:center;gap:.6rem;width:100%;padding:.55rem .7rem;border:none;background:none;border-radius:10px;color:var(--t2);font-size:.9rem;font-weight:500;cursor:pointer;text-align:left;font-family:inherit;line-height:1.25;transition:background .15s,color .15s}
+.nav-item .nav-ic{display:inline-flex;flex-shrink:0;color:var(--t2);transition:color .15s}
+.nav-item:hover{background:var(--s2);color:var(--t1)}
+.nav-item:hover .nav-ic{color:var(--t1)}
+.nav-item.active{background:var(--ac-soft);color:var(--ac);font-weight:600}
+.nav-item.active .nav-ic{color:var(--ac)}
+.sidebar-foot{margin-top:auto;padding-top:.8rem;display:flex;flex-direction:column;align-items:flex-start;gap:.5rem}
+.content{flex:1 1 0;min-width:0;padding:1.5rem 1.2rem 1rem}
+.mode-head{margin-bottom:1.2rem}
+.mode-head h1{font-size:1.3rem;font-weight:800;letter-spacing:-.4px;color:var(--t1)}
+.mode-head p{font-size:.85rem;color:var(--t2);margin-top:.25rem}
+.content select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 256 256' fill='%238e8e93'><path d='M213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32Z'/></svg>");background-repeat:no-repeat;background-position:right .7rem center;background-size:13px;padding-right:2.1rem}
+.ftr{display:flex;flex-wrap:wrap;gap:.35rem .7rem;align-items:center;justify-content:center}
+.ftr p{margin:0}
+.ftr .ftr-sd{display:inline-flex;align-items:center;gap:.25rem;color:var(--rd);font-weight:600}
+.ftr .ftr-sd:hover{color:var(--rd);text-decoration:underline}
+.ftr .dot{opacity:.45}
+@media(max-width:820px){.app-body{flex-direction:column}.sidebar{width:100%;flex:none;position:static;min-height:0;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;border-right:none;border-bottom:1px solid var(--bd);padding:.5rem .6rem;gap:.3rem;-webkit-overflow-scrolling:touch}.nav-group{display:flex;align-items:center;gap:.3rem;margin:0}.nav-label{display:none}.sidebar-foot{flex-direction:row;align-items:center;margin:0 0 0 auto;padding:0}.sidebar-foot .ip-badge{display:none}.nav-item{width:auto;white-space:nowrap;padding:.45rem .7rem}.content{padding:1.1rem .75rem}}
+@media(max-width:600px){.hdr-ver{display:none}}
+.tree{font-size:.86rem}.tree-empty{text-align:center;padding:1.4rem;color:var(--t2)}.tnode{display:flex;align-items:center;gap:.3rem;padding:.16rem .35rem;border-radius:6px}.tnode:hover{background:var(--rowhover)}.tnode-loading{color:var(--t2);font-size:.78rem;font-style:italic}.tcaret{width:18px;height:18px;flex:0 0 18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t2);border:none;background:none;font-size:.62rem;transition:transform .12s;padding:0}.tcaret.open{transform:rotate(90deg)}.tcaret.empty{visibility:hidden;cursor:default}.tname{display:inline-flex;align-items:center;gap:.3rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tname-dir{color:var(--ac);cursor:pointer}.tname-dir:hover{text-decoration:underline}.tname-file{color:var(--t1)}.tsize{margin-left:auto;color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.73rem;white-space:nowrap;padding-left:.5rem;flex-shrink:0}.tacts{display:flex;gap:.15rem;flex-shrink:0;margin-left:.4rem}.tree-tools{display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;margin-bottom:.5rem}.tnode.cmp-only-l{background:rgba(0,122,255,.13)}.tnode.cmp-only-r{background:rgba(142,142,147,.16)}.tnode.cmp-diff{background:rgba(227,101,11,.16)}.tnode.cmp-same{background:rgba(52,199,89,.13)}.prof-row{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap;margin-bottom:.6rem}.prof-row select{flex:1;min-width:120px}.prof-note{font-size:.72rem;color:var(--t2);margin-top:-.3rem;margin-bottom:.5rem}
+/* ===== GitHub theme + control sizing (rebuild) ===== */
+:root{--bg:#fff;--s1:#fff;--s2:#f6f8fa;--bd:#d0d7de;--t1:#1f2328;--t2:#656d76;--ac:#0969da;--gr:#1a7f37;--rd:#cf222e;--rw:#9a6700;--bl:#0969da;--ac-soft:rgba(9,105,218,.1);--ac-glow:rgba(9,105,218,.3);--btnp:#1f883d;--btnp-h:#1a7f37;--shadow:rgba(31,35,40,.12);--ovl:rgba(31,35,40,.5);--rowhover:#f6f8fa;--hdr-h:74px;--ctl-h:34px;--rad:6px}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1117;--s1:#161b22;--s2:#21262d;--bd:#30363d;--t1:#e6edf3;--t2:#8b949e;--ac:#2f81f7;--gr:#3fb950;--rd:#f85149;--rw:#d29922;--bl:#58a6ff;--ac-soft:rgba(56,139,253,.15);--ac-glow:rgba(56,139,253,.4);--btnp:#238636;--btnp-h:#2ea043;--shadow:rgba(1,4,9,.5);--ovl:rgba(1,4,9,.7);--rowhover:#161b22}}
+html[data-theme="light"]{--bg:#fff;--s1:#fff;--s2:#f6f8fa;--bd:#d0d7de;--t1:#1f2328;--t2:#656d76;--ac:#0969da;--gr:#1a7f37;--rd:#cf222e;--rw:#9a6700;--bl:#0969da;--ac-soft:rgba(9,105,218,.1);--ac-glow:rgba(9,105,218,.3);--btnp:#1f883d;--btnp-h:#1a7f37;--shadow:rgba(31,35,40,.12);--ovl:rgba(31,35,40,.5);--rowhover:#f6f8fa}
+html[data-theme="dark"]{--bg:#0d1117;--s1:#161b22;--s2:#21262d;--bd:#30363d;--t1:#e6edf3;--t2:#8b949e;--ac:#2f81f7;--gr:#3fb950;--rd:#f85149;--rw:#d29922;--bl:#58a6ff;--ac-soft:rgba(56,139,253,.15);--ac-glow:rgba(56,139,253,.4);--btnp:#238636;--btnp-h:#2ea043;--shadow:rgba(1,4,9,.5);--ovl:rgba(1,4,9,.7);--rowhover:#161b22}
+.upload-card,.ftp-conn-card,.ftp-browser,.banner,.help-code,.cmp-pane,.cmp-tbl-wrap,.result-box,.info-panel,.ftp-log-wrap,.mitm-info{border-radius:var(--rad)}
+.field input,.field select,.bulk-url-area textarea,.url-inp,.btn,.ip-badge{border-radius:var(--rad)}
+/* header: taller, centered, bigger */
+.hdr{justify-content:center;height:var(--hdr-h);padding:0 1rem}
+.hdr-logo{gap:.6rem}
+.hdr-logo img{width:34px;height:34px}
+.hdr-title{font-size:1.3rem;font-weight:800;letter-spacing:-.3px}
+.hdr-ver{font-size:.72rem}
+.hdr-logo:hover{text-decoration:none}
+.hdr-logo:hover .hdr-title{text-decoration:none}
+.hdr-sep{color:var(--t2);font-weight:400;margin:0 .15rem}
+/* full-width shell, flush-left sidebar */
+.app-body{max-width:none;margin:0}
+.sidebar{top:var(--hdr-h);min-height:calc(100vh - var(--hdr-h));padding:1rem .6rem;gap:.4rem;background:var(--s1)}
+.nav-group{margin-bottom:1.1rem}
+.nav-label{padding:.4rem .6rem .4rem .7rem}
+.nav-item{padding:.6rem .7rem;margin-bottom:.28rem;font-size:.92rem}
+.nav-item:last-child{margin-bottom:0}
+.sidebar-foot{gap:.6rem;padding-top:1rem}
+.content{padding:1.6rem 1.5rem 1.2rem}
+/* unified control heights: input = select = adjacent button */
+.field input,.field select,.content select,.url-inp{height:var(--ctl-h);padding:0 .75rem;font-size:.875rem;line-height:normal}
+.content select,.field select{padding-right:2rem;background-position:right .6rem center}
+.prof-row select,.cmp-pane-hd select{height:var(--ctl-h)}
+.prof-row .btn,.cmp-pane-hd .btn,.cmp-opts .btn,.cmp-bar .btn{height:var(--ctl-h);padding:0 .85rem;font-size:.85rem}
+.prof-row .btn-icon,.cmp-pane-hd .btn-icon{padding:0 .6rem}
+.seg button{height:var(--ctl-h);padding:0 .9rem}
+/* github buttons */
+.btn-p{background:var(--btnp);color:#fff;border:1px solid rgba(27,31,36,.15)}
+.btn-p:hover{background:var(--btnp-h);opacity:1}
+.btn-g{background:var(--s2);color:var(--t1);border:1px solid var(--bd)}
+.btn-g:hover{background:var(--bd);border-color:var(--t2)}
+.nav-item.active{background:var(--ac-soft);color:var(--ac)}
+.nav-item.active .nav-ic{color:var(--ac)}
+/* selects look exactly like the inputs, only with a chevron on the right */
+.content select{background-color:var(--s2);border:1px solid var(--bd);border-radius:var(--rad);color:var(--t1);height:var(--ctl-h);padding:0 2rem 0 .75rem;font-size:.875rem;line-height:normal;outline:none;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 256 256' fill='%238e8e93'><path d='M213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32Z'/></svg>");background-repeat:no-repeat;background-position:right .6rem center;background-size:13px}
+.content select:focus{border-color:var(--ac)}
+/* wider primary upload button */
+.btn-p.root{padding:1rem 3.5rem}
+/* result URL row — input and Copy button same height, aligned */
+.url-row{align-items:stretch}
+.url-inp,.url-row .copy-btn{height:32px;padding:0 .7rem;line-height:32px;border-radius:var(--rad)}
+/* file input (Upload from PC) */
+.field input[type=file]{height:auto;padding:.5rem .65rem;line-height:1.4;font-size:.85rem;background-color:var(--s2);border:1px solid var(--bd);border-radius:var(--rad);color:var(--t1);width:100%;cursor:pointer}
+.field input[type=file]::-webkit-file-upload-button,.field input[type=file]::file-selector-button{margin-right:.7rem;padding:.35rem .8rem;border:1px solid var(--bd);border-radius:var(--rad);background:var(--s1);color:var(--t1);font-size:.82rem;cursor:pointer}
+/* collapsible sidebar (desktop only) */
+.sb-toggle{color:var(--t2)}
+@media(min-width:821px){
+  .sidebar{transition:width .18s ease}
+  body.sb-collapsed .app-body{padding-left:58px}
+  body.sb-collapsed .sidebar{position:fixed;left:0;top:var(--hdr-h);bottom:var(--ftr-h,0);height:auto;width:58px;z-index:60;overflow:hidden;border-right:1px solid var(--bd)}
+  body.sb-collapsed .sidebar .nav-item{white-space:nowrap;overflow:hidden}
+  body.sb-collapsed .sidebar .nav-label{opacity:0;pointer-events:none}
+  body.sb-collapsed .sidebar .ip-badge{display:none}
+  body.sb-collapsed .sidebar:hover{width:240px;box-shadow:6px 0 22px var(--shadow)}
+  body.sb-collapsed .sidebar:hover .nav-label{opacity:1}
+  body.sb-collapsed .sidebar:hover .ip-badge{display:inline-block}
+}
+.view{display:none}
+/* fixed app shell — pin header top + footer bottom, content fits / scrolls internally, no page scroll */
+html,body{height:100%}
+body{display:flex;flex-direction:column;overflow:hidden}
+.hdr{flex:0 0 auto;position:relative}
+.app-body{flex:1 1 auto;min-height:0;align-items:stretch}
+.sidebar{position:static;top:auto;min-height:0;height:100%;overflow-y:auto}
+.content{height:100%;overflow-y:auto;min-height:0}
+.ftr{flex:0 0 auto}
+/* mobile re-assert (must win over desktop rules above) */
+@media(max-width:820px){.content{padding:1.1rem .8rem;height:auto;flex:1 1 auto}.sidebar{width:100%;flex:0 0 auto;height:auto;position:static;min-height:0;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;border-right:none;border-bottom:1px solid var(--bd);padding:.5rem .6rem;gap:.3rem}.nav-group{display:flex;align-items:center;gap:.3rem;margin:0}.nav-label{display:none}.sidebar-foot{flex-direction:row;align-items:center;margin:0 0 0 auto;padding:0;gap:.3rem}.sidebar-foot .ip-badge{display:none}.nav-item{width:auto;white-space:nowrap;padding:.5rem .7rem;margin:0}}
+@media(max-width:600px){.hdr{height:auto;padding:.55rem .9rem}.hdr-title{display:inline}.hdr-ver{display:none}}
 </style>
 <script>
+(function(){try{var t=localStorage.getItem('bsu_theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();
 var _icFolder=<?=json_encode(ph('folder',14))?>;
 var _icFile=<?=json_encode(ph('file',14))?>;
 var _icHome=<?=json_encode(ph('house-simple',14))?>;
@@ -70,11 +195,27 @@ var _icTrash=<?=json_encode(ph('trash',13))?>;
 var _icRefresh=<?=json_encode(ph('arrow-clockwise',14))?>;
 var _icDownload=<?=json_encode(ph('download-simple',13))?>;
 var _icUpdate=<?=json_encode(ph('arrow-clockwise',14))?>;
+var _icRename=<?=json_encode(ph('pencil-simple',13))?>;
+var _icDup=<?=json_encode(ph('copy-simple',13))?>;
+var _icMove=<?=json_encode(ph('folder-simple-plus',13))?>;
+var _icWarn=<?=json_encode(ph('warning',18))?>;
+var _icX=<?=json_encode(ph('x',15))?>;
+var _icThemeAuto=<?=json_encode(ph('circle-half',15))?>;
+var _icThemeLight=<?=json_encode(ph('sun-dim',15))?>;
+var _icThemeDark=<?=json_encode(ph('moon',15))?>;
+var _perm=<?=json_encode(['r'=>is_readable(__DIR__),'w'=>is_writable(__DIR__),'dir'=>__DIR__])?>;
+function setTheme(mode){try{if(mode==='auto'){delete document.documentElement.dataset.theme;localStorage.removeItem('bsu_theme');}else{document.documentElement.dataset.theme=mode;localStorage.setItem('bsu_theme',mode);}}catch(e){}updateThemeBtn(mode);}
+function cycleTheme(){var cur;try{cur=localStorage.getItem('bsu_theme')||'auto';}catch(e){cur='auto';}setTheme(cur==='auto'?'light':(cur==='light'?'dark':'auto'));}
+function updateThemeBtn(mode){var b=document.getElementById('theme-btn');if(!b)return;if(!mode){try{mode=localStorage.getItem('bsu_theme')||'auto';}catch(e){mode='auto';}}var ic={auto:_icThemeAuto,light:_icThemeLight,dark:_icThemeDark}[mode]||_icThemeAuto;var lbl={auto:'Auto',light:'Light',dark:'Dark'}[mode]||'Auto';b.innerHTML=ic+' '+lbl;}
+function checkPermBanner(){if(typeof _perm==='undefined')return;if(_perm.r&&_perm.w)return;try{if(sessionStorage.getItem('bsu_perm_dismissed'))return;}catch(e){}var b=document.getElementById('perm-banner');if(!b)return;var msg=!_perm.w?'This script <b>cannot write</b> to its own folder':'This script <b>cannot read</b> its own folder';b.className='banner '+(!_perm.w?'banner-err':'banner-warn');b.innerHTML='<span class="banner-ic">'+_icWarn+'</span><span class="banner-msg">'+msg+' (<code>'+_esc(_perm.dir)+'</code>). Uploads and file operations may fail.</span><button class="banner-x" onclick="dismissBanner()" title="Dismiss">'+_icX+'</button>';b.style.display='';}
+function dismissBanner(){var b=document.getElementById('perm-banner');if(b)b.style.display='none';try{sessionStorage.setItem('bsu_perm_dismissed','1');}catch(e){}}
 function permsHuman(sym){
   if(!sym||sym.length<10)return'';
   var b=function(r,w,x){var s='';if(r==='r')s+='read ';if(w==='w')s+='write ';if(x!=='-')s+='exec';return s.trim()||'none';};
   return'Owner: '+b(sym[1],sym[2],sym[3])+' \xb7 Group: '+b(sym[4],sym[5],sym[6])+' \xb7 Others: '+b(sym[7],sym[8],sym[9]);
 }
+function toggleSidebar(){var on=document.body.classList.toggle('sb-collapsed');try{localStorage.setItem('bsu_sb',on?'1':'');}catch(e){}}
+function restoreSidebar(){try{if(localStorage.getItem('bsu_sb')==='1')document.body.classList.add('sb-collapsed');}catch(e){}}
 function setPg(p){var b=document.getElementById('pgbar');if(b)b.style.width=Math.min(100,Number(p))+'%';}
 function eH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function updateProgress(pct,cur,tot,elapsed,eta){
@@ -93,8 +234,18 @@ function copyText(text,btn){
 }
 function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
-function openInfoModal(){
-  openModal('modal-info');
+function togglePhpInfo(){
+  var fr=document.getElementById('phpinfo-frame'),ic=document.getElementById('info-content'),btn=document.getElementById('phpinfo-toggle');
+  if(!fr)return;
+  var showFull=fr.style.display==='none';
+  if(showFull){
+    if(!fr.getAttribute('data-loaded')){fr.src='?phpinfo=1';fr.setAttribute('data-loaded','1');}
+    fr.style.display='';ic.style.display='none';if(btn)btn.textContent='Back to summary';
+  }else{
+    fr.style.display='none';ic.style.display='';if(btn)btn.textContent='Full phpInfo()';
+  }
+}
+function loadInfo(){
   document.getElementById('info-content').innerHTML='<div style="text-align:center;padding:2rem;color:var(--t2)">Loading…</div>';
   fetch('',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'_a=info'})
     .then(function(r){return r.json();})
@@ -109,68 +260,106 @@ function openInfoModal(){
       document.getElementById('info-content').innerHTML=h;
     });
 }
+/* ── Generic collapsible file tree ─────────────────────────────── */
+function _attr(s){return String(s==null?'':s).replace(/"/g,'&quot;');}
+function tvCreate(o){return{id:o.id,checkbox:!!o.checkbox,chkClass:o.chkClass||'',actions:o.actions||null,load:o.load||null,onCheck:o.onCheck||null,root:'',nodes:[],map:{},seq:0,bound:false};}
+function tvIngest(tv,nodes,allOpen){(function walk(arr){arr.forEach(function(n){n._id='t'+(tv.seq++);tv.map[n._id]=n;if(n.type==='dir'){var has=Array.isArray(n.children);n._loaded=has;n._open=!!(allOpen&&has);if(has)walk(n.children);}});})(nodes);}
+function tvSetFull(tv,nodes,root){tv.nodes=nodes||[];tv.map={};tv.seq=0;tv.root=root||'';tvIngest(tv,tv.nodes,true);tvRender(tv);}
+function tvSetRoot(tv,nodes,root){tv.nodes=nodes||[];tv.map={};tv.seq=0;tv.root=root||'';tvIngest(tv,tv.nodes,false);tvRender(tv);}
+function tvRowHtml(tv,n,depth){
+  var pad=depth*15+4,isDir=n.type==='dir';
+  var caret=isDir?'<button type="button" class="tcaret'+(n._open?' open':'')+'" data-tv-toggle="'+n._id+'">&#9654;</button>':'<span class="tcaret empty"></span>';
+  var icon=isDir?_icFolder:_icFile;
+  var nameAttr=isDir?' data-tv-toggle="'+n._id+'"':'';
+  var chk=tv.checkbox?'<input type="checkbox" class="'+tv.chkClass+'" data-tv-id="'+n._id+'" value="'+_attr(n.path)+'" data-path="'+_attr(n.path)+'" data-name="'+_attr(n.name)+'" data-type="'+n.type+'" data-size="'+(n.size_bytes||0)+'" data-url="'+_attr(n.url||'')+'">':'';
+  var acts=tv.actions?'<span class="tacts">'+tv.actions(n)+'</span>':'';
+  var h='<div class="tnode" data-tv-node="'+n._id+'" data-relpath="'+_attr(tvRel(tv,n.path))+'" style="padding-left:'+pad+'px">'+caret+chk+'<span class="tname '+(isDir?'tname-dir':'tname-file')+'"'+nameAttr+'>'+icon+' '+_esc(n.name)+'</span><span class="tsize">'+(isDir?'':_esc(n.size||''))+'</span>'+acts+'</div>';
+  if(isDir&&n._open){if(Array.isArray(n.children))h+=tvNodesHtml(tv,n.children,depth+1);else h+='<div class="tnode tnode-loading" style="padding-left:'+((depth+1)*15+22)+'px">Loading…</div>';}
+  return h;
+}
+function tvNodesHtml(tv,nodes,depth){var h='';nodes.forEach(function(n){h+=tvRowHtml(tv,n,depth);});return h;}
+function tvRender(tv){var c=document.getElementById(tv.id);if(!c)return;c.innerHTML=tv.nodes.length?tvNodesHtml(tv,tv.nodes,0):'<div class="tree-empty">Empty</div>';tvBind(tv);}
+function tvBind(tv){if(tv.bound)return;tv.bound=true;var c=document.getElementById(tv.id);if(!c)return;
+  c.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-tv-toggle]');if(t){e.preventDefault();e.stopPropagation();tvToggle(tv,t.getAttribute('data-tv-toggle'));}});
+  if(tv.checkbox)c.addEventListener('change',function(e){var cb=e.target;if(cb&&cb.classList&&cb.classList.contains(tv.chkClass)){tvCascade(tv,cb);if(tv.onCheck)tv.onCheck();}});
+}
+function tvToggle(tv,id){var n=tv.map[id];if(!n||n.type!=='dir')return;
+  if(!n._open){n._open=true;if(!n._loaded&&tv.load){tvRender(tv);tv.load(n,function(children){n.children=children||[];n._loaded=true;tvIngest(tv,n.children,false);tvRender(tv);});return;}}
+  else n._open=false;
+  tvRender(tv);}
+function tvCascade(tv,cb){var n=tv.map[cb.getAttribute('data-tv-id')];if(!n||n.type!=='dir')return;var on=cb.checked;(function walk(arr){if(!Array.isArray(arr))return;arr.forEach(function(ch){var el=document.querySelector('.'+tv.chkClass+'[data-tv-id="'+ch._id+'"]');if(el)el.checked=on;if(ch.children)walk(ch.children);});})(n.children);}
+function tvCollapseAll(tv){(function walk(arr){arr.forEach(function(n){if(n.type==='dir'){n._open=false;if(n.children)walk(n.children);}});})(tv.nodes);tvRender(tv);}
+function tvFlattenFiles(tv){var out=[];(function walk(arr){if(!Array.isArray(arr))return;arr.forEach(function(n){if(n.type==='file')out.push(n);else if(n.children)walk(n.children);});})(tv.nodes);return out;}
+function tvCheckedNodes(tv){var out=[];document.querySelectorAll('#'+tv.id+' .'+tv.chkClass+':checked').forEach(function(cb){var n=tv.map[cb.getAttribute('data-tv-id')];if(n)out.push(n);});return out;}
+function tvRel(tv,path){var r=tv.root||'';if(r&&r!=='__ROOT__'&&String(path).indexOf(r)===0){var rel=String(path).slice(r.length);return rel.replace(/^\/+/,'');}return String(path).replace(/^\/+/,'');}
+/* ── Saved FTP connection profiles (local) ─────────────────────── */
+function ftpProfilesGet(){try{return JSON.parse(localStorage.getItem('bsu_ftp_profiles')||'[]');}catch(e){return[];}}
+function ftpProfilesSet(l){try{localStorage.setItem('bsu_ftp_profiles',JSON.stringify(l));}catch(e){}}
+function ftpProfFill(selId){var sel=document.getElementById(selId);if(!sel)return;ftpProfilesGet();var l=ftpProfilesGet();sel.innerHTML='<option value="">— Saved connections —</option>';l.forEach(function(p,i){var o=document.createElement('option');o.value=String(i);o.textContent=p.name;sel.appendChild(o);});}
+function ftpProfByIndex(idx){var l=ftpProfilesGet();var i=parseInt(idx,10);return(i>=0&&i<l.length)?l[i]:null;}
+function ftpProfApply(p,map){Object.keys(map).forEach(function(k){if(!map[k])return;var el=document.getElementById(map[k]);if(el&&p[k]!==undefined&&p[k]!==null)el.value=p[k];});}
+function ftpProfCollect(map){var o={};Object.keys(map).forEach(function(k){if(!map[k])return;var el=document.getElementById(map[k]);o[k]=el?el.value:'';});return o;}
+function ftpProfSaveMap(name,map){var l=ftpProfilesGet();var p=ftpProfCollect(map);p.name=name;var idx=-1;l.forEach(function(x,i){if(x.name===name)idx=i;});if(idx>=0)l[idx]=p;else l.push(p);ftpProfilesSet(l);}
+function ftpProfDeleteName(name){ftpProfilesSet(ftpProfilesGet().filter(function(x){return x.name!==name;}));}
+var FTP_MAP={name:null,host:'ftp-host',port:'ftp-port',user:'ftp-user',pass:'ftp-pass',method:'ftp-method',baseurl:'ftp-baseurl',strip:'ftp-strip',dlFolder:'ftp-dl-folder'};
+function ftpProfPopulate(){ftpProfFill('ftp-prof');}
+function ftpProfLoad(){var sel=document.getElementById('ftp-prof');var p=ftpProfByIndex(sel.value);if(!p){showToast('Pick a saved connection');return;}ftpProfApply(p,FTP_MAP);showToast('Loaded "'+p.name+'"');}
+function ftpProfSave(){var def=(document.getElementById('ftp-host').value||'connection');var name=prompt('Save connection as:',def);if(!name||!name.trim())return;ftpProfSaveMap(name.trim(),FTP_MAP);ftpProfPopulate();showToast('Saved "'+name.trim()+'"');}
+function ftpProfDelete(){var sel=document.getElementById('ftp-prof');var p=ftpProfByIndex(sel.value);if(!p){showToast('Pick a saved connection to delete');return;}if(!confirm('Delete saved connection "'+p.name+'"?'))return;ftpProfDeleteName(p.name);ftpProfPopulate();showToast('Deleted');}
+function cmpProfMap(s){return{name:null,host:'cmp-'+s+'-host',port:'cmp-'+s+'-port',user:'cmp-'+s+'-user',pass:'cmp-'+s+'-pass',method:'cmp-'+s+'-method',root:'cmp-'+s+'-root'};}
+function cmpProfPopulate(s){ftpProfFill('cmp-'+s+'-prof');}
+function cmpProfLoad(s){var sel=document.getElementById('cmp-'+s+'-prof');var p=ftpProfByIndex(sel.value);if(!p){showToast('Pick a saved connection');return;}ftpProfApply(p,cmpProfMap(s));cmpTypeChange(s);showToast('Loaded "'+p.name+'"');}
+function cmpProfSave(s){var def=(document.getElementById('cmp-'+s+'-host').value||'connection');var name=prompt('Save connection as:',def);if(!name||!name.trim())return;ftpProfSaveMap(name.trim(),cmpProfMap(s));cmpProfPopulate('l');cmpProfPopulate('r');showToast('Saved "'+name.trim()+'"');}
+function cmpProfDelete(s){var sel=document.getElementById('cmp-'+s+'-prof');var p=ftpProfByIndex(sel.value);if(!p){showToast('Pick a saved connection to delete');return;}if(!confirm('Delete "'+p.name+'"?'))return;ftpProfDeleteName(p.name);cmpProfPopulate('l');cmpProfPopulate('r');showToast('Deleted');}
 var fbCwd='__ROOT__';
 var ftpCwd='/';
 var ftpCreds={};
+var fbTV=null,fbRoot='__ROOT__';
+function fbActions(n){
+  var p=JSON.stringify(n.path),nm=JSON.stringify(n.name);
+  var h=n.url?'<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy URL" onclick=\'copyText('+JSON.stringify(n.url)+',this)\'>'+_icCopy+'</button>':'';
+  h+='<button class="btn btn-g btn-sm btn-icon" title="Rename" onclick=\'fbRename('+p+','+nm+')\'>'+_icRename+'</button>';
+  h+='<button class="btn btn-g btn-sm btn-icon" title="Duplicate" onclick=\'fbDup('+p+','+nm+')\'>'+_icDup+'</button>';
+  h+='<button class="btn btn-g btn-sm btn-icon" title="Move to folder" onclick=\'fbMove('+p+','+nm+')\'>'+_icMove+'</button>';
+  h+='<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'fbDel('+p+','+nm+')\'>'+_icTrash+'</button>';
+  return h;
+}
+function fbLazyLoad(node,cb){var fd=new FormData();fd.append('_a','ls');fd.append('_p',node.path);fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){cb(d.ok?d.items:[]);}).catch(function(){cb([]);});}
+function fbEnsureTV(){if(!fbTV)fbTV=tvCreate({id:'fb-tbl-wrap',checkbox:true,chkClass:'fb-chk',actions:fbActions,load:fbLazyLoad,onCheck:fbChkChg});return fbTV;}
 function openFileBrowser(){openModal('modal-fb');fbLoad('__ROOT__');}
 function fbLoad(path){
-  fbCwd=path;
+  fbCwd=path;fbRoot=path;
   document.getElementById('fb-loading').style.display='block';
   document.getElementById('fb-content').style.display='none';
   var fd=new FormData();fd.append('_a','ls');fd.append('_p',path);
-  fetch('',{method:'POST',body:fd})
-    .then(function(r){return r.json();})
-    .then(function(d){fbRender(d);document.getElementById('fb-loading').style.display='none';document.getElementById('fb-content').style.display='block';})
-    .catch(function(){document.getElementById('fb-loading').innerHTML='<span style="color:var(--rd)">Failed to load directory</span>';});
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    document.getElementById('fb-loading').style.display='none';
+    document.getElementById('fb-content').style.display='block';
+    if(!d.ok){document.getElementById('fb-tbl-wrap').innerHTML='<div class="fb-empty">'+_esc(d.msg||'Error')+'</div>';return;}
+    fbCwd=d.path;fbRoot=d.path;
+    document.getElementById('fb-path').innerHTML='<span class="fb-crumb" style="cursor:default;color:var(--t2)">'+_icHome+' '+_esc(d.path)+'</span>';
+    fbEnsureTV();tvSetRoot(fbTV,d.items,d.path);
+    document.getElementById('fb-bulk').classList.add('show');fbChkChg();
+  }).catch(function(){document.getElementById('fb-loading').innerHTML='<span style="color:var(--rd)">Failed to load directory</span>';});
 }
-function fbRender(d){
-  document.getElementById('fb-loading').innerHTML='Loading…';
-  if(!d.ok){document.getElementById('fb-tbl-wrap').innerHTML='<div class="fb-empty">'+_esc(d.msg||'Error')+'</div>';return;}
-  var crumbs='<span class="fb-crumb" onclick="fbLoad(\'__ROOT__\')">'+_icHome+' root</span>';
-  if(d.breadcrumbs){d.breadcrumbs.forEach(function(b){crumbs+='<span class="fb-sep"> / </span><span class="fb-crumb" onclick=\'fbLoad('+JSON.stringify(b.path)+')\'>'+_esc(b.name)+'</span>';});}
-  document.getElementById('fb-path').innerHTML=crumbs;
-  var h='<table class="fb-tbl"><thead><tr><th style="width:2rem"><input type="checkbox" id="fb-all" onchange="fbSelAll(this)"></th><th>Name</th><th>Size</th><th>Modified</th><th>Permissions</th><th style="text-align:right">Actions</th></tr></thead><tbody>';
-  if(d.parent!==null&&d.parent!==undefined){
-    var pp=d.parent||'__ROOT__';
-    h+='<tr><td></td><td colspan="4"><span class="fb-dn" onclick=\'fbLoad('+JSON.stringify(pp)+')\'>'+_icFolder+' ..</span></td><td></td></tr>';
-  }
-  if(!d.items||!d.items.length){h+='<tr><td colspan="6" class="fb-empty">Empty directory</td></tr>';}
-  else{
-    d.items.forEach(function(item){
-      var isDir=item.type==='dir';
-      var nm=isDir?'<span class="fb-dn" onclick=\'fbLoad('+JSON.stringify(item.path)+')\'>'+_icFolder+' '+_esc(item.name)+'</span>':'<span class="fb-fn">'+_icFile+' '+_esc(item.name)+'</span>';
-      var urlAttr=(item.url||'').replace(/"/g,'&quot;');
-      var pathAttr=item.path.replace(/"/g,'&quot;');
-      var permsOctal=item.perms_octal||'';
-      var permsSym=item.perms_sym||'';
-      var permsTitle=permsSym?permsHuman(permsSym):'';
-      var permsCell=permsOctal?'<span class="ftp-perms" title="'+_esc(permsTitle)+'">'+_esc(permsSym)+' <b class="perms-octal">'+_esc(permsOctal)+'</b></span>':'<span class="ftp-perms">—</span>';
-      h+='<tr data-path="'+pathAttr+'" data-url="'+urlAttr+'">'
-        +'<td><input type="checkbox" class="fb-chk" onchange="fbChkChg()" value="'+pathAttr+'"></td>'
-        +'<td>'+nm+'</td>'
-        +'<td class="fb-sz">'+(isDir?'&mdash;':_esc(item.size))+'</td>'
-        +'<td class="fb-mt">'+_esc(item.mtime)+'</td>'
-        +'<td>'+permsCell+'</td>'
-        +'<td class="fb-acts">'
-        +(item.url?'<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy URL" onclick=\'copyText('+JSON.stringify(item.url)+', this)\'>'+_icCopy+'</button>':'')
-        +'<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'fbDel('+JSON.stringify(item.path)+','+JSON.stringify(item.name)+')\'>'+_icTrash+'</button>'
-        +'</td></tr>';
-    });
-  }
-  h+='</tbody></table>';
-  document.getElementById('fb-tbl-wrap').innerHTML=h;
-  document.getElementById('fb-bulk').classList.remove('show');
+function fbExpandAll(){
+  showToast('Loading full tree…');
+  var fd=new FormData();fd.append('_a','ls_tree');fd.append('_p',fbRoot);
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    if(!d.ok){showToast('Error: '+(d.msg||'failed'));return;}
+    fbEnsureTV();tvSetFull(fbTV,d.tree,d.root);fbChkChg();
+    showToast(d.capped?('Tree truncated at '+d.count+' items'):('Loaded '+d.count+' items'));
+  }).catch(function(){showToast('Failed to load tree');});
 }
-function fbSelAll(cb){document.querySelectorAll('.fb-chk').forEach(function(c){c.checked=cb.checked;});fbChkChg();}
+function fbCollapseAll(){if(fbTV)tvCollapseAll(fbTV);}
+function fbSelAll(on){document.querySelectorAll('#fb-tbl-wrap .fb-chk').forEach(function(c){c.checked=on;});fbChkChg();}
 function fbChkChg(){
-  var cc=document.querySelectorAll('.fb-chk:checked');
-  var bulk=document.getElementById('fb-bulk');
-  if(cc.length>0){bulk.classList.add('show');document.getElementById('fb-sel-n').textContent=cc.length+' selected';}
-  else bulk.classList.remove('show');
+  var cc=document.querySelectorAll('#fb-tbl-wrap .fb-chk:checked');
+  var sn=document.getElementById('fb-sel-n');if(sn)sn.textContent=cc.length+' selected';
 }
 function fbCopySelected(){
   var urls=[];
-  document.querySelectorAll('.fb-chk:checked').forEach(function(c){var r=c.closest('tr');if(r&&r.dataset.url)urls.push(r.dataset.url);});
+  document.querySelectorAll('#fb-tbl-wrap .fb-chk:checked').forEach(function(c){if(c.dataset.url)urls.push(c.dataset.url);});
   if(urls.length)copyText(urls.join('\n'));else showToast('No web URLs available for selected items');
 }
 function fbDelSelected(){
@@ -185,14 +374,57 @@ function fbDel(path,name){
   var fd=new FormData();fd.append('_a','del');fd.append('_p',path);
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){if(d.ok){showToast('Deleted: '+name);fbLoad(fbCwd);}else showToast('Error: '+(d.msg||'failed'));});
 }
-function switchMode(m){
-  document.getElementById('form-direct').style.display=m==='direct'?'':'none';
-  document.getElementById('form-mitm').style.display=m==='mitm'?'':'none';
-  var ftpEl=document.getElementById('form-ftp');if(ftpEl)ftpEl.style.display=m==='ftp'?'':'none';
-  document.querySelectorAll('.mode-tab').forEach(function(t){t.classList.toggle('active',t.dataset.mode===m);});
-  try{localStorage.setItem('bsu_mode',m);}catch(e){}
-  if(m==='ftp')ftpRestoreFields();
-  if(m==='mitm')mitmRestoreFields();
+function fbRename(path,name){
+  var nn=prompt('Rename "'+name+'" to:',name);
+  if(nn===null||nn.trim()===''||nn===name)return;
+  var fd=new FormData();fd.append('_a','rename');fd.append('_p',path);fd.append('_to',nn.trim());
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){showToast(d.ok?'Renamed to '+nn.trim():'Error: '+(d.msg||'failed'));if(d.ok)fbLoad(fbCwd);});
+}
+function fbDup(path,name){
+  var fd=new FormData();fd.append('_a','dup');fd.append('_p',path);
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){showToast(d.ok?(d.msg||'Duplicated'):'Error: '+(d.msg||'failed'));if(d.ok)fbLoad(fbCwd);});
+}
+function fbMove(path,name){
+  var dest=prompt('Move "'+name+'" to folder (absolute path or path relative to the script):',fbCwd==='__ROOT__'?'':fbCwd);
+  if(dest===null||dest.trim()==='')return;
+  var fd=new FormData();fd.append('_a','move');fd.append('_p',path);fd.append('_dest',dest.trim());
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){showToast(d.ok?'Moved: '+name:'Error: '+(d.msg||'failed'));if(d.ok)fbLoad(fbCwd);});
+}
+var VIEW_META={
+  direct:{t:'Upload from URL',d:'Pull a file from any URL straight onto this server.'},
+  pc:{t:'Upload from PC',d:'Pick one or more files from your device and upload them directly to this server.'},
+  mitm:{t:'MITM Relay',d:'Route the transfer through a second server when this one can\'t reach the URL directly.'},
+  ftp:{t:'FTP Browser',d:'Connect over FTP, FTPS, or SFTP and browse, download, or manage remote files.'},
+  compare:{t:'Compare & Sync',d:'Diff two locations side by side and sync files in either direction.'},
+  explorer:{t:'File Explorer',d:'Browse, download, rename, and delete files on this server.'},
+  phpinfo:{t:'PHP Info',d:'Server environment and PHP configuration at a glance.'},
+  help:{t:'Help & CLI Guide',d:'Every command-line flag and web endpoint, documented.'},
+  update:{t:'Update',d:'Check for and install the latest version from GitHub.'}
+};
+var MODES={direct:1,pc:1,mitm:1,ftp:1,compare:1};
+var _fbLoaded=false,_infoLoaded=false;
+function setHead(t,d){var a=document.getElementById('mode-title'),b=document.getElementById('mode-desc');if(a)a.textContent=t;if(b)b.textContent=d;}
+function showView(v){
+  var all=document.querySelectorAll('.view');
+  if(!all.length){location.href='?view='+encodeURIComponent(v);return;}
+  var found=false;
+  all.forEach(function(el){var on=el.getAttribute('data-view')===v;el.style.display=on?'block':'none';if(on)found=true;});
+  if(!found){location.href='?view='+encodeURIComponent(v);return;}
+  document.querySelectorAll('.nav-item[data-view]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-view')===v);});
+  var m=VIEW_META[v];if(m)setHead(m.t,m.d);
+  if(MODES[v]){try{localStorage.setItem('bsu_mode',v);}catch(e){}}
+  if(v==='ftp')ftpRestoreFields();
+  else if(v==='mitm')mitmRestoreFields();
+  else if(v==='compare')cmpRestoreFields();
+  else if(v==='explorer'){if(!_fbLoaded){_fbLoaded=true;fbLoad('__ROOT__');}}
+  else if(v==='phpinfo'){if(!_infoLoaded){_infoLoaded=true;loadInfo();}}
+}
+function switchMode(m){showView(m);}
+function initView(){
+  var v='direct';
+  try{var p=new URLSearchParams(location.search).get('view');if(p)v=p;else{var m=localStorage.getItem('bsu_mode');if(m)v=m;}}catch(e){}
+  if(!document.querySelector('.view[data-view="'+v+'"]'))v='direct';
+  showView(v);
 }
 function mitmSaveFields(){try{
   var mu=document.getElementById('m-mitm-url');if(mu)localStorage.setItem('bsu_mitm_url',mu.value);
@@ -206,7 +438,7 @@ function mitmRestoreFields(){try{
 }catch(e){}}
 function restoreMode(){try{
   var m=(location.search.indexOf('m=mitm')>=0)?'mitm':localStorage.getItem('bsu_mode');
-  if(m==='mitm')switchMode('mitm');else if(m==='ftp')switchMode('ftp');
+  if(m==='mitm')switchMode('mitm');else if(m==='ftp')switchMode('ftp');else if(m==='compare')switchMode('compare');
 }catch(e){}}
 function ftpLog(msg,type){
   var log=document.getElementById('ftp-log');if(!log)return;
@@ -241,6 +473,7 @@ function ftpRestoreFields(){
     var b=localStorage.getItem('bsu_ftp_baseurl');if(b)document.getElementById('ftp-baseurl').value=b;
     var st=document.getElementById('ftp-strip');if(st){var sv=localStorage.getItem('bsu_ftp_strip');if(sv)st.value=sv;}
     var df=document.getElementById('ftp-dl-folder');if(df){var dv=localStorage.getItem('bsu_ftp_dl_folder');if(dv)df.value=dv;}
+    ftpProfPopulate();
   }catch(e){}
 }
 function ftpConnect(){
@@ -255,105 +488,80 @@ function ftpConnect(){
   ftpLog('Connecting to '+method.toUpperCase()+'://'+h+':'+port+' …','info');
   ftpLoad('/');
 }
+var ftpTV=null,ftpRoot='/';
+function ftpFd(action,path){var fd=new FormData();fd.append('_a',action);fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');fd.append('_method',ftpCreds.method||'ftp');fd.append('_p',path);return fd;}
+function ftpLazyLoad(node,cb){fetch('',{method:'POST',body:ftpFd('ftp_ls',node.path)}).then(function(r){return r.json();}).then(function(d){cb(d.ok?d.items:[]);}).catch(function(){cb([]);});}
+function ftpActions(n){
+  var p=JSON.stringify(n.path),nm=JSON.stringify(n.name),tp=JSON.stringify(n.type),h='';
+  if(n.type!=='dir'){
+    var baseUrl=(document.getElementById('ftp-baseurl').value||'').trim().replace(/\/$/,'');
+    var webUrl=baseUrl?(baseUrl+ftpUrlPath(n.path)):'';
+    h+='<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy path" onclick=\'copyText('+p+',this)\'>'+_icCopy+'</button>';
+    if(webUrl)h+='<button class="btn btn-url btn-sm btn-icon copy-btn" title="Copy web URL" onclick=\'copyText('+JSON.stringify(webUrl)+',this)\'>URL</button>';
+    h+='<button class="btn btn-p btn-sm btn-icon" title="Save to this server" onclick=\'ftpCopyToServer('+p+','+nm+')\'>'+_icDownload+'</button>';
+    h+='<button class="btn btn-g btn-sm btn-icon" title="Duplicate" onclick=\'ftpDup('+p+','+nm+')\'>'+_icDup+'</button>';
+  }
+  h+='<button class="btn btn-g btn-sm btn-icon" title="Rename" onclick=\'ftpRename('+p+','+nm+')\'>'+_icRename+'</button>';
+  h+='<button class="btn btn-g btn-sm btn-icon" title="Move to folder" onclick=\'ftpMove('+p+','+nm+')\'>'+_icMove+'</button>';
+  h+='<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'ftpDel('+p+','+nm+','+tp+')\'>'+_icTrash+'</button>';
+  return h;
+}
+function ftpEnsureTV(){if(!ftpTV)ftpTV=tvCreate({id:'ftp-tbl-wrap',checkbox:true,chkClass:'ftp-chk',actions:ftpActions,load:ftpLazyLoad,onCheck:ftpChkChg});return ftpTV;}
 function ftpLoad(path){
-  ftpCwd=path;
+  ftpCwd=path;ftpRoot=path;
   var area=document.getElementById('ftp-browser-area');
   var loading=document.getElementById('ftp-loading');
   var tbl=document.getElementById('ftp-tbl-wrap');
   if(area)area.style.display='';
   if(loading)loading.style.display='block';
   if(tbl)tbl.innerHTML='';
-  var fd=new FormData();
-  fd.append('_a','ftp_ls');
-  fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');
-  fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');
-  fd.append('_method',ftpCreds.method||'ftp');fd.append('_p',path);
-  fetch('',{method:'POST',body:fd})
+  fetch('',{method:'POST',body:ftpFd('ftp_ls',path)})
     .then(function(r){return r.json();})
     .then(function(d){
       if(loading)loading.style.display='none';
-      ftpRender(d);
-      if(d.ok)ftpLog('Listed: '+path,'ok');
-      else ftpLog('Error: '+(d.msg||'unknown error'),'err');
+      if(!d.ok){tbl.innerHTML='<div class="ftp-empty">'+_esc(d.msg||'Error')+'</div>';ftpLog('Error: '+(d.msg||'unknown error'),'err');return;}
+      ftpCwd=d.path;ftpRoot=d.path;
+      document.getElementById('ftp-path').innerHTML='<span class="fb-crumb" style="cursor:default;color:var(--t2)">'+_icHome+' '+_esc(d.path)+'</span>';
+      ftpEnsureTV();tvSetRoot(ftpTV,d.items,d.path);
+      var bulk=document.getElementById('ftp-bulk');if(bulk)bulk.classList.add('show');ftpChkChg();
+      ftpLog('Listed: '+d.path,'ok');
     })
     .catch(function(e){if(loading)loading.style.display='none';ftpLog('Network error: '+(e.message||e),'err');});
 }
+function ftpExpandAll(){
+  if(!ftpCreds.h){showToast('Connect first');return;}
+  ftpLog('Loading full tree…','info');showToast('Loading full tree…');
+  fetch('',{method:'POST',body:ftpFd('ftp_tree',ftpRoot)})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.ok){ftpLog('Tree error: '+(d.msg||'failed'),'err');showToast('Error: '+(d.msg||'failed'));return;}
+      ftpEnsureTV();tvSetFull(ftpTV,d.tree,d.root);ftpChkChg();
+      ftpLog('Loaded '+d.count+' items'+(d.capped?' (truncated — tree too large)':''),d.capped?'err':'ok');
+      showToast(d.capped?('Tree truncated at '+d.count+' items'):('Loaded '+d.count+' items'));
+    }).catch(function(){showToast('Failed to load tree');});
+}
+function ftpCollapseAll(){if(ftpTV)tvCollapseAll(ftpTV);}
 function ftpUrlPath(remotePath){
   var strip=(document.getElementById('ftp-strip')||{value:''}).value.trim().replace(/\/+$/,'');
   if(strip&&remotePath.indexOf(strip)===0)return remotePath.slice(strip.length)||'/';
   return remotePath;
 }
-function ftpRender(d){
-  var wrap=document.getElementById('ftp-tbl-wrap');
-  var bulk=document.getElementById('ftp-bulk');
-  if(!d.ok){wrap.innerHTML='<div class="ftp-empty">'+_esc(d.msg||'Error')+'</div>';if(bulk)bulk.classList.remove('show');return;}
-  var baseUrl=(document.getElementById('ftp-baseurl').value||'').trim().replace(/\/$/,'');
-  var crumbs='<span class="fb-crumb" data-ftpnav="/">'+_icHome+' root</span>';
-  if(d.breadcrumbs){d.breadcrumbs.forEach(function(b){crumbs+='<span class="fb-sep"> / </span><span class="fb-crumb" data-ftpnav="'+b.path.replace(/"/g,'&quot;').replace(/'/g,'&#39;')+'">'+_esc(b.name)+'</span>';});}
-  document.getElementById('ftp-path').innerHTML=crumbs;
-  if(bulk)bulk.classList.remove('show');
-  var h='<table class="fb-tbl"><thead><tr>'
-    +'<th style="width:2rem"><input type="checkbox" id="ftp-chk-all" onchange="ftpSelAll(this)"></th>'
-    +'<th>Name</th><th>Size</th><th>Modified</th><th>Permissions</th><th style="text-align:right">Actions</th>'
-    +'</tr></thead><tbody>';
-  if(d.parent!==null&&d.parent!==undefined){
-    h+='<tr><td></td><td colspan="4"><span class="fb-dn" data-ftpnav="'+String(d.parent).replace(/"/g,'&quot;').replace(/'/g,'&#39;')+'">'+_icFolder+' ..</span></td><td></td></tr>';
-  }
-  if(!d.items||!d.items.length){h+='<tr><td colspan="6" class="ftp-empty">Empty directory</td></tr>';}
-  else{
-    d.items.forEach(function(item){
-      var isDir=item.type==='dir';
-      var nm=isDir?'<span class="fb-dn" data-ftpnav="'+item.path.replace(/"/g,'&quot;').replace(/'/g,'&#39;')+'">'+_icFolder+' '+_esc(item.name)+'</span>':'<span class="fb-fn">'+_icFile+' '+_esc(item.name)+'</span>';
-      var urlPath=ftpUrlPath(item.path);
-      var webUrl=baseUrl?(baseUrl+urlPath):'';
-      var permsOctal=item.perms_octal||'';
-      var permsSym=item.perms||'';
-      var permsTitle=permsSym?permsHuman(permsSym):'';
-      var permsCell=permsSym?'<span class="ftp-perms" title="'+_esc(permsTitle)+'">'+_esc(permsSym)+(permsOctal?' <b class="perms-octal">'+_esc(permsOctal)+'</b>':'')+'</span>':'<span class="ftp-perms">—</span>';
-      var pathAttr=item.path.replace(/"/g,'&quot;');
-      var urlAttr=webUrl.replace(/"/g,'&quot;');
-      h+='<tr>'
-        +'<td><input type="checkbox" class="ftp-chk" data-path="'+pathAttr+'" data-url="'+urlAttr+'" data-type="'+(isDir?'dir':'file')+'" onchange="ftpChkChg()"></td>'
-        +'<td>'+nm+'</td>'
-        +'<td class="fb-sz">'+(isDir?'&mdash;':_esc(item.size||''))+'</td>'
-        +'<td class="fb-mt">'+_esc(item.mtime||'')+'</td>'
-        +'<td>'+permsCell+'</td>'
-        +'<td class="ftp-acts">';
-      if(!isDir){
-        h+='<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy path" onclick=\'copyText('+JSON.stringify(item.path)+',this)\'>'+_icCopy+'</button>';
-        if(webUrl){h+='<button class="btn btn-url btn-sm btn-icon copy-btn" title="Copy web URL" onclick=\'copyText('+JSON.stringify(webUrl)+',this)\'>URL</button>';}
-        else{h+='<button class="btn btn-url btn-sm btn-icon disabled-url" title="Set Web Base URL to enable" disabled>URL</button>';}
-        h+='<button class="btn btn-p btn-sm btn-icon" title="Save to this server" onclick=\'ftpCopyToServer('+JSON.stringify(item.path)+','+JSON.stringify(item.name)+')\'>'+_icDownload+'</button>';
-      }
-      h+='<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'ftpDel('+JSON.stringify(item.path)+','+JSON.stringify(item.name)+','+JSON.stringify(item.type)+')\'>'+_icTrash+'</button>';
-      h+='</td></tr>';
-    });
-  }
-  h+='</tbody></table>';
-  wrap.innerHTML=h;
-  wrap.querySelectorAll('.fb-dn[data-ftpnav]').forEach(function(el){
-    el.addEventListener('click',function(e){e.stopPropagation();ftpLoad(el.getAttribute('data-ftpnav'));});
-  });
-  document.getElementById('ftp-path').querySelectorAll('.fb-crumb[data-ftpnav]').forEach(function(el){
-    el.addEventListener('click',function(e){e.stopPropagation();ftpLoad(el.getAttribute('data-ftpnav'));});
-  });
-}
-function ftpSelAll(cb){document.querySelectorAll('.ftp-chk').forEach(function(c){c.checked=cb.checked;});ftpChkChg();}
+function ftpSelAll(on){document.querySelectorAll('#ftp-tbl-wrap .ftp-chk').forEach(function(c){c.checked=on;});ftpChkChg();}
 function ftpChkChg(){
-  var cc=document.querySelectorAll('.ftp-chk:checked');
-  var bulk=document.getElementById('ftp-bulk');
-  if(cc.length>0){if(bulk)bulk.classList.add('show');var sn=document.getElementById('ftp-sel-n');if(sn)sn.textContent=cc.length+' selected';}
-  else{if(bulk)bulk.classList.remove('show');}
+  var cc=document.querySelectorAll('#ftp-tbl-wrap .ftp-chk:checked');
+  var sn=document.getElementById('ftp-sel-n');if(sn)sn.textContent=cc.length+' selected';
 }
 function ftpBulkCopyUrls(){
+  var baseUrl=(document.getElementById('ftp-baseurl').value||'').trim().replace(/\/$/,'');
+  if(!baseUrl){showToast('Set the Web Base URL first');return;}
   var urls=[];
-  document.querySelectorAll('.ftp-chk:checked').forEach(function(c){if(c.dataset.url)urls.push(c.dataset.url);});
-  if(!urls.length){showToast('No web URLs available (set Web Base URL first)');return;}
+  document.querySelectorAll('#ftp-tbl-wrap .ftp-chk:checked').forEach(function(c){if(c.dataset.type==='file')urls.push(baseUrl+ftpUrlPath(c.dataset.path));});
+  if(!urls.length){showToast('No files selected');return;}
   copyText(urls.join('\n'));ftpLog('Copied '+urls.length+' URL(s) to clipboard','ok');
 }
 function ftpBulkDelete(){
   var items=[];
-  document.querySelectorAll('.ftp-chk:checked').forEach(function(c){items.push({path:c.dataset.path,type:c.dataset.type});});
+  document.querySelectorAll('#ftp-tbl-wrap .ftp-chk:checked').forEach(function(c){items.push({path:c.dataset.path,type:c.dataset.type});});
   if(!items.length)return;
   if(!confirm('Delete '+items.length+' item(s)?\nThis cannot be undone.'))return;
   ftpLog('Deleting '+items.length+' item(s)…','info');
@@ -383,6 +591,26 @@ function ftpDel(path,name,type){
       else ftpLog('Delete failed: '+(d.msg||'error'),'err');
     })
     .catch(function(e){ftpLog('Network error: '+(e.message||e),'err');});
+}
+function ftpOpFd(action,path){var fd=new FormData();fd.append('_a',action);fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');fd.append('_method',ftpCreds.method||'ftp');fd.append('_p',path);return fd;}
+function ftpRename(path,name){
+  var nn=prompt('Rename "'+name+'" to:',name);
+  if(nn===null||nn.trim()===''||nn===name)return;
+  var fd=ftpOpFd('ftp_rename',path);fd.append('_to',nn.trim());
+  ftpLog('Renaming '+name+'…','info');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){ftpLog((d.ok?'Renamed: ':'Rename failed: ')+(d.msg||name),d.ok?'ok':'err');if(d.ok){showToast('Renamed');ftpLoad(ftpCwd);}else showToast('Error: '+(d.msg||'failed'));});
+}
+function ftpMove(path,name){
+  var dest=prompt('Move "'+name+'" to remote folder (absolute path on the server):',ftpCwd);
+  if(dest===null||dest.trim()==='')return;
+  var fd=ftpOpFd('ftp_move',path);fd.append('_dest',dest.trim());
+  ftpLog('Moving '+name+'…','info');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){ftpLog((d.ok?'Moved: ':'Move failed: ')+(d.msg||name),d.ok?'ok':'err');if(d.ok){showToast('Moved');ftpLoad(ftpCwd);}else showToast('Error: '+(d.msg||'failed'));});
+}
+function ftpDup(path,name){
+  ftpLog('Duplicating '+name+' (round-trips via this server)…','info');
+  var fd=ftpOpFd('ftp_dup',path);
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){ftpLog((d.ok?'Duplicated: ':'Duplicate failed: ')+(d.msg||name),d.ok?'ok':'err');if(d.ok){showToast(d.msg||'Duplicated');ftpLoad(ftpCwd);}else showToast('Error: '+(d.msg||'failed'));});
 }
 function ftpCopyToServer(remotePath,name){
   ftpLog('Saving to server: '+name+' …','info');
@@ -414,6 +642,130 @@ function ftpHumanSize(b){
   var i=b>0?Math.min(Math.floor(Math.log(b)/Math.log(1024)),u.length-1):0;
   return(b/Math.pow(1024,i)).toFixed(i?1:0)+' '+u[i];
 }
+/* ── Compare & Sync ─────────────────────────────────────────────── */
+var cmpState={l:{kind:'local',cwd:'',root:'',creds:null,tv:null},r:{kind:'local',cwd:'',root:'',creds:null,tv:null}};
+var cmpDir='lr';var _cmpRestored=false;
+function cmpLog(msg,type){var log=document.getElementById('cmp-log');if(!log)return;var d=document.createElement('div');d.className='ftp-log-entry '+(type||'info');d.textContent='['+new Date().toLocaleTimeString()+'] '+msg;log.insertBefore(d,log.firstChild);}
+function cmpTypeChange(s){var k=document.getElementById('cmp-'+s+'-type').value;document.getElementById('cmp-'+s+'-creds').style.display=k==='ftp'?'':'none';cmpUpdateMethodAvail();}
+function cmpMethodPortSync(s){var m=document.getElementById('cmp-'+s+'-method').value;var p=document.getElementById('cmp-'+s+'-port');if(m==='sftp'&&(p.value===''||p.value==='21'))p.value='22';else if(m!=='sftp'&&p.value==='22')p.value='21';}
+function cmpFd(s,action,path){var st=cmpState[s];var fd=new FormData();fd.append('_a',action);fd.append('_p',path);if(st.kind==='ftp'){var c=st.creds||{};fd.append('_h',c.h||'');fd.append('_port',c.port||'21');fd.append('_u',c.u||'');fd.append('_pw',c.pw||'');fd.append('_method',c.method||'ftp');}return fd;}
+function cmpEnsureTV(s){if(!cmpState[s].tv)cmpState[s].tv=tvCreate({id:'cmp-'+s+'-tbl',checkbox:true,chkClass:'cmp-chk-'+s,load:function(node,cb){var action=cmpState[s].kind==='local'?'ls':'ftp_ls';fetch('',{method:'POST',body:cmpFd(s,action,node.path)}).then(function(r){return r.json();}).then(function(d){cb(d.ok?d.items:[]);}).catch(function(){cb([]);});}});return cmpState[s].tv;}
+function cmpConnect(s){
+  var kind=document.getElementById('cmp-'+s+'-type').value;cmpState[s].kind=kind;
+  if(kind==='ftp'){
+    var h=document.getElementById('cmp-'+s+'-host').value.trim();
+    if(!h){showToast('Host required for the FTP side');return;}
+    cmpState[s].creds={h:h,port:document.getElementById('cmp-'+s+'-port').value||'21',u:document.getElementById('cmp-'+s+'-user').value.trim(),pw:document.getElementById('cmp-'+s+'-pass').value,method:document.getElementById('cmp-'+s+'-method').value};
+  }else cmpState[s].creds=null;
+  var rootIn=(document.getElementById('cmp-'+s+'-root')||{value:''}).value.trim();
+  var start=rootIn||(kind==='ftp'?'/':'__ROOT__');
+  cmpPersist();cmpLoad(s,start);
+}
+function cmpReload(s){if(cmpState[s].root==='')return;cmpLoad(s,cmpState[s].root);}
+function cmpLoad(s,path){
+  var st=cmpState[s];var wrap=document.getElementById('cmp-'+s+'-tbl');wrap.innerHTML='<div class="tree-empty">Loading…</div>';
+  var action=st.kind==='local'?'ls':'ftp_ls';
+  fetch('',{method:'POST',body:cmpFd(s,action,path)}).then(function(r){return r.json();}).then(function(d){
+    if(!d.ok){wrap.innerHTML='<div class="tree-empty">'+_esc(d.msg||'Error')+'</div>';cmpLog((s==='l'?'Left':'Right')+': '+(d.msg||'load error'),'err');return;}
+    st.root=d.path;st.cwd=d.path;
+    var pathEl=document.getElementById('cmp-'+s+'-path');if(pathEl)pathEl.innerHTML='<span style="color:var(--t2)">'+_icHome+' '+_esc(d.path)+'</span>';
+    cmpEnsureTV(s);tvSetRoot(st.tv,d.items,d.path);
+    cmpLog((s==='l'?'Left':'Right')+' listed: '+d.path,'ok');
+  }).catch(function(e){wrap.innerHTML='<div class="tree-empty">Network error</div>';cmpLog('Network error: '+(e.message||e),'err');});
+}
+function cmpExpandAll(s){
+  var st=cmpState[s];if(st.root===''){showToast('Load this side first');return;}
+  cmpLog((s==='l'?'Left':'Right')+': loading full tree…','info');
+  var action=st.kind==='local'?'ls_tree':'ftp_tree';
+  fetch('',{method:'POST',body:cmpFd(s,action,st.root)}).then(function(r){return r.json();}).then(function(d){
+    if(!d.ok){cmpLog('Tree error: '+(d.msg||'failed'),'err');showToast('Error: '+(d.msg||'failed'));return;}
+    cmpEnsureTV(s);tvSetFull(st.tv,d.tree,d.root);
+    cmpLog((s==='l'?'Left':'Right')+' loaded '+d.count+' items'+(d.capped?' (truncated — tree too large)':''),d.capped?'err':'ok');
+  }).catch(function(){showToast('Failed to load tree');});
+}
+function cmpCollapseAll(s){if(cmpState[s].tv)tvCollapseAll(cmpState[s].tv);}
+function cmpSelAll(s,on){document.querySelectorAll('#cmp-'+s+'-tbl .cmp-chk-'+s).forEach(function(c){c.checked=on;});}
+function cmpFlatten(tv){var out=[];(function walk(arr){if(!Array.isArray(arr))return;arr.forEach(function(n){out.push({rel:tvRel(tv,n.path).toLowerCase(),type:n.type,size:+n.size_bytes||0});if(n.children)walk(n.children);});})(tv.nodes);return out;}
+function cmpDiff(){
+  var tl=cmpState.l.tv,tr=cmpState.r.tv;
+  if(!tl||!tr){showToast('Load both sides first');return;}
+  var L=cmpFlatten(tl),R=cmpFlatten(tr);
+  if(!L.length&&!R.length){showToast('Load both sides first');return;}
+  var rmap={},lmap={};R.forEach(function(n){rmap[n.rel]=n;});L.forEach(function(n){lmap[n.rel]=n;});
+  function classify(a,b){if(a.type!==b.type)return'diff';if(a.type==='dir')return'same';if(a.size===0||b.size===0)return'same';return a.size===b.size?'same':'diff';}
+  var clsL={},clsR={},nSame=0,nDiff=0,nOnlyL=0,nOnlyR=0;
+  L.forEach(function(n){if(rmap[n.rel]){var c=classify(n,rmap[n.rel]);clsL[n.rel]=c;if(n.type==='file'){c==='same'?nSame++:nDiff++;}}else{clsL[n.rel]='only-l';if(n.type==='file')nOnlyL++;}});
+  R.forEach(function(n){if(lmap[n.rel])clsR[n.rel]=clsL[n.rel]||classify(lmap[n.rel],n);else{clsR[n.rel]='only-r';if(n.type==='file')nOnlyR++;}});
+  cmpApplyClasses('l',clsL);cmpApplyClasses('r',clsR);
+  document.getElementById('cmp-diff-summary').textContent=nSame+' identical · '+nDiff+' differ · '+nOnlyL+' only left · '+nOnlyR+' only right';
+  cmpLog('Compared by relative path: '+nSame+' same, '+nDiff+' differ, '+nOnlyL+' only-left, '+nOnlyR+' only-right','info');
+}
+function cmpApplyClasses(s,map){document.querySelectorAll('#cmp-'+s+'-tbl .tnode[data-relpath]').forEach(function(el){el.classList.remove('cmp-same','cmp-diff','cmp-only-l','cmp-only-r');var c=map[String(el.getAttribute('data-relpath')).toLowerCase()];if(c)el.classList.add('cmp-'+c);});}
+function cmpSetDir(d){cmpDir=d;document.querySelectorAll('#cmp-dir button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-dir')===d);});cmpUpdateMethodAvail();cmpPersist();}
+function cmpMethodChange(){var m=document.getElementById('cmp-method').value;document.getElementById('cmp-relay-wrap').style.display=m==='relay'?'':'none';cmpPersist();}
+function cmpUpdateMethodAvail(){
+  var sel=document.getElementById('cmp-method');if(!sel)return;
+  var srcKind=document.getElementById('cmp-'+(cmpDir==='lr'?'l':'r')+'-type').value;
+  var dstKind=document.getElementById('cmp-'+(cmpDir==='lr'?'r':'l')+'-type').value;
+  Array.prototype.forEach.call(sel.options,function(o){if(o.value==='fxp')o.disabled=!(srcKind==='ftp'&&dstKind==='ftp');else if(o.value==='relay')o.disabled=(srcKind!=='ftp');else o.disabled=false;});
+  if(sel.selectedOptions[0]&&sel.selectedOptions[0].disabled){sel.value='direct';cmpMethodChange();}
+}
+function cmpCollectFiles(tv){
+  var files=[],seen={},unloaded=0;
+  function pushFile(n){if(!seen[n.path]){seen[n.path]=1;files.push(n);}}
+  tvCheckedNodes(tv).forEach(function(n){
+    if(n.type==='file')pushFile(n);
+    else{if(!n._loaded){unloaded++;}(function walk(arr){if(!Array.isArray(arr))return;arr.forEach(function(c){if(c.type==='file')pushFile(c);else if(c.children)walk(c.children);});})(n.children);}
+  });
+  return{files:files,unloaded:unloaded};
+}
+function cmpSync(){
+  var srcS=cmpDir==='lr'?'l':'r',dstS=cmpDir==='lr'?'r':'l';
+  var src=cmpState[srcS],dst=cmpState[dstS];
+  if(!src.tv||src.root===''||!dst.tv||dst.root===''){showToast('Load both sides first');return;}
+  var method=document.getElementById('cmp-method').value;
+  var relay=document.getElementById('cmp-relay').value.trim();
+  if(method==='relay'&&!relay){showToast('Enter the Relay (MITM) URL');return;}
+  var col=cmpCollectFiles(src.tv);
+  if(!col.files.length){showToast('Select files or folders on the source side ('+(srcS==='l'?'Left':'Right')+')');return;}
+  if(col.unloaded)cmpLog(col.unloaded+' selected folder(s) were not fully loaded — run "Load full tree" to include all of their files','err');
+  var destRoot=String(dst.root).replace(/\/+$/,'');
+  var items=col.files.map(function(n){
+    var rel=tvRel(src.tv,n.path);var relDir=rel.indexOf('/')>=0?rel.replace(/\/[^/]*$/,''):'';
+    return{path:n.path,name:n.name,rel:rel,destDir:destRoot+(relDir?'/'+relDir:'')};
+  });
+  var status=document.getElementById('cmp-status');status.innerHTML='';
+  var bar=document.getElementById('cmp-bar');bar.style.width='0%';bar.parentElement.style.display='';
+  var counter=document.getElementById('cmp-counter');counter.style.display='';counter.textContent='0 / '+items.length+' done';
+  var endpoint={direct:'xfer_direct',ftp:'xfer_ftp',relay:'xfer_relay',fxp:'xfer_fxp'}[method];
+  cmpLog('Syncing '+items.length+' file(s) '+(cmpDir==='lr'?'Left → Right':'Right → Left')+' via '+method.toUpperCase()+' …','info');
+  var queue=items.map(function(it){var el=document.createElement('div');el.className='bulk-item busy';el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(it.rel||it.name)+'</span><span class="bulk-item-meta">queued</span>';status.appendChild(el);return{it:it,el:el};});
+  cmpRunNext(queue,0,srcS,dstS,endpoint,relay,method,bar,counter);
+}
+function cmpRunNext(queue,qi,srcS,dstS,endpoint,relay,method,bar,counter){
+  if(qi>=queue.length){cmpLog('Sync complete','ok');showToast('Sync complete');return;}
+  var q=queue[qi];q.el.className='bulk-item busy';q.el.querySelector('.bulk-item-meta').textContent='transferring…';
+  var src=cmpState[srcS],dst=cmpState[dstS];
+  var fd=new FormData();fd.append('_a',endpoint);
+  fd.append('_skind',src.kind);fd.append('_dkind',dst.kind);
+  fd.append('_sp',q.it.path);fd.append('_dp',q.it.destDir);fd.append('_name',q.it.name);
+  if(src.kind==='ftp'){var c=src.creds||{};fd.append('_h',c.h||'');fd.append('_port',c.port||'21');fd.append('_u',c.u||'');fd.append('_pw',c.pw||'');fd.append('_method',c.method||'ftp');}
+  if(dst.kind==='ftp'){var dc=dst.creds||{};fd.append('_dh',dc.h||'');fd.append('_dport',dc.port||'21');fd.append('_du',dc.u||'');fd.append('_dpw',dc.pw||'');fd.append('_dmethod',dc.method||'ftp');}
+  if(method==='relay'){fd.append('_relay',relay);fd.append('_relay_del','0');}
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    if(d.ok){q.el.className='bulk-item ok';q.el.querySelector('.bulk-item-ic').textContent='✓';q.el.querySelector('.bulk-item-meta').textContent=(d.size?ftpHumanSize(d.size):'')+(d.elapsed?' · '+d.elapsed:'');cmpLog('✓ '+q.it.name+' — '+(d.msg||'done'),'ok');}
+    else{q.el.className='bulk-item err';q.el.querySelector('.bulk-item-ic').textContent='✗';q.el.querySelector('.bulk-item-meta').textContent=d.msg||'failed';cmpLog('✗ '+q.it.name+' — '+(d.msg||'failed'),'err');}
+    bar.style.width=Math.round(((qi+1)/queue.length)*100)+'%';counter.textContent=(qi+1)+' / '+queue.length+' done';
+    cmpRunNext(queue,qi+1,srcS,dstS,endpoint,relay,method,bar,counter);
+  }).catch(function(e){q.el.className='bulk-item err';q.el.querySelector('.bulk-item-ic').textContent='✗';q.el.querySelector('.bulk-item-meta').textContent=e.message||'network error';cmpLog('✗ '+q.it.name+' — network error','err');bar.style.width=Math.round(((qi+1)/queue.length)*100)+'%';counter.textContent=(qi+1)+' / '+queue.length+' done';cmpRunNext(queue,qi+1,srcS,dstS,endpoint,relay,method,bar,counter);});
+}
+function cmpPersist(){try{['l','r'].forEach(function(s){localStorage.setItem('bsu_cmp_'+s+'_type',document.getElementById('cmp-'+s+'-type').value);localStorage.setItem('bsu_cmp_'+s+'_host',document.getElementById('cmp-'+s+'-host').value);localStorage.setItem('bsu_cmp_'+s+'_port',document.getElementById('cmp-'+s+'-port').value);localStorage.setItem('bsu_cmp_'+s+'_user',document.getElementById('cmp-'+s+'-user').value);localStorage.setItem('bsu_cmp_'+s+'_method',document.getElementById('cmp-'+s+'-method').value);var rt=document.getElementById('cmp-'+s+'-root');if(rt)localStorage.setItem('bsu_cmp_'+s+'_root',rt.value);});localStorage.setItem('bsu_cmp_dir',cmpDir);localStorage.setItem('bsu_cmp_xmethod',document.getElementById('cmp-method').value);}catch(e){}}
+function cmpRestoreFields(){if(_cmpRestored)return;_cmpRestored=true;try{
+  ['l','r'].forEach(function(s){var t=localStorage.getItem('bsu_cmp_'+s+'_type');if(t)document.getElementById('cmp-'+s+'-type').value=t;var h=localStorage.getItem('bsu_cmp_'+s+'_host');if(h)document.getElementById('cmp-'+s+'-host').value=h;var p=localStorage.getItem('bsu_cmp_'+s+'_port');if(p)document.getElementById('cmp-'+s+'-port').value=p;var u=localStorage.getItem('bsu_cmp_'+s+'_user');if(u)document.getElementById('cmp-'+s+'-user').value=u;var m=localStorage.getItem('bsu_cmp_'+s+'_method');if(m)document.getElementById('cmp-'+s+'-method').value=m;var rt=document.getElementById('cmp-'+s+'-root'),rv=localStorage.getItem('bsu_cmp_'+s+'_root');if(rt&&rv!==null)rt.value=rv;cmpTypeChange(s);cmpProfPopulate(s);});
+  var dir=localStorage.getItem('bsu_cmp_dir');if(dir)cmpSetDir(dir);
+  var xm=localStorage.getItem('bsu_cmp_xmethod');if(xm){document.getElementById('cmp-method').value=xm;cmpMethodChange();}
+  cmpUpdateMethodAvail();
+}catch(e){}}
 var _bulkMode=false;
 function bulkToggle(){
   _bulkMode=!_bulkMode;
@@ -591,19 +943,70 @@ function mitmRunNext(queue,qi){
     mitmUpdateProgress();mitmRunNext(queue,qi+1);
   });
 }
+function pcFilePicked(){
+  var fi=document.getElementById('pc-file');var n=document.getElementById('pc-name');
+  var nw=document.getElementById('pc-name-wrap');
+  var multi=fi&&fi.files&&fi.files.length>1;
+  if(nw)nw.style.display=multi?'none':'';
+  if(!multi&&fi&&fi.files&&fi.files.length&&n&&!n.value.trim())n.value=fi.files[0].name;
+}
+function pcUpload(){
+  var fi=document.getElementById('pc-file');
+  if(!fi||!fi.files||!fi.files.length){showToast('Choose a file first');return;}
+  var files=Array.prototype.slice.call(fi.files);
+  var multi=files.length>1;
+  var folder=(document.getElementById('pc-folder').value||'').trim();
+  var singleName=(document.getElementById('pc-name').value||'').trim();
+  var wrap=document.getElementById('pc-progress-wrap'),bar=document.getElementById('pc-bar');
+  var counter=document.getElementById('pc-counter'),status=document.getElementById('pc-status');
+  wrap.style.display='';bar.style.width='0%';counter.style.display='';counter.textContent='0 / '+files.length+' done';status.innerHTML='';
+  var rows=files.map(function(f){
+    var el=document.createElement('div');el.className='bulk-item busy';
+    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(f.name)+'</span><span class="bulk-item-meta">queued</span>';
+    status.appendChild(el);return el;
+  });
+  var done=0,idx=0;
+  function next(){
+    if(idx>=files.length){counter.textContent=files.length+' / '+files.length+' done';bar.style.width='100%';showToast('Upload complete');return;}
+    var f=files[idx],el=rows[idx];
+    var name=(!multi&&singleName)?singleName:f.name;
+    el.className='bulk-item busy';el.querySelector('.bulk-item-meta').textContent='uploading…';
+    var fd=new FormData();fd.append('_a','upload_local');fd.append('file',f);fd.append('_name',name);
+    if(folder)fd.append('folder',folder);
+    var xhr=new XMLHttpRequest();xhr.open('POST','',true);
+    xhr.upload.onprogress=function(e){if(e.lengthComputable){var p=Math.round(e.loaded/e.total*100);el.querySelector('.bulk-item-meta').textContent=p+'% — '+ftpHumanSize(e.loaded)+' / '+ftpHumanSize(e.total);var overall=Math.round(((done+e.loaded/e.total)/files.length)*100);bar.style.width=overall+'%';setPg(overall);}};
+    xhr.onload=function(){
+      var d;try{d=JSON.parse(xhr.responseText);}catch(e){d={ok:false,error:'Unexpected server response'};}
+      if(d.ok){
+        el.className='bulk-item ok';el.querySelector('.bulk-item-ic').textContent='✓';
+        el.querySelector('.bulk-item-meta').textContent=ftpHumanSize(d.size);
+        var a=document.createElement('a');a.className='bulk-item-url';a.href=d.url;a.target='_blank';a.style.cssText='color:var(--bl);font-size:.76rem;display:block;word-break:break-all;width:100%';a.textContent=d.url;el.appendChild(a);
+      }else{
+        el.className='bulk-item err';el.querySelector('.bulk-item-ic').textContent='✗';
+        el.querySelector('.bulk-item-meta').textContent=d.error||'failed';
+      }
+      done++;idx++;counter.textContent=done+' / '+files.length+' done';next();
+    };
+    xhr.onerror=function(){el.className='bulk-item err';el.querySelector('.bulk-item-ic').textContent='✗';el.querySelector('.bulk-item-meta').textContent='network error';done++;idx++;counter.textContent=done+' / '+files.length+' done';next();};
+    xhr.send(fd);
+  }
+  setPg(0);next();
+}
+function _us(t){var e=document.getElementById('update-status');if(e)e.textContent=t;}
 function checkUpdate(){
-  showToast('Checking for updates…');
+  showToast('Checking for updates…');_us('Checking for updates…');
   var fd=new FormData();fd.append('_a','check_update');
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
-    if(!d.ok){showToast('Update check failed: '+(d.msg||'error'));return;}
+    if(!d.ok){showToast('Update check failed: '+(d.msg||'error'));_us('Update check failed: '+(d.msg||'error'));return;}
     if(d.needs_update){
+      _us('Update available — current v'+d.current+', latest v'+d.latest+'.');
       if(confirm('Update available!\nCurrent: v'+d.current+'\nLatest: v'+d.latest+'\n\nUpdate now? (current file will be backed up as upload.php.bak)')){
         doUpdate(d.download_url);
       }
     }else{
-      showToast('Up to date ✓ (v'+d.current+')');
+      showToast('Up to date ✓ (v'+d.current+')');_us('You are up to date ✓ (v'+d.current+')');
     }
-  }).catch(function(e){showToast('Update check failed: '+(e.message||e));});
+  }).catch(function(e){showToast('Update check failed: '+(e.message||e));_us('Update check failed: '+(e.message||e));});
 }
 function doUpdate(url){
   showToast('Downloading update…');
@@ -614,28 +1017,51 @@ function doUpdate(url){
     }else{showToast('Update failed: '+(d.msg||'error'));}
   }).catch(function(e){showToast('Update failed: '+(e.message||e));});
 }
+document.addEventListener('DOMContentLoaded',function(){updateThemeBtn();checkPermBanner();restoreSidebar();});
 </script>
 </head>
 <body>
 <header class="hdr">
   <a class="hdr-logo" href="?r=<?=time()?>">
     <img src="<?=$_svg?>" alt="" width="24" height="24">
-    <span class="hdr-title">BlackSwan Upload</span>
+    <span class="hdr-title">BlackSwan <span class="hdr-sep">|</span> Upload/sFTP Tool</span>
+    <span class="hdr-ver">v<?=APP_VER?></span>
   </a>
-  <nav class="hdr-nav">
-    <span class="ip-badge"><?=htmlspecialchars(get_real_IP_address())?></span>
-    <button class="btn btn-g btn-sm" onclick="openFileBrowser()"><?=ph('folder-open',15)?> File Explorer</button>
-    <button class="btn btn-g btn-sm" onclick="openInfoModal()"><?=ph('gear-six',15)?> PHP Info</button>
-    <button class="btn btn-g btn-sm" onclick="openModal('modal-help')"><?=ph('question',15)?> Help</button>
-    <button class="btn btn-g btn-sm" onclick="checkUpdate()" title="Check for updates"><?=ph('arrow-clockwise',15)?> Update</button>
-  </nav>
   <div id="pgbar"></div>
 </header>
-<main class="main">
-<div class="page-hd">
-  <h1><img src="<?=$_svg?>" width="38" height="38" alt=""> URL to Server</h1>
-  <p>Download &amp; Upload/Install files directly to your web server &mdash; v<?=APP_VER?></p>
-</div>
+<?php $bsu_show_form = !(isset($_POST['url']) && isset($_POST['name'])); ?>
+<div class="app-body">
+<aside class="sidebar">
+  <div class="nav-group">
+    <button type="button" class="nav-item sb-toggle" onclick="toggleSidebar()" title="Collapse / expand sidebar"><span class="nav-ic"><?=ph('arrows-left-right',18)?></span> Collapse</button>
+  </div>
+  <?php if($bsu_show_form): ?>
+  <div class="nav-group">
+    <div class="nav-label">Modes</div>
+    <button type="button" class="nav-item active" data-view="direct" onclick="showView('direct')"><span class="nav-ic"><?=ph('link',18)?></span> Upload from URL</button>
+    <button type="button" class="nav-item" data-view="pc" onclick="showView('pc')"><span class="nav-ic"><?=ph('arrow-up',18)?></span> Upload from PC</button>
+    <button type="button" class="nav-item" data-view="mitm" onclick="showView('mitm')"><span class="nav-ic"><?=ph('shuffle',18)?></span> MITM Relay</button>
+    <button type="button" class="nav-item" data-view="ftp" onclick="showView('ftp')"><span class="nav-ic"><?=ph('hard-drives',18)?></span> FTP Browser</button>
+    <button type="button" class="nav-item" data-view="compare" onclick="showView('compare')"><span class="nav-ic"><?=ph('arrows-left-right',18)?></span> Compare &amp; Sync</button>
+  </div>
+  <?php endif; ?>
+  <div class="nav-group">
+    <div class="nav-label">Tools</div>
+    <button type="button" class="nav-item" data-view="explorer" onclick="showView('explorer')"><span class="nav-ic"><?=ph('folder-open',18)?></span> File Explorer</button>
+    <button type="button" class="nav-item" data-view="phpinfo" onclick="showView('phpinfo')"><span class="nav-ic"><?=ph('gear-six',18)?></span> PHP Info</button>
+    <button type="button" class="nav-item" data-view="help" onclick="showView('help')"><span class="nav-ic"><?=ph('question',18)?></span> Help</button>
+    <button type="button" class="nav-item" data-view="update" onclick="showView('update')"><span class="nav-ic"><?=ph('arrow-clockwise',18)?></span> Update</button>
+  </div>
+  <div class="sidebar-foot">
+    <button type="button" class="nav-item" id="theme-btn" onclick="cycleTheme()" title="Toggle light / dark / auto theme"><span class="nav-ic"><?=ph('circle-half',18)?></span> Auto</button>
+    <span class="ip-badge"><?=htmlspecialchars(get_real_IP_address())?></span>
+  </div>
+</aside>
+<main class="content">
+<div id="perm-banner" class="banner" style="display:none"></div>
+<?php if($bsu_show_form): ?>
+<div class="mode-head"><h1 id="mode-title">Direct Upload</h1><p id="mode-desc">Pull a file from any URL straight onto this server.</p></div>
+<?php endif; ?>
 <?php
 if(isset($_POST['url'],$_POST['name'])){
   $is_mitm=!empty($_POST['_mode'])&&$_POST['_mode']==='mitm'&&isset($_POST['mitm_url']);
@@ -658,108 +1084,69 @@ if(isset($_POST['url'],$_POST['name'])){
   render_form();
 }
 ?>
-<small class="red-warn">Do not keep this file on your server &mdash; delete when done &nbsp;<a href="?delete=true">[ self destruct ]</a></small>
 </main>
+</div>
 <footer class="ftr">
-  by <a href="https://amirhp.com/landing/" target="_blank" rel="noopener">AmirhpCom</a> &middot;
-  <a href="https://github.com/amirhp-com/upload-file-from-url-to-webserver" target="_blank" rel="noopener">GitHub</a> &middot;
-  v<?=APP_VER?> &middot;
-  <?=BUILD_DATE?>
+  <a class="ftr-sd" href="?delete=true" onclick="return confirm('Delete this script from the server? This cannot be undone.')"><?=ph('trash',13)?> Self-Destruct</a>
+  <span class="dot">&middot;</span>
+  <span>by <a href="https://amirhp.com/landing/" target="_blank" rel="noopener">AmirhpCom</a></span>
+  <span class="dot">&middot;</span>
+  <a href="https://github.com/amirhp-com/upload-file-from-url-to-webserver" target="_blank" rel="noopener">GitHub</a>
+  <span class="dot">&middot;</span>
+  <span>Copyright &copy; <?=date('Y')?> <a href="https://blackswandev.com" target="_blank" rel="noopener">BlackSwan</a>, under MIT License</span>
+  <span class="dot">&middot;</span>
+  <span>Your IP: <?=htmlspecialchars(get_real_IP_address())?></span>
+  <span class="dot">&middot;</span>
+  <span>v<?=APP_VER?> &middot; <?=BUILD_DATE?></span>
 </footer>
-
-<div class="modal-bg" id="modal-info" onclick="if(event.target===this)closeModal('modal-info')">
-  <div class="modal" style="max-width:920px">
-    <div class="modal-hdr">
-      <h3><?=ph('gear-six',16)?> PHP Info</h3>
-      <div class="modal-hdr-r">
-        <a class="btn btn-g btn-sm" href="?phpinfo=1" target="_blank" rel="noopener">Full phpInfo() <?=ph('arrow-square-out',13)?></a>
-        <button class="modal-x" onclick="closeModal('modal-info')"><?=ph('x',16)?></button>
-      </div>
-    </div>
-    <div class="modal-body" id="info-content"><div style="text-align:center;padding:2rem;color:var(--t2)">Loading&hellip;</div></div>
-  </div>
-</div>
-
-<div class="modal-bg" id="modal-fb" onclick="if(event.target===this)closeModal('modal-fb')">
-  <div class="modal" style="max-width:940px">
-    <div class="modal-hdr">
-      <h3><?=ph('folder-open',16)?> File Browser</h3>
-      <button class="modal-x" onclick="closeModal('modal-fb')"><?=ph('x',16)?></button>
-    </div>
-    <div class="modal-body">
-      <div class="fb-bar">
-        <div id="fb-path" class="fb-path"><span style="color:var(--t2)">Loading&hellip;</span></div>
-        <button class="btn btn-g btn-sm btn-icon" onclick="fbLoad(fbCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
-      </div>
-      <div id="fb-bulk" class="fb-bulk">
-        <span id="fb-sel-n"></span>
-        <button class="btn btn-g btn-sm" onclick="fbCopySelected()"><?=ph('copy',13)?> Copy URLs</button>
-        <button class="btn btn-d btn-sm" onclick="fbDelSelected()"><?=ph('trash',13)?> Delete</button>
-      </div>
-      <div id="fb-loading" style="text-align:center;padding:2rem;color:var(--t2)">Loading&hellip;</div>
-      <div id="fb-content" style="display:none"><div id="fb-tbl-wrap"></div></div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-bg" id="modal-help" onclick="if(event.target===this)closeModal('modal-help')">
-  <div class="modal" style="max-width:680px">
-    <div class="modal-hdr">
-      <h3><?=ph('question',16)?> Help &amp; CLI Guide</h3>
-      <button class="modal-x" onclick="closeModal('modal-help')"><?=ph('x',16)?></button>
-    </div>
-    <div class="modal-body">
-      <div class="help-sec"><h4>PHP CLI Usage</h4>
-<div class="help-code">php upload.php --url=&lt;URL&gt; --name=&lt;filename&gt; [options]
-
-  --url=&lt;URL&gt;          Source URL to download      (required)
-  --name=&lt;filename&gt;    Destination filename         (required)
-  --folder=&lt;dir&gt;       Sub-directory               (optional)
-  --extract             Extract archive after download
-  --wpinstall           WordPress installer mode
-  --delete              Self-destruct (removes this file)
-  --help                Show this help
-
-MITM Relay Mode:
-  --mitm=&lt;URL&gt;          MITM server upload.php URL  (required)
-  --mitm-keep           Keep file on MITM after transfer
-  (--url, --name, --folder apply in MITM mode too)</div></div>
-      <div class="help-sec"><h4>Examples</h4>
-<div class="help-code">php upload.php --url=https://wordpress.org/latest.zip --name=wp.zip --wpinstall
-
-php upload.php --url=https://example.com/app.zip --name=app.zip --folder=downloads --extract
-
-php upload.php --mitm=https://turkey.example.com/upload.php --url=https://iran.example.com/file.zip --name=file.zip</div></div>
-      <div class="help-sec"><h4>MITM Relay</h4>
-<div class="help-code">Server A (Germany) cannot reach Source (Iran).
-Server B (Turkey) can reach both.
-
-Flow: A &rarr; asks B to fetch source &rarr; A downloads from B &rarr; A deletes from B
-
-Both servers must run this upload.php (v2.0.0+).</div></div>
-      <div class="help-sec"><h4>Web Actions</h4>
-<div class="help-code">?phpinfo=1     Full phpinfo() in new tab
-?delete=true   Self-destruct script
-?r=            Reload / clear form</div></div>
-    </div>
-  </div>
-</div>
 
 <div id="toast" class="toast"></div>
 </body>
 </html>
 <?php
 
+function cmp_pane($s){
+  ob_start(); ?>
+  <div class="cmp-pane" id="cmp-<?=$s?>-pane">
+    <div class="cmp-pane-hd">
+      <select id="cmp-<?=$s?>-type" onchange="cmpTypeChange('<?=$s?>')">
+        <option value="local">Local (this server)</option>
+        <option value="ftp">FTP / FTPS / SFTP</option>
+      </select>
+      <button type="button" class="btn btn-p btn-sm" onclick="cmpConnect('<?=$s?>')"><?=ph('arrow-right',14)?> Load</button>
+    </div>
+    <div class="cmp-creds" id="cmp-<?=$s?>-creds" style="display:none">
+      <div class="full prof-row">
+        <select id="cmp-<?=$s?>-prof"><option value="">— Saved connections —</option></select>
+        <button type="button" class="btn btn-g btn-sm" onclick="cmpProfLoad('<?=$s?>')">Load</button>
+        <button type="button" class="btn btn-g btn-sm" onclick="cmpProfSave('<?=$s?>')"><?=ph('floppy-disk',13)?> Save</button>
+        <button type="button" class="btn btn-d btn-sm" onclick="cmpProfDelete('<?=$s?>')"><?=ph('trash',13)?></button>
+      </div>
+      <div class="field"><label>Host / IP</label><input type="text" id="cmp-<?=$s?>-host" autocomplete="off" placeholder="ftp.example.com" onclick="this.select()"></div>
+      <div class="field"><label>Port</label><input type="number" id="cmp-<?=$s?>-port" value="21" min="1" max="65535"></div>
+      <div class="field"><label>Username</label><input type="text" id="cmp-<?=$s?>-user" autocomplete="off" placeholder="anonymous"></div>
+      <div class="field"><label>Password</label><input type="password" id="cmp-<?=$s?>-pass" autocomplete="new-password"></div>
+      <div class="field full"><label>Connection Method</label><select id="cmp-<?=$s?>-method" onchange="cmpMethodPortSync('<?=$s?>')"><option value="ftp">FTP (plain)</option><option value="ftps">FTPS (TLS/SSL)</option><option value="sftp">SFTP (SSH)</option></select></div>
+    </div>
+    <div class="field"><label>Root folder <span style="font-weight:400;text-transform:none;font-size:.9em">(base for relative compare)</span></label><input type="text" id="cmp-<?=$s?>-root" autocomplete="off" placeholder="<?=$s==='l'?'/public_html':'/w2w'?>  (blank = default)" onclick="this.select()"></div>
+    <div class="tree-tools">
+      <button type="button" class="btn btn-g btn-sm" onclick="cmpExpandAll('<?=$s?>')" title="Load every folder"><?=ph('tree-structure',13)?> Full tree</button>
+      <button type="button" class="btn btn-g btn-sm" onclick="cmpCollapseAll('<?=$s?>')">Collapse</button>
+      <button type="button" class="btn btn-g btn-sm" onclick="cmpSelAll('<?=$s?>',true)">Select all</button>
+      <button type="button" class="btn btn-g btn-sm" onclick="cmpSelAll('<?=$s?>',false)">Clear</button>
+      <button type="button" class="btn btn-g btn-sm btn-icon" title="Refresh" onclick="cmpReload('<?=$s?>')"><?=ph('arrow-clockwise',14)?></button>
+    </div>
+    <div class="fb-bar"><div id="cmp-<?=$s?>-path" class="fb-path"><span style="color:var(--t2)">Not loaded</span></div></div>
+    <div class="cmp-tbl-wrap tree" id="cmp-<?=$s?>-tbl"><div class="tree-empty">Choose a source and click Load.</div></div>
+  </div>
+  <?php return ob_get_clean();
+}
+
 function render_form(){
   $action=htmlspecialchars(strtok($_SERVER['REQUEST_URI'],'?'));
   ?>
-  <div class="mode-tabs">
-    <button type="button" class="mode-tab active" data-mode="direct" onclick="switchMode('direct')"><?=ph('arrow-up',15)?> Direct Upload</button>
-    <button type="button" class="mode-tab" data-mode="mitm" onclick="switchMode('mitm')"><?=ph('shuffle',15)?> MITM Relay</button>
-    <button type="button" class="mode-tab" data-mode="ftp" onclick="switchMode('ftp')"><?=ph('hard-drives',15)?> FTP Browser</button>
-  </div>
 
-  <form name="upload" method="post" action="<?=$action?>" id="form-direct" onsubmit="if(_bulkMode){event.preventDefault();bulkUploadStart();}">
+  <form name="upload" method="post" action="<?=$action?>" id="form-direct" class="view" data-view="direct" onsubmit="if(_bulkMode){event.preventDefault();bulkUploadStart();}">
     <div class="field">
       <div class="bulk-toggle-row"><label>Origin URL</label><button type="button" id="bulk-toggle" class="btn btn-g btn-sm" onclick="bulkToggle()" style="margin-left:auto">Bulk</button></div>
       <div id="single-url-wrap"><input type="url" id="url" name="url" autofocus tabindex="1" value="https://wordpress.org/latest.zip" placeholder="https://example.com/file.zip" onclick="this.select()"></div>
@@ -777,7 +1164,17 @@ function render_form(){
     <div class="form-wrap"><button type="submit" class="btn btn-p root" tabindex="6"><?=ph('arrow-up',18)?> Upload File</button></div>
   </form>
 
-  <form name="mitm" method="post" action="<?=$action?>" id="form-mitm" style="display:none" onsubmit="mitmSaveFields();if(_mitmBulkMode){event.preventDefault();mitmBulkStart();}">
+  <div id="form-pc" class="view" data-view="pc">
+    <div class="field"><label>Choose File(s)</label><input type="file" id="pc-file" multiple onchange="pcFilePicked()"></div>
+    <div class="field"><label>Destination Folder</label><input type="text" id="pc-folder" placeholder="subdirectory (optional)"></div>
+    <div class="field" id="pc-name-wrap"><label>Destination Filename <span style="font-weight:400;text-transform:none;font-size:.9em">(single file only)</span></label><input type="text" id="pc-name" placeholder="filename.ext (defaults to the chosen file's name)"></div>
+    <div class="bulk-progress-wrap" id="pc-progress-wrap"><div class="bulk-bar" id="pc-bar"></div></div>
+    <div class="bulk-counter" id="pc-counter"></div>
+    <div id="pc-status" class="bulk-status"></div>
+    <div class="form-wrap"><button type="button" class="btn btn-p root" onclick="pcUpload()"><?=ph('arrow-up',18)?> Upload to Server</button></div>
+  </div>
+
+  <form name="mitm" method="post" action="<?=$action?>" id="form-mitm" class="view" data-view="mitm" onsubmit="mitmSaveFields();if(_mitmBulkMode){event.preventDefault();mitmBulkStart();}">
     <input type="hidden" name="_mode" value="mitm">
     <div class="mitm-info"><?=ph('shuffle',15)?> <strong>MITM Relay:</strong> Current server asks the MITM server to fetch the source URL, then downloads the file from the MITM server to here, and optionally cleans it from MITM. No extraction or WP install in this mode. Both servers must run this script.</div>
     <div class="field"><label>MITM Server URL</label><input type="url" id="m-mitm-url" name="mitm_url" required tabindex="1" placeholder="https://turkey-server.com/upload.php" onclick="this.select()"></div>
@@ -795,8 +1192,15 @@ function render_form(){
     <div class="form-wrap"><button type="submit" class="btn btn-p root" tabindex="6"><?=ph('shuffle',18)?> MITM Transfer</button></div>
   </form>
 
-  <div id="form-ftp" style="display:none">
+  <div id="form-ftp" class="view" data-view="ftp">
     <div class="ftp-conn-card">
+      <div class="prof-row">
+        <select id="ftp-prof"><option value="">— Saved connections —</option></select>
+        <button type="button" class="btn btn-g btn-sm" onclick="ftpProfLoad()">Load</button>
+        <button type="button" class="btn btn-g btn-sm" onclick="ftpProfSave()"><?=ph('floppy-disk',13)?> Save</button>
+        <button type="button" class="btn btn-d btn-sm" onclick="ftpProfDelete()"><?=ph('trash',13)?></button>
+      </div>
+      <div class="prof-note">Saved connections (incl. password) are stored unencrypted in this browser only.</div>
       <div class="ftp-conn-grid">
         <div class="field"><label>Host / IP</label><input type="text" id="ftp-host" placeholder="ftp.example.com or 192.168.1.1" autocomplete="off" onclick="this.select()"></div>
         <div class="field"><label>Port</label><input type="number" id="ftp-port" value="21" min="1" max="65535" placeholder="21"></div>
@@ -815,10 +1219,14 @@ function render_form(){
     <div class="ftp-browser" id="ftp-browser-area" style="display:none">
       <div class="fb-bar">
         <div id="ftp-path" class="fb-path"><span style="color:var(--t2)">Not connected</span></div>
-        <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
+        <button class="btn btn-g btn-sm" onclick="ftpExpandAll()" title="Load every folder"><?=ph('tree-structure',14)?> Load full tree</button>
+        <button class="btn btn-g btn-sm" onclick="ftpCollapseAll()" title="Collapse all">Collapse</button>
+        <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpRoot)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
       </div>
       <div id="ftp-bulk" class="fb-bulk">
         <span id="ftp-sel-n"></span>
+        <button class="btn btn-g btn-sm" onclick="ftpSelAll(true)">Select all</button>
+        <button class="btn btn-g btn-sm" onclick="ftpSelAll(false)">Clear</button>
         <button class="btn btn-g btn-sm" onclick="ftpBulkCopyUrls()"><?=ph('copy',13)?> Copy URLs</button>
         <button class="btn btn-d btn-sm" onclick="ftpBulkDelete()"><?=ph('trash',13)?> Delete Selected</button>
       </div>
@@ -835,8 +1243,140 @@ function render_form(){
     </div>
   </div>
 
+  <div id="form-compare" class="view" data-view="compare">
+    <div class="cmp-grid">
+      <?=cmp_pane('l')?>
+      <?=cmp_pane('r')?>
+    </div>
+    <div class="cmp-bar">
+      <button type="button" class="btn btn-p" onclick="cmpDiff()"><?=ph('arrows-left-right',16)?> Compare</button>
+      <span id="cmp-diff-summary" style="font-size:.82rem;color:var(--t2)"></span>
+    </div>
+    <div class="cmp-legend">
+      <span><i class="cmp-dot same"></i> Identical (name + size)</span>
+      <span><i class="cmp-dot diff"></i> Differs (size / type)</span>
+      <span><i class="cmp-dot only-l"></i> Only on Left</span>
+      <span><i class="cmp-dot only-r"></i> Only on Right</span>
+    </div>
+    <div class="cmp-opts">
+      <div class="field"><label>Direction</label><div class="seg" id="cmp-dir"><button type="button" class="active" data-dir="lr" onclick="cmpSetDir('lr')">Left &rarr; Right</button><button type="button" data-dir="rl" onclick="cmpSetDir('rl')">Right &rarr; Left</button></div></div>
+      <div class="field"><label>Method</label><select id="cmp-method" onchange="cmpMethodChange()"><option value="direct">Direct (download + upload)</option><option value="ftp">Plain FTP</option><option value="relay">Relay (MITM)</option><option value="fxp">FXP (server-to-server)</option></select></div>
+      <div class="field" id="cmp-relay-wrap" style="display:none"><label>Relay (MITM) URL</label><input type="url" id="cmp-relay" placeholder="https://relay.example.com/upload.php" onclick="this.select()"></div>
+      <button type="button" class="btn btn-p" onclick="cmpSync()"><?=ph('arrow-up',16)?> Sync Selected</button>
+    </div>
+    <div class="bulk-counter" id="cmp-counter"></div>
+    <div class="bulk-progress-wrap" id="cmp-progress-wrap"><div class="bulk-bar" id="cmp-bar"></div></div>
+    <div class="bulk-status" id="cmp-status"></div>
+    <div class="ftp-log-wrap">
+      <div class="ftp-log-hdr">
+        <span><?=ph('terminal-window',13)?> Sync Log</span>
+        <button type="button" class="btn btn-g btn-sm" style="padding:.18rem .55rem;font-size:.72rem;border-radius:6px" onclick="document.getElementById('cmp-log').innerHTML=''">Clear</button>
+      </div>
+      <div id="cmp-log" class="ftp-log"><div class="ftp-log-entry info">Ready &mdash; load both sides, Compare, select items, then Sync.</div></div>
+    </div>
+  </div>
+
+  <div class="view" data-view="explorer" id="view-explorer">
+    <div class="fb-bar">
+      <div id="fb-path" class="fb-path"><span style="color:var(--t2)">Loading&hellip;</span></div>
+      <button class="btn btn-g btn-sm" onclick="fbExpandAll()" title="Load every folder"><?=ph('tree-structure',14)?> Load full tree</button>
+      <button class="btn btn-g btn-sm" onclick="fbCollapseAll()" title="Collapse all">Collapse</button>
+      <button class="btn btn-g btn-sm btn-icon" onclick="fbLoad(fbCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
+    </div>
+    <div id="fb-bulk" class="fb-bulk">
+      <span id="fb-sel-n"></span>
+      <button class="btn btn-g btn-sm" onclick="fbSelAll(true)">Select all</button>
+      <button class="btn btn-g btn-sm" onclick="fbSelAll(false)">Clear</button>
+      <button class="btn btn-g btn-sm" onclick="fbCopySelected()"><?=ph('copy',13)?> Copy URLs</button>
+      <button class="btn btn-d btn-sm" onclick="fbDelSelected()"><?=ph('trash',13)?> Delete</button>
+    </div>
+    <div id="fb-loading" style="text-align:center;padding:2rem;color:var(--t2)">Loading&hellip;</div>
+    <div id="fb-content" style="display:none"><div id="fb-tbl-wrap"></div></div>
+  </div>
+
+  <div class="view" data-view="phpinfo" id="view-phpinfo">
+    <div class="fb-bar" style="justify-content:flex-end">
+      <button type="button" class="btn btn-g btn-sm" id="phpinfo-toggle" onclick="togglePhpInfo()">Full phpInfo()</button>
+    </div>
+    <div id="info-content"><div style="text-align:center;padding:2rem;color:var(--t2)">Loading&hellip;</div></div>
+    <iframe id="phpinfo-frame" src="about:blank" title="phpinfo" style="display:none;width:100%;height:72vh;border:1px solid var(--bd);border-radius:var(--rad);background:#fff"></iframe>
+  </div>
+
+  <div class="view" data-view="help" id="view-help">
+      <div class="help-sec"><h4>PHP CLI Usage</h4>
+<div class="help-code">php upload.php --url=&lt;URL&gt; --name=&lt;filename&gt; [options]
+
+  --url=&lt;URL&gt;          Source URL to download      (required)
+  --name=&lt;filename&gt;    Destination filename         (required)
+  --folder=&lt;dir&gt;       Sub-directory               (optional)
+  --extract             Extract archive after download
+  --wpinstall           WordPress installer mode
+  --delete              Self-destruct (removes this file)
+  --help                Show this help
+
+MITM Relay Mode:
+  --mitm=&lt;URL&gt;          MITM server upload.php URL  (required)
+  --mitm-keep           Keep file on MITM after transfer
+  (--url, --name, --folder apply in MITM mode too)
+
+Compare &amp; Sync Mode (recursive, by path relative to each root):
+  --compare             Compare two locations
+  --left=&lt;spec&gt;         Left side    (required)
+  --right=&lt;spec&gt;        Right side   (required)
+  --sync                Sync source-only + differing files to the other side
+  --dir=lr|rl           Direction (default lr = left&rarr;right)
+  --method=&lt;m&gt;          direct | ftp | relay | fxp   (default direct)
+  --relay=&lt;URL&gt;         Relay (MITM) URL for --method=relay
+  --yes                 Perform the sync (omit for a dry-run)
+  &lt;spec&gt; = local:/abs/path | ftp://user:pass@host:port/root  (ftps:// sftp://)</div></div>
+      <div class="help-sec"><h4>File Tree &amp; Compare</h4>
+<div class="help-code">File Browser, FTP Browser and Compare panes show an expandable TREE.
+Click a folder to load just that folder; "Load full tree" loads everything
+(recursively, capped for safety).
+
+Compare &amp; Sync tab: each side is Local or FTP/FTPS/SFTP, with its own ROOT
+folder. Compare matches files across the whole tree by path RELATIVE to each
+root (e.g. /public_html/x.zip vs /w2w/x.zip), flagging same / size-differs /
+only-left / only-right. Tick items (a folder ticks its subtree) and Sync in
+the chosen direction via Direct, Plain FTP, Relay (MITM) or FXP — sub-folder
+structure is recreated on the destination.
+
+Saved connections: store FTP credentials + settings locally (per browser) and
+reload them into the FTP Browser or either Compare side with one click.</div></div>
+      <div class="help-sec"><h4>CLI Compare Examples</h4>
+<div class="help-code">php upload.php --compare --left=local:/var/www --right=ftp://u:p@host/public_html
+
+php upload.php --compare --left=ftp://u:p@a.com/w2w --right=ftp://u:p@b.com/htdocs \
+  --sync --dir=lr --method=direct --yes</div></div>
+      <div class="help-sec"><h4>Examples</h4>
+<div class="help-code">php upload.php --url=https://wordpress.org/latest.zip --name=wp.zip --wpinstall
+
+php upload.php --url=https://example.com/app.zip --name=app.zip --folder=downloads --extract
+
+php upload.php --mitm=https://turkey.example.com/upload.php --url=https://iran.example.com/file.zip --name=file.zip</div></div>
+      <div class="help-sec"><h4>MITM Relay</h4>
+<div class="help-code">Server A (Germany) cannot reach Source (Iran).
+Server B (Turkey) can reach both.
+
+Flow: A &rarr; asks B to fetch source &rarr; A downloads from B &rarr; A deletes from B
+
+Both servers must run this upload.php (v2.0.0+).</div></div>
+      <div class="help-sec"><h4>Web Actions</h4>
+<div class="help-code">?phpinfo=1     Full phpinfo() in new tab
+?delete=true   Self-destruct script
+?r=            Reload / clear form</div></div>
+  </div>
+
+  <div class="view" data-view="update" id="view-update">
+    <div class="upload-card">
+      <div class="upload-meta">Current version: <strong>v<?=APP_VER?></strong><br>Checks the GitHub Releases API; if a newer release exists it downloads and replaces this file (backing up the current one as <code>upload.php.bak</code>).</div>
+      <button class="btn btn-p" onclick="checkUpdate()"><?=ph('arrow-clockwise',16)?> Check for updates</button>
+      <div id="update-status" class="status-line" style="margin-top:.7rem"></div>
+    </div>
+  </div>
+
   <script>
-  restoreMode();
+  initView();
   bulkRestoreMode();
   mitmBulkRestoreMode();
   (function(){
@@ -1143,17 +1683,9 @@ function render_completion_buttons($path_full='',$mode='direct'){
   flush_buffers(true);
 }
 
-function ajax_ls(){
-  $req=trim((string)($_POST['_p']??''));
-  $dir=($req===''||$req==='__ROOT__')?__DIR__:(is_dir($req)?realpath($req):false);
-  if(!$dir||!is_dir($dir))return['ok'=>false,'msg'=>'Directory not found'];
-  $parent=dirname($dir);if($parent===$dir)$parent=null;
-  if($parent!==null&&!is_dir($parent))$parent=null;
-  $crumbs=[];
-  $parts=array_filter(explode('/',str_replace('\\','/',$dir)));
-  $acc='';foreach($parts as $part){$acc.='/'.$part;$crumbs[]=['name'=>$part,'path'=>$acc];}
+function ls_dir_items($dir){
   $entries=@scandir($dir);
-  if($entries===false)return['ok'=>false,'msg'=>'Cannot read directory'];
+  if($entries===false)return null;
   $items=[];
   foreach($entries as $entry){
     if($entry==='.'||$entry==='..')continue;
@@ -1175,7 +1707,45 @@ function ajax_ls(){
     $items[]=['name'=>$entry,'type'=>$is_dir?'dir':'file','path'=>$full,'size'=>$is_dir?'':human_filesize((int)$sz),'size_bytes'=>(int)$sz,'mtime'=>$mt?date('Y-m-d H:i',$mt):'','url'=>$url,'perms_octal'=>$perms_octal,'perms_sym'=>$perms_sym];
   }
   usort($items,function($a,$b){if($a['type']!==$b['type'])return $a['type']==='dir'?-1:1;return strnatcasecmp($a['name'],$b['name']);});
+  return $items;
+}
+
+function ajax_ls(){
+  $req=trim((string)($_POST['_p']??''));
+  $dir=($req===''||$req==='__ROOT__')?__DIR__:(is_dir($req)?realpath($req):false);
+  if(!$dir||!is_dir($dir))return['ok'=>false,'msg'=>'Directory not found'];
+  $parent=dirname($dir);if($parent===$dir)$parent=null;
+  if($parent!==null&&!is_dir($parent))$parent=null;
+  $crumbs=[];
+  $parts=array_filter(explode('/',str_replace('\\','/',$dir)));
+  $acc='';foreach($parts as $part){$acc.='/'.$part;$crumbs[]=['name'=>$part,'path'=>$acc];}
+  $items=ls_dir_items($dir);
+  if($items===null)return['ok'=>false,'msg'=>'Cannot read directory'];
   return['ok'=>true,'path'=>$dir,'parent'=>$parent,'breadcrumbs'=>$crumbs,'items'=>$items];
+}
+
+function ls_tree_walk($dir,$depth,&$count,&$capped){
+  $items=ls_dir_items($dir);
+  if($items===null)return[];
+  foreach($items as &$it){
+    $count++;
+    if($count>=TREE_MAX_NODES){$capped=true;break;}
+    if($it['type']==='dir'){
+      if($depth+1>=TREE_MAX_DEPTH){$capped=true;$it['children']=null;continue;}
+      $it['children']=ls_tree_walk($it['path'],$depth+1,$count,$capped);
+    }
+  }
+  unset($it);
+  return $items;
+}
+
+function ajax_ls_tree(){
+  $req=trim((string)($_POST['_p']??''));
+  $dir=($req===''||$req==='__ROOT__')?__DIR__:(is_dir($req)?realpath($req):false);
+  if(!$dir||!is_dir($dir))return['ok'=>false,'msg'=>'Directory not found'];
+  $count=0;$capped=false;
+  $tree=ls_tree_walk($dir,0,$count,$capped);
+  return['ok'=>true,'path'=>$dir,'root'=>$dir,'tree'=>$tree,'count'=>$count,'capped'=>$capped];
 }
 
 function ajax_del(){
@@ -1214,6 +1784,31 @@ function ajax_fetch(){
   if(!$sz){@unlink($path);return['ok'=>false,'error'=>'Downloaded file is empty'];}
   $file_url=build_base_url().'/'.($folder?"$folder/":'').$name;
   return['ok'=>true,'path'=>$path,'size'=>$sz,'url'=>$file_url,'name'=>$name,'folder'=>$folder];
+}
+
+function ajax_upload_local(){
+  if(empty($_FILES['file'])||!isset($_FILES['file']['tmp_name'])){
+    return['ok'=>false,'error'=>'No file received (check upload_max_filesize / post_max_size)'];
+  }
+  $f=$_FILES['file'];
+  if(!empty($f['error'])){
+    $map=[1=>'File exceeds server upload_max_filesize',2=>'File exceeds form limit',3=>'Partial upload — try again',4=>'No file selected',6=>'Missing server temp folder',7=>'Failed to write to disk',8=>'Upload blocked by a PHP extension'];
+    return['ok'=>false,'error'=>$map[$f['error']]??('Upload error '.$f['error'])];
+  }
+  $name=sanitize_filename((string)($_POST['_name']??''));
+  if($name==='')$name=sanitize_filename((string)$f['name']);
+  if($name==='')return['ok'=>false,'error'=>'Invalid filename'];
+  $folder=sanitize_folder((string)($_POST['folder']??''));
+  $root_dir=__DIR__;
+  $dest_dir=$folder?$root_dir.'/'.$folder:$root_dir;
+  if($folder!==''&&!is_dir($dest_dir))@mkdir($dest_dir,0755,true);
+  if(!is_dir($dest_dir)||!is_writable($dest_dir))return['ok'=>false,'error'=>'Destination folder is not writable'];
+  if(!is_uploaded_file($f['tmp_name']))return['ok'=>false,'error'=>'Invalid upload source'];
+  $target=rtrim($dest_dir,'/\\').'/'.$name;
+  if(!@move_uploaded_file($f['tmp_name'],$target))return['ok'=>false,'error'=>'Failed to save the uploaded file'];
+  @chmod($target,0644);
+  $rel=($folder!==''?$folder.'/':'').$name;
+  return['ok'=>true,'url'=>build_base_url().'/'.$rel,'size'=>filesize($target),'name'=>$name,'folder'=>$folder];
 }
 
 function ajax_mitm_fetch(){
@@ -1287,9 +1882,9 @@ function ajax_info(){
 }
 
 function cli_main(){
-  $opts=getopt('',['url:','name:','folder:','extract','wpinstall','delete','mitm:','mitm-keep','help']);
+  $opts=getopt('',['url:','name:','folder:','extract','wpinstall','delete','mitm:','mitm-keep','help','compare','left:','right:','sync','dir:','method:','relay:','yes']);
   $has_url=isset($opts['url']);$has_mitm=isset($opts['mitm']);
-  if(isset($opts['help'])||(!$has_url&&!isset($opts['delete']))){
+  if(isset($opts['help'])||(!$has_url&&!isset($opts['delete'])&&!isset($opts['compare']))){
     echo "BlackSwan Upload v".APP_VER."\n\n";
     echo "Usage: php upload.php --url=<URL> --name=<filename> [options]\n\n";
     echo "  --url=<URL>          Source URL to download      (required)\n";
@@ -1302,9 +1897,21 @@ function cli_main(){
     echo "MITM Relay Mode:\n";
     echo "  --mitm=<URL>         MITM server upload.php URL  (required)\n";
     echo "  --mitm-keep          Keep file on MITM after transfer\n\n";
+    echo "Compare & Sync Mode (recursive, by path relative to each root):\n";
+    echo "  --compare            Compare two locations\n";
+    echo "  --left=<spec>        Left side    (required)\n";
+    echo "  --right=<spec>       Right side   (required)\n";
+    echo "  --sync               Sync source-only + differing files to the other side\n";
+    echo "  --dir=lr|rl          Sync direction (default lr = left to right)\n";
+    echo "  --method=<m>         direct | ftp | relay | fxp (default direct)\n";
+    echo "  --relay=<URL>        Relay (MITM) server URL (for --method=relay)\n";
+    echo "  --yes                Confirm and perform the sync (otherwise dry-run)\n";
+    echo "    <spec> = local:/abs/path  |  ftp://user:pass\@host:port/root  (also ftps:// sftp://)\n\n";
+    echo "  e.g. php upload.php --compare --left=local:/var/www --right=ftp://u:p\@host/public_html\n\n";
     exit(0);
   }
   if(isset($opts['delete'])){@unlink(__FILE__);echo "[done] Self-destruct successful\n";exit(0);}
+  if(isset($opts['compare'])){cli_compare($opts);exit(0);}
   $url=trim((string)($opts['url']??''));
   $name=sanitize_filename((string)($opts['name']??''));
   $folder=sanitize_folder((string)($opts['folder']??''));
@@ -1374,6 +1981,102 @@ function cli_main(){
   elseif($extract)run_archive_extraction($path_full,$dest_dir);
 }
 
+function parse_xfer_spec($s){
+  $s=trim((string)$s);if($s==='')return null;
+  if(strpos($s,'local:')===0){$p=substr($s,6);$rp=realpath($p);if(!$rp||!is_dir($rp))return null;return['kind'=>'local','creds'=>null,'root'=>$rp];}
+  if(preg_match('#^(ftp|ftps|sftp)://#',$s)){
+    $u=parse_url($s);if(!$u||empty($u['host']))return null;
+    $method=$u['scheme'];$port=$u['port']??($method==='sftp'?22:21);
+    $root=isset($u['path'])&&$u['path']!==''?$u['path']:'/';
+    return['kind'=>'ftp','creds'=>['h'=>$u['host'],'port'=>$port,'u'=>urldecode($u['user']??''),'pw'=>urldecode($u['pass']??''),'method'=>$method],'root'=>$root];
+  }
+  return null;
+}
+function cli_flatten($tree,$rootlen,&$out){
+  foreach($tree as $n){
+    $rel=ltrim(substr($n['path'],$rootlen),'/');
+    if($rel!=='')$out[$rel]=['type'=>$n['type'],'size'=>(int)($n['size_bytes']??0),'path'=>$n['path']];
+    if($n['type']==='dir'&&!empty($n['children']))cli_flatten($n['children'],$rootlen,$out);
+  }
+}
+function cli_spec_tree($spec,$label){
+  $count=0;$capped=false;$out=[];
+  if($spec['kind']==='local'){
+    $root=$spec['root'];$tree=ls_tree_walk($root,0,$count,$capped);
+    cli_flatten($tree,strlen(rtrim($root,'/')),$out);
+  }else{
+    $c=$spec['creds'];$root=$spec['root']?:'/';
+    if($c['method']==='sftp'){$tree=ftp_tree_walk($c,null,$root,0,$count,$capped);}
+    else{[$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);if(!$conn){echo "[error] $label connect failed: $err\n";exit(1);}$tree=ftp_tree_walk($c,$conn,$root,0,$count,$capped);@ftp_close($conn);}
+    cli_flatten($tree,strlen(rtrim($root,'/')),$out);
+  }
+  return[$out,$capped];
+}
+function cli_transfer($src,$dst,$rel,$srcPath,$method,$relay){
+  set_time_limit(0);
+  $name=basename($rel);$relDir=(strpos($rel,'/')!==false)?preg_replace('#/[^/]*$#','',$rel):'';
+  $isTemp=false;$localSrc=null;
+  if($src['kind']==='local'){$localSrc=$srcPath;}
+  elseif($method==='relay'&&$relay){
+    $srcUrl=ftp_proto_url($src['creds'],$srcPath);
+    $rr=mitm_post($relay,['_a'=>'fetch','url'=>$srcUrl,'_name'=>$name]);
+    if(!$rr||empty($rr['ok'])||empty($rr['url']))return['ok'=>false,'msg'=>'relay fetch failed'];
+    $tmp=tempnam(sys_get_temp_dir(),'bsc');$fp=fopen($tmp,'wb');$ch=curl_init($rr['url']);
+    curl_setopt_array($ch,[CURLOPT_FILE=>$fp,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_SSL_VERIFYPEER=>0,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0]);
+    curl_exec($ch);curl_close($ch);fclose($fp);
+    if(@filesize($tmp)<1){@unlink($tmp);return['ok'=>false,'msg'=>'relay download failed'];}
+    $localSrc=$tmp;$isTemp=true;
+  }else{
+    [$tmp,$e]=ftp_download_to_tmp($src['creds'],$srcPath,$method==='ftp');
+    if(!$tmp)return['ok'=>false,'msg'=>$e];$localSrc=$tmp;$isTemp=true;
+  }
+  if($dst['kind']==='local'){
+    $destDir=rtrim($dst['root'],'/').($relDir?'/'.$relDir:'');if(!is_dir($destDir))@mkdir($destDir,0755,true);
+    $ok=@copy($localSrc,$destDir.'/'.$name);$msg=$ok?'':'copy failed (permissions?)';
+  }else{
+    $destDir=rtrim($dst['root'],'/').($relDir?'/'.$relDir:'');
+    [$ok,$msg]=ftp_upload_from_local($dst['creds'],$localSrc,$destDir.'/'.$name,$method==='ftp');
+  }
+  if($isTemp)@unlink($localSrc);
+  return['ok'=>(bool)$ok,'msg'=>$ok?'':($msg?:'failed')];
+}
+function cli_compare($opts){
+  $left=parse_xfer_spec((string)($opts['left']??''));
+  $right=parse_xfer_spec((string)($opts['right']??''));
+  if(!$left||!$right){echo "[error] --left and --right specs required (local:/path or ftp://user:pass\@host/path)\n";exit(1);}
+  echo "[info] Comparing (by relative path)\n  L = ".$left['root']."\n  R = ".$right['root']."\n\n";
+  [$lmap,$lcap]=cli_spec_tree($left,'left');
+  [$rmap,$rcap]=cli_spec_tree($right,'right');
+  if($lcap||$rcap)echo "[warn] Tree truncated at ".TREE_MAX_NODES." nodes — comparison may be incomplete\n";
+  $keys=array_keys($lmap+$rmap);sort($keys,SORT_STRING|SORT_FLAG_CASE);
+  $nSame=$nDiff=$nOnlyL=$nOnlyR=0;
+  foreach($keys as $k){
+    $a=$lmap[$k]??null;$b=$rmap[$k]??null;
+    if($a&&!$b){if($a['type']==='file'){$nOnlyL++;echo "< $k\n";}else echo "< $k/\n";}
+    elseif($b&&!$a){if($b['type']==='file'){$nOnlyR++;echo "> $k\n";}else echo "> $k/\n";}
+    elseif($a['type']!==$b['type']){$nDiff++;echo "# $k (type differs)\n";}
+    elseif($a['type']==='file'&&$a['size']>0&&$b['size']>0&&$a['size']!==$b['size']){$nDiff++;echo "~ $k (".$a['size']." vs ".$b['size']." bytes)\n";}
+    elseif($a['type']==='file')$nSame++;
+  }
+  echo "\n[summary] $nSame identical, $nDiff differ, $nOnlyL only-left, $nOnlyR only-right\n";
+  if(!isset($opts['sync']))return;
+  $dir=(($opts['dir']??'lr')==='rl')?'rl':'lr';
+  $method=strtolower((string)($opts['method']??'direct'));if(!in_array($method,['direct','ftp','relay','fxp']))$method='direct';
+  if($method==='fxp'){echo "[note] FXP not supported in CLI — using Direct\n";$method='direct';}
+  $relay=(string)($opts['relay']??'');
+  if($method==='relay'&&!$relay){echo "[error] --relay=<URL> required for --method=relay\n";exit(1);}
+  $src=$dir==='lr'?$left:$right;$dst=$dir==='lr'?$right:$left;
+  $smap=$dir==='lr'?$lmap:$rmap;$dmap=$dir==='lr'?$rmap:$lmap;
+  $list=[];
+  foreach($smap as $k=>$v){if($v['type']!=='file')continue;$d=$dmap[$k]??null;if(!$d){$list[]=$k;}elseif($d['type']==='file'&&$v['size']>0&&$d['size']>0&&$d['size']!==$v['size'])$list[]=$k;}
+  if(!$list){echo "\n[done] Nothing to sync\n";return;}
+  echo "\n[info] ".count($list)." file(s) to sync ".strtoupper($dir)." via ".$method."\n";
+  if(!isset($opts['yes'])){echo "[dry-run] add --yes to perform the sync\n";return;}
+  $ok=0;$fail=0;
+  foreach($list as $k){$r=cli_transfer($src,$dst,$k,$smap[$k]['path'],$method,$relay);if($r['ok']){$ok++;echo "  + $k\n";}else{$fail++;echo "  ! $k — ".$r['msg']."\n";}}
+  echo "[done] Synced $ok, failed $fail\n";
+}
+
 function ph($n,$s=16){
   static $p=[
     'folder-open'  =>'M245,110.64A16,16,0,0,0,232,104H216V88a16,16,0,0,0-16-16H130.67L102.93,51.2a16.14,16.14,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V200a8,8,0,0,0,8,8H211.1a8,8,0,0,0,7.59-5.47l28.49-85.47A16,16,0,0,0,245,110.64ZM40,64H93.33l27.74,20.8a16.12,16.12,0,0,0,9.6,3.2H200v16H69.77a16,16,0,0,0-15.18,10.94L40,158.7V64Zm168,136H43.2l26.56-80H216Z',
@@ -1394,6 +2097,16 @@ function ph($n,$s=16){
     'arrow-right'  =>'M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z',
     'link'         =>'M117.54,186.47,89.07,214.94a40,40,0,0,1-56.57-56.57l28.46-28.47a8,8,0,1,0-11.32-11.32L21.18,147.05a56,56,0,0,0,79.2,79.2l28.47-28.46a8,8,0,1,0-11.31-11.32ZM234.83,21.17a56.06,56.06,0,0,0-79.2,0L127.16,49.64a8,8,0,1,0,11.31,11.32l28.47-28.47a40,40,0,0,1,56.57,56.57L194.85,117.54a8,8,0,1,0,11.32,11.31l28.46-28.46a56.06,56.06,0,0,0,.2-79.22ZM181.66,74.34a8,8,0,0,0-11.32,0l-96,96a8,8,0,0,0,11.32,11.32l96-96A8,8,0,0,0,181.66,74.34Z',
     'terminal-window'=>'M40,64H216a16,16,0,0,1,16,16V176a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V80A16,16,0,0,1,40,64ZM40,176H216V80H40ZM77.66,98.34a8,8,0,0,0-11.32,11.32L100.69,144,66.34,178.34a8,8,0,0,0,11.32,11.32l40-40a8,8,0,0,0,0-11.32Zm74.34,53.66a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Z',
+    'pencil-simple'=>'M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z',
+    'copy-simple'=>'M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z',
+    'arrows-left-right'=>'M213.66,181.66l-32,32a8,8,0,0,1-11.32-11.32L188.69,184H48a8,8,0,0,1,0-16H188.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,213.66,181.66Zm-139.32-64a8,8,0,0,0,11.32-11.32L67.31,88H208a8,8,0,0,0,0-16H67.31L85.66,53.66A8,8,0,0,0,74.34,42.34l-32,32a8,8,0,0,0,0,11.32Z',
+    'folder-simple-plus'=>'M216,72H131.31L104,44.69A15.86,15.86,0,0,0,92.69,40H40A16,16,0,0,0,24,56V200.62A15.4,15.4,0,0,0,39.38,216H216.89A15.13,15.13,0,0,0,232,200.89V88A16,16,0,0,0,216,72Zm0,128H40V56H92.69l27.31,27.31A15.86,15.86,0,0,0,131.31,88H216ZM152,144a8,8,0,0,1-8,8H136v8a8,8,0,0,1-16,0v-8h-8a8,8,0,0,1,0-16h8v-8a8,8,0,0,1,16,0v8h8A8,8,0,0,1,152,144Z',
+    'warning'=>'M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z',
+    'circle-half'=>'M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192V40a88,88,0,0,1,0,176Z',
+    'sun-dim'=>'M116,36V20a12,12,0,0,1,24,0V36a12,12,0,0,1-24,0Zm12,32a60,60,0,1,0,60,60A60.07,60.07,0,0,0,128,68Zm0,96a36,36,0,1,1,36-36A36,36,0,0,1,128,164ZM43.6,60.5a12,12,0,0,1,17-17l11.3,11.3a12,12,0,0,1-17,17ZM20,140a12,12,0,0,1,0-24H36a12,12,0,0,1,0,24Zm151.5,55.5a12,12,0,0,1,17-17l11.3,11.3a12,12,0,1,1-17,17ZM236,116a12,12,0,0,1,0,24H220a12,12,0,0,1,0-24ZM171.5,77.8a12,12,0,0,1-8.5-20.5L174.3,46a12,12,0,1,1,17,17L180,74.3A12,12,0,0,1,171.5,77.8ZM67.9,183.9,56.6,195.2a12,12,0,0,1-17-17l11.3-11.3a12,12,0,0,1,17,17ZM140,220v16a12,12,0,0,1-24,0V220a12,12,0,0,1,24,0Z',
+    'moon'=>'M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z',
+    'tree-structure'=>'M104,160H56a8,8,0,0,0-8,8v32a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V168A8,8,0,0,0,104,160Zm-8,32H64V176H96ZM216,40H168a8,8,0,0,0-8,8V72H136a16,16,0,0,0-16,16v32H88V96a8,8,0,0,0-8-8H32a8,8,0,0,0-8,8v32a8,8,0,0,0,8,8H80a8,8,0,0,0,8-8V120h32v32a16,16,0,0,0,16,16h24v24a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V168a8,8,0,0,0-8-8H168a8,8,0,0,0-8,8v16H136V88h24v24a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V48A8,8,0,0,0,216,40ZM64,120H40V104H64Zm112,56h32v16H176Zm0-120h32V72H176Z',
+    'floppy-disk'=>'M219.31,72,184,36.69A15.86,15.86,0,0,0,172.69,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V83.31A15.86,15.86,0,0,0,219.31,72ZM96,48h64V80H96Zm32,144a32,32,0,1,1,32-32A32,32,0,0,1,128,192Zm80,16H48V48H80V88a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V49.94l32,32Z',
   ];
   $d=$p[$n]??'';
   return '<svg xmlns="http://www.w3.org/2000/svg" width="'.$s.'" height="'.$s.'" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" style="display:inline-block;vertical-align:-.125em;flex-shrink:0"><path d="'.$d.'"/></svg>';
@@ -1404,11 +2117,77 @@ function js_escape($s){return str_replace(["\\","'","\r","\n","</"],["\\\\","\\'
 function build_base_url(){$proto=(empty($_SERVER['HTTPS'])||$_SERVER['HTTPS']==='off')?'http':'https';$host=$_SERVER['HTTP_HOST']??'localhost';$path=str_replace('\\','/',dirname($_SERVER['PHP_SELF']??'/'));return rtrim($proto.'://'.$host.$path,'/');}
 function sanitize_filename($n){$n=trim((string)$n);$n=str_replace(["\0",'/','\\'],'',$n);$n=preg_replace('/\.\.+/','.',$n);return $n;}
 function sanitize_folder($f){$f=trim((string)$f);if($f==='')return'';$f=str_replace(["\0",'\\'],['',' '],$f);$parts=array_filter(explode('/',$f),function($p){return $p!==''&&$p!=='.'&&$p!=='..';});return implode('/',$parts);}
-function get_real_IP_address(){if(!empty($_SERVER['GEOIP_ADDR']))return $_SERVER['GEOIP_ADDR'];if(!empty($_SERVER['HTTP_X_REAL_IP']))return $_SERVER['HTTP_X_REAL_IP'];if(!empty($_SERVER['HTTP_CLIENT_IP']))return $_SERVER['HTTP_CLIENT_IP'];if(!empty($_SERVER['HTTP_X_FORWARDED_FOR']))return explode(',',$_SERVER['HTTP_X_FORWARDED_FOR'])[0];return $_SERVER['REMOTE_ADDR']??'(unknown)';}
+function get_real_IP_address(){
+  // Cloudflare first, then common proxy / real-IP headers, then REMOTE_ADDR.
+  foreach(['HTTP_CF_CONNECTING_IP','HTTP_TRUE_CLIENT_IP','GEOIP_ADDR','HTTP_X_REAL_IP','HTTP_CLIENT_IP','HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED','HTTP_FORWARDED_FOR','HTTP_FORWARDED','REMOTE_ADDR'] as $k){
+    if(empty($_SERVER[$k]))continue;
+    foreach(explode(',',(string)$_SERVER[$k]) as $ip){
+      $ip=trim($ip);
+      if(filter_var($ip,FILTER_VALIDATE_IP))return $ip;
+    }
+  }
+  return $_SERVER['REMOTE_ADDR']??'(unknown)';
+}
 function human_filesize($bytes=0,$dec=2){$bytes=(float)$bytes;if($bytes<1)return'0 B';$u=['B','KB','MB','GB','TB','PB'];$f=(int)floor(log($bytes,1024));$f=min($f,count($u)-1);return sprintf("%.{$dec}f %s",$bytes/pow(1024,$f),$u[$f]);}
 function human_timing2($s){$s=max(0,(int)$s);$h=(int)floor($s/3600);$s-=$h*3600;$m=(int)floor($s/60);$s-=$m*60;return($h>0?"$h:":''). sprintf('%02d:%02d',$m,$s);}
 function human_timing($start){return human_timing2(microtime(true)-$start);}
 function rmdir_recursive($dir){if(!is_dir($dir))return false;foreach(array_diff(scandir($dir),['.','..'])as $f){$p=$dir.'/'.$f;is_dir($p)?rmdir_recursive($p):@unlink($p);}return @rmdir($dir);}
+function copy_recursive($src,$dst){
+  if(is_dir($src)){
+    if(!@mkdir($dst,0755,true)&&!is_dir($dst))return false;
+    foreach(array_diff(scandir($src),['.','..'])as $f){if(!copy_recursive($src.'/'.$f,$dst.'/'.$f))return false;}
+    return true;
+  }
+  return @copy($src,$dst);
+}
+function uniq_copy_name($dir,$base){
+  $ext='';$name=$base;
+  if(strpos($base,'.')!==false&&$base[0]!=='.'){$ext='.'.pathinfo($base,PATHINFO_EXTENSION);$name=pathinfo($base,PATHINFO_FILENAME);}
+  $cand=$name.' copy'.$ext;$i=2;
+  while(file_exists(rtrim($dir,'/\\').'/'.$cand)){$cand=$name.' copy '.$i.$ext;$i++;}
+  return $cand;
+}
+
+function ajax_rename(){
+  $req=trim((string)($_POST['_p']??''));
+  $to=sanitize_filename((string)($_POST['_to']??''));
+  if($req===''||$to==='')return['ok'=>false,'msg'=>'Path and new name required'];
+  $real=realpath($req);$self=realpath(__FILE__);
+  if(!$real)return['ok'=>false,'msg'=>'Path not found'];
+  if($real===$self)return['ok'=>false,'msg'=>'Cannot rename self'];
+  $dst=dirname($real).'/'.$to;
+  if(file_exists($dst))return['ok'=>false,'msg'=>'A file named "'.$to.'" already exists'];
+  $ok=@rename($real,$dst);
+  return['ok'=>$ok,'msg'=>$ok?'Renamed':'Rename failed (check permissions)','path'=>$dst];
+}
+
+function ajax_move(){
+  $req=trim((string)($_POST['_p']??''));
+  $dest=trim((string)($_POST['_dest']??''));
+  if($req===''||$dest==='')return['ok'=>false,'msg'=>'Source and destination required'];
+  $real=realpath($req);$self=realpath(__FILE__);
+  if(!$real)return['ok'=>false,'msg'=>'Source not found'];
+  if($real===$self)return['ok'=>false,'msg'=>'Cannot move self'];
+  $destReal=realpath($dest);
+  if(!$destReal||!is_dir($destReal))return['ok'=>false,'msg'=>'Destination folder not found'];
+  $dst=rtrim($destReal,'/\\').'/'.basename($real);
+  if($dst===$real)return['ok'=>false,'msg'=>'Source and destination are the same'];
+  if(file_exists($dst))return['ok'=>false,'msg'=>'An item with that name already exists in the destination'];
+  $ok=@rename($real,$dst);
+  return['ok'=>$ok,'msg'=>$ok?'Moved':'Move failed (check permissions)','path'=>$dst];
+}
+
+function ajax_dup(){
+  $req=trim((string)($_POST['_p']??''));
+  if($req==='')return['ok'=>false,'msg'=>'No path'];
+  $real=realpath($req);$self=realpath(__FILE__);
+  if(!$real)return['ok'=>false,'msg'=>'Path not found'];
+  if($real===$self)return['ok'=>false,'msg'=>'Cannot duplicate self'];
+  $dir=dirname($real);$newName=uniq_copy_name($dir,basename($real));
+  $dst=$dir.'/'.$newName;
+  $ok=is_dir($real)?copy_recursive($real,$dst):@copy($real,$dst);
+  return['ok'=>$ok,'msg'=>$ok?'Duplicated as "'.$newName.'"':'Duplicate failed (check permissions)','path'=>$dst,'name'=>$newName];
+}
 
 /* ── FTP Browser functions ─────────────────────────────────────── */
 
@@ -1474,6 +2253,61 @@ function ftp_build_listing($items,$path){
   $parent=($path!=='/'&&$path!=='')?dirname($path):null;
   if($parent===''||$parent==='.')$parent='/';
   return['ok'=>true,'path'=>$path,'parent'=>$parent,'breadcrumbs'=>$crumbs,'items'=>$sorted];
+}
+
+// One directory level, finalized (path + size_bytes + human size), dirs-first. Returns null on error.
+function ftp_list_dir($c,$conn,$path){
+  if($c['method']==='sftp'){
+    $port=$c['port']?:22;
+    $url='sftp://'.rawurlencode($c['u']).':'.rawurlencode($c['pw']).'@'.$c['h'].':'.$port.rtrim($path,'/').'/';
+    $ch=curl_init($url);if(!$ch)return null;
+    curl_setopt_array($ch,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>30,CURLOPT_CONNECTTIMEOUT=>15,CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER]);
+    $out=curl_exec($ch);$err=curl_error($ch);curl_close($ch);
+    if($out===false||$err)return null;
+    $raw=array_values(array_filter(explode("\n",(string)$out),function($l){return trim($l)!=='';}));
+    $items=parse_ftp_rawlist($raw);
+  }else{
+    $raw=@ftp_rawlist($conn,$path);
+    if($raw===false)return null;
+    $items=parse_ftp_rawlist($raw);
+  }
+  $dirs=array_values(array_filter($items,function($i){return $i['type']==='dir';}));
+  $files=array_values(array_filter($items,function($i){return $i['type']==='file';}));
+  usort($dirs,function($a,$b){return strnatcasecmp($a['name'],$b['name']);});
+  usort($files,function($a,$b){return strnatcasecmp($a['name'],$b['name']);});
+  $sorted=array_merge($dirs,$files);
+  foreach($sorted as &$item){$item['path']=rtrim($path,'/').'/'.$item['name'];$item['size_bytes']=(int)$item['size'];$item['size']=$item['type']==='dir'?'':human_filesize((int)$item['size']);}unset($item);
+  return $sorted;
+}
+function ftp_tree_walk($c,$conn,$path,$depth,&$count,&$capped){
+  $items=ftp_list_dir($c,$conn,$path);
+  if($items===null)return[];
+  foreach($items as &$it){
+    $count++;
+    if($count>=TREE_MAX_NODES){$capped=true;break;}
+    if($it['type']==='dir'){
+      if($depth+1>=TREE_MAX_DEPTH){$capped=true;$it['children']=null;continue;}
+      $it['children']=ftp_tree_walk($c,$conn,$it['path'],$depth+1,$count,$capped);
+    }
+  }
+  unset($it);
+  return $items;
+}
+function ajax_ftp_tree(){
+  set_time_limit(0);
+  $c=ftp_creds_from_post();
+  $path=trim((string)($_POST['_p']??'/'));
+  if($path===''||$path==='__FTP_ROOT__')$path='/';
+  $count=0;$capped=false;
+  if($c['method']==='sftp'){
+    $tree=ftp_tree_walk($c,null,$path,0,$count,$capped);
+    return['ok'=>true,'path'=>$path,'root'=>$path,'tree'=>$tree,'count'=>$count,'capped'=>$capped];
+  }
+  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  if(!$conn)return['ok'=>false,'msg'=>$err];
+  $tree=ftp_tree_walk($c,$conn,$path,0,$count,$capped);
+  @ftp_close($conn);
+  return['ok'=>true,'path'=>$path,'root'=>$path,'tree'=>$tree,'count'=>$count,'capped'=>$capped];
 }
 
 function ajax_ftp_ls(){
@@ -1589,6 +2423,238 @@ function ajax_ftp_copy_to_server(){
   if(!$sz){@unlink($local);return['ok'=>false,'msg'=>'Downloaded file is empty'];}
   $url=build_base_url().'/'.($folder?"$folder/":'').$name;
   return['ok'=>true,'name'=>$name,'size'=>(int)$sz,'url'=>$url,'elapsed'=>human_timing($start)];
+}
+
+function ftp_proto_url($c,$path){
+  $proto=$c['method']==='sftp'?'sftp':($c['method']==='ftps'?'ftps':'ftp');
+  $port=$c['port']?:($c['method']==='sftp'?22:21);
+  return $proto.'://'.rawurlencode($c['u']).':'.rawurlencode($c['pw']).'@'.$c['h'].':'.$port.$path;
+}
+// Download a remote (ftp/ftps/sftp) file to a local temp file. Returns [tmpPath, err].
+function ftp_download_to_tmp($c,$rpath,$native_only=false){
+  if(!$c['h']||!$rpath)return[null,'Host and remote path required'];
+  $tmp=tempnam(sys_get_temp_dir(),'bsx');
+  if(!$tmp)return[null,'Cannot create temp file'];
+  if(!$native_only){
+    $fp=fopen($tmp,'wb');
+    if($fp){
+      $ch=curl_init(ftp_proto_url($c,$rpath));
+      if($ch){
+        curl_setopt_array($ch,[CURLOPT_FILE=>$fp,CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER]);
+        $ok=curl_exec($ch);$err=curl_error($ch);curl_close($ch);fclose($fp);
+        if($ok&&!$err&&@filesize($tmp)>0)return[$tmp,null];
+      }else fclose($fp);
+    }
+  }
+  // Native ftp_get fallback (ftp/ftps only)
+  if($c['method']!=='sftp'&&function_exists('ftp_connect')){
+    [$conn,$err2]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+    if($conn){
+      $ok2=@ftp_get($conn,$tmp,$rpath,FTP_BINARY);@ftp_close($conn);
+      if($ok2&&@filesize($tmp)>0)return[$tmp,null];
+    }
+  }
+  @unlink($tmp);
+  return[null,'Download failed (source unreachable or empty)'];
+}
+// Upload a local file to a remote (ftp/ftps/sftp) path. Returns [ok, err].
+function ftp_mkdir_p($conn,$dir){
+  $dir=rtrim((string)$dir,'/');if($dir===''||$dir==='/')return;
+  $path='';foreach(explode('/',ltrim($dir,'/'))as $p){if($p==='')continue;$path.='/'.$p;if(!@ftp_chdir($conn,$path))@ftp_mkdir($conn,$path);}
+  @ftp_chdir($conn,'/');
+}
+function ftp_upload_from_local($c,$local,$rpath,$native_only=false){
+  if(!is_file($local))return[false,'Local source missing'];
+  if($c['method']==='sftp'){
+    $fp=fopen($local,'rb');
+    if($fp){
+      $ch=curl_init(ftp_proto_url($c,$rpath));
+      if($ch){
+        curl_setopt_array($ch,[CURLOPT_UPLOAD=>true,CURLOPT_INFILE=>$fp,CURLOPT_INFILESIZE=>filesize($local),CURLOPT_FTP_CREATE_MISSING_DIRS=>true,CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER]);
+        $ok=curl_exec($ch);$err=curl_error($ch);curl_close($ch);fclose($fp);
+        if($ok&&!$err)return[true,null];
+      }else fclose($fp);
+    }
+    if(function_exists('ssh2_connect')){
+      $port=$c['port']?:22;$conn=@ssh2_connect($c['h'],$port);
+      if($conn&&@ssh2_auth_password($conn,$c['u'],$c['pw'])){
+        $sftp=@ssh2_sftp($conn);if($sftp)@ssh2_sftp_mkdir($sftp,dirname($rpath),0755,true);
+        if(@ssh2_scp_send($conn,$local,$rpath,0644))return[true,null];
+      }
+    }
+    return[false,'SFTP upload failed (needs curl SFTP or ssh2 extension)'];
+  }
+  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  if(!$conn)return[false,$err];
+  ftp_mkdir_p($conn,dirname($rpath));
+  $ok=@ftp_put($conn,$rpath,$local,FTP_BINARY);@ftp_close($conn);
+  return[(bool)$ok,$ok?null:'FTP upload failed (check path/permissions)'];
+}
+
+function ajax_ftp_rename(){
+  $c=ftp_creds_from_post();
+  $path=trim((string)($_POST['_p']??''));
+  $to=sanitize_filename((string)($_POST['_to']??''));
+  if(!$c['h']||!$path||$to==='')return['ok'=>false,'msg'=>'Host, path and new name required'];
+  $target=rtrim(dirname($path),'/').'/'.$to;
+  return ftp_rename_path($c,$path,$target);
+}
+function ajax_ftp_move(){
+  $c=ftp_creds_from_post();
+  $path=trim((string)($_POST['_p']??''));
+  $dest=trim((string)($_POST['_dest']??''));
+  if(!$c['h']||!$path||$dest==='')return['ok'=>false,'msg'=>'Host, path and destination required'];
+  $target=rtrim($dest,'/').'/'.basename($path);
+  return ftp_rename_path($c,$path,$target);
+}
+function ftp_rename_path($c,$from,$to){
+  if($c['method']==='sftp'){
+    if(function_exists('ssh2_connect')){
+      $port=$c['port']?:22;$conn=@ssh2_connect($c['h'],$port);
+      if($conn&&@ssh2_auth_password($conn,$c['u'],$c['pw'])){
+        $sftp=@ssh2_sftp($conn);
+        if($sftp&&@ssh2_sftp_rename($sftp,$from,$to))return['ok'=>true,'msg'=>'Renamed'];
+      }
+    }
+    // curl SFTP QUOTE fallback
+    $ch=curl_init(ftp_proto_url($c,'/'));
+    if($ch){
+      curl_setopt_array($ch,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_NOBODY=>true,CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_QUOTE=>['rename '.$from.' '.$to],CURLOPT_TIMEOUT=>30]);
+      $ok=curl_exec($ch);$err=curl_error($ch);curl_close($ch);
+      if($ok!==false&&!$err)return['ok'=>true,'msg'=>'Renamed'];
+    }
+    return['ok'=>false,'msg'=>'SFTP rename requires the ssh2 extension or curl SFTP support'];
+  }
+  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  if(!$conn)return['ok'=>false,'msg'=>$err];
+  $ok=@ftp_rename($conn,$from,$to);@ftp_close($conn);
+  return['ok'=>(bool)$ok,'msg'=>$ok?'Done':'Rename/move failed (check path/permissions)'];
+}
+function ajax_ftp_dup(){
+  set_time_limit(0);
+  $c=ftp_creds_from_post();
+  $path=trim((string)($_POST['_p']??''));
+  if(!$c['h']||!$path)return['ok'=>false,'msg'=>'Host and path required'];
+  $base=basename($path);$ext='';$name=$base;
+  if(strpos($base,'.')!==false&&$base[0]!=='.'){$ext='.'.pathinfo($base,PATHINFO_EXTENSION);$name=pathinfo($base,PATHINFO_FILENAME);}
+  $newName=$name.' copy'.$ext;
+  $target=rtrim(dirname($path),'/').'/'.$newName;
+  [$tmp,$derr]=ftp_download_to_tmp($c,$path);
+  if(!$tmp)return['ok'=>false,'msg'=>'Duplicate failed: '.$derr];
+  [$ok,$uerr]=ftp_upload_from_local($c,$tmp,$target);
+  @unlink($tmp);
+  return['ok'=>$ok,'msg'=>$ok?'Duplicated as "'.$newName.'" (round-tripped via this server)':'Duplicate failed: '.$uerr,'name'=>$newName];
+}
+
+/* ── Transfer / Sync engine ───────────────────────────────────── */
+function xfer_dst_creds(){
+  return['h'=>trim((string)($_POST['_dh']??'')),'port'=>(int)($_POST['_dport']??21),'u'=>trim((string)($_POST['_du']??'')),'pw'=>(string)($_POST['_dpw']??''),'method'=>strtolower(trim((string)($_POST['_dmethod']??'ftp')))];
+}
+// Acquire the source as a local file path. Returns [localPath, isTemp, err].
+function xfer_fetch_source($skind,$sc,$spath,$opts=[]){
+  if($skind==='local'){
+    $real=realpath($spath);
+    if(!$real||!is_file($real))return[null,false,'Source file not found'];
+    if($real===realpath(__FILE__))return[null,false,'Refused: source is the script'];
+    return[$real,false,null];
+  }
+  if(!empty($opts['relay'])){
+    $srcUrl=ftp_proto_url($sc,$spath);
+    $r=mitm_post($opts['relay'],['_a'=>'fetch','url'=>$srcUrl,'_name'=>basename($spath)]);
+    if(!$r||empty($r['ok'])||empty($r['url']))return[null,false,'Relay fetch failed: '.($r['error']??'no response from relay')];
+    $tmp=tempnam(sys_get_temp_dir(),'bsr');$fp=$tmp?fopen($tmp,'wb'):false;
+    if(!$fp)return[null,false,'Cannot create temp file'];
+    $ch=curl_init($r['url']);
+    curl_setopt_array($ch,[CURLOPT_FILE=>$fp,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_SSL_VERIFYPEER=>0,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER]);
+    curl_exec($ch);$err=curl_error($ch);curl_close($ch);fclose($fp);
+    if($err||@filesize($tmp)<1){@unlink($tmp);return[null,false,'Relay download failed: '.($err?:'empty file')];}
+    if(!empty($opts['relay_del']))@mitm_post($opts['relay'],['_a'=>'del_by_name','_name'=>basename($spath)]);
+    return[$tmp,true,null];
+  }
+  [$tmp,$err]=ftp_download_to_tmp($sc,$spath,!empty($opts['native_only']));
+  if(!$tmp)return[null,false,$err];
+  return[$tmp,true,null];
+}
+// Place a local file at the destination (local dir or ftp dir). Returns [ok, finalName, err].
+function xfer_place_dest($dkind,$dc,$ddir,$name,$local,$opts=[]){
+  $name=sanitize_filename($name);
+  if($name==='')return[false,'','Invalid destination name'];
+  if($dkind==='local'){
+    $destReal=realpath($ddir);
+    if(!$destReal){@mkdir($ddir,0755,true);$destReal=realpath($ddir);}
+    if(!$destReal||!is_dir($destReal))return[false,'','Destination folder not found'];
+    $dst=rtrim($destReal,'/\\').'/'.$name;
+    if(realpath($local)===$dst)return[true,$name,null];
+    $ok=@copy($local,$dst);
+    return[(bool)$ok,$name,$ok?null:'Cannot write to destination folder'];
+  }
+  $target=rtrim($ddir,'/').'/'.$name;
+  [$ok,$err]=ftp_upload_from_local($dc,$local,$target,!empty($opts['native_only']));
+  return[(bool)$ok,$name,$ok?null:$err];
+}
+// Shared driver for direct / plain-ftp / relay transfers.
+function xfer_run($srcOpts){
+  set_time_limit(0);$start=microtime(true);
+  $skind=trim((string)($_POST['_skind']??'ftp'));
+  $dkind=trim((string)($_POST['_dkind']??'local'));
+  $sc=ftp_creds_from_post();
+  $dc=xfer_dst_creds();
+  $spath=trim((string)($_POST['_sp']??''));
+  $ddir=trim((string)($_POST['_dp']??''));
+  $name=(string)($_POST['_name']??basename($spath));
+  if($spath===''||$ddir==='')return['ok'=>false,'msg'=>'Source path and destination required'];
+  [$local,$isTemp,$err]=xfer_fetch_source($skind,$sc,$spath,$srcOpts);
+  if(!$local)return['ok'=>false,'msg'=>$err];
+  $size=@filesize($local);
+  [$ok,$finalName,$perr]=xfer_place_dest($dkind,$dc,$ddir,$name,$local,$srcOpts);
+  if($isTemp)@unlink($local);
+  if(!$ok)return['ok'=>false,'msg'=>$perr];
+  return['ok'=>true,'msg'=>'Transferred','name'=>$finalName,'size'=>(int)$size,'elapsed'=>human_timing($start)];
+}
+function ajax_xfer_direct(){return xfer_run([]);}
+function ajax_xfer_ftp(){
+  $skind=trim((string)($_POST['_skind']??''));$dkind=trim((string)($_POST['_dkind']??''));
+  if(($skind==='ftp'&&strtolower((string)($_POST['_method']??''))==='sftp')||($dkind==='ftp'&&strtolower((string)($_POST['_dmethod']??''))==='sftp'))
+    return['ok'=>false,'msg'=>'Plain-FTP method cannot be used with SFTP endpoints — use Direct'];
+  return xfer_run(['native_only'=>true]);
+}
+function ajax_xfer_relay(){
+  $relay=trim((string)($_POST['_relay']??''));
+  if(!filter_var($relay,FILTER_VALIDATE_URL))return['ok'=>false,'msg'=>'Relay (MITM) server URL is required for relay transfers'];
+  if(trim((string)($_POST['_skind']??''))==='local')return['ok'=>false,'msg'=>'Relay needs a remote (FTP) source'];
+  return xfer_run(['relay'=>$relay,'relay_del'=>($_POST['_relay_del']??'')==='1']);
+}
+// FXP: direct server-to-server FTP. Best-effort via ftp_raw; falls back to Direct.
+function ajax_xfer_fxp(){
+  set_time_limit(0);$start=microtime(true);
+  $sc=ftp_creds_from_post();$dc=xfer_dst_creds();
+  $spath=trim((string)($_POST['_sp']??''));
+  $ddir=trim((string)($_POST['_dp']??''));
+  $name=sanitize_filename((string)($_POST['_name']??basename($spath)));
+  if(trim((string)($_POST['_skind']??''))!=='ftp'||trim((string)($_POST['_dkind']??''))!=='ftp')
+    return['ok'=>false,'msg'=>'FXP requires both sides to be FTP'];
+  if($sc['method']==='sftp'||$dc['method']==='sftp')
+    return['ok'=>false,'msg'=>'FXP is not defined for SFTP — use Direct'];
+  if(!function_exists('ftp_raw')){$r=xfer_run([]);if($r['ok'])$r['msg']='FXP unavailable (ftp_raw missing) — used Direct fallback';return $r;}
+  $target=rtrim($ddir,'/').'/'.$name;
+  [$src,$e1]=ftp_make_connection($sc['h'],$sc['port'],$sc['u'],$sc['pw'],$sc['method']);
+  [$dst,$e2]=ftp_make_connection($dc['h'],$dc['port'],$dc['u'],$dc['pw'],$dc['method']);
+  if($src&&$dst){
+    @ftp_raw($dst,'TYPE I');@ftp_raw($src,'TYPE I');
+    $pasv=@ftp_raw($dst,'PASV');
+    $line=is_array($pasv)?implode(' ',$pasv):'';
+    if(preg_match('/\((\d+,\d+,\d+,\d+,\d+,\d+)\)/',$line,$m)){
+      if(@ftp_raw($src,'PORT '.$m[1])){
+        @ftp_raw($dst,'STOR '.$target);
+        $retr=@ftp_raw($src,'RETR '.$spath);
+        $rl=is_array($retr)?implode(' ',$retr):'';
+        if(preg_match('/^(1|2)\d\d/',trim($rl))){@ftp_close($src);@ftp_close($dst);return['ok'=>true,'msg'=>'FXP transfer initiated','name'=>$name,'elapsed'=>human_timing($start)];}
+      }
+    }
+    @ftp_close($src);@ftp_close($dst);
+  }else{if($src)@ftp_close($src);if($dst)@ftp_close($dst);}
+  $r=xfer_run([]);if($r['ok'])$r['msg']='FXP refused by host — used Direct fallback';
+  return $r;
 }
 
 function perms_sym_to_octal($s){

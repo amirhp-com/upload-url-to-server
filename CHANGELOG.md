@@ -4,6 +4,53 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v2.9.0 — 2026-05-31
+
+### Added
+- **Upload from PC tab** — pick one or more files from your device and upload them **directly** to the server hosting `upload.php`, with a per-file destination folder, an optional filename (single-file), per-item status rows, an overall progress bar, and a live "X / N done" counter. Backed by a new `_a=upload_local` endpoint (`move_uploaded_file`, path-sanitised, auto-creates the sub-folder). Supports **bulk** multi-file selection uploaded sequentially.
+- **Collapsible sidebar** — a Collapse toggle rail; when collapsed it shows icons only and the content goes full-width, and hovering the rail reveals the full labels as an overlay (no content reflow). State persists in `localStorage`.
+
+### Changed
+- **Full UI redesign** — replaced the iOS theme + horizontal tab bar with a **GitHub-style** light/dark palette (blue/green accents, 6px radii) and a **left sidebar** app shell (Modes + Tools groups). The header is taller with a centered logo and the app name **BlackSwan | Upload/sFTP Tool**.
+- **Modes & tools are inline views** — Direct/MITM/FTP/Compare plus File Explorer, PHP Info, Help, and Update all render as full-width inline pages selected from the sidebar (no more pop-up modals). `?view=` deep-links are supported.
+- **"Direct Upload" renamed to "Upload from URL"** (with a link icon).
+- **PHP Info** — the "Full phpInfo()" button now toggles the full report inline (in an iframe) instead of opening a new tab; the `?phpinfo=1` endpoint still works.
+- **Footer** — now shows a Self-Destruct link, `Copyright © <year> BlackSwan` (linking blackswandev.com) under MIT License, the visitor's IP, and the version/build date.
+- **Real client IP** — `get_real_IP_address()` now prefers Cloudflare's `CF-Connecting-IP` (then other proxy/real-IP headers) before `REMOTE_ADDR`.
+- Unified control sizing (inputs, selects, adjacent buttons share one height), GitHub-style select chevron, removed the focus box-shadow (border-only focus), and a fixed non-scrolling app shell (pinned header/footer, internally-scrolling content).
+- Version bumped to 2.9.0.
+
+---
+
+## v2.8.0 — 2026-05-30
+
+### Added
+- **Expandable file tree** — the File Browser, FTP Browser, and both Compare panes now render an inline collapsible tree instead of a flat single-directory list. Clicking a folder lazy-loads just that folder (reusing the existing `ls` / `ftp_ls` endpoints); a **Load full tree** button recursively loads every folder at once.
+- **Recursive tree endpoints** — new `_a=ls_tree` (local) and `_a=ftp_tree` (FTP/FTPS/SFTP) walk the whole hierarchy in one request, reusing a single FTP connection, returning nested `children` with a safety cap (`TREE_MAX_NODES=2000`, `TREE_MAX_DEPTH=20`) and a `capped` flag.
+- **Root-relative Compare** — each Compare side gains a **Root folder** field. Compare now diffs the entire loaded tree by each item's path *relative to its root*, so two servers with different web roots (e.g. `/public_html` vs `/w2w`) line up. Ticking a folder selects its whole subtree.
+- **Recursive Sync** — syncing checked files recreates the sub-folder structure on the destination (new `ftp_mkdir_p` + `CURLOPT_FTP_CREATE_MISSING_DIRS` / `ssh2_sftp_mkdir` for remote destinations).
+- **Saved FTP connections** — store credentials + settings as named profiles in `localStorage` (`bsu_ftp_profiles`), with a Saved-connections dropdown + Load / Save / Delete in the FTP Browser card and both Compare panes (shared list).
+- **CLI compare &amp; sync** — `php upload.php --compare --left=<spec> --right=<spec> [--sync --dir=lr|rl --method=direct|ftp|relay|fxp --relay=<URL> --yes]`, where `<spec>` is `local:/abs/path` or `ftp://user:pass@host:port/root` (also `ftps://`, `sftp://`). Prints a relative-path diff report; `--sync` mirrors source-only + differing files (dry-run unless `--yes`).
+
+### Changed
+- Help modal, CLI `--help`, and README updated with the tree, Compare, saved-connections, and CLI-compare documentation.
+- Version bumped to 2.8.0.
+
+---
+
+## v2.7.0 — 2026-05-30
+
+### Added
+- **Two-pane Compare &amp; Sync tab** — each side is independently Local or an FTP/FTPS/SFTP connection; per-pane folder navigation; a Compare button that diffs by name + size + existence; checkboxes to select items; and sync the checked items in a chosen direction via **Relay (MITM)**, **Direct download+upload**, **Plain FTP**, or **FXP** (best-effort, auto-falls back to Direct). New `_a=xfer_direct/xfer_relay/xfer_ftp/xfer_fxp` endpoints.
+- **File operations** — rename / duplicate / move for local files (`_a=rename/move/dup`) and over FTP (`_a=ftp_rename/ftp_move/ftp_dup`).
+- **iOS light &amp; dark theme** — refactored the hardcoded dark palette into light + dark token sets driven by `prefers-color-scheme`, with a manual Auto / Light / Dark header toggle (persisted) and the brand orange accent preserved. The tab bar became a connected segmented control.
+- **Startup permission check** — a dismissible banner warns when the script cannot read/write its own folder.
+
+### Changed
+- Version bumped to 2.7.0.
+
+---
+
 ## v2.5.0 — 2026-05-29
 
 ### Added
