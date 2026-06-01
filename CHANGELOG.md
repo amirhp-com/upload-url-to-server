@@ -4,6 +4,28 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.0.0 — 2026-06-02
+
+### Added
+- **FTP Explorer → Upload** — a new **Upload** button opens an in-browser panel that uploads into the FTP folder you're browsing, from three sources: **From PC** (true per-file byte progress via `XHR.upload`), **From URL** (server downloads then pushes to FTP), and **Relay (MITM)** (fetch via a second server, then push). Bulk supported (multiple files / one URL per line) with per-item rows, **Stop** (whole queue or a single in-flight item via `AbortController`), and **Retry** (per item or all failed). Backed by a new `_a=ftp_upload` endpoint reusing `ftp_upload_from_local` / `mitm_post`.
+- **FTP folder navigation** — clicking a folder in the FTP tree now sets it as the **current upload target** (highlighted, shown as `Target: /path`), so you can upload into any sub-folder instead of only the connected root. New generic `onToggle` tree callback.
+- **Initial Directory** field for FTP connections — open a connection straight into `/public_html` (or anywhere); persisted to `localStorage` and saved/loaded with connection profiles (added to `FTP_MAP`).
+- **Collapsible connection forms** — after a successful connect, the FTP credentials form auto-collapses to a one-line summary (`FTPS · host:port · user`) with an **Edit** button, on both **FTP Explorer** and **FTPS Sync**, freeing vertical space while browsing.
+- **FTP→server download progress** — "Save to this server" now shows a progress row (animated, with the known file size) and an OK/error result.
+- **Help: Removing PHP Limits & Timeouts** — a new Help section with copy-paste recipes for `php.ini`, `.user.ini`, `.htaccess`, Apache (`Timeout`, mod_fcgid, mod_proxy_fcgi) and Nginx+PHP-FPM. Plus a **Self-Update** Help section explaining exactly how the GitHub-release update works.
+
+### Changed
+- **Compare & Sync queue overhaul** — overall progress bar **plus per-item progress**, a **Stop queue** button, **per-item Stop** (cancels the in-flight transfer via `AbortController`), **Retry** (per item and "Retry failed (N)"), and **uncheck-on-success** so each synced file is deselected and a re-run only does what's left.
+- **Sidebar regrouped** into **Upload** (URL / PC / MITM) · **Browse** (File Explorer + FTP Explorer) · **Sync** (FTPS Sync) · **Tools**. "FTP Browser" renamed **FTP Explorer**, "Compare & Sync" renamed **FTPS Sync**.
+- **Collapse + theme toggles** are now **icon-only, side-by-side at the bottom** of the sidebar; the **IP badge was removed** from the sidebar. Collapsed sidebar now stays **full height**.
+- **Upload from PC** lists selected files with **per-item remove** before upload (pick again to add more) and shows a real per-file progress bar.
+- **Footer** now shows **Server IP** next to **Your IP**; the release line shows **dates only** (no "released on" text); the GitHub link points to the correct repo.
+- **Runtime no-timeout best-effort** — `set_time_limit(0)`, `max_execution_time=0`, `max_input_time=-1`, `default_socket_timeout=3600`, `ignore_user_abort(true)` set on every web request so long transfers don't die mid-way.
+- Carried over: compare diff **tags** on nodes + legend, **auto-select** of differing/one-side-only files after Compare, full-tree **loading overlay**, and **recursive folder sizes** (local + FTP).
+- Version bumped to **3.0.0**.
+
+---
+
 ## v2.9.0 — 2026-05-31
 
 ### Added

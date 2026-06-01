@@ -3,13 +3,18 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/05/31 12:00:00
- * @Version: 2.9.0
+ * @Last modified time: 2026/06/02 12:00:00
+ * @Version: 3.0.0
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
+// Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
+// override these (disabled functions, FPM request_terminate_timeout) — see the in-app
+// Help → "Removing PHP limits & timeouts" for php.ini / .user.ini / .htaccess recipes.
+@set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
+@ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','2.9.0');
-define('BUILD_DATE','released on 2026-05-31 &middot; 1405-03-10');
+define('APP_VER','3.0.0');
+define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
 
@@ -34,6 +39,7 @@ if(isset($_POST['_a'])){
   if($a==='ftp_ls')      {echo json_encode(ajax_ftp_ls());exit;}
   if($a==='ftp_del')     {echo json_encode(ajax_ftp_del());exit;}
   if($a==='ftp_copy')    {echo json_encode(ajax_ftp_copy_to_server());exit;}
+  if($a==='ftp_upload')  {echo json_encode(ajax_ftp_upload());exit;}
   if($a==='ftp_tree')    {echo json_encode(ajax_ftp_tree());exit;}
   if($a==='ftp_rename')  {echo json_encode(ajax_ftp_rename());exit;}
   if($a==='ftp_move')    {echo json_encode(ajax_ftp_move());exit;}
@@ -78,6 +84,51 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 .bulk-toggle-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}.bulk-toggle-row label{font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}.bulk-url-area{display:none;margin-bottom:.75rem}.bulk-url-area textarea{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.88rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical;outline:none;min-height:90px;transition:border-color .15s}.bulk-url-area textarea:focus{border-color:var(--ac)}.bulk-progress-wrap{height:4px;background:var(--s2);border-radius:2px;margin:.55rem 0;overflow:hidden;display:none}.bulk-bar{height:100%;background:linear-gradient(90deg,var(--ac),#f5c47a);width:0%;transition:width .3s ease;border-radius:2px}.bulk-counter{font-size:.8rem;color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;display:none;margin-bottom:.4rem}.bulk-status{margin-top:.55rem}.bulk-item{display:flex;align-items:flex-start;gap:.5rem;padding:.35rem .5rem;border-radius:7px;margin-bottom:.28rem;font-size:.82rem;background:var(--s2);border:1px solid var(--bd)}.bulk-item-ic{flex-shrink:0;width:16px;text-align:center}.bulk-item-name{flex:1;word-break:break-all;color:var(--t1)}.bulk-item-meta{font-size:.76rem;color:var(--t2);white-space:nowrap}.bulk-item.ok .bulk-item-ic{color:var(--gr)}.bulk-item.err .bulk-item-ic{color:var(--rd)}.bulk-item.busy .bulk-item-ic{color:var(--ac)}.bulk-item-retry{flex-shrink:0;background:var(--s2);color:var(--rd);border:1px solid var(--rd);border-radius:6px;padding:.15rem .55rem;font-size:.74rem;cursor:pointer;white-space:nowrap;line-height:1.4}.bulk-item-retry:hover{background:var(--rd);color:#fff}.bulk-retry-all{margin-top:.6rem;display:none}@keyframes spin{to{transform:rotate(360deg)}}.spin{animation:spin .8s linear infinite;display:inline-block}.perms-octal{font-weight:700;color:var(--t1);margin-left:.3rem}
 .banner{display:flex;align-items:center;gap:.6rem;max-width:1000px;margin:0 auto 1rem;padding:.7rem 1rem;border-radius:12px;font-size:.86rem;line-height:1.45}.banner-err{background:rgba(255,59,48,.12);border:1px solid var(--rd);color:var(--rd)}.banner-warn{background:rgba(154,106,0,.12);border:1px solid var(--rw);color:var(--rw)}.banner-ic{flex-shrink:0;display:inline-flex}.banner-msg{flex:1}.banner-msg code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82em;opacity:.85}.banner-msg b{color:inherit}.banner-x{background:none;border:none;color:inherit;cursor:pointer;padding:.2rem;opacity:.7;display:inline-flex;flex-shrink:0}.banner-x:hover{opacity:1}
 .cmp-grid{display:flex;gap:1rem;align-items:flex-start}@media(max-width:820px){.cmp-grid{flex-direction:column}}.cmp-pane{flex:1 1 0;min-width:0;background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.85rem}.cmp-pane-hd{display:flex;align-items:center;gap:.45rem;margin-bottom:.6rem}.cmp-pane-hd select{flex:1}.cmp-creds{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .6rem;margin-bottom:.6rem}.cmp-creds .field{margin-bottom:0}.cmp-creds .full{grid-column:1/-1}.cmp-pane .fb-bar{margin-bottom:.5rem}.cmp-tbl-wrap{max-height:46vh;overflow:auto;border:1px solid var(--bd);border-radius:10px}.cmp-tbl-wrap .fb-empty{padding:1.4rem}.cmp-bar{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;justify-content:center;margin:1rem auto;max-width:1000px}.cmp-legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center;font-size:.76rem;color:var(--t2);margin:.4rem 0}.cmp-legend span{display:inline-flex;align-items:center;gap:.3rem}.cmp-dot{width:11px;height:11px;border-radius:3px;display:inline-block}.cmp-dot.only-l{background:var(--bl)}.cmp-dot.only-r{background:var(--t2)}.cmp-dot.diff{background:var(--ac)}.cmp-dot.same{background:var(--gr)}tr.cmp-only-l td{background:rgba(0,122,255,.1)}tr.cmp-only-r td{background:rgba(142,142,147,.12)}tr.cmp-diff td{background:rgba(227,101,11,.13)}tr.cmp-same td{background:rgba(52,199,89,.1)}.cmp-opts{display:flex;flex-wrap:wrap;gap:.6rem;align-items:flex-end;justify-content:center;margin:.6rem auto;max-width:1000px}.cmp-opts .field{margin-bottom:0;min-width:150px}.cmp-tag{font-size:.7rem;font-weight:700;padding:.05rem .4rem;border-radius:5px;text-transform:uppercase;letter-spacing:.3px}
+/* compare diff tags (shown on the node instead of a background tint) */
+.cmp-tag.t-only-l{background:rgba(9,105,218,.15);color:var(--bl)}
+.cmp-tag.t-only-r{background:rgba(142,142,147,.18);color:var(--t2)}
+.cmp-tag.t-diff{background:rgba(207,34,46,.16);color:var(--rd)}
+.cmp-tag.t-same{background:rgba(26,127,55,.15);color:var(--gr)}
+.tnode .cmp-tag{margin-left:.4rem;flex-shrink:0}
+/* full-tree loading overlay */
+.tree-loading{display:flex;align-items:center;justify-content:center;gap:.55rem;padding:1.6rem;color:var(--t2);font-size:.85rem}
+.tree-loading .spin{font-size:1.1rem}
+.tload-bar{height:3px;background:var(--s2);border-radius:2px;overflow:hidden;margin:.4rem 0}
+.tload-bar::before{content:'';display:block;height:100%;width:40%;background:var(--ac);border-radius:2px;animation:tload 1.1s ease-in-out infinite}
+@keyframes tload{0%{margin-left:-40%}100%{margin-left:100%}}
+/* ===== v2.10 — collapsible connection, queue controls, ftp-upload panel ===== */
+.conn-hd{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem}
+.conn-hd .conn-ttl{font-size:.78rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}
+.conn-hd .conn-toggle{margin-left:auto;display:inline-flex;align-items:center;gap:.3rem}
+.conn-summary{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-size:.84rem;color:var(--t1)}
+.conn-summary .conn-host{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600}
+.conn-summary .conn-dot{width:8px;height:8px;border-radius:50%;background:var(--gr);flex-shrink:0}
+.conn-summary .conn-meta{color:var(--t2);font-size:.78rem}
+/* per-item progress + stop, shared by bulk/sync/ftp-upload rows */
+.bulk-item{flex-wrap:wrap}
+.bulk-item-prog{flex-basis:100%;height:3px;background:var(--bd);border-radius:2px;overflow:hidden;margin-top:.3rem;display:none}
+.bulk-item.busy .bulk-item-prog,.bulk-item.queued .bulk-item-prog{display:block}
+.bulk-item-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),#f5c47a);border-radius:2px;transition:width .25s ease}
+.bulk-item-prog.indet>i{width:40%;animation:tload 1.1s ease-in-out infinite}
+.bulk-item.ok .bulk-item-prog,.bulk-item.err .bulk-item-prog,.bulk-item.stopped .bulk-item-prog{display:none}
+.bulk-item.stopped{opacity:.65}.bulk-item.stopped .bulk-item-ic{color:var(--t2)}
+.bulk-item-stop{flex-shrink:0;background:var(--s2);color:var(--t2);border:1px solid var(--bd);border-radius:6px;padding:.15rem .5rem;font-size:.74rem;cursor:pointer;white-space:nowrap;line-height:1.4}
+.bulk-item-stop:hover{border-color:var(--rd);color:var(--rd)}
+.queue-ctl{display:flex;gap:.45rem;align-items:center;flex-wrap:wrap;margin:.5rem 0}
+/* FTP-explorer upload panel */
+.ftp-up-panel{background:var(--s2);border:1px solid var(--bd);border-radius:var(--rad);padding:.85rem;margin-bottom:.7rem}
+.ftp-up-files{margin:.5rem 0}
+.ftp-up-file{display:flex;align-items:center;gap:.5rem;padding:.3rem .5rem;background:var(--s1);border:1px solid var(--bd);border-radius:6px;margin-bottom:.28rem;font-size:.82rem}
+.ftp-up-file .ftp-up-fn{flex:1;word-break:break-all;color:var(--t1)}
+.ftp-up-file .ftp-up-fsz{color:var(--t2);font-size:.76rem;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ftp-up-file .ftp-up-rm{background:none;border:none;color:var(--t2);cursor:pointer;padding:.1rem .35rem;border-radius:5px;line-height:1}
+.ftp-up-file .ftp-up-rm:hover{color:var(--rd);background:var(--s2)}
+.tnode.ftp-cur{background:var(--ac-soft);box-shadow:inset 2px 0 0 var(--ac)}
+.sb-foot-row{display:flex;gap:.4rem;align-items:center;width:100%}
+.sb-icon-btn{flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;padding:.5rem;border:1px solid var(--bd);background:var(--s2);color:var(--t2);border-radius:var(--rad);cursor:pointer;transition:background .15s,color .15s}
+.sb-icon-btn:hover{color:var(--t1);background:var(--bd)}
+body.sb-collapsed .sb-foot-row{flex-direction:column}
+@media(max-width:820px){.sidebar-foot .sb-foot-row{width:auto}.sb-icon-btn{flex:0 0 auto}}
 .seg{display:inline-flex;border:1px solid var(--bd);border-radius:9px;overflow:hidden}.seg button{border:none;background:var(--s2);color:var(--t2);padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}.seg button+button{border-left:1px solid var(--bd)}.seg button.active{background:var(--ac);color:#fff}
 /* ===== sidebar app shell (v2.8 UI) ===== */
 :root{--ac-soft:rgba(227,101,11,.10);--ac-glow:rgba(227,101,11,.10)}
@@ -164,7 +215,7 @@ html[data-theme="dark"]{--bg:#0d1117;--s1:#161b22;--s2:#21262d;--bd:#30363d;--t1
 @media(min-width:821px){
   .sidebar{transition:width .18s ease}
   body.sb-collapsed .app-body{padding-left:58px}
-  body.sb-collapsed .sidebar{position:fixed;left:0;top:var(--hdr-h);bottom:var(--ftr-h,0);height:auto;width:58px;z-index:60;overflow:hidden;border-right:1px solid var(--bd)}
+  body.sb-collapsed .sidebar{position:fixed;left:0;top:var(--hdr-h);bottom:0;height:calc(100vh - var(--hdr-h));width:58px;z-index:60;overflow:hidden;border-right:1px solid var(--bd)}
   body.sb-collapsed .sidebar .nav-item{white-space:nowrap;overflow:hidden}
   body.sb-collapsed .sidebar .nav-label{opacity:0;pointer-events:none}
   body.sb-collapsed .sidebar .ip-badge{display:none}
@@ -206,7 +257,7 @@ var _icThemeDark=<?=json_encode(ph('moon',15))?>;
 var _perm=<?=json_encode(['r'=>is_readable(__DIR__),'w'=>is_writable(__DIR__),'dir'=>__DIR__])?>;
 function setTheme(mode){try{if(mode==='auto'){delete document.documentElement.dataset.theme;localStorage.removeItem('bsu_theme');}else{document.documentElement.dataset.theme=mode;localStorage.setItem('bsu_theme',mode);}}catch(e){}updateThemeBtn(mode);}
 function cycleTheme(){var cur;try{cur=localStorage.getItem('bsu_theme')||'auto';}catch(e){cur='auto';}setTheme(cur==='auto'?'light':(cur==='light'?'dark':'auto'));}
-function updateThemeBtn(mode){var b=document.getElementById('theme-btn');if(!b)return;if(!mode){try{mode=localStorage.getItem('bsu_theme')||'auto';}catch(e){mode='auto';}}var ic={auto:_icThemeAuto,light:_icThemeLight,dark:_icThemeDark}[mode]||_icThemeAuto;var lbl={auto:'Auto',light:'Light',dark:'Dark'}[mode]||'Auto';b.innerHTML=ic+' '+lbl;}
+function updateThemeBtn(mode){var b=document.getElementById('theme-btn');if(!b)return;if(!mode){try{mode=localStorage.getItem('bsu_theme')||'auto';}catch(e){mode='auto';}}var ic={auto:_icThemeAuto,light:_icThemeLight,dark:_icThemeDark}[mode]||_icThemeAuto;var lbl={auto:'Auto',light:'Light',dark:'Dark'}[mode]||'Auto';b.innerHTML=ic;b.title=lbl+' theme — click to change';}
 function checkPermBanner(){if(typeof _perm==='undefined')return;if(_perm.r&&_perm.w)return;try{if(sessionStorage.getItem('bsu_perm_dismissed'))return;}catch(e){}var b=document.getElementById('perm-banner');if(!b)return;var msg=!_perm.w?'This script <b>cannot write</b> to its own folder':'This script <b>cannot read</b> its own folder';b.className='banner '+(!_perm.w?'banner-err':'banner-warn');b.innerHTML='<span class="banner-ic">'+_icWarn+'</span><span class="banner-msg">'+msg+' (<code>'+_esc(_perm.dir)+'</code>). Uploads and file operations may fail.</span><button class="banner-x" onclick="dismissBanner()" title="Dismiss">'+_icX+'</button>';b.style.display='';}
 function dismissBanner(){var b=document.getElementById('perm-banner');if(b)b.style.display='none';try{sessionStorage.setItem('bsu_perm_dismissed','1');}catch(e){}}
 function permsHuman(sym){
@@ -262,7 +313,7 @@ function loadInfo(){
 }
 /* ── Generic collapsible file tree ─────────────────────────────── */
 function _attr(s){return String(s==null?'':s).replace(/"/g,'&quot;');}
-function tvCreate(o){return{id:o.id,checkbox:!!o.checkbox,chkClass:o.chkClass||'',actions:o.actions||null,load:o.load||null,onCheck:o.onCheck||null,root:'',nodes:[],map:{},seq:0,bound:false};}
+function tvCreate(o){return{id:o.id,checkbox:!!o.checkbox,chkClass:o.chkClass||'',actions:o.actions||null,load:o.load||null,onCheck:o.onCheck||null,onToggle:o.onToggle||null,root:'',nodes:[],map:{},seq:0,bound:false};}
 function tvIngest(tv,nodes,allOpen){(function walk(arr){arr.forEach(function(n){n._id='t'+(tv.seq++);tv.map[n._id]=n;if(n.type==='dir'){var has=Array.isArray(n.children);n._loaded=has;n._open=!!(allOpen&&has);if(has)walk(n.children);}});})(nodes);}
 function tvSetFull(tv,nodes,root){tv.nodes=nodes||[];tv.map={};tv.seq=0;tv.root=root||'';tvIngest(tv,tv.nodes,true);tvRender(tv);}
 function tvSetRoot(tv,nodes,root){tv.nodes=nodes||[];tv.map={};tv.seq=0;tv.root=root||'';tvIngest(tv,tv.nodes,false);tvRender(tv);}
@@ -273,7 +324,7 @@ function tvRowHtml(tv,n,depth){
   var nameAttr=isDir?' data-tv-toggle="'+n._id+'"':'';
   var chk=tv.checkbox?'<input type="checkbox" class="'+tv.chkClass+'" data-tv-id="'+n._id+'" value="'+_attr(n.path)+'" data-path="'+_attr(n.path)+'" data-name="'+_attr(n.name)+'" data-type="'+n.type+'" data-size="'+(n.size_bytes||0)+'" data-url="'+_attr(n.url||'')+'">':'';
   var acts=tv.actions?'<span class="tacts">'+tv.actions(n)+'</span>':'';
-  var h='<div class="tnode" data-tv-node="'+n._id+'" data-relpath="'+_attr(tvRel(tv,n.path))+'" style="padding-left:'+pad+'px">'+caret+chk+'<span class="tname '+(isDir?'tname-dir':'tname-file')+'"'+nameAttr+'>'+icon+' '+_esc(n.name)+'</span><span class="tsize">'+(isDir?'':_esc(n.size||''))+'</span>'+acts+'</div>';
+  var h='<div class="tnode" data-tv-node="'+n._id+'" data-relpath="'+_attr(tvRel(tv,n.path))+'" style="padding-left:'+pad+'px">'+caret+chk+'<span class="tname '+(isDir?'tname-dir':'tname-file')+'"'+nameAttr+'>'+icon+' '+_esc(n.name)+'</span><span class="tsize">'+_esc(n.size||'')+'</span>'+acts+'</div>';
   if(isDir&&n._open){if(Array.isArray(n.children))h+=tvNodesHtml(tv,n.children,depth+1);else h+='<div class="tnode tnode-loading" style="padding-left:'+((depth+1)*15+22)+'px">Loading…</div>';}
   return h;
 }
@@ -284,7 +335,8 @@ function tvBind(tv){if(tv.bound)return;tv.bound=true;var c=document.getElementBy
   if(tv.checkbox)c.addEventListener('change',function(e){var cb=e.target;if(cb&&cb.classList&&cb.classList.contains(tv.chkClass)){tvCascade(tv,cb);if(tv.onCheck)tv.onCheck();}});
 }
 function tvToggle(tv,id){var n=tv.map[id];if(!n||n.type!=='dir')return;
-  if(!n._open){n._open=true;if(!n._loaded&&tv.load){tvRender(tv);tv.load(n,function(children){n.children=children||[];n._loaded=true;tvIngest(tv,n.children,false);tvRender(tv);});return;}}
+  if(tv.onToggle)tv.onToggle(n);
+  if(!n._open){n._open=true;if(tv.load){n._loaded=false;n.children=null;tvRender(tv);tv.load(n,function(children){n.children=children||[];n._loaded=true;tvIngest(tv,n.children,false);tvRender(tv);});return;}}
   else n._open=false;
   tvRender(tv);}
 function tvCascade(tv,cb){var n=tv.map[cb.getAttribute('data-tv-id')];if(!n||n.type!=='dir')return;var on=cb.checked;(function walk(arr){if(!Array.isArray(arr))return;arr.forEach(function(ch){var el=document.querySelector('.'+tv.chkClass+'[data-tv-id="'+ch._id+'"]');if(el)el.checked=on;if(ch.children)walk(ch.children);});})(n.children);}
@@ -301,7 +353,7 @@ function ftpProfApply(p,map){Object.keys(map).forEach(function(k){if(!map[k])ret
 function ftpProfCollect(map){var o={};Object.keys(map).forEach(function(k){if(!map[k])return;var el=document.getElementById(map[k]);o[k]=el?el.value:'';});return o;}
 function ftpProfSaveMap(name,map){var l=ftpProfilesGet();var p=ftpProfCollect(map);p.name=name;var idx=-1;l.forEach(function(x,i){if(x.name===name)idx=i;});if(idx>=0)l[idx]=p;else l.push(p);ftpProfilesSet(l);}
 function ftpProfDeleteName(name){ftpProfilesSet(ftpProfilesGet().filter(function(x){return x.name!==name;}));}
-var FTP_MAP={name:null,host:'ftp-host',port:'ftp-port',user:'ftp-user',pass:'ftp-pass',method:'ftp-method',baseurl:'ftp-baseurl',strip:'ftp-strip',dlFolder:'ftp-dl-folder'};
+var FTP_MAP={name:null,host:'ftp-host',port:'ftp-port',user:'ftp-user',pass:'ftp-pass',method:'ftp-method',initdir:'ftp-initdir',baseurl:'ftp-baseurl',strip:'ftp-strip',dlFolder:'ftp-dl-folder'};
 function ftpProfPopulate(){ftpProfFill('ftp-prof');}
 function ftpProfLoad(){var sel=document.getElementById('ftp-prof');var p=ftpProfByIndex(sel.value);if(!p){showToast('Pick a saved connection');return;}ftpProfApply(p,FTP_MAP);showToast('Loaded "'+p.name+'"');}
 function ftpProfSave(){var def=(document.getElementById('ftp-host').value||'connection');var name=prompt('Save connection as:',def);if(!name||!name.trim())return;ftpProfSaveMap(name.trim(),FTP_MAP);ftpProfPopulate();showToast('Saved "'+name.trim()+'"');}
@@ -342,14 +394,16 @@ function fbLoad(path){
     document.getElementById('fb-bulk').classList.add('show');fbChkChg();
   }).catch(function(){document.getElementById('fb-loading').innerHTML='<span style="color:var(--rd)">Failed to load directory</span>';});
 }
+function treeLoadingHtml(msg){return'<div class="tload-bar"></div><div class="tree-loading"><span class="spin">&#8635;</span> '+(msg||'Loading full tree…')+'</div>';}
 function fbExpandAll(){
   showToast('Loading full tree…');
+  var c=document.getElementById('fb-tbl-wrap');if(c)c.innerHTML=treeLoadingHtml('Loading full tree…');
   var fd=new FormData();fd.append('_a','ls_tree');fd.append('_p',fbRoot);
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
-    if(!d.ok){showToast('Error: '+(d.msg||'failed'));return;}
+    if(!d.ok){showToast('Error: '+(d.msg||'failed'));if(c)c.innerHTML='<div class="tree-empty">'+_esc(d.msg||'Failed')+'</div>';return;}
     fbEnsureTV();tvSetFull(fbTV,d.tree,d.root);fbChkChg();
     showToast(d.capped?('Tree truncated at '+d.count+' items'):('Loaded '+d.count+' items'));
-  }).catch(function(){showToast('Failed to load tree');});
+  }).catch(function(){showToast('Failed to load tree');if(c)c.innerHTML='<div class="tree-empty">Failed to load tree</div>';});
 }
 function fbCollapseAll(){if(fbTV)tvCollapseAll(fbTV);}
 function fbSelAll(on){document.querySelectorAll('#fb-tbl-wrap .fb-chk').forEach(function(c){c.checked=on;});fbChkChg();}
@@ -462,6 +516,7 @@ function ftpSaveFields(){
     localStorage.setItem('bsu_ftp_baseurl',document.getElementById('ftp-baseurl').value);
     var st=document.getElementById('ftp-strip');if(st)localStorage.setItem('bsu_ftp_strip',st.value);
     var df=document.getElementById('ftp-dl-folder');if(df)localStorage.setItem('bsu_ftp_dl_folder',df.value);
+    var idr=document.getElementById('ftp-initdir');if(idr)localStorage.setItem('bsu_ftp_initdir',idr.value);
   }catch(e){}
 }
 function ftpRestoreFields(){
@@ -473,6 +528,7 @@ function ftpRestoreFields(){
     var b=localStorage.getItem('bsu_ftp_baseurl');if(b)document.getElementById('ftp-baseurl').value=b;
     var st=document.getElementById('ftp-strip');if(st){var sv=localStorage.getItem('bsu_ftp_strip');if(sv)st.value=sv;}
     var df=document.getElementById('ftp-dl-folder');if(df){var dv=localStorage.getItem('bsu_ftp_dl_folder');if(dv)df.value=dv;}
+    var idr=document.getElementById('ftp-initdir');if(idr){var iv=localStorage.getItem('bsu_ftp_initdir');if(iv)idr.value=iv;}
     ftpProfPopulate();
   }catch(e){}
 }
@@ -485,10 +541,26 @@ function ftpConnect(){
   if(!h){showToast('Host is required');return;}
   ftpCreds={h:h,port:port,u:user,pw:pass,method:method};
   ftpSaveFields();
-  ftpLog('Connecting to '+method.toUpperCase()+'://'+h+':'+port+' …','info');
-  ftpLoad('/');
+  _ftpJustConn=true;
+  var initDir=(document.getElementById('ftp-initdir')||{value:''}).value.trim()||'/';
+  ftpLog('Connecting to '+method.toUpperCase()+'://'+h+':'+port+initDir+' …','info');
+  ftpLoad(initDir);
 }
-var ftpTV=null,ftpRoot='/';
+function ftpConnSummaryHtml(c){return'<span class="conn-dot"></span><span class="conn-host">'+_esc(c.h+(c.port&&c.port!='21'?(':'+c.port):''))+'</span><span class="conn-meta">'+_esc((c.method||'ftp').toUpperCase()+(c.u?(' · '+c.u):''))+'</span>';}
+function ftpToggleConn(force){
+  var card=document.getElementById('ftp-conn-card');if(!card)return;
+  var body=document.getElementById('ftp-conn-body');
+  var collapse=(typeof force==='boolean')?force:(body&&body.style.display!=='none');
+  if(body)body.style.display=collapse?'none':'';
+  var sum=document.getElementById('ftp-conn-summary');if(sum)sum.style.display=collapse?'':'none';
+  var tb=document.getElementById('ftp-conn-toggle');if(tb)tb.textContent=collapse?'Edit':'Collapse';
+}
+function ftpShowConnSummary(){
+  var sum=document.getElementById('ftp-conn-summary');if(sum)sum.innerHTML=ftpConnSummaryHtml(ftpCreds);
+  var tb=document.getElementById('ftp-conn-toggle');if(tb)tb.style.display='';
+  ftpToggleConn(true);
+}
+var ftpTV=null,ftpRoot='/',_ftpJustConn=false;
 function ftpFd(action,path){var fd=new FormData();fd.append('_a',action);fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');fd.append('_method',ftpCreds.method||'ftp');fd.append('_p',path);return fd;}
 function ftpLazyLoad(node,cb){fetch('',{method:'POST',body:ftpFd('ftp_ls',node.path)}).then(function(r){return r.json();}).then(function(d){cb(d.ok?d.items:[]);}).catch(function(){cb([]);});}
 function ftpActions(n){
@@ -498,7 +570,7 @@ function ftpActions(n){
     var webUrl=baseUrl?(baseUrl+ftpUrlPath(n.path)):'';
     h+='<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy path" onclick=\'copyText('+p+',this)\'>'+_icCopy+'</button>';
     if(webUrl)h+='<button class="btn btn-url btn-sm btn-icon copy-btn" title="Copy web URL" onclick=\'copyText('+JSON.stringify(webUrl)+',this)\'>URL</button>';
-    h+='<button class="btn btn-p btn-sm btn-icon" title="Save to this server" onclick=\'ftpCopyToServer('+p+','+nm+')\'>'+_icDownload+'</button>';
+    h+='<button class="btn btn-p btn-sm btn-icon" title="Save to this server" onclick=\'ftpCopyToServer('+p+','+nm+','+(+n.size_bytes||0)+')\'>'+_icDownload+'</button>';
     h+='<button class="btn btn-g btn-sm btn-icon" title="Duplicate" onclick=\'ftpDup('+p+','+nm+')\'>'+_icDup+'</button>';
   }
   h+='<button class="btn btn-g btn-sm btn-icon" title="Rename" onclick=\'ftpRename('+p+','+nm+')\'>'+_icRename+'</button>';
@@ -506,7 +578,16 @@ function ftpActions(n){
   h+='<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'ftpDel('+p+','+nm+','+tp+')\'>'+_icTrash+'</button>';
   return h;
 }
-function ftpEnsureTV(){if(!ftpTV)ftpTV=tvCreate({id:'ftp-tbl-wrap',checkbox:true,chkClass:'ftp-chk',actions:ftpActions,load:ftpLazyLoad,onCheck:ftpChkChg});return ftpTV;}
+function ftpEnsureTV(){if(!ftpTV)ftpTV=tvCreate({id:'ftp-tbl-wrap',checkbox:true,chkClass:'ftp-chk',actions:ftpActions,load:ftpLazyLoad,onCheck:ftpChkChg,onToggle:ftpSetCurDir});return ftpTV;}
+var ftpUpDir='';
+function ftpSetCurDir(n){
+  if(!n||n.type!=='dir')return;
+  ftpUpDir=n.path;
+  var d=document.getElementById('ftp-up-dir');if(d)d.textContent=n.path;
+  document.querySelectorAll('#ftp-tbl-wrap .tnode.ftp-cur').forEach(function(e){e.classList.remove('ftp-cur');});
+  var node=document.querySelector('#ftp-tbl-wrap .tnode[data-tv-node="'+n._id+'"]');if(node)node.classList.add('ftp-cur');
+  var pe=document.getElementById('ftp-cur-dir');if(pe)pe.textContent=n.path;
+}
 function ftpLoad(path){
   ftpCwd=path;ftpRoot=path;
   var area=document.getElementById('ftp-browser-area');
@@ -520,10 +601,11 @@ function ftpLoad(path){
     .then(function(d){
       if(loading)loading.style.display='none';
       if(!d.ok){tbl.innerHTML='<div class="ftp-empty">'+_esc(d.msg||'Error')+'</div>';ftpLog('Error: '+(d.msg||'unknown error'),'err');return;}
-      ftpCwd=d.path;ftpRoot=d.path;
+      ftpCwd=d.path;ftpRoot=d.path;ftpUpDir=d.path;
       document.getElementById('ftp-path').innerHTML='<span class="fb-crumb" style="cursor:default;color:var(--t2)">'+_icHome+' '+_esc(d.path)+'</span>';
       ftpEnsureTV();tvSetRoot(ftpTV,d.items,d.path);
       var bulk=document.getElementById('ftp-bulk');if(bulk)bulk.classList.add('show');ftpChkChg();
+      if(_ftpJustConn){_ftpJustConn=false;ftpShowConnSummary();}
       ftpLog('Listed: '+d.path,'ok');
     })
     .catch(function(e){if(loading)loading.style.display='none';ftpLog('Network error: '+(e.message||e),'err');});
@@ -531,14 +613,15 @@ function ftpLoad(path){
 function ftpExpandAll(){
   if(!ftpCreds.h){showToast('Connect first');return;}
   ftpLog('Loading full tree…','info');showToast('Loading full tree…');
+  var c=document.getElementById('ftp-tbl-wrap');if(c)c.innerHTML=treeLoadingHtml('Loading full tree from FTP server…');
   fetch('',{method:'POST',body:ftpFd('ftp_tree',ftpRoot)})
     .then(function(r){return r.json();})
     .then(function(d){
-      if(!d.ok){ftpLog('Tree error: '+(d.msg||'failed'),'err');showToast('Error: '+(d.msg||'failed'));return;}
+      if(!d.ok){ftpLog('Tree error: '+(d.msg||'failed'),'err');showToast('Error: '+(d.msg||'failed'));if(c)c.innerHTML='<div class="tree-empty">'+_esc(d.msg||'Failed')+'</div>';return;}
       ftpEnsureTV();tvSetFull(ftpTV,d.tree,d.root);ftpChkChg();
       ftpLog('Loaded '+d.count+' items'+(d.capped?' (truncated — tree too large)':''),d.capped?'err':'ok');
       showToast(d.capped?('Tree truncated at '+d.count+' items'):('Loaded '+d.count+' items'));
-    }).catch(function(){showToast('Failed to load tree');});
+    }).catch(function(){showToast('Failed to load tree');if(c)c.innerHTML='<div class="tree-empty">Failed to load tree</div>';});
 }
 function ftpCollapseAll(){if(ftpTV)tvCollapseAll(ftpTV);}
 function ftpUrlPath(remotePath){
@@ -612,8 +695,17 @@ function ftpDup(path,name){
   var fd=ftpOpFd('ftp_dup',path);
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){ftpLog((d.ok?'Duplicated: ':'Duplicate failed: ')+(d.msg||name),d.ok?'ok':'err');if(d.ok){showToast(d.msg||'Duplicated');ftpLoad(ftpCwd);}else showToast('Error: '+(d.msg||'failed'));});
 }
-function ftpCopyToServer(remotePath,name){
+function ftpProgRow(label,sizeBytes){
+  var host=document.getElementById('ftp-dl-status');
+  if(!host){host=document.createElement('div');host.id='ftp-dl-status';host.className='bulk-status';var area=document.getElementById('ftp-browser-area');var tbl=document.getElementById('ftp-tbl-wrap');if(area&&tbl)area.insertBefore(host,tbl);}
+  var el=document.createElement('div');el.className='bulk-item busy';
+  el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(label)+'</span><span class="bulk-item-meta">'+(sizeBytes?ftpHumanSize(sizeBytes)+' · ':'')+'transferring…</span><div class="bulk-item-prog indet"><i></i></div>';
+  host.insertBefore(el,host.firstChild);
+  return el;
+}
+function ftpCopyToServer(remotePath,name,sizeBytes){
   ftpLog('Saving to server: '+name+' …','info');
+  var row=ftpProgRow('↓ '+name,sizeBytes||0);
   var dlFolder=(document.getElementById('ftp-dl-folder')||{value:''}).value.trim();
   var fd=new FormData();
   fd.append('_a','ftp_copy');fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');
@@ -623,6 +715,7 @@ function ftpCopyToServer(remotePath,name){
   fetch('',{method:'POST',body:fd})
     .then(function(r){return r.json();})
     .then(function(d){
+      if(row){row.className='bulk-item '+(d.ok?'ok':'err');row.querySelector('.bulk-item-ic').textContent=d.ok?'✓':'✗';row.querySelector('.bulk-item-meta').textContent=d.ok?((d.size?ftpHumanSize(d.size):'')+(d.elapsed?' · '+d.elapsed:'')):(d.msg||'failed');}
       if(d.ok){
         var sz=d.size?ftpHumanSize(d.size):'';
         ftpLog('Saved: '+name+(sz?' ('+sz+')':'')+(d.elapsed?' in '+d.elapsed:''),'ok');
@@ -635,12 +728,112 @@ function ftpCopyToServer(remotePath,name){
         showToast('Saved: '+name);
       }else ftpLog('Save failed: '+(d.msg||'error'),'err');
     })
-    .catch(function(e){ftpLog('Network error: '+(e.message||e),'err');});
+    .catch(function(e){if(row){row.className='bulk-item err';row.querySelector('.bulk-item-ic').textContent='✗';row.querySelector('.bulk-item-meta').textContent='network error';}ftpLog('Network error: '+(e.message||e),'err');});
 }
 function ftpHumanSize(b){
   b=+b||0;var u=['B','KB','MB','GB','TB'];
   var i=b>0?Math.min(Math.floor(Math.log(b)/Math.log(1024)),u.length-1):0;
   return(b/Math.pow(1024,i)).toFixed(i?1:0)+' '+u[i];
+}
+/* ── FTP explorer: upload into the current folder (PC / URL / relay, bulk) ── */
+var ftpUpSrc='pc',_ftpUpFiles=[],_ftpUpCtl=null;
+function ftpUpToggle(){
+  if(!ftpCreds.h){showToast('Connect first');return;}
+  var p=document.getElementById('ftp-up-panel');if(!p)return;
+  var show=p.style.display==='none';p.style.display=show?'':'none';
+  if(show){var d=document.getElementById('ftp-up-dir');if(d)d.textContent=ftpUpDir||ftpCwd||ftpRoot||'/';}
+}
+function ftpUpSetSrc(s){
+  ftpUpSrc=s;
+  ['pc','url','relay'].forEach(function(k){var el=document.getElementById('ftp-up-'+k);if(el)el.style.display=(k===s)?'':'none';});
+  document.querySelectorAll('#ftp-up-seg button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-s')===s);});
+}
+function ftpUpPcPicked(){var fi=document.getElementById('ftp-up-file');if(fi&&fi.files&&fi.files.length){Array.prototype.forEach.call(fi.files,function(f){_ftpUpFiles.push(f);});fi.value='';}ftpUpRenderFiles();}
+function ftpUpRemoveFile(i){_ftpUpFiles.splice(i,1);ftpUpRenderFiles();}
+function ftpUpRenderFiles(){
+  var list=document.getElementById('ftp-up-filelist');if(!list)return;
+  if(!_ftpUpFiles.length){list.innerHTML='';return;}
+  var h='<div class="ftp-up-files">';
+  _ftpUpFiles.forEach(function(f,i){h+='<div class="ftp-up-file"><span class="ftp-up-fn">'+_esc(f.name)+'</span><span class="ftp-up-fsz">'+ftpHumanSize(f.size)+'</span><button type="button" class="ftp-up-rm" title="Remove" onclick="ftpUpRemoveFile('+i+')">'+_icX+'</button></div>';});
+  h+='</div><div style="font-size:.78rem;color:var(--t2)">'+_ftpUpFiles.length+' file(s) · '+ftpHumanSize(_ftpUpFiles.reduce(function(a,f){return a+f.size;},0))+'</div>';
+  list.innerHTML=h;
+}
+function ftpUpMarkStopped(q){q.stopped=true;q.el.className='bulk-item stopped';q.el.querySelector('.bulk-item-ic').textContent='■';q.el.querySelector('.bulk-item-meta').textContent='stopped';var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();}
+function ftpUpStopItem(q){if(q.done||q.failed)return;if(q.running&&_ftpUpCtl){q.stopped=true;if(_ftpUpCtl.xhr){try{_ftpUpCtl.xhr.abort();}catch(e){}}else if(_ftpUpCtl.abort){try{_ftpUpCtl.abort.abort();}catch(e){}}}else ftpUpMarkStopped(q);}
+function ftpUpStopAll(){if(!_ftpUpCtl)return;_ftpUpCtl.stop=true;if(_ftpUpCtl.xhr){try{_ftpUpCtl.xhr.abort();}catch(e){}}if(_ftpUpCtl.abort){try{_ftpUpCtl.abort.abort();}catch(e){}}var b=document.getElementById('ftp-up-stop-btn');if(b){b.disabled=true;b.innerHTML='Stopping…';}ftpLog('Upload queue stop requested','err');}
+function ftpUpItemFail(q,msg){q.failed=true;q.done=false;q.el.className='bulk-item err';q.el.querySelector('.bulk-item-ic').textContent='✗';q.el.querySelector('.bulk-item-meta').textContent=msg;var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();if(!q.el.querySelector('.bulk-item-retry')){var b=document.createElement('button');b.type='button';b.className='bulk-item-retry';b.innerHTML='&#8635; Retry';b.onclick=function(){ftpUpRetryItem(q);};q.el.appendChild(b);}ftpLog('✗ '+q.j.name+' — '+msg,'err');}
+function ftpUpItemReset(q){q.done=false;q.failed=false;q.stopped=false;q.running=false;q.el.className='bulk-item queued';q.el.querySelector('.bulk-item-ic').innerHTML='<span class="spin">&#8635;</span>';q.el.querySelector('.bulk-item-meta').textContent='queued';var rb=q.el.querySelector('.bulk-item-retry');if(rb)rb.remove();var pr=q.el.querySelector('.bulk-item-prog');if(pr){if(q.j.kind==='pc'){pr.classList.remove('indet');pr.querySelector('i').style.width='0';}else pr.classList.add('indet');}if(!q.el.querySelector('.bulk-item-stop')){var stop=document.createElement('button');stop.type='button';stop.className='bulk-item-stop';stop.textContent='Stop';stop.onclick=function(){ftpUpStopItem(q);};q.el.appendChild(stop);}}
+function ftpUpRunOne(q,cb){
+  if(q.stopped){ftpUpMarkStopped(q);cb();return;}
+  q.running=true;q.el.className='bulk-item busy';q.el.querySelector('.bulk-item-meta').textContent='uploading…';
+  var c=_ftpUpCtl,j=q.j;
+  var fd=new FormData();fd.append('_a','ftp_upload');fd.append('_dir',c.dir);fd.append('_name',j.name);
+  fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');fd.append('_method',ftpCreds.method||'ftp');
+  var onDone=function(d){
+    q.running=false;c.xhr=null;c.abort=null;
+    if(d&&d.ok){q.done=true;q.failed=false;q.el.className='bulk-item ok';q.el.querySelector('.bulk-item-ic').textContent='✓';q.el.querySelector('.bulk-item-meta').textContent=(d.size?ftpHumanSize(d.size):'')+(d.elapsed?' · '+d.elapsed:'');var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();ftpLog('✓ Uploaded '+d.name+' → '+c.dir,'ok');}
+    else ftpUpItemFail(q,(d&&d.error)||'failed');
+    cb();
+  };
+  if(j.kind==='pc'){
+    fd.append('_src','pc');fd.append('file',j.file);
+    var pf=q.el.querySelector('.bulk-item-prog>i');
+    var xhr=new XMLHttpRequest();c.xhr=xhr;xhr.open('POST','',true);
+    xhr.upload.onprogress=function(e){if(e.lengthComputable){var p=Math.round(e.loaded/e.total*100);if(pf)pf.style.width=p+'%';q.el.querySelector('.bulk-item-meta').textContent=p+'% — '+ftpHumanSize(e.loaded)+' / '+ftpHumanSize(e.total)+(p>=100?' · finishing on FTP…':'');}};
+    xhr.onload=function(){var d;try{d=JSON.parse(xhr.responseText);}catch(e){d={ok:false,error:'Unexpected server response'};}onDone(d);};
+    xhr.onerror=function(){onDone({ok:false,error:'network error'});};
+    xhr.onabort=function(){q.running=false;c.xhr=null;ftpUpMarkStopped(q);ftpLog('■ '+j.name+' — stopped','err');cb();};
+    xhr.send(fd);
+  }else{
+    fd.append('_src',j.kind);fd.append('url',j.url);
+    if(j.kind==='relay'){fd.append('mitm_url',j.relay);var rd=document.getElementById('ftp-up-relay-del');if(rd&&rd.checked)fd.append('mitm_delete','1');}
+    var ac=('AbortController'in window)?new AbortController():null;c.abort=ac;
+    fetch('',{method:'POST',body:fd,signal:ac?ac.signal:undefined}).then(function(r){return r.json();}).then(onDone).catch(function(e){q.running=false;c.abort=null;if(ac&&e&&e.name==='AbortError'){ftpUpMarkStopped(q);ftpLog('■ '+j.name+' — stopped','err');cb();}else onDone({ok:false,error:(e&&e.message)||'network error'});});
+  }
+}
+function ftpUpProgress(){if(!_ftpUpCtl)return;var q=_ftpUpCtl.queue;var done=q.filter(function(x){return x.done||x.failed||x.stopped;}).length;if(_ftpUpCtl.bar)_ftpUpCtl.bar.style.width=Math.round((done/q.length)*100)+'%';if(_ftpUpCtl.counter)_ftpUpCtl.counter.textContent=done+' / '+q.length+' done';}
+function ftpUpNext(qi){if(!_ftpUpCtl)return;var q=_ftpUpCtl.queue;if(_ftpUpCtl.stop||qi>=q.length){ftpUpFinish();return;}var item=q[qi];if(item.done){ftpUpNext(qi+1);return;}ftpUpRunOne(item,function(){ftpUpProgress();ftpUpNext(qi+1);});}
+function ftpUpFinish(){
+  ftpUpProgress();
+  var q=_ftpUpCtl.queue,failed=q.filter(function(x){return x.failed;});
+  var pending=q.filter(function(x){return !x.done&&!x.failed&&!x.stopped;});
+  if(_ftpUpCtl.stop&&pending.length){pending.forEach(ftpUpMarkStopped);ftpLog('Upload queue stopped ('+pending.length+' not uploaded)','err');showToast('Queue stopped');}
+  else{ftpLog('Upload complete'+(failed.length?(' — '+failed.length+' failed'):''),failed.length?'err':'ok');showToast('Upload '+(failed.length?'finished with errors':'complete'));}
+  ftpUpRenderRetryAll(failed);
+  var b=document.getElementById('ftp-up-stop-btn');if(b){b.disabled=true;b.innerHTML='&#9632; Stop queue';}
+}
+function ftpUpClearStop(){if(_ftpUpCtl)_ftpUpCtl.stop=false;var b=document.getElementById('ftp-up-stop-btn');if(b){b.disabled=false;b.innerHTML='&#9632; Stop queue';}}
+function ftpUpRetryItem(q){if(!_ftpUpCtl)return;ftpUpItemReset(q);ftpUpClearStop();ftpUpRunOne(q,function(){ftpUpProgress();ftpUpRenderRetryAll(_ftpUpCtl.queue.filter(function(x){return x.failed;}));});}
+function ftpUpRenderRetryAll(failed){var st=document.getElementById('ftp-up-status');if(!st||!st.parentNode)return;var wrap=document.getElementById('ftp-up-retry-all');if(!wrap){wrap=document.createElement('div');wrap.id='ftp-up-retry-all';wrap.className='bulk-retry-all';st.parentNode.insertBefore(wrap,st.nextSibling);}wrap.innerHTML='';if(!failed.length){wrap.style.display='none';return;}wrap.style.display='';var b=document.createElement('button');b.type='button';b.className='btn btn-d btn-sm';b.innerHTML='&#8635; Retry failed ('+failed.length+')';b.onclick=function(){wrap.style.display='none';ftpUpClearStop();failed.forEach(function(x){ftpUpItemReset(x);});ftpUpRetryQueue(failed);};wrap.appendChild(b);}
+function ftpUpRetryQueue(list){var i=0;(function nx(){if(!_ftpUpCtl||_ftpUpCtl.stop||i>=list.length){ftpUpProgress();ftpUpRenderRetryAll(_ftpUpCtl.queue.filter(function(x){return x.failed;}));return;}var q=list[i++];if(q.done){nx();return;}ftpUpRunOne(q,function(){ftpUpProgress();nx();});})();}
+function ftpUpQueueCtl(){var st=document.getElementById('ftp-up-status');if(!st||!st.parentNode)return;var wrap=document.getElementById('ftp-up-queue-ctl');if(!wrap){wrap=document.createElement('div');wrap.id='ftp-up-queue-ctl';wrap.className='queue-ctl';st.parentNode.insertBefore(wrap,st);}wrap.innerHTML='';var stop=document.createElement('button');stop.type='button';stop.id='ftp-up-stop-btn';stop.className='btn btn-d btn-sm';stop.innerHTML='&#9632; Stop queue';stop.onclick=ftpUpStopAll;wrap.appendChild(stop);}
+function ftpUpStart(){
+  if(!ftpCreds.h){showToast('Connect first');return;}
+  var dir=ftpUpDir||ftpCwd||ftpRoot||'/';var jobs=[];
+  if(ftpUpSrc==='pc'){
+    if(!_ftpUpFiles.length){showToast('Choose a file first');return;}
+    _ftpUpFiles.forEach(function(f){jobs.push({kind:'pc',file:f,label:f.name,name:f.name});});
+  }else{
+    var ta=document.getElementById(ftpUpSrc==='relay'?'ftp-up-urls-relay':'ftp-up-urls');var lines=ta?ta.value.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;}):[];
+    if(!lines.length){showToast('Enter at least one URL');return;}
+    var relay='';
+    if(ftpUpSrc==='relay'){relay=(document.getElementById('ftp-up-relay-url').value||'').trim();if(!relay){showToast('Enter the relay URL');return;}}
+    lines.forEach(function(u){var nm=u.split('?')[0].split('#')[0].split('/').pop()||('file_'+Date.now());jobs.push({kind:ftpUpSrc,url:u,label:u,name:nm,relay:relay});});
+  }
+  var status=document.getElementById('ftp-up-status');status.innerHTML='';
+  var bar=document.getElementById('ftp-up-bar');bar.style.width='0%';bar.parentElement.style.display='';
+  var counter=document.getElementById('ftp-up-counter');counter.style.display='';counter.textContent='0 / '+jobs.length+' done';
+  var queue=jobs.map(function(j){
+    var el=document.createElement('div');el.className='bulk-item queued';
+    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(j.label)+'</span><span class="bulk-item-meta">queued</span><div class="bulk-item-prog'+(j.kind==='pc'?'':' indet')+'"><i></i></div>';
+    var q={j:j,el:el,done:false,failed:false,stopped:false,running:false};
+    var stop=document.createElement('button');stop.type='button';stop.className='bulk-item-stop';stop.textContent='Stop';stop.onclick=function(){ftpUpStopItem(q);};
+    el.appendChild(stop);status.appendChild(el);return q;
+  });
+  _ftpUpCtl={stop:false,queue:queue,dir:dir,bar:bar,counter:counter,xhr:null,abort:null};
+  ftpUpQueueCtl();
+  ftpLog('Uploading '+jobs.length+' item(s) to '+dir+' …','info');
+  ftpUpNext(0);
 }
 /* ── Compare & Sync ─────────────────────────────────────────────── */
 var cmpState={l:{kind:'local',cwd:'',root:'',creds:null,tv:null},r:{kind:'local',cwd:'',root:'',creds:null,tv:null}};
@@ -659,7 +852,20 @@ function cmpConnect(s){
   }else cmpState[s].creds=null;
   var rootIn=(document.getElementById('cmp-'+s+'-root')||{value:''}).value.trim();
   var start=rootIn||(kind==='ftp'?'/':'__ROOT__');
+  cmpState[s]._justConn=(kind==='ftp');
   cmpPersist();cmpLoad(s,start);
+}
+function cmpToggleConn(s,force){
+  var creds=document.getElementById('cmp-'+s+'-creds');
+  if(!creds||document.getElementById('cmp-'+s+'-type').value!=='ftp')return;
+  var collapse=(typeof force==='boolean')?force:(creds.style.display!=='none');
+  creds.style.display=collapse?'none':'';
+  var sum=document.getElementById('cmp-'+s+'-conn-summary');if(sum)sum.style.display=collapse?'':'none';
+}
+function cmpShowConnSummary(s){
+  var c=cmpState[s].creds||{};var sum=document.getElementById('cmp-'+s+'-conn-summary');
+  if(sum)sum.innerHTML='<span class="conn-dot"></span><span class="conn-host">'+_esc(c.h+(c.port&&c.port!='21'?(':'+c.port):''))+'</span><span class="conn-meta">'+_esc((c.method||'ftp').toUpperCase()+(c.u?(' · '+c.u):''))+'</span><button type="button" class="btn btn-g btn-sm" style="margin-left:auto" onclick="cmpToggleConn(\''+s+'\',false)">Edit</button>';
+  cmpToggleConn(s,true);
 }
 function cmpReload(s){if(cmpState[s].root==='')return;cmpLoad(s,cmpState[s].root);}
 function cmpLoad(s,path){
@@ -670,18 +876,20 @@ function cmpLoad(s,path){
     st.root=d.path;st.cwd=d.path;
     var pathEl=document.getElementById('cmp-'+s+'-path');if(pathEl)pathEl.innerHTML='<span style="color:var(--t2)">'+_icHome+' '+_esc(d.path)+'</span>';
     cmpEnsureTV(s);tvSetRoot(st.tv,d.items,d.path);
+    if(st._justConn){st._justConn=false;cmpShowConnSummary(s);}
     cmpLog((s==='l'?'Left':'Right')+' listed: '+d.path,'ok');
   }).catch(function(e){wrap.innerHTML='<div class="tree-empty">Network error</div>';cmpLog('Network error: '+(e.message||e),'err');});
 }
 function cmpExpandAll(s){
   var st=cmpState[s];if(st.root===''){showToast('Load this side first');return;}
-  cmpLog((s==='l'?'Left':'Right')+': loading full tree…','info');
+  cmpLog((s==='l'?'Left':'Right')+': loading full tree…','info');showToast('Loading full tree…');
+  var c=document.getElementById('cmp-'+s+'-tbl');if(c)c.innerHTML=treeLoadingHtml('Loading full tree'+(st.kind==='ftp'?' from FTP server…':'…'));
   var action=st.kind==='local'?'ls_tree':'ftp_tree';
   fetch('',{method:'POST',body:cmpFd(s,action,st.root)}).then(function(r){return r.json();}).then(function(d){
-    if(!d.ok){cmpLog('Tree error: '+(d.msg||'failed'),'err');showToast('Error: '+(d.msg||'failed'));return;}
+    if(!d.ok){cmpLog('Tree error: '+(d.msg||'failed'),'err');showToast('Error: '+(d.msg||'failed'));if(c)c.innerHTML='<div class="tree-empty">'+_esc(d.msg||'Failed')+'</div>';return;}
     cmpEnsureTV(s);tvSetFull(st.tv,d.tree,d.root);
     cmpLog((s==='l'?'Left':'Right')+' loaded '+d.count+' items'+(d.capped?' (truncated — tree too large)':''),d.capped?'err':'ok');
-  }).catch(function(){showToast('Failed to load tree');});
+  }).catch(function(){showToast('Failed to load tree');if(c)c.innerHTML='<div class="tree-empty">Failed to load tree</div>';});
 }
 function cmpCollapseAll(s){if(cmpState[s].tv)tvCollapseAll(cmpState[s].tv);}
 function cmpSelAll(s,on){document.querySelectorAll('#cmp-'+s+'-tbl .cmp-chk-'+s).forEach(function(c){c.checked=on;});}
@@ -697,10 +905,34 @@ function cmpDiff(){
   L.forEach(function(n){if(rmap[n.rel]){var c=classify(n,rmap[n.rel]);clsL[n.rel]=c;if(n.type==='file'){c==='same'?nSame++:nDiff++;}}else{clsL[n.rel]='only-l';if(n.type==='file')nOnlyL++;}});
   R.forEach(function(n){if(lmap[n.rel])clsR[n.rel]=clsL[n.rel]||classify(lmap[n.rel],n);else{clsR[n.rel]='only-r';if(n.type==='file')nOnlyR++;}});
   cmpApplyClasses('l',clsL);cmpApplyClasses('r',clsR);
+  // Auto-select files that need syncing on each side: only-here + differing (not identical).
+  var nSelL=cmpAutoCheck('l',clsL),nSelR=cmpAutoCheck('r',clsR);
   document.getElementById('cmp-diff-summary').textContent=nSame+' identical · '+nDiff+' differ · '+nOnlyL+' only left · '+nOnlyR+' only right';
-  cmpLog('Compared by relative path: '+nSame+' same, '+nDiff+' differ, '+nOnlyL+' only-left, '+nOnlyR+' only-right','info');
+  cmpLog('Compared by relative path: '+nSame+' same, '+nDiff+' differ, '+nOnlyL+' only-left, '+nOnlyR+' only-right. Auto-selected '+nSelL+' left / '+nSelR+' right.','info');
 }
-function cmpApplyClasses(s,map){document.querySelectorAll('#cmp-'+s+'-tbl .tnode[data-relpath]').forEach(function(el){el.classList.remove('cmp-same','cmp-diff','cmp-only-l','cmp-only-r');var c=map[String(el.getAttribute('data-relpath')).toLowerCase()];if(c)el.classList.add('cmp-'+c);});}
+var CMP_TAG={'only-l':'only here','only-r':'only here','diff':'differs','same':'identical'};
+function cmpApplyClasses(s,map){
+  document.querySelectorAll('#cmp-'+s+'-tbl .tnode[data-relpath]').forEach(function(el){
+    el.classList.remove('cmp-same','cmp-diff','cmp-only-l','cmp-only-r');
+    var old=el.querySelector('.cmp-tag');if(old)old.remove();
+    var c=map[String(el.getAttribute('data-relpath')).toLowerCase()];
+    if(!c)return;
+    var tag=document.createElement('span');
+    tag.className='cmp-tag t-'+c;
+    tag.textContent=(c==='only-l'||c==='only-r')?(s==='l'?'only left':'only right'):CMP_TAG[c];
+    el.appendChild(tag);
+  });
+}
+function cmpAutoCheck(s,map){
+  var n=0;
+  document.querySelectorAll('#cmp-'+s+'-tbl .cmp-chk-'+s).forEach(function(cb){
+    var node=cb.closest('.tnode');if(!node)return;
+    var c=map[String(node.getAttribute('data-relpath')).toLowerCase()];
+    var pick=(c==='diff'||c==='only-l'||c==='only-r');
+    cb.checked=pick;if(pick)n++;
+  });
+  return n;
+}
 function cmpSetDir(d){cmpDir=d;document.querySelectorAll('#cmp-dir button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-dir')===d);});cmpUpdateMethodAvail();cmpPersist();}
 function cmpMethodChange(){var m=document.getElementById('cmp-method').value;document.getElementById('cmp-relay-wrap').style.display=m==='relay'?'':'none';cmpPersist();}
 function cmpUpdateMethodAvail(){
@@ -739,25 +971,122 @@ function cmpSync(){
   var counter=document.getElementById('cmp-counter');counter.style.display='';counter.textContent='0 / '+items.length+' done';
   var endpoint={direct:'xfer_direct',ftp:'xfer_ftp',relay:'xfer_relay',fxp:'xfer_fxp'}[method];
   cmpLog('Syncing '+items.length+' file(s) '+(cmpDir==='lr'?'Left → Right':'Right → Left')+' via '+method.toUpperCase()+' …','info');
-  var queue=items.map(function(it){var el=document.createElement('div');el.className='bulk-item busy';el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(it.rel||it.name)+'</span><span class="bulk-item-meta">queued</span>';status.appendChild(el);return{it:it,el:el};});
-  cmpRunNext(queue,0,srcS,dstS,endpoint,relay,method,bar,counter);
+  var queue=items.map(function(it){
+    var el=document.createElement('div');el.className='bulk-item queued';
+    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(it.rel||it.name)+'</span><span class="bulk-item-meta">queued</span><div class="bulk-item-prog indet"><i></i></div>';
+    var q={it:it,el:el,done:false,failed:false,stopped:false,running:false};
+    var stop=document.createElement('button');stop.type='button';stop.className='bulk-item-stop';stop.textContent='Stop';stop.onclick=function(){cmpStopItem(q);};
+    el.appendChild(stop);status.appendChild(el);return q;
+  });
+  _cmpCtl={stop:false,queue:queue,srcS:srcS,dstS:dstS,endpoint:endpoint,relay:relay,method:method,bar:bar,counter:counter,abort:null};
+  cmpQueueCtl();
+  cmpRunNext(0);
 }
-function cmpRunNext(queue,qi,srcS,dstS,endpoint,relay,method,bar,counter){
-  if(qi>=queue.length){cmpLog('Sync complete','ok');showToast('Sync complete');return;}
-  var q=queue[qi];q.el.className='bulk-item busy';q.el.querySelector('.bulk-item-meta').textContent='transferring…';
-  var src=cmpState[srcS],dst=cmpState[dstS];
-  var fd=new FormData();fd.append('_a',endpoint);
+var _cmpCtl=null;
+function cmpQueueCtl(){
+  var st=document.getElementById('cmp-status');if(!st||!st.parentNode)return;
+  var wrap=document.getElementById('cmp-queue-ctl');
+  if(!wrap){wrap=document.createElement('div');wrap.id='cmp-queue-ctl';wrap.className='queue-ctl';st.parentNode.insertBefore(wrap,st);}
+  wrap.innerHTML='';
+  var stop=document.createElement('button');stop.type='button';stop.id='cmp-stop-btn';stop.className='btn btn-d btn-sm';stop.innerHTML='&#9632; Stop queue';stop.onclick=cmpStopAll;
+  wrap.appendChild(stop);
+}
+function cmpStopAll(){if(!_cmpCtl)return;_cmpCtl.stop=true;if(_cmpCtl.abort){try{_cmpCtl.abort.abort();}catch(e){}}var b=document.getElementById('cmp-stop-btn');if(b){b.disabled=true;b.innerHTML='Stopping…';}cmpLog('Queue stop requested','err');}
+function cmpMarkStopped(q){q.stopped=true;q.el.className='bulk-item stopped';q.el.querySelector('.bulk-item-ic').textContent='■';q.el.querySelector('.bulk-item-meta').textContent='stopped';var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();}
+function cmpStopItem(q){if(q.done||q.failed)return;if(q.running&&_cmpCtl&&_cmpCtl.abort){q.stopped=true;try{_cmpCtl.abort.abort();}catch(e){}}else cmpMarkStopped(q);}
+function cmpItemReset(q){
+  q.done=false;q.failed=false;q.stopped=false;q.running=false;
+  q.el.className='bulk-item queued';
+  q.el.querySelector('.bulk-item-ic').innerHTML='<span class="spin">&#8635;</span>';
+  q.el.querySelector('.bulk-item-meta').textContent='queued';
+  var rb=q.el.querySelector('.bulk-item-retry');if(rb)rb.remove();
+  var pr=q.el.querySelector('.bulk-item-prog');if(pr)pr.classList.add('indet');
+  if(!q.el.querySelector('.bulk-item-stop')){var stop=document.createElement('button');stop.type='button';stop.className='bulk-item-stop';stop.textContent='Stop';stop.onclick=function(){cmpStopItem(q);};q.el.appendChild(stop);}
+}
+function cmpUncheckSource(srcS,path){
+  var sel=(window.CSS&&CSS.escape)?CSS.escape(path):path.replace(/(["\\])/g,'\\$1');
+  var cb=document.querySelector('#cmp-'+srcS+'-tbl .cmp-chk-'+srcS+'[data-path="'+sel+'"]');
+  if(cb)cb.checked=false;
+}
+function cmpItemFail(q,msg){
+  q.failed=true;q.done=false;
+  q.el.className='bulk-item err';q.el.querySelector('.bulk-item-ic').textContent='✗';q.el.querySelector('.bulk-item-meta').textContent=msg;
+  var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();
+  if(!q.el.querySelector('.bulk-item-retry')){var b=document.createElement('button');b.type='button';b.className='bulk-item-retry';b.innerHTML='&#8635; Retry';b.onclick=function(){cmpRetryItem(q);};q.el.appendChild(b);}
+  cmpLog('✗ '+q.it.name+' — '+msg,'err');
+}
+function cmpRunOne(q,cb){
+  if(q.stopped){cmpMarkStopped(q);cb();return;}
+  q.running=true;q.el.className='bulk-item busy';q.el.querySelector('.bulk-item-meta').textContent='transferring…';
+  var c=_cmpCtl,src=cmpState[c.srcS],dst=cmpState[c.dstS];
+  var fd=new FormData();fd.append('_a',c.endpoint);
   fd.append('_skind',src.kind);fd.append('_dkind',dst.kind);
   fd.append('_sp',q.it.path);fd.append('_dp',q.it.destDir);fd.append('_name',q.it.name);
-  if(src.kind==='ftp'){var c=src.creds||{};fd.append('_h',c.h||'');fd.append('_port',c.port||'21');fd.append('_u',c.u||'');fd.append('_pw',c.pw||'');fd.append('_method',c.method||'ftp');}
+  if(src.kind==='ftp'){var cc=src.creds||{};fd.append('_h',cc.h||'');fd.append('_port',cc.port||'21');fd.append('_u',cc.u||'');fd.append('_pw',cc.pw||'');fd.append('_method',cc.method||'ftp');}
   if(dst.kind==='ftp'){var dc=dst.creds||{};fd.append('_dh',dc.h||'');fd.append('_dport',dc.port||'21');fd.append('_du',dc.u||'');fd.append('_dpw',dc.pw||'');fd.append('_dmethod',dc.method||'ftp');}
-  if(method==='relay'){fd.append('_relay',relay);fd.append('_relay_del','0');}
-  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
-    if(d.ok){q.el.className='bulk-item ok';q.el.querySelector('.bulk-item-ic').textContent='✓';q.el.querySelector('.bulk-item-meta').textContent=(d.size?ftpHumanSize(d.size):'')+(d.elapsed?' · '+d.elapsed:'');cmpLog('✓ '+q.it.name+' — '+(d.msg||'done'),'ok');}
-    else{q.el.className='bulk-item err';q.el.querySelector('.bulk-item-ic').textContent='✗';q.el.querySelector('.bulk-item-meta').textContent=d.msg||'failed';cmpLog('✗ '+q.it.name+' — '+(d.msg||'failed'),'err');}
-    bar.style.width=Math.round(((qi+1)/queue.length)*100)+'%';counter.textContent=(qi+1)+' / '+queue.length+' done';
-    cmpRunNext(queue,qi+1,srcS,dstS,endpoint,relay,method,bar,counter);
-  }).catch(function(e){q.el.className='bulk-item err';q.el.querySelector('.bulk-item-ic').textContent='✗';q.el.querySelector('.bulk-item-meta').textContent=e.message||'network error';cmpLog('✗ '+q.it.name+' — network error','err');bar.style.width=Math.round(((qi+1)/queue.length)*100)+'%';counter.textContent=(qi+1)+' / '+queue.length+' done';cmpRunNext(queue,qi+1,srcS,dstS,endpoint,relay,method,bar,counter);});
+  if(c.method==='relay'){fd.append('_relay',c.relay);fd.append('_relay_del','0');}
+  var ac=('AbortController'in window)?new AbortController():null;c.abort=ac;
+  fetch('',{method:'POST',body:fd,signal:ac?ac.signal:undefined}).then(function(r){return r.json();}).then(function(d){
+    q.running=false;c.abort=null;
+    if(d.ok){
+      q.done=true;q.failed=false;
+      q.el.className='bulk-item ok';q.el.querySelector('.bulk-item-ic').textContent='✓';
+      q.el.querySelector('.bulk-item-meta').textContent=(d.size?ftpHumanSize(d.size):'')+(d.elapsed?' · '+d.elapsed:'');
+      var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();
+      cmpUncheckSource(c.srcS,q.it.path);
+      cmpLog('✓ '+q.it.name+' — '+(d.msg||'done'),'ok');
+    }else cmpItemFail(q,d.msg||'failed');
+    cb();
+  }).catch(function(e){
+    q.running=false;c.abort=null;
+    if(ac&&e&&e.name==='AbortError'){cmpMarkStopped(q);cmpLog('■ '+q.it.name+' — stopped','err');}
+    else cmpItemFail(q,(e&&e.message)||'network error');
+    cb();
+  });
+}
+function cmpProgress(){
+  if(!_cmpCtl)return;var q=_cmpCtl.queue;
+  var done=q.filter(function(x){return x.done||x.failed||x.stopped;}).length;
+  if(_cmpCtl.bar)_cmpCtl.bar.style.width=Math.round((done/q.length)*100)+'%';
+  if(_cmpCtl.counter)_cmpCtl.counter.textContent=done+' / '+q.length+' done';
+}
+function cmpRunNext(qi){
+  if(!_cmpCtl)return;
+  var q=_cmpCtl.queue;
+  if(_cmpCtl.stop||qi>=q.length){cmpFinish();return;}
+  var item=q[qi];
+  if(item.done){cmpRunNext(qi+1);return;}
+  cmpRunOne(item,function(){cmpProgress();cmpRunNext(qi+1);});
+}
+function cmpFinish(){
+  cmpProgress();
+  var q=_cmpCtl.queue,failed=q.filter(function(x){return x.failed;});
+  var pending=q.filter(function(x){return !x.done&&!x.failed&&!x.stopped;});
+  if(_cmpCtl.stop&&pending.length){
+    pending.forEach(cmpMarkStopped);
+    cmpLog('Queue stopped ('+pending.length+' not transferred)','err');showToast('Queue stopped');
+  }else{cmpLog('Sync complete'+(failed.length?(' — '+failed.length+' failed'):''),failed.length?'err':'ok');showToast('Sync '+(failed.length?'finished with errors':'complete'));}
+  cmpRenderRetryAll(failed);
+  var b=document.getElementById('cmp-stop-btn');if(b){b.disabled=true;b.innerHTML='&#9632; Stop queue';}
+}
+function cmpClearStop(){if(_cmpCtl&&_cmpCtl.stop){_cmpCtl.stop=false;}var b=document.getElementById('cmp-stop-btn');if(b){b.disabled=false;b.innerHTML='&#9632; Stop queue';}}
+function cmpRetryItem(q){if(!_cmpCtl)return;cmpItemReset(q);cmpClearStop();cmpRunOne(q,function(){cmpProgress();cmpRenderRetryAll(_cmpCtl.queue.filter(function(x){return x.failed;}));});}
+function cmpRenderRetryAll(failed){
+  var st=document.getElementById('cmp-status');if(!st||!st.parentNode)return;
+  var wrap=document.getElementById('cmp-retry-all');
+  if(!wrap){wrap=document.createElement('div');wrap.id='cmp-retry-all';wrap.className='bulk-retry-all';st.parentNode.insertBefore(wrap,st.nextSibling);}
+  wrap.innerHTML='';
+  if(!failed.length){wrap.style.display='none';return;}
+  wrap.style.display='';
+  var b=document.createElement('button');b.type='button';b.className='btn btn-d btn-sm';b.innerHTML='&#8635; Retry failed ('+failed.length+')';
+  b.onclick=function(){wrap.style.display='none';cmpClearStop();failed.forEach(function(x){cmpItemReset(x);});cmpRetryQueue(failed);};
+  wrap.appendChild(b);
+}
+function cmpRetryQueue(list){
+  var i=0;(function nx(){
+    if(!_cmpCtl||_cmpCtl.stop||i>=list.length){cmpProgress();cmpRenderRetryAll(_cmpCtl.queue.filter(function(x){return x.failed;}));return;}
+    var q=list[i++];if(q.done){nx();return;}cmpRunOne(q,function(){cmpProgress();nx();});
+  })();
 }
 function cmpPersist(){try{['l','r'].forEach(function(s){localStorage.setItem('bsu_cmp_'+s+'_type',document.getElementById('cmp-'+s+'-type').value);localStorage.setItem('bsu_cmp_'+s+'_host',document.getElementById('cmp-'+s+'-host').value);localStorage.setItem('bsu_cmp_'+s+'_port',document.getElementById('cmp-'+s+'-port').value);localStorage.setItem('bsu_cmp_'+s+'_user',document.getElementById('cmp-'+s+'-user').value);localStorage.setItem('bsu_cmp_'+s+'_method',document.getElementById('cmp-'+s+'-method').value);var rt=document.getElementById('cmp-'+s+'-root');if(rt)localStorage.setItem('bsu_cmp_'+s+'_root',rt.value);});localStorage.setItem('bsu_cmp_dir',cmpDir);localStorage.setItem('bsu_cmp_xmethod',document.getElementById('cmp-method').value);}catch(e){}}
 function cmpRestoreFields(){if(_cmpRestored)return;_cmpRestored=true;try{
@@ -943,17 +1272,30 @@ function mitmRunNext(queue,qi){
     mitmUpdateProgress();mitmRunNext(queue,qi+1);
   });
 }
+var _pcFiles=[];
 function pcFilePicked(){
-  var fi=document.getElementById('pc-file');var n=document.getElementById('pc-name');
-  var nw=document.getElementById('pc-name-wrap');
-  var multi=fi&&fi.files&&fi.files.length>1;
-  if(nw)nw.style.display=multi?'none':'';
-  if(!multi&&fi&&fi.files&&fi.files.length&&n&&!n.value.trim())n.value=fi.files[0].name;
+  var fi=document.getElementById('pc-file');
+  if(fi&&fi.files&&fi.files.length){Array.prototype.forEach.call(fi.files,function(f){_pcFiles.push(f);});fi.value='';}
+  pcRenderFiles();
+}
+function pcRemoveFile(i){_pcFiles.splice(i,1);pcRenderFiles();}
+function pcClearFiles(){_pcFiles=[];pcRenderFiles();}
+function pcRenderFiles(){
+  var list=document.getElementById('pc-filelist');if(!list)return;
+  var n=document.getElementById('pc-name'),nw=document.getElementById('pc-name-wrap');
+  if(nw)nw.style.display=(_pcFiles.length===1)?'':'none';
+  if(_pcFiles.length===1&&n&&!n.value.trim())n.value=_pcFiles[0].name;
+  if(!_pcFiles.length){list.innerHTML='';return;}
+  var h='<div class="ftp-up-files">';
+  _pcFiles.forEach(function(f,i){
+    h+='<div class="ftp-up-file"><span class="ftp-up-fn">'+_esc(f.name)+'</span><span class="ftp-up-fsz">'+ftpHumanSize(f.size)+'</span><button type="button" class="ftp-up-rm" title="Remove" onclick="pcRemoveFile('+i+')">'+_icX+'</button></div>';
+  });
+  h+='</div><div style="font-size:.78rem;color:var(--t2)">'+_pcFiles.length+' file(s) selected · '+ftpHumanSize(_pcFiles.reduce(function(a,f){return a+f.size;},0))+'</div>';
+  list.innerHTML=h;
 }
 function pcUpload(){
-  var fi=document.getElementById('pc-file');
-  if(!fi||!fi.files||!fi.files.length){showToast('Choose a file first');return;}
-  var files=Array.prototype.slice.call(fi.files);
+  if(!_pcFiles.length){showToast('Choose a file first');return;}
+  var files=_pcFiles.slice();
   var multi=files.length>1;
   var folder=(document.getElementById('pc-folder').value||'').trim();
   var singleName=(document.getElementById('pc-name').value||'').trim();
@@ -962,7 +1304,7 @@ function pcUpload(){
   wrap.style.display='';bar.style.width='0%';counter.style.display='';counter.textContent='0 / '+files.length+' done';status.innerHTML='';
   var rows=files.map(function(f){
     var el=document.createElement('div');el.className='bulk-item busy';
-    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(f.name)+'</span><span class="bulk-item-meta">queued</span>';
+    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(f.name)+'</span><span class="bulk-item-meta">queued</span><div class="bulk-item-prog"><i></i></div>';
     status.appendChild(el);return el;
   });
   var done=0,idx=0;
@@ -971,10 +1313,11 @@ function pcUpload(){
     var f=files[idx],el=rows[idx];
     var name=(!multi&&singleName)?singleName:f.name;
     el.className='bulk-item busy';el.querySelector('.bulk-item-meta').textContent='uploading…';
+    var pf=el.querySelector('.bulk-item-prog>i');
     var fd=new FormData();fd.append('_a','upload_local');fd.append('file',f);fd.append('_name',name);
     if(folder)fd.append('folder',folder);
     var xhr=new XMLHttpRequest();xhr.open('POST','',true);
-    xhr.upload.onprogress=function(e){if(e.lengthComputable){var p=Math.round(e.loaded/e.total*100);el.querySelector('.bulk-item-meta').textContent=p+'% — '+ftpHumanSize(e.loaded)+' / '+ftpHumanSize(e.total);var overall=Math.round(((done+e.loaded/e.total)/files.length)*100);bar.style.width=overall+'%';setPg(overall);}};
+    xhr.upload.onprogress=function(e){if(e.lengthComputable){var p=Math.round(e.loaded/e.total*100);if(pf)pf.style.width=p+'%';el.querySelector('.bulk-item-meta').textContent=p+'% — '+ftpHumanSize(e.loaded)+' / '+ftpHumanSize(e.total);var overall=Math.round(((done+e.loaded/e.total)/files.length)*100);bar.style.width=overall+'%';setPg(overall);}};
     xhr.onload=function(){
       var d;try{d=JSON.parse(xhr.responseText);}catch(e){d={ok:false,error:'Unexpected server response'};}
       if(d.ok){
@@ -1032,29 +1375,38 @@ document.addEventListener('DOMContentLoaded',function(){updateThemeBtn();checkPe
 <?php $bsu_show_form = !(isset($_POST['url']) && isset($_POST['name'])); ?>
 <div class="app-body">
 <aside class="sidebar">
-  <div class="nav-group">
-    <button type="button" class="nav-item sb-toggle" onclick="toggleSidebar()" title="Collapse / expand sidebar"><span class="nav-ic"><?=ph('arrows-left-right',18)?></span> Collapse</button>
-  </div>
   <?php if($bsu_show_form): ?>
   <div class="nav-group">
-    <div class="nav-label">Modes</div>
+    <div class="nav-label">Upload</div>
     <button type="button" class="nav-item active" data-view="direct" onclick="showView('direct')"><span class="nav-ic"><?=ph('link',18)?></span> Upload from URL</button>
     <button type="button" class="nav-item" data-view="pc" onclick="showView('pc')"><span class="nav-ic"><?=ph('arrow-up',18)?></span> Upload from PC</button>
     <button type="button" class="nav-item" data-view="mitm" onclick="showView('mitm')"><span class="nav-ic"><?=ph('shuffle',18)?></span> MITM Relay</button>
-    <button type="button" class="nav-item" data-view="ftp" onclick="showView('ftp')"><span class="nav-ic"><?=ph('hard-drives',18)?></span> FTP Browser</button>
-    <button type="button" class="nav-item" data-view="compare" onclick="showView('compare')"><span class="nav-ic"><?=ph('arrows-left-right',18)?></span> Compare &amp; Sync</button>
+  </div>
+  <?php endif; ?>
+  <div class="nav-group">
+    <div class="nav-label">Browse</div>
+    <button type="button" class="nav-item" data-view="explorer" onclick="showView('explorer')"><span class="nav-ic"><?=ph('folder-open',18)?></span> File Explorer</button>
+    <?php if($bsu_show_form): ?>
+    <button type="button" class="nav-item" data-view="ftp" onclick="showView('ftp')"><span class="nav-ic"><?=ph('hard-drives',18)?></span> FTP Explorer</button>
+    <?php endif; ?>
+  </div>
+  <?php if($bsu_show_form): ?>
+  <div class="nav-group">
+    <div class="nav-label">Sync</div>
+    <button type="button" class="nav-item" data-view="compare" onclick="showView('compare')"><span class="nav-ic"><?=ph('arrows-left-right',18)?></span> FTPS Sync</button>
   </div>
   <?php endif; ?>
   <div class="nav-group">
     <div class="nav-label">Tools</div>
-    <button type="button" class="nav-item" data-view="explorer" onclick="showView('explorer')"><span class="nav-ic"><?=ph('folder-open',18)?></span> File Explorer</button>
     <button type="button" class="nav-item" data-view="phpinfo" onclick="showView('phpinfo')"><span class="nav-ic"><?=ph('gear-six',18)?></span> PHP Info</button>
     <button type="button" class="nav-item" data-view="help" onclick="showView('help')"><span class="nav-ic"><?=ph('question',18)?></span> Help</button>
     <button type="button" class="nav-item" data-view="update" onclick="showView('update')"><span class="nav-ic"><?=ph('arrow-clockwise',18)?></span> Update</button>
   </div>
   <div class="sidebar-foot">
-    <button type="button" class="nav-item" id="theme-btn" onclick="cycleTheme()" title="Toggle light / dark / auto theme"><span class="nav-ic"><?=ph('circle-half',18)?></span> Auto</button>
-    <span class="ip-badge"><?=htmlspecialchars(get_real_IP_address())?></span>
+    <div class="sb-foot-row">
+      <button type="button" class="sb-icon-btn sb-toggle" onclick="toggleSidebar()" title="Collapse / expand sidebar"><?=ph('arrows-left-right',18)?></button>
+      <button type="button" class="sb-icon-btn" id="theme-btn" onclick="cycleTheme()" title="Toggle light / dark / auto theme"><?=ph('circle-half',18)?></button>
+    </div>
   </div>
 </aside>
 <main class="content">
@@ -1091,9 +1443,11 @@ if(isset($_POST['url'],$_POST['name'])){
   <span class="dot">&middot;</span>
   <span>by <a href="https://amirhp.com/landing/" target="_blank" rel="noopener">AmirhpCom</a></span>
   <span class="dot">&middot;</span>
-  <a href="https://github.com/amirhp-com/upload-file-from-url-to-webserver" target="_blank" rel="noopener">GitHub</a>
+  <a href="https://github.com/amirhp-com/upload-url-to-server" target="_blank" rel="noopener">GitHub</a>
   <span class="dot">&middot;</span>
   <span>Copyright &copy; <?=date('Y')?> <a href="https://blackswandev.com" target="_blank" rel="noopener">BlackSwan</a>, under MIT License</span>
+  <span class="dot">&middot;</span>
+  <span>Server IP: <?=htmlspecialchars($_SERVER['SERVER_ADDR']??'?')?></span>
   <span class="dot">&middot;</span>
   <span>Your IP: <?=htmlspecialchars(get_real_IP_address())?></span>
   <span class="dot">&middot;</span>
@@ -1115,6 +1469,7 @@ function cmp_pane($s){
       </select>
       <button type="button" class="btn btn-p btn-sm" onclick="cmpConnect('<?=$s?>')"><?=ph('arrow-right',14)?> Load</button>
     </div>
+    <div id="cmp-<?=$s?>-conn-summary" class="conn-summary" style="display:none;margin-bottom:.6rem"></div>
     <div class="cmp-creds" id="cmp-<?=$s?>-creds" style="display:none">
       <div class="full prof-row">
         <select id="cmp-<?=$s?>-prof"><option value="">— Saved connections —</option></select>
@@ -1165,7 +1520,8 @@ function render_form(){
   </form>
 
   <div id="form-pc" class="view" data-view="pc">
-    <div class="field"><label>Choose File(s)</label><input type="file" id="pc-file" multiple onchange="pcFilePicked()"></div>
+    <div class="field"><label>Choose File(s) <span style="font-weight:400;text-transform:none;font-size:.9em">(pick more than once to add)</span></label><input type="file" id="pc-file" multiple onchange="pcFilePicked()"></div>
+    <div id="pc-filelist"></div>
     <div class="field"><label>Destination Folder</label><input type="text" id="pc-folder" placeholder="subdirectory (optional)"></div>
     <div class="field" id="pc-name-wrap"><label>Destination Filename <span style="font-weight:400;text-transform:none;font-size:.9em">(single file only)</span></label><input type="text" id="pc-name" placeholder="filename.ext (defaults to the chosen file's name)"></div>
     <div class="bulk-progress-wrap" id="pc-progress-wrap"><div class="bulk-bar" id="pc-bar"></div></div>
@@ -1193,7 +1549,13 @@ function render_form(){
   </form>
 
   <div id="form-ftp" class="view" data-view="ftp">
-    <div class="ftp-conn-card">
+    <div class="ftp-conn-card" id="ftp-conn-card">
+      <div class="conn-hd">
+        <span class="conn-ttl"><?=ph('hard-drives',13)?> FTP Connection</span>
+        <div id="ftp-conn-summary" class="conn-summary" style="display:none;cursor:pointer" title="Edit connection" onclick="ftpToggleConn(false)"></div>
+        <button type="button" id="ftp-conn-toggle" class="btn btn-g btn-sm conn-toggle" onclick="ftpToggleConn()" style="display:none">Edit</button>
+      </div>
+      <div id="ftp-conn-body">
       <div class="prof-row">
         <select id="ftp-prof"><option value="">— Saved connections —</option></select>
         <button type="button" class="btn btn-g btn-sm" onclick="ftpProfLoad()">Load</button>
@@ -1207,6 +1569,7 @@ function render_form(){
         <div class="field"><label>Username</label><input type="text" id="ftp-user" placeholder="anonymous" autocomplete="off"></div>
         <div class="field"><label>Password</label><input type="password" id="ftp-pass" placeholder="password" autocomplete="new-password"></div>
         <div class="field"><label>Connection Method</label><select id="ftp-method" onchange="ftpMethodChange()"><option value="ftp">FTP (plain)</option><option value="ftps">FTPS (TLS/SSL)</option><option value="sftp">SFTP (SSH)</option></select></div>
+        <div class="field"><label>Initial Directory <span style="font-weight:400;text-transform:none;font-size:.9em">(folder to load on connect)</span></label><input type="text" id="ftp-initdir" placeholder="/public_html  (blank = /)" autocomplete="off" onclick="this.select()" oninput="ftpSaveFields()"></div>
         <div class="field"><label>Web Base URL <span style="font-weight:400;text-transform:none;font-size:.9em">(optional &mdash; for Copy URL)</span></label><input type="text" id="ftp-baseurl" placeholder="https://dl.example.com" autocomplete="off" onclick="this.select()"></div>
         <div class="field"><label>Strip Path Prefix <span style="font-weight:400;text-transform:none;font-size:.9em">(optional &mdash; removed from URL path)</span></label><input type="text" id="ftp-strip" placeholder="/www" autocomplete="off" onclick="this.select()" oninput="ftpSaveFields()"></div>
         <div class="field"><label>Download-to Folder <span style="font-weight:400;text-transform:none;font-size:.9em">(optional &mdash; subfolder on this server)</span></label><input type="text" id="ftp-dl-folder" placeholder="e.g. downloads/ftp" autocomplete="off" onclick="this.select()" oninput="ftpSaveFields()"></div>
@@ -1214,14 +1577,44 @@ function render_form(){
       <div class="form-wrap" style="margin-top:.9rem">
         <button type="button" class="btn btn-p root" onclick="ftpConnect()"><?=ph('arrow-right',18)?> Connect &amp; Browse</button>
       </div>
+      </div>
     </div>
 
     <div class="ftp-browser" id="ftp-browser-area" style="display:none">
       <div class="fb-bar">
         <div id="ftp-path" class="fb-path"><span style="color:var(--t2)">Not connected</span></div>
+        <button class="btn btn-p btn-sm" onclick="ftpUpToggle()" title="Upload into the current folder"><?=ph('arrow-up',14)?> Upload</button>
         <button class="btn btn-g btn-sm" onclick="ftpExpandAll()" title="Load every folder"><?=ph('tree-structure',14)?> Load full tree</button>
         <button class="btn btn-g btn-sm" onclick="ftpCollapseAll()" title="Collapse all">Collapse</button>
         <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpRoot)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
+      </div>
+      <div class="ftp-up-panel" id="ftp-up-panel" style="display:none">
+        <div style="font-size:.78rem;color:var(--t2);margin-bottom:.6rem">Target: <code id="ftp-cur-dir" style="color:var(--t1);font-weight:600">/</code> &mdash; click a folder in the tree below to change it.</div>
+        <div class="seg" id="ftp-up-seg" style="margin-bottom:.6rem">
+          <button type="button" class="active" data-s="pc" onclick="ftpUpSetSrc('pc')"><?=ph('arrow-up',13)?> From PC</button>
+          <button type="button" data-s="url" onclick="ftpUpSetSrc('url')"><?=ph('link',13)?> From URL</button>
+          <button type="button" data-s="relay" onclick="ftpUpSetSrc('relay')"><?=ph('shuffle',13)?> Relay</button>
+        </div>
+        <div id="ftp-up-pc">
+          <div class="field"><label>Choose File(s) <span style="font-weight:400;text-transform:none;font-size:.9em">(pick more than once to add)</span></label><input type="file" id="ftp-up-file" multiple onchange="ftpUpPcPicked()"></div>
+          <div id="ftp-up-filelist"></div>
+        </div>
+        <div id="ftp-up-url" style="display:none">
+          <div class="field"><label>Source URL(s) <span style="font-weight:400;text-transform:none;font-size:.9em">(one per line for bulk)</span></label>
+            <div class="bulk-url-area" style="display:block;margin-bottom:0"><textarea id="ftp-up-urls" placeholder="https://example.com/file.zip&#10;https://example.com/file2.tar.gz"></textarea></div>
+          </div>
+        </div>
+        <div id="ftp-up-relay" style="display:none">
+          <div class="field"><label>Relay (MITM) Server URL</label><input type="url" id="ftp-up-relay-url" placeholder="https://relay.example.com/upload.php" onclick="this.select()"></div>
+          <div class="field"><label>Source URL(s) <span style="font-weight:400;text-transform:none;font-size:.9em">(one per line for bulk)</span></label>
+            <div class="bulk-url-area" style="display:block;margin-bottom:0"><textarea id="ftp-up-urls-relay" placeholder="https://restricted-source.com/file.zip"></textarea></div>
+          </div>
+          <div class="toggle-row"><div class="tgl-lbl">Delete from MITM after transfer<span class="tgl-hint">Auto-clean the relay server when done</span></div><label class="sw"><input type="checkbox" id="ftp-up-relay-del" checked><span class="sw-s"></span></label></div>
+        </div>
+        <div class="queue-ctl"><button type="button" class="btn btn-p btn-sm" onclick="ftpUpStart()"><?=ph('arrow-up',14)?> Upload to <span id="ftp-up-dir">/</span></button></div>
+        <div class="bulk-counter" id="ftp-up-counter"></div>
+        <div class="bulk-progress-wrap" id="ftp-up-progress-wrap"><div class="bulk-bar" id="ftp-up-bar"></div></div>
+        <div class="bulk-status" id="ftp-up-status"></div>
       </div>
       <div id="ftp-bulk" class="fb-bulk">
         <span id="ftp-sel-n"></span>
@@ -1253,10 +1646,10 @@ function render_form(){
       <span id="cmp-diff-summary" style="font-size:.82rem;color:var(--t2)"></span>
     </div>
     <div class="cmp-legend">
-      <span><i class="cmp-dot same"></i> Identical (name + size)</span>
-      <span><i class="cmp-dot diff"></i> Differs (size / type)</span>
-      <span><i class="cmp-dot only-l"></i> Only on Left</span>
-      <span><i class="cmp-dot only-r"></i> Only on Right</span>
+      <span><span class="cmp-tag t-same">identical</span> name + size match</span>
+      <span><span class="cmp-tag t-diff">differs</span> size / type differs</span>
+      <span><span class="cmp-tag t-only-l">only left</span> / <span class="cmp-tag t-only-r">only right</span> exists on one side</span>
+      <span style="color:var(--t2)">Differing &amp; one-side-only files are auto-checked after Compare.</span>
     </div>
     <div class="cmp-opts">
       <div class="field"><label>Direction</label><div class="seg" id="cmp-dir"><button type="button" class="active" data-dir="lr" onclick="cmpSetDir('lr')">Left &rarr; Right</button><button type="button" data-dir="rl" onclick="cmpSetDir('rl')">Right &rarr; Left</button></div></div>
@@ -1329,6 +1722,57 @@ Compare &amp; Sync Mode (recursive, by path relative to each root):
   --relay=&lt;URL&gt;         Relay (MITM) URL for --method=relay
   --yes                 Perform the sync (omit for a dry-run)
   &lt;spec&gt; = local:/abs/path | ftp://user:pass@host:port/root  (ftps:// sftp://)</div></div>
+      <div class="help-sec"><h4>Removing PHP Limits &amp; Timeouts (big / slow files)</h4>
+<div class="help-code">This script already calls set_time_limit(0) and raises limits at runtime, but
+many hosts disable that. To upload/download large files without "504 / Maximum
+execution time exceeded", raise the limits at the server level too.
+
+── php.ini  (find yours in PHP Info → "Loaded Configuration File") ──
+  max_execution_time = 0       ; 0 = unlimited (CLI is already unlimited)
+  max_input_time     = -1
+  memory_limit       = 1024M
+  upload_max_filesize = 5G     ; only matters for "Upload from PC"
+  post_max_size       = 5G     ; must be >= upload_max_filesize
+  default_socket_timeout = 3600
+
+── .user.ini  (shared hosting / PHP-FPM / CGI — put in this folder) ──
+  max_execution_time = 0
+  memory_limit = 1024M
+  upload_max_filesize = 5G
+  post_max_size = 5G
+  ; takes effect after user_ini.cache_ttl (default 300s)
+
+── .htaccess  (Apache + mod_php only) ──
+  php_value max_execution_time 0
+  php_value memory_limit 1024M
+  php_value upload_max_filesize 5G
+  php_value post_max_size 5G
+
+── Apache (not mod_php) / proxies ──
+  Timeout 3600                 ; httpd.conf / vhost
+  # mod_fcgid:  FcgidIOTimeout 3600 / FcgidBusyTimeout 3600
+  # mod_proxy_fcgi: ProxyTimeout 3600
+
+── Nginx + PHP-FPM ──
+  # nginx:  client_max_body_size 5G;  fastcgi_read_timeout 3600s;
+  # php-fpm pool (www.conf):  request_terminate_timeout = 0
+
+Note: "Upload from URL", "MITM Relay", "FTP Save-to-server" and "Sync" stream
+through the server and are bound by max_execution_time, NOT upload_max_filesize.
+Only "Upload from PC" is bound by upload_max_filesize / post_max_size.</div></div>
+      <div class="help-sec"><h4>Self-Update (from GitHub Releases)</h4>
+<div class="help-code">Update tab → "Check for updates":
+  1. Calls the GitHub Releases API for amirhp-com/upload-url-to-server
+     (the "latest" release) and reads its tag (e.g. v3.0.0).
+  2. Compares that tag to this file's APP_VER with version_compare().
+  3. If newer, downloads upload.php — preferring a release ASSET named
+     "upload.php", otherwise the raw file at that tag.
+  4. Verifies the download actually contains a newer APP_VER, backs up the
+     current file as upload.php.bak, then overwrites upload.php in place.
+
+Requirements: this file must be WRITABLE by PHP, and the server must be able
+to reach api.github.com + raw.githubusercontent.com (outbound HTTPS).
+Roll back at any time by restoring upload.php.bak.</div></div>
       <div class="help-sec"><h4>File Tree &amp; Compare</h4>
 <div class="help-code">File Browser, FTP Browser and Compare panes show an expandable TREE.
 Click a folder to load just that folder; "Load full tree" loads everything
@@ -1683,6 +2127,20 @@ function render_completion_buttons($path_full='',$mode='direct'){
   flush_buffers(true);
 }
 
+function dir_size_bytes($dir,$depth=0){
+  // Recursive folder size, guarded against deep trees and symlink loops.
+  if($depth>12)return 0;
+  $entries=@scandir($dir);if($entries===false)return 0;
+  $total=0;
+  foreach($entries as $f){
+    if($f==='.'||$f==='..')continue;
+    $full=$dir.'/'.$f;
+    if(is_link($full))continue;
+    if(is_dir($full))$total+=dir_size_bytes($full,$depth+1);
+    else $total+=(int)@filesize($full);
+  }
+  return $total;
+}
 function ls_dir_items($dir){
   $entries=@scandir($dir);
   if($entries===false)return null;
@@ -1690,7 +2148,7 @@ function ls_dir_items($dir){
   foreach($entries as $entry){
     if($entry==='.'||$entry==='..')continue;
     $full=$dir.'/'.$entry;$is_dir=is_dir($full);
-    $sz=$is_dir?0:@filesize($full);$mt=@filemtime($full);
+    $sz=$is_dir?dir_size_bytes($full):@filesize($full);$mt=@filemtime($full);
     $url='';
     if(!$is_dir){
       $dr=realpath($_SERVER['DOCUMENT_ROOT']??'');
@@ -1704,7 +2162,7 @@ function ls_dir_items($dir){
     $fp_int=@fileperms($full);
     $perms_octal=$fp_int!==false?substr(sprintf('%o',$fp_int),-4):'';
     $perms_sym=$fp_int!==false?perms_int_to_sym($fp_int):'';
-    $items[]=['name'=>$entry,'type'=>$is_dir?'dir':'file','path'=>$full,'size'=>$is_dir?'':human_filesize((int)$sz),'size_bytes'=>(int)$sz,'mtime'=>$mt?date('Y-m-d H:i',$mt):'','url'=>$url,'perms_octal'=>$perms_octal,'perms_sym'=>$perms_sym];
+    $items[]=['name'=>$entry,'type'=>$is_dir?'dir':'file','path'=>$full,'size'=>human_filesize((int)$sz),'size_bytes'=>(int)$sz,'mtime'=>$mt?date('Y-m-d H:i',$mt):'','url'=>$url,'perms_octal'=>$perms_octal,'perms_sym'=>$perms_sym];
   }
   usort($items,function($a,$b){if($a['type']!==$b['type'])return $a['type']==='dir'?-1:1;return strnatcasecmp($a['name'],$b['name']);});
   return $items;
@@ -2288,6 +2746,7 @@ function ftp_tree_walk($c,$conn,$path,$depth,&$count,&$capped){
     if($it['type']==='dir'){
       if($depth+1>=TREE_MAX_DEPTH){$capped=true;$it['children']=null;continue;}
       $it['children']=ftp_tree_walk($c,$conn,$it['path'],$depth+1,$count,$capped);
+      if(is_array($it['children'])){$ds=array_sum(array_map(function($c){return (int)($c['size_bytes']??0);},$it['children']));$it['size_bytes']=$ds;$it['size']=human_filesize($ds);}
     }
   }
   unset($it);
@@ -2425,6 +2884,53 @@ function ajax_ftp_copy_to_server(){
   return['ok'=>true,'name'=>$name,'size'=>(int)$sz,'url'=>$url,'elapsed'=>human_timing($start)];
 }
 
+// Upload a file (from PC / a URL / via relay) into the currently-browsed FTP folder.
+function ajax_ftp_upload(){
+  set_time_limit(0);$start=microtime(true);
+  $c=ftp_creds_from_post();
+  $dir=trim((string)($_POST['_dir']??'/'));if($dir==='')$dir='/';
+  $src=trim((string)($_POST['_src']??'pc'));
+  $name=sanitize_filename((string)($_POST['_name']??''));
+  if(!$c['h'])return['ok'=>false,'error'=>'Not connected to an FTP server'];
+  $tmp=null;$isTemp=false;
+  if($src==='pc'){
+    if(empty($_FILES['file'])||!is_uploaded_file($_FILES['file']['tmp_name']??''))return['ok'=>false,'error'=>'No file was uploaded'];
+    if($name==='')$name=sanitize_filename($_FILES['file']['name']??'');
+    $tmp=$_FILES['file']['tmp_name'];
+  }elseif($src==='url'){
+    $url=trim((string)($_POST['url']??''));
+    if(!filter_var($url,FILTER_VALIDATE_URL))return['ok'=>false,'error'=>'A valid source URL is required'];
+    if($name==='')$name=sanitize_filename(basename(parse_url($url,PHP_URL_PATH)?:'')?:('file_'.time()));
+    $tmp=tempnam(sys_get_temp_dir(),'bsu');$fp=$tmp?fopen($tmp,'wb'):false;
+    if(!$fp)return['ok'=>false,'error'=>'Cannot create temp file'];
+    $ch=curl_init($url);
+    curl_setopt_array($ch,[CURLOPT_FILE=>$fp,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_SSL_VERIFYPEER=>0,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,CURLOPT_USERAGENT=>'Mozilla/5.0 (compatible; BlackSwanUpload/'.APP_VER.')']);
+    curl_exec($ch);$err=curl_error($ch);curl_close($ch);fclose($fp);
+    if($err||@filesize($tmp)<1){@unlink($tmp);return['ok'=>false,'error'=>'Download failed: '.($err?:'empty file')];}
+    $isTemp=true;
+  }elseif($src==='relay'){
+    $relay=trim((string)($_POST['mitm_url']??''));$url=trim((string)($_POST['url']??''));
+    if(!filter_var($relay,FILTER_VALIDATE_URL)||!filter_var($url,FILTER_VALIDATE_URL))return['ok'=>false,'error'=>'Both the relay URL and the source URL are required'];
+    if($name==='')$name=sanitize_filename(basename(parse_url($url,PHP_URL_PATH)?:'')?:('file_'.time()));
+    $r=mitm_post($relay,['_a'=>'fetch','url'=>$url,'_name'=>$name]);
+    if(!$r||empty($r['ok'])||empty($r['url']))return['ok'=>false,'error'=>'Relay fetch failed: '.($r['error']??'no response from relay')];
+    $tmp=tempnam(sys_get_temp_dir(),'bsr');$fp=$tmp?fopen($tmp,'wb'):false;
+    if(!$fp)return['ok'=>false,'error'=>'Cannot create temp file'];
+    $ch=curl_init($r['url']);
+    curl_setopt_array($ch,[CURLOPT_FILE=>$fp,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_SSL_VERIFYPEER=>0,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER]);
+    curl_exec($ch);$err=curl_error($ch);curl_close($ch);fclose($fp);
+    if($err||@filesize($tmp)<1){@unlink($tmp);return['ok'=>false,'error'=>'Relay download failed: '.($err?:'empty file')];}
+    if(($_POST['mitm_delete']??'')==='1')@mitm_post($relay,['_a'=>'del_by_name','_name'=>$name]);
+    $isTemp=true;
+  }else return['ok'=>false,'error'=>'Unknown upload source'];
+  if($name===''){if($isTemp)@unlink($tmp);return['ok'=>false,'error'=>'Could not determine a destination filename'];}
+  $size=@filesize($tmp);
+  $target=rtrim($dir,'/').'/'.$name;
+  [$ok,$uerr]=ftp_upload_from_local($c,$tmp,$target);
+  if($isTemp)@unlink($tmp);
+  if(!$ok)return['ok'=>false,'error'=>$uerr?:'FTP upload failed'];
+  return['ok'=>true,'name'=>$name,'size'=>(int)$size,'path'=>$target,'elapsed'=>human_timing($start)];
+}
 function ftp_proto_url($c,$path){
   $proto=$c['method']==='sftp'?'sftp':($c['method']==='ftps'?'ftps':'ftp');
   $port=$c['port']?:($c['method']==='sftp'?22:21);
