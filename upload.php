@@ -3,8 +3,8 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/06/02 12:00:00
- * @Version: 3.0.0
+ * @Last modified time: 2026/06/02 18:00:00
+ * @Version: 3.1.0
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.0.0');
+define('APP_VER','3.1.0');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -124,10 +124,13 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 .ftp-up-file .ftp-up-rm{background:none;border:none;color:var(--t2);cursor:pointer;padding:.1rem .35rem;border-radius:5px;line-height:1}
 .ftp-up-file .ftp-up-rm:hover{color:var(--rd);background:var(--s2)}
 .tnode.ftp-cur{background:var(--ac-soft);box-shadow:inset 2px 0 0 var(--ac)}
+.fv-addr{flex:1;min-width:120px;height:var(--ctl-h);padding:0 .7rem;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rad);color:var(--t1);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;outline:none}
+.fv-addr:focus{border-color:var(--ac)}
 .sb-foot-row{display:flex;gap:.4rem;align-items:center;width:100%}
 .sb-icon-btn{flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;padding:.5rem;border:1px solid var(--bd);background:var(--s2);color:var(--t2);border-radius:var(--rad);cursor:pointer;transition:background .15s,color .15s}
 .sb-icon-btn:hover{color:var(--t1);background:var(--bd)}
 body.sb-collapsed .sb-foot-row{flex-direction:column}
+body.sb-collapsed .sidebar:hover .sb-foot-row{flex-direction:row}
 @media(max-width:820px){.sidebar-foot .sb-foot-row{width:auto}.sb-icon-btn{flex:0 0 auto}}
 .seg{display:inline-flex;border:1px solid var(--bd);border-radius:9px;overflow:hidden}.seg button{border:none;background:var(--s2);color:var(--t2);padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}.seg button+button{border-left:1px solid var(--bd)}.seg button.active{background:var(--ac);color:#fff}
 /* ===== sidebar app shell (v2.8 UI) ===== */
@@ -366,7 +369,24 @@ function cmpProfDelete(s){var sel=document.getElementById('cmp-'+s+'-prof');var 
 var fbCwd='__ROOT__';
 var ftpCwd='/';
 var ftpCreds={};
-var fbTV=null,fbRoot='__ROOT__';
+var fbParent=null;
+/* ── shared single-folder (flat) view: address bar + table ── */
+function fvRowsHtml(prefix,items,actionsFn){
+  if(!items||!items.length)return'<div class="fb-empty">This folder is empty.</div>';
+  var h='<table class="fb-tbl"><thead><tr><th style="width:26px"></th><th>Name</th><th>Size</th><th>Modified</th><th>Perms</th><th></th></tr></thead><tbody>';
+  items.forEach(function(n){
+    var isDir=n.type==='dir',dp=_attr(n.path);
+    var chk='<input type="checkbox" class="'+prefix+'-chk" value="'+dp+'" data-path="'+dp+'" data-name="'+_attr(n.name)+'" data-type="'+n.type+'" data-size="'+(n.size_bytes||0)+'" data-url="'+_attr(n.url||'')+'">';
+    var name=isDir?'<span class="fb-dn" onclick=\''+prefix+'Nav('+JSON.stringify(n.path)+')\'>'+_icFolder+' '+_esc(n.name)+'</span>':'<span class="fb-fn">'+_icFile+' '+_esc(n.name)+'</span>';
+    h+='<tr><td>'+chk+'</td><td>'+name+'</td><td class="fb-sz">'+_esc(n.size||'')+'</td><td class="fb-mt">'+_esc(n.mtime||'')+'</td><td class="ftp-perms">'+_esc(n.perms_octal||'')+'</td><td class="fb-acts">'+(actionsFn?actionsFn(n):'')+'</td></tr>';
+  });
+  return h+'</tbody></table>';
+}
+function fvCrumbs(prefix,d,rootPath){
+  var h='<span class="fb-crumb" onclick=\''+prefix+'Nav('+JSON.stringify(rootPath)+')\' title="Root">'+_icHome+'</span>';
+  (d.breadcrumbs||[]).forEach(function(c){h+='<span class="fb-sep">/</span><span class="fb-crumb" onclick=\''+prefix+'Nav('+JSON.stringify(c.path)+')\'>'+_esc(c.name)+'</span>';});
+  return h;
+}
 function fbActions(n){
   var p=JSON.stringify(n.path),nm=JSON.stringify(n.name);
   var h=n.url?'<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy URL" onclick=\'copyText('+JSON.stringify(n.url)+',this)\'>'+_icCopy+'</button>':'';
@@ -376,11 +396,11 @@ function fbActions(n){
   h+='<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'fbDel('+p+','+nm+')\'>'+_icTrash+'</button>';
   return h;
 }
-function fbLazyLoad(node,cb){var fd=new FormData();fd.append('_a','ls');fd.append('_p',node.path);fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){cb(d.ok?d.items:[]);}).catch(function(){cb([]);});}
-function fbEnsureTV(){if(!fbTV)fbTV=tvCreate({id:'fb-tbl-wrap',checkbox:true,chkClass:'fb-chk',actions:fbActions,load:fbLazyLoad,onCheck:fbChkChg});return fbTV;}
-function openFileBrowser(){openModal('modal-fb');fbLoad('__ROOT__');}
+function fbNav(path){fbLoad(path);}
+function fbGo(){var v=(document.getElementById('fb-addr')||{value:''}).value.trim();fbLoad(v||'__ROOT__');}
+function fbUp(){if(fbParent)fbLoad(fbParent);else showToast('Already at the top');}
 function fbLoad(path){
-  fbCwd=path;fbRoot=path;
+  fbCwd=path;
   document.getElementById('fb-loading').style.display='block';
   document.getElementById('fb-content').style.display='none';
   var fd=new FormData();fd.append('_a','ls');fd.append('_p',path);
@@ -388,24 +408,14 @@ function fbLoad(path){
     document.getElementById('fb-loading').style.display='none';
     document.getElementById('fb-content').style.display='block';
     if(!d.ok){document.getElementById('fb-tbl-wrap').innerHTML='<div class="fb-empty">'+_esc(d.msg||'Error')+'</div>';return;}
-    fbCwd=d.path;fbRoot=d.path;
-    document.getElementById('fb-path').innerHTML='<span class="fb-crumb" style="cursor:default;color:var(--t2)">'+_icHome+' '+_esc(d.path)+'</span>';
-    fbEnsureTV();tvSetRoot(fbTV,d.items,d.path);
+    fbCwd=d.path;fbParent=d.parent;
+    var addr=document.getElementById('fb-addr');if(addr)addr.value=d.path;
+    document.getElementById('fb-path').innerHTML=fvCrumbs('fb',d,'__ROOT__');
+    document.getElementById('fb-tbl-wrap').innerHTML=fvRowsHtml('fb',d.items,fbActions);
     document.getElementById('fb-bulk').classList.add('show');fbChkChg();
   }).catch(function(){document.getElementById('fb-loading').innerHTML='<span style="color:var(--rd)">Failed to load directory</span>';});
 }
 function treeLoadingHtml(msg){return'<div class="tload-bar"></div><div class="tree-loading"><span class="spin">&#8635;</span> '+(msg||'Loading full tree…')+'</div>';}
-function fbExpandAll(){
-  showToast('Loading full tree…');
-  var c=document.getElementById('fb-tbl-wrap');if(c)c.innerHTML=treeLoadingHtml('Loading full tree…');
-  var fd=new FormData();fd.append('_a','ls_tree');fd.append('_p',fbRoot);
-  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
-    if(!d.ok){showToast('Error: '+(d.msg||'failed'));if(c)c.innerHTML='<div class="tree-empty">'+_esc(d.msg||'Failed')+'</div>';return;}
-    fbEnsureTV();tvSetFull(fbTV,d.tree,d.root);fbChkChg();
-    showToast(d.capped?('Tree truncated at '+d.count+' items'):('Loaded '+d.count+' items'));
-  }).catch(function(){showToast('Failed to load tree');if(c)c.innerHTML='<div class="tree-empty">Failed to load tree</div>';});
-}
-function fbCollapseAll(){if(fbTV)tvCollapseAll(fbTV);}
 function fbSelAll(on){document.querySelectorAll('#fb-tbl-wrap .fb-chk').forEach(function(c){c.checked=on;});fbChkChg();}
 function fbChkChg(){
   var cc=document.querySelectorAll('#fb-tbl-wrap .fb-chk:checked');
@@ -448,8 +458,8 @@ var VIEW_META={
   direct:{t:'Upload from URL',d:'Pull a file from any URL straight onto this server.'},
   pc:{t:'Upload from PC',d:'Pick one or more files from your device and upload them directly to this server.'},
   mitm:{t:'MITM Relay',d:'Route the transfer through a second server when this one can\'t reach the URL directly.'},
-  ftp:{t:'FTP Browser',d:'Connect over FTP, FTPS, or SFTP and browse, download, or manage remote files.'},
-  compare:{t:'Compare & Sync',d:'Diff two locations side by side and sync files in either direction.'},
+  ftp:{t:'FTP Explorer',d:'Connect over FTP, FTPS, or SFTP and browse, upload, download, or manage remote files.'},
+  compare:{t:'FTPS Sync',d:'Diff two locations side by side and sync files in either direction.'},
   explorer:{t:'File Explorer',d:'Browse, download, rename, and delete files on this server.'},
   phpinfo:{t:'PHP Info',d:'Server environment and PHP configuration at a glance.'},
   help:{t:'Help & CLI Guide',d:'Every command-line flag and web endpoint, documented.'},
@@ -560,9 +570,8 @@ function ftpShowConnSummary(){
   var tb=document.getElementById('ftp-conn-toggle');if(tb)tb.style.display='';
   ftpToggleConn(true);
 }
-var ftpTV=null,ftpRoot='/',_ftpJustConn=false;
+var ftpRoot='/',_ftpJustConn=false;
 function ftpFd(action,path){var fd=new FormData();fd.append('_a',action);fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');fd.append('_method',ftpCreds.method||'ftp');fd.append('_p',path);return fd;}
-function ftpLazyLoad(node,cb){fetch('',{method:'POST',body:ftpFd('ftp_ls',node.path)}).then(function(r){return r.json();}).then(function(d){cb(d.ok?d.items:[]);}).catch(function(){cb([]);});}
 function ftpActions(n){
   var p=JSON.stringify(n.path),nm=JSON.stringify(n.name),tp=JSON.stringify(n.type),h='';
   if(n.type!=='dir'){
@@ -578,16 +587,10 @@ function ftpActions(n){
   h+='<button class="btn btn-d btn-sm btn-icon" title="Delete" onclick=\'ftpDel('+p+','+nm+','+tp+')\'>'+_icTrash+'</button>';
   return h;
 }
-function ftpEnsureTV(){if(!ftpTV)ftpTV=tvCreate({id:'ftp-tbl-wrap',checkbox:true,chkClass:'ftp-chk',actions:ftpActions,load:ftpLazyLoad,onCheck:ftpChkChg,onToggle:ftpSetCurDir});return ftpTV;}
-var ftpUpDir='';
-function ftpSetCurDir(n){
-  if(!n||n.type!=='dir')return;
-  ftpUpDir=n.path;
-  var d=document.getElementById('ftp-up-dir');if(d)d.textContent=n.path;
-  document.querySelectorAll('#ftp-tbl-wrap .tnode.ftp-cur').forEach(function(e){e.classList.remove('ftp-cur');});
-  var node=document.querySelector('#ftp-tbl-wrap .tnode[data-tv-node="'+n._id+'"]');if(node)node.classList.add('ftp-cur');
-  var pe=document.getElementById('ftp-cur-dir');if(pe)pe.textContent=n.path;
-}
+var ftpUpDir='',ftpParent=null;
+function ftpNav(path){ftpLoad(path);}
+function ftpGo(){if(!ftpCreds.h){showToast('Connect first');return;}var v=(document.getElementById('ftp-addr')||{value:''}).value.trim();ftpLoad(v||'/');}
+function ftpUp(){if(ftpParent!=null)ftpLoad(ftpParent);else showToast('Already at the top');}
 function ftpLoad(path){
   ftpCwd=path;ftpRoot=path;
   var area=document.getElementById('ftp-browser-area');
@@ -601,29 +604,18 @@ function ftpLoad(path){
     .then(function(d){
       if(loading)loading.style.display='none';
       if(!d.ok){tbl.innerHTML='<div class="ftp-empty">'+_esc(d.msg||'Error')+'</div>';ftpLog('Error: '+(d.msg||'unknown error'),'err');return;}
-      ftpCwd=d.path;ftpRoot=d.path;ftpUpDir=d.path;
-      document.getElementById('ftp-path').innerHTML='<span class="fb-crumb" style="cursor:default;color:var(--t2)">'+_icHome+' '+_esc(d.path)+'</span>';
-      ftpEnsureTV();tvSetRoot(ftpTV,d.items,d.path);
+      ftpCwd=d.path;ftpRoot=d.path;ftpUpDir=d.path;ftpParent=d.parent;
+      var addr=document.getElementById('ftp-addr');if(addr)addr.value=d.path;
+      document.getElementById('ftp-path').innerHTML=fvCrumbs('ftp',d,'/');
+      tbl.innerHTML=fvRowsHtml('ftp',d.items,ftpActions);
       var bulk=document.getElementById('ftp-bulk');if(bulk)bulk.classList.add('show');ftpChkChg();
+      var ud=document.getElementById('ftp-up-dir');if(ud)ud.textContent=d.path;
+      var cd=document.getElementById('ftp-cur-dir');if(cd)cd.textContent=d.path;
       if(_ftpJustConn){_ftpJustConn=false;ftpShowConnSummary();}
       ftpLog('Listed: '+d.path,'ok');
     })
     .catch(function(e){if(loading)loading.style.display='none';ftpLog('Network error: '+(e.message||e),'err');});
 }
-function ftpExpandAll(){
-  if(!ftpCreds.h){showToast('Connect first');return;}
-  ftpLog('Loading full tree…','info');showToast('Loading full tree…');
-  var c=document.getElementById('ftp-tbl-wrap');if(c)c.innerHTML=treeLoadingHtml('Loading full tree from FTP server…');
-  fetch('',{method:'POST',body:ftpFd('ftp_tree',ftpRoot)})
-    .then(function(r){return r.json();})
-    .then(function(d){
-      if(!d.ok){ftpLog('Tree error: '+(d.msg||'failed'),'err');showToast('Error: '+(d.msg||'failed'));if(c)c.innerHTML='<div class="tree-empty">'+_esc(d.msg||'Failed')+'</div>';return;}
-      ftpEnsureTV();tvSetFull(ftpTV,d.tree,d.root);ftpChkChg();
-      ftpLog('Loaded '+d.count+' items'+(d.capped?' (truncated — tree too large)':''),d.capped?'err':'ok');
-      showToast(d.capped?('Tree truncated at '+d.count+' items'):('Loaded '+d.count+' items'));
-    }).catch(function(){showToast('Failed to load tree');if(c)c.innerHTML='<div class="tree-empty">Failed to load tree</div>';});
-}
-function ftpCollapseAll(){if(ftpTV)tvCollapseAll(ftpTV);}
 function ftpUrlPath(remotePath){
   var strip=(document.getElementById('ftp-strip')||{value:''}).value.trim().replace(/\/+$/,'');
   if(strip&&remotePath.indexOf(strip)===0)return remotePath.slice(strip.length)||'/';
@@ -1582,14 +1574,15 @@ function render_form(){
 
     <div class="ftp-browser" id="ftp-browser-area" style="display:none">
       <div class="fb-bar">
-        <div id="ftp-path" class="fb-path"><span style="color:var(--t2)">Not connected</span></div>
+        <button class="btn btn-g btn-sm btn-icon" onclick="ftpUp()" title="Up one level"><?=ph('arrow-up',14)?></button>
+        <input type="text" class="fv-addr" id="ftp-addr" placeholder="/" onkeydown="if(event.key==='Enter'){event.preventDefault();ftpGo();}" onclick="this.select()">
+        <button class="btn btn-g btn-sm" onclick="ftpGo()" title="Go to this folder"><?=ph('arrow-right',14)?> Go</button>
         <button class="btn btn-p btn-sm" onclick="ftpUpToggle()" title="Upload into the current folder"><?=ph('arrow-up',14)?> Upload</button>
-        <button class="btn btn-g btn-sm" onclick="ftpExpandAll()" title="Load every folder"><?=ph('tree-structure',14)?> Load full tree</button>
-        <button class="btn btn-g btn-sm" onclick="ftpCollapseAll()" title="Collapse all">Collapse</button>
-        <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpRoot)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
+        <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
       </div>
+      <div id="ftp-path" class="fb-path"><span style="color:var(--t2)">Not connected</span></div>
       <div class="ftp-up-panel" id="ftp-up-panel" style="display:none">
-        <div style="font-size:.78rem;color:var(--t2);margin-bottom:.6rem">Target: <code id="ftp-cur-dir" style="color:var(--t1);font-weight:600">/</code> &mdash; click a folder in the tree below to change it.</div>
+        <div style="font-size:.78rem;color:var(--t2);margin-bottom:.6rem">Uploading into <code id="ftp-cur-dir" style="color:var(--t1);font-weight:600">/</code> &mdash; the folder open below. Navigate into another folder to change the target.</div>
         <div class="seg" id="ftp-up-seg" style="margin-bottom:.6rem">
           <button type="button" class="active" data-s="pc" onclick="ftpUpSetSrc('pc')"><?=ph('arrow-up',13)?> From PC</button>
           <button type="button" data-s="url" onclick="ftpUpSetSrc('url')"><?=ph('link',13)?> From URL</button>
@@ -1671,11 +1664,12 @@ function render_form(){
 
   <div class="view" data-view="explorer" id="view-explorer">
     <div class="fb-bar">
-      <div id="fb-path" class="fb-path"><span style="color:var(--t2)">Loading&hellip;</span></div>
-      <button class="btn btn-g btn-sm" onclick="fbExpandAll()" title="Load every folder"><?=ph('tree-structure',14)?> Load full tree</button>
-      <button class="btn btn-g btn-sm" onclick="fbCollapseAll()" title="Collapse all">Collapse</button>
+      <button class="btn btn-g btn-sm btn-icon" onclick="fbUp()" title="Up one level"><?=ph('arrow-up',14)?></button>
+      <input type="text" class="fv-addr" id="fb-addr" placeholder="/path/to/folder" onkeydown="if(event.key==='Enter'){event.preventDefault();fbGo();}" onclick="this.select()">
+      <button class="btn btn-g btn-sm" onclick="fbGo()" title="Go to this folder"><?=ph('arrow-right',14)?> Go</button>
       <button class="btn btn-g btn-sm btn-icon" onclick="fbLoad(fbCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
     </div>
+    <div id="fb-path" class="fb-path"><span style="color:var(--t2)">Loading&hellip;</span></div>
     <div id="fb-bulk" class="fb-bulk">
       <span id="fb-sel-n"></span>
       <button class="btn btn-g btn-sm" onclick="fbSelAll(true)">Select all</button>
@@ -1774,9 +1768,12 @@ Requirements: this file must be WRITABLE by PHP, and the server must be able
 to reach api.github.com + raw.githubusercontent.com (outbound HTTPS).
 Roll back at any time by restoring upload.php.bak.</div></div>
       <div class="help-sec"><h4>File Tree &amp; Compare</h4>
-<div class="help-code">File Browser, FTP Browser and Compare panes show an expandable TREE.
-Click a folder to load just that folder; "Load full tree" loads everything
-(recursively, capped for safety).
+<div class="help-code">File Explorer and FTP Explorer use a single-folder view: click a folder to
+open it, use the address bar (type a path + Enter or Go), the Up arrow, or the
+breadcrumb to navigate. FTP uploads always target the folder currently open.
+
+The Compare panes still use an expandable TREE: click a folder to load just it,
+or "Full tree" to load everything (recursively, capped for safety).
 
 Compare &amp; Sync tab: each side is Local or FTP/FTPS/SFTP, with its own ROOT
 folder. Compare matches files across the whole tree by path RELATIVE to each

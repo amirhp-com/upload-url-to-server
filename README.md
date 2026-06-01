@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.0.0 · 2026-06-02<br>
+> **Latest release:** v3.1.0 · 2026-06-02<br>
 > **Single file:** `upload.php` — no install, no Composer, no CDN, no build step.<br>
 > **Zero dependencies:** pure PHP + vanilla JS + vanilla CSS. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
@@ -41,8 +41,8 @@ Then click **Self-Destruct** and it's gone.
 ### 🗂️ Browse
 | Tool | What it does |
 | --- | --- |
-| **File Explorer** | An expandable, lazy-loading **tree** of the local server. Click a folder to load just it, or **Load full tree** to walk everything (capped for safety). Copy HTTP URLs, multi-select bulk delete/copy, rename, duplicate, move, delete. Shows size, modified time, and **octal + symbolic permissions** with plain-language tooltips. |
-| **FTP Explorer** | Connect to **FTP / FTPS (TLS) / SFTP** (self-signed certs OK) and browse the remote tree the same way. **Click a folder to make it the current target.** Rename / move / duplicate / delete remotely; copy bare path or full HTTP URL; **save any file down to this server** with a progress row. **Upload into the current folder** from **PC, URL, or Relay** — bulk, with per-item progress, **Stop**, and **Retry**. Set an **Initial Directory** so a connection opens straight into `/public_html` (or anywhere). |
+| **File Explorer** | A **single-folder** view of the local server (classic file-manager style): click a folder to open it, use the clickable **breadcrumb**, the **editable address bar** (type a path + Enter or **Go**), or the **Up** button. Copy HTTP URLs, multi-select bulk delete/copy, rename, duplicate, move, delete. Shows size, modified time, and **octal + symbolic permissions** with plain-language tooltips. |
+| **FTP Explorer** | Connect to **FTP / FTPS (TLS) / SFTP** (self-signed certs OK) and browse the remote server the same single-folder way (breadcrumb + address bar + Up). Rename / move / duplicate / delete remotely; copy bare path or full HTTP URL; **save any file down to this server** with a progress row. **Upload into the folder you're viewing** from **PC, URL, or Relay** — bulk, with per-item progress, **Stop**, and **Retry**. Set an **Initial Directory** so a connection opens straight into `/public_html` (or anywhere). |
 
 ### 🔄 Sync
 | Tool | What it does |
@@ -67,7 +67,7 @@ Then click **Self-Destruct** and it's gone.
 
 `upload.php` is a single PHP file that serves **both** the HTML/CSS/JS front-end **and** a tiny JSON API from the same endpoint:
 
-- **Front-end:** one page, no framework. Views (Upload/Browse/Sync/Tools) are inline sections toggled client-side. The file tree is a generic lazy-loading component reused by File Explorer, FTP Explorer, and both Sync panes.
+- **Front-end:** one page, no framework. Views (Upload/Browse/Sync/Tools) are inline sections toggled client-side. File Explorer and FTP Explorer use a shared single-folder renderer (breadcrumb + address bar); both Sync panes use a lazy-loading recursive tree.
 - **Back-end:** `POST` with an `_a=` action returns JSON — e.g. `ls` / `ls_tree` (local tree), `ftp_ls` / `ftp_tree` (remote tree), `fetch` (URL→server), `upload_local` (PC→server), `mitm_fetch` (relay), `ftp_copy` (FTP→server), `ftp_upload` (PC/URL/relay→FTP), `xfer_direct|ftp|relay|fxp` (sync engine), and `check_update` / `do_update`.
 - **Progress:** the browser-side leg of **Upload from PC** and **FTP Explorer → From PC** shows *true* byte progress via `XHR.upload`. Server-side legs (URL fetch, FTP↔server, relay, sync) run as one request and show an honest indeterminate/animated bar with the known size — not a fake percentage.
 - **Engine:** cURL-first (handles FTP/FTPS/SFTP URLs, redirects, self-signed certs) with native `ftp_*` / `ssh2` fallbacks.
@@ -198,6 +198,7 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 Full history: [CHANGELOG.md](CHANGELOG.md). Recent highlights:
 
+- **v3.1.0** — File Explorer & FTP Explorer switched to a **single-folder view** (breadcrumb + editable address bar + Up); FTP uploads target the open folder; Compare keeps its tree; collapsed-sidebar footer icons sit side-by-side on hover.
 - **v3.0.0** — FTP Explorer **upload** (PC/URL/Relay, bulk, per-item progress, Stop, Retry) into the **clicked target folder**; **FTP→server download** progress; Sync queue **Stop / Retry / per-item progress / uncheck-on-success**; **collapsible** connection forms (auto-collapse after connect) on FTP Explorer & Sync; **Initial Directory** for FTP connections (saved in profiles); sidebar regrouped into **Upload · Browse · Sync · Tools** with icon-only collapse/theme; footer shows server + your IP; runtime **no-timeout** best-effort + Help recipes for php.ini/.user.ini/.htaccess/Nginx; compare diff **tags** + auto-select; recursive folder sizes.
 - **v2.9.0** — GitHub-style redesign, sidebar app shell, inline tool views, Upload-from-PC (bulk).
 - **v2.5.0** — MITM Relay bulk mode (`_a=mitm_fetch`).

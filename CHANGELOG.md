@@ -4,6 +4,18 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.1.0 — 2026-06-02
+
+### Changed
+- **File Explorer and FTP Explorer are now single-folder views** (classic file-manager style) instead of an expandable tree. Clicking a folder **opens into it**; the top bar shows clickable **breadcrumbs**, an **editable address bar** (type a path + Enter, or click **Go**), an **Up** button, and Refresh. The recursive "Load full tree / Collapse" controls were removed from these two views.
+- **FTP uploads now always target the folder currently open** — navigate into a folder and the upload panel uploads there (`ftpUpDir` tracks the open directory; the old click-to-set-target tree behaviour is gone).
+- **Compare & Sync (FTPS Sync) keeps its expandable tree** unchanged — the diff/relative-path comparison still needs the full recursive view.
+- Fixed the collapsed sidebar's footer icons (collapse + theme) to sit **side-by-side when the rail is hovered/expanded** (they only stack vertically while the rail is the narrow 58px icon strip).
+- Shared flat-folder renderer (`fvRowsHtml` + `fvCrumbs`) drives both explorers; `ajax_ls` / `ajax_ftp_ls` already returned `path` / `parent` / `breadcrumbs`, now consumed directly.
+- Version bumped to **3.1.0**.
+
+---
+
 ## v3.0.0 — 2026-06-02
 
 ### Added
