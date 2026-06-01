@@ -3,8 +3,8 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/06/02 18:00:00
- * @Version: 3.1.0
+ * @Last modified time: 2026/06/02 19:00:00
+ * @Version: 3.1.1
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.1.0');
+define('APP_VER','3.1.1');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -126,6 +126,8 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 .tnode.ftp-cur{background:var(--ac-soft);box-shadow:inset 2px 0 0 var(--ac)}
 .fv-addr{flex:1;min-width:120px;height:var(--ctl-h);padding:0 .7rem;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rad);color:var(--t1);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;outline:none}
 .fv-addr:focus{border-color:var(--ac)}
+/* standalone breadcrumb row under the address bar (File / FTP Explorer) */
+#fb-path,#ftp-path{margin-bottom:.55rem}
 .sb-foot-row{display:flex;gap:.4rem;align-items:center;width:100%}
 .sb-icon-btn{flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;padding:.5rem;border:1px solid var(--bd);background:var(--s2);color:var(--t2);border-radius:var(--rad);cursor:pointer;transition:background .15s,color .15s}
 .sb-icon-btn:hover{color:var(--t1);background:var(--bd)}

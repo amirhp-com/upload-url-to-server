@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.1.1 — 2026-06-02
+
+### Fixed
+- **File / FTP Explorer spacing** — the standalone breadcrumb row (`#fb-path` / `#ftp-path`) sat flush against the bulk-action bar; added `margin-bottom` so the address bar, breadcrumb, and bulk bar are evenly separated.
+
+---
+
 ## v3.1.0 — 2026-06-02
 
 ### Changed
