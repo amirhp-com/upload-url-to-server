@@ -4,7 +4,7 @@
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
  * @Last modified time: 2026/06/02 20:00:00
- * @Version: 3.3.3
+ * @Version: 3.3.4
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.3.3');
+define('APP_VER','3.3.4');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -103,6 +103,8 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 @keyframes tload{0%{margin-left:-40%}100%{margin-left:100%}}
 /* ===== v2.10 — collapsible connection, queue controls, ftp-upload panel ===== */
 .conn-hd{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem}
+/* collapsed connection form: drop the header's bottom margin so the card hugs the summary */
+.conn-collapsed .conn-hd{margin-bottom:0}
 .conn-hd .conn-ttl{font-size:.78rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}
 .conn-hd .conn-toggle{margin-left:auto;display:inline-flex;align-items:center;gap:.3rem}
 .conn-summary{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-size:.84rem;color:var(--t1)}
@@ -870,6 +872,7 @@ function ftpToggleConn(force){
   var body=document.getElementById('ftp-conn-body');
   var collapse=(typeof force==='boolean')?force:(body&&body.style.display!=='none');
   if(body)body.style.display=collapse?'none':'';
+  card.classList.toggle('conn-collapsed',collapse);
   var sum=document.getElementById('ftp-conn-summary');if(sum)sum.style.display=collapse?'':'none';
   var tb=document.getElementById('ftp-conn-toggle');if(tb)tb.textContent=collapse?'Edit':'Collapse';
 }

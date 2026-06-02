@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.3.4 — 2026-06-02
+
+### Fixed
+- **Collapsed FTP connection card left dead space** — when the connection form (`#ftp-conn-body`) is collapsed to its one-line summary, the header row (`.conn-hd`) kept its `.7rem` bottom margin, leaving an awkward gap at the bottom of the card. The header now drops its bottom margin while collapsed (via a `conn-collapsed` class on the card; the rule is generic so it applies anywhere the same pattern is used).
+
+---
+
 ## v3.3.3 — 2026-06-02
 
 ### Fixed
