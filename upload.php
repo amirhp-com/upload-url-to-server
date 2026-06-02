@@ -4,7 +4,7 @@
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
  * @Last modified time: 2026/06/02 20:00:00
- * @Version: 3.1.2
+ * @Version: 3.2.0
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.1.2');
+define('APP_VER','3.2.0');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -126,8 +126,12 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 .tnode.ftp-cur{background:var(--ac-soft);box-shadow:inset 2px 0 0 var(--ac)}
 .fv-addr{flex:1;min-width:120px;height:var(--ctl-h);padding:0 .7rem;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rad);color:var(--t1);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;outline:none}
 .fv-addr:focus{border-color:var(--ac)}
-/* standalone breadcrumb row under the address bar (File / FTP Explorer) */
-#fb-path,#ftp-path{margin-bottom:.55rem}
+/* editable breadcrumb sits inline in the address bar (File / FTP Explorer) */
+#fb-path,#ftp-path{min-height:var(--ctl-h);cursor:text}
+#fb-path:hover,#ftp-path:hover{box-shadow:inset 0 0 0 1px var(--bd)}
+.fb-path .fb-crumb{cursor:pointer}
+.fb-path.editing{padding:0;background:none;box-shadow:none;overflow:visible}
+.fb-path.editing .fv-addr{width:100%}
 /* address-bar controls share the input height/style */
 .fb-bar .btn{height:var(--ctl-h);padding:0 .85rem;font-size:.85rem}
 .fb-bar .btn-icon{padding:0 .6rem}
@@ -390,8 +394,25 @@ function fvRowsHtml(prefix,items,actionsFn){
 function fvCrumbs(prefix,d,rootPath){
   var h='<span class="fb-crumb" onclick=\''+prefix+'Nav('+JSON.stringify(rootPath)+')\' title="Root">'+_icHome+'</span>';
   (d.breadcrumbs||[]).forEach(function(c){h+='<span class="fb-sep">/</span><span class="fb-crumb" onclick=\''+prefix+'Nav('+JSON.stringify(c.path)+')\'>'+_esc(c.name)+'</span>';});
+  _crumbHtml[prefix]=h;
   return h;
 }
+/* editable breadcrumb: click empty space to type a path, Enter to go, Esc/blur to cancel */
+var _crumbHtml={fb:'',ftp:''};
+function fvPathCancel(prefix){var el=document.getElementById(prefix+'-path');if(!el)return;el.classList.remove('editing');el.innerHTML=_crumbHtml[prefix]||'';}
+function fvPathEdit(prefix,cur,goFn){
+  var el=document.getElementById(prefix+'-path');if(!el||el.querySelector('input'))return;
+  el.classList.add('editing');
+  el.innerHTML='<input type="text" class="fv-addr" value="'+_attr(cur||'')+'">';
+  var inp=el.querySelector('input');inp.focus();inp.select();
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){e.preventDefault();var v=inp.value.trim();inp.blur();goFn(v);}
+    else if(e.key==='Escape'){e.preventDefault();inp.blur();}
+  });
+  inp.addEventListener('blur',function(){fvPathCancel(prefix);});
+}
+function fbPathClick(e){if(e.target.closest('.fb-crumb'))return;fvPathEdit('fb',fbCwd,function(v){fbLoad(v||'__ROOT__');});}
+function ftpPathClick(e){if(e.target.closest('.fb-crumb'))return;if(!ftpCreds.h){showToast('Connect first');return;}fvPathEdit('ftp',ftpCwd,function(v){ftpLoad(v||'/');});}
 function fbActions(n){
   var p=JSON.stringify(n.path),nm=JSON.stringify(n.name);
   var h=n.url?'<button class="btn btn-g btn-sm btn-icon copy-btn" title="Copy URL" onclick=\'copyText('+JSON.stringify(n.url)+',this)\'>'+_icCopy+'</button>':'';
@@ -402,7 +423,6 @@ function fbActions(n){
   return h;
 }
 function fbNav(path){fbLoad(path);}
-function fbGo(){var v=(document.getElementById('fb-addr')||{value:''}).value.trim();fbLoad(v||'__ROOT__');}
 function fbUp(){if(fbParent)fbLoad(fbParent);else showToast('Already at the top');}
 function fbLoad(path){
   fbCwd=path;
@@ -414,7 +434,6 @@ function fbLoad(path){
     document.getElementById('fb-content').style.display='block';
     if(!d.ok){document.getElementById('fb-tbl-wrap').innerHTML='<div class="fb-empty">'+_esc(d.msg||'Error')+'</div>';return;}
     fbCwd=d.path;fbParent=d.parent;
-    var addr=document.getElementById('fb-addr');if(addr)addr.value=d.path;
     document.getElementById('fb-path').innerHTML=fvCrumbs('fb',d,'__ROOT__');
     document.getElementById('fb-tbl-wrap').innerHTML=fvRowsHtml('fb',d.items,fbActions);
     document.getElementById('fb-bulk').classList.add('show');fbChkChg();
@@ -594,7 +613,6 @@ function ftpActions(n){
 }
 var ftpUpDir='',ftpParent=null;
 function ftpNav(path){ftpLoad(path);}
-function ftpGo(){if(!ftpCreds.h){showToast('Connect first');return;}var v=(document.getElementById('ftp-addr')||{value:''}).value.trim();ftpLoad(v||'/');}
 function ftpUp(){if(ftpParent!=null)ftpLoad(ftpParent);else showToast('Already at the top');}
 function ftpLoad(path){
   ftpCwd=path;ftpRoot=path;
@@ -610,7 +628,6 @@ function ftpLoad(path){
       if(loading)loading.style.display='none';
       if(!d.ok){tbl.innerHTML='<div class="ftp-empty">'+_esc(d.msg||'Error')+'</div>';ftpLog('Error: '+(d.msg||'unknown error'),'err');return;}
       ftpCwd=d.path;ftpRoot=d.path;ftpUpDir=d.path;ftpParent=d.parent;
-      var addr=document.getElementById('ftp-addr');if(addr)addr.value=d.path;
       document.getElementById('ftp-path').innerHTML=fvCrumbs('ftp',d,'/');
       tbl.innerHTML=fvRowsHtml('ftp',d.items,ftpActions);
       var bulk=document.getElementById('ftp-bulk');if(bulk)bulk.classList.add('show');ftpChkChg();
@@ -1580,12 +1597,10 @@ function render_form(){
     <div class="ftp-browser" id="ftp-browser-area" style="display:none">
       <div class="fb-bar">
         <button class="btn btn-g btn-sm btn-icon" onclick="ftpUp()" title="Up one level"><?=ph('arrow-up',14)?></button>
-        <input type="text" class="fv-addr" id="ftp-addr" placeholder="/" onkeydown="if(event.key==='Enter'){event.preventDefault();ftpGo();}" onclick="this.select()">
-        <button class="btn btn-g btn-sm" onclick="ftpGo()" title="Go to this folder"><?=ph('arrow-right',14)?> Go</button>
+        <div id="ftp-path" class="fb-path" onclick="ftpPathClick(event)" title="Click empty space to type a path"><span style="color:var(--t2)">Not connected</span></div>
         <button class="btn btn-p btn-sm" onclick="ftpUpToggle()" title="Upload into the current folder"><?=ph('arrow-up',14)?> Upload</button>
         <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
       </div>
-      <div id="ftp-path" class="fb-path"><span style="color:var(--t2)">Not connected</span></div>
       <div class="ftp-up-panel" id="ftp-up-panel" style="display:none">
         <div style="font-size:.78rem;color:var(--t2);margin-bottom:.6rem">Uploading into <code id="ftp-cur-dir" style="color:var(--t1);font-weight:600">/</code> &mdash; the folder open below. Navigate into another folder to change the target.</div>
         <div class="seg" id="ftp-up-seg" style="margin-bottom:.6rem">
@@ -1670,11 +1685,9 @@ function render_form(){
   <div class="view" data-view="explorer" id="view-explorer">
     <div class="fb-bar">
       <button class="btn btn-g btn-sm btn-icon" onclick="fbUp()" title="Up one level"><?=ph('arrow-up',14)?></button>
-      <input type="text" class="fv-addr" id="fb-addr" placeholder="/path/to/folder" onkeydown="if(event.key==='Enter'){event.preventDefault();fbGo();}" onclick="this.select()">
-      <button class="btn btn-g btn-sm" onclick="fbGo()" title="Go to this folder"><?=ph('arrow-right',14)?> Go</button>
+      <div id="fb-path" class="fb-path" onclick="fbPathClick(event)" title="Click empty space to type a path"><span style="color:var(--t2)">Loading&hellip;</span></div>
       <button class="btn btn-g btn-sm btn-icon" onclick="fbLoad(fbCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
     </div>
-    <div id="fb-path" class="fb-path"><span style="color:var(--t2)">Loading&hellip;</span></div>
     <div id="fb-bulk" class="fb-bulk">
       <span id="fb-sel-n"></span>
       <button class="btn btn-g btn-sm" onclick="fbSelAll(true)">Select all</button>
