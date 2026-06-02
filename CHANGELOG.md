@@ -4,6 +4,18 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.3.0 — 2026-06-02
+
+### Added
+- **In-browser text viewer & editor** — files in both the **File Explorer** and **FTP Explorer** can now be opened as text. **View as text** (eye icon) opens a read-only preview; **Edit as text** (pencil icon) opens an editable popup. Code files (`css`, `js`, `ts`, `jsx`, `php`, `html`, `json`, `xml`, `md`, `sql`, `yaml`, `sh`, `py`, `.htaccess`, etc.) get **CodeMirror** syntax highlighting (dark `material-darker` theme, lazy-loaded from CDN); anything else opens as plain text. Binary types (images, video, archives, fonts, …) and files **larger than 10 MB** have View/Edit disabled, with a tooltip explaining why. The server also enforces the 10 MB ceiling and refuses binary (null-byte) content.
+- **Save & Save with backup** — the editor has a **Save** button and a **Save with backup** button. The backup option first copies the current file to `<name>.back` (FTP backups are round-tripped through this server), then writes your changes; if the backup step fails, nothing is overwritten. The running `upload.php` itself is protected from being overwritten.
+- **Tippy.js tooltips** — all tooltips now render through **Tippy.js** (Popper + Tippy inlined directly in the file, no CDN needed) with a custom dark theme that stays darker than the surface in both light and dark modes. `initTips()` converts `title=` attributes and re-initializes after every dynamic render.
+
+### Changed
+- **Row actions consolidated into a single ⋯ menu** — Rename, Duplicate, Move, Delete, Copy URL/path, Save-to-server, plus the new View/Edit are now grouped under one three-dots dropdown per row in both explorers, instead of a cluttered strip of icon buttons. Folders show **Open** + management actions; files show the full set (context-aware, with disabled states).
+
+---
+
 ## v3.2.0 — 2026-06-02
 
 ### Changed
