@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.3.3 — 2026-06-02
+
+### Fixed
+- **Edit button did nothing when viewing a file** — in the read-only viewer, the footer **Edit** button built its `onclick` with `JSON.stringify(path/name)`, emitting double quotes inside the double-quoted `onclick="…"` attribute and breaking the markup. Replaced it with a no-argument `feEdit()` handler that re-opens the current file in edit mode (so it now reliably switches the viewer to an editable CodeMirror with Save / Save-with-backup).
+
+---
+
 ## v3.3.2 — 2026-06-02
 
 ### Changed

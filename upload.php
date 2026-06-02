@@ -4,7 +4,7 @@
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
  * @Last modified time: 2026/06/02 20:00:00
- * @Version: 3.3.2
+ * @Version: 3.3.3
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.3.2');
+define('APP_VER','3.3.3');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -657,7 +657,7 @@ function feRender(text,d){
       +'<button class="btn btn-p btn-sm" id="fe-save" onclick="feSave(false)">'+_icSave+' Save</button></div>';
   }else{
     hb+='<div class="fe-foot"><span class="fe-status" id="fe-status">Read-only preview</span><span class="fe-spacer"></span>'
-      +'<button class="btn btn-g btn-sm" onclick="openFileEditor(\''+_fe.prefix+'\','+JSON.stringify(_fe.path)+','+JSON.stringify(_fe.name)+','+(d.size||0)+',\'edit\')">'+_icPencil+' Edit</button>'
+      +'<button class="btn btn-g btn-sm" onclick="feEdit()">'+_icPencil+' Edit</button>'
       +'<button class="btn btn-g btn-sm" onclick="closeFileEditor()">Close</button></div>';
   }
   document.getElementById('fe-body').innerHTML=hb;
@@ -702,6 +702,8 @@ function closeFileEditor(){
   _fe.open=false;_fe.cm=null;_fe.ta=null;_fe.dirty=false;
   closeModal('file-modal');
 }
+// Switch the open viewer to edit mode (re-reads the file). _fe still holds the current target.
+function feEdit(){if(_fe.open){var p=_fe.prefix,path=_fe.path,name=_fe.name;if(_fe.cm){try{_fe.cm.toTextArea();}catch(e){}_fe.cm=null;}openFileEditor(p,path,name,0,'edit');}}
 function fbActions(n){return fvMenuBtn('fb',n);}
 function fbNav(path){fbLoad(path);}
 function fbUp(){if(fbParent)fbLoad(fbParent);else showToast('Already at the top');}
