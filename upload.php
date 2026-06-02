@@ -4,7 +4,7 @@
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
  * @Last modified time: 2026/06/02 20:00:00
- * @Version: 3.3.4
+ * @Version: 3.4.0
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.3.4');
+define('APP_VER','3.4.0');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -39,6 +39,7 @@ if(isset($_POST['_a'])){
   if($a==='info')        {echo json_encode(ajax_info());exit;}
   if($a==='fetch')       {echo json_encode(ajax_fetch());exit;}
   if($a==='upload_local'){echo json_encode(ajax_upload_local());exit;}
+  if($a==='fb_upload')   {echo json_encode(ajax_fb_upload());exit;}
   if($a==='mitm_fetch')  {echo json_encode(ajax_mitm_fetch());exit;}
   if($a==='del_by_name') {echo json_encode(ajax_del_by_name());exit;}
   if($a==='ftp_ls')      {echo json_encode(ajax_ftp_ls());exit;}
@@ -718,10 +719,12 @@ function fbLoad(path){
     document.getElementById('fb-loading').style.display='none';
     document.getElementById('fb-content').style.display='block';
     if(!d.ok){document.getElementById('fb-tbl-wrap').innerHTML='<div class="fb-empty">'+_esc(d.msg||'Error')+'</div>';return;}
-    fbCwd=d.path;fbParent=d.parent;
+    fbCwd=d.path;fbParent=d.parent;fbUpDir=d.path;
     document.getElementById('fb-path').innerHTML=fvCrumbs('fb',d,'__ROOT__');
     document.getElementById('fb-tbl-wrap').innerHTML=fvRowsHtml('fb',d.items,fbActions);
     document.getElementById('fb-bulk').classList.add('show');fbChkChg();
+    var cd=document.getElementById('fb-cur-dir');if(cd)cd.textContent=d.path;
+    var ud=document.getElementById('fb-up-dir');if(ud)ud.textContent=d.path;
     initTips(document.getElementById('view-explorer'));
   }).catch(function(){document.getElementById('fb-loading').innerHTML='<span style="color:var(--rd)">Failed to load directory</span>';});
 }
@@ -1122,6 +1125,103 @@ function ftpUpStart(){
   ftpUpQueueCtl();
   ftpLog('Uploading '+jobs.length+' item(s) to '+dir+' …','info');
   ftpUpNext(0);
+}
+/* ── File Explorer "Upload here" (PC / URL / Relay into the open folder) ── */
+var fbUpSrc='pc',_fbUpFiles=[],_fbUpCtl=null,fbUpDir='';
+function fbUpToggle(){
+  var p=document.getElementById('fb-up-panel');if(!p)return;
+  var show=p.style.display==='none';p.style.display=show?'':'none';
+  if(show){var t=fbUpDir||((fbCwd&&fbCwd!=='__ROOT__')?fbCwd:'this folder');var d=document.getElementById('fb-cur-dir');if(d)d.textContent=t;var dd=document.getElementById('fb-up-dir');if(dd)dd.textContent=t;}
+}
+function fbUpSetSrc(s){
+  fbUpSrc=s;
+  ['pc','url','relay'].forEach(function(k){var el=document.getElementById('fb-up-'+k);if(el)el.style.display=(k===s)?'':'none';});
+  document.querySelectorAll('#fb-up-seg button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-s')===s);});
+}
+function fbUpPcPicked(){var fi=document.getElementById('fb-up-file');if(fi&&fi.files&&fi.files.length){Array.prototype.forEach.call(fi.files,function(f){_fbUpFiles.push(f);});fi.value='';}fbUpRenderFiles();}
+function fbUpRemoveFile(i){_fbUpFiles.splice(i,1);fbUpRenderFiles();}
+function fbUpRenderFiles(){
+  var list=document.getElementById('fb-up-filelist');if(!list)return;
+  if(!_fbUpFiles.length){list.innerHTML='';return;}
+  var h='<div class="ftp-up-files">';
+  _fbUpFiles.forEach(function(f,i){h+='<div class="ftp-up-file"><span class="ftp-up-fn">'+_esc(f.name)+'</span><span class="ftp-up-fsz">'+ftpHumanSize(f.size)+'</span><button type="button" class="ftp-up-rm" title="Remove" onclick="fbUpRemoveFile('+i+')">'+_icX+'</button></div>';});
+  h+='</div><div style="font-size:.78rem;color:var(--t2)">'+_fbUpFiles.length+' file(s) · '+ftpHumanSize(_fbUpFiles.reduce(function(a,f){return a+f.size;},0))+'</div>';
+  list.innerHTML=h;
+}
+function fbUpMarkStopped(q){q.stopped=true;q.el.className='bulk-item stopped';q.el.querySelector('.bulk-item-ic').textContent='■';q.el.querySelector('.bulk-item-meta').textContent='stopped';var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();}
+function fbUpStopItem(q){if(q.done||q.failed)return;if(q.running&&_fbUpCtl){q.stopped=true;if(_fbUpCtl.xhr){try{_fbUpCtl.xhr.abort();}catch(e){}}else if(_fbUpCtl.abort){try{_fbUpCtl.abort.abort();}catch(e){}}}else fbUpMarkStopped(q);}
+function fbUpStopAll(){if(!_fbUpCtl)return;_fbUpCtl.stop=true;if(_fbUpCtl.xhr){try{_fbUpCtl.xhr.abort();}catch(e){}}if(_fbUpCtl.abort){try{_fbUpCtl.abort.abort();}catch(e){}}var b=document.getElementById('fb-up-stop-btn');if(b){b.disabled=true;b.innerHTML='Stopping…';}}
+function fbUpItemFail(q,msg){q.failed=true;q.done=false;q.el.className='bulk-item err';q.el.querySelector('.bulk-item-ic').textContent='✗';q.el.querySelector('.bulk-item-meta').textContent=msg;var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();if(!q.el.querySelector('.bulk-item-retry')){var b=document.createElement('button');b.type='button';b.className='bulk-item-retry';b.innerHTML='&#8635; Retry';b.onclick=function(){fbUpRetryItem(q);};q.el.appendChild(b);}}
+function fbUpItemReset(q){q.done=false;q.failed=false;q.stopped=false;q.running=false;q.el.className='bulk-item queued';q.el.querySelector('.bulk-item-ic').innerHTML='<span class="spin">&#8635;</span>';q.el.querySelector('.bulk-item-meta').textContent='queued';var rb=q.el.querySelector('.bulk-item-retry');if(rb)rb.remove();var pr=q.el.querySelector('.bulk-item-prog');if(pr){if(q.j.kind==='pc'){pr.classList.remove('indet');pr.querySelector('i').style.width='0';}else pr.classList.add('indet');}if(!q.el.querySelector('.bulk-item-stop')){var stop=document.createElement('button');stop.type='button';stop.className='bulk-item-stop';stop.textContent='Stop';stop.onclick=function(){fbUpStopItem(q);};q.el.appendChild(stop);}}
+function fbUpRunOne(q,cb){
+  if(q.stopped){fbUpMarkStopped(q);cb();return;}
+  q.running=true;q.el.className='bulk-item busy';q.el.querySelector('.bulk-item-meta').textContent='uploading…';
+  var c=_fbUpCtl,j=q.j;
+  var fd=new FormData();fd.append('_a','fb_upload');fd.append('_dir',c.dir);fd.append('_name',j.name);
+  var onDone=function(d){
+    q.running=false;c.xhr=null;c.abort=null;
+    if(d&&d.ok){q.done=true;q.failed=false;q.el.className='bulk-item ok';q.el.querySelector('.bulk-item-ic').textContent='✓';q.el.querySelector('.bulk-item-meta').textContent=(d.size?ftpHumanSize(d.size):'')+(d.elapsed?' · '+d.elapsed:'');var sb=q.el.querySelector('.bulk-item-stop');if(sb)sb.remove();}
+    else fbUpItemFail(q,(d&&d.error)||'failed');
+    cb();
+  };
+  if(j.kind==='pc'){
+    fd.append('_src','pc');fd.append('file',j.file);
+    var pf=q.el.querySelector('.bulk-item-prog>i');
+    var xhr=new XMLHttpRequest();c.xhr=xhr;xhr.open('POST','',true);
+    xhr.upload.onprogress=function(e){if(e.lengthComputable){var p=Math.round(e.loaded/e.total*100);if(pf)pf.style.width=p+'%';q.el.querySelector('.bulk-item-meta').textContent=p+'% — '+ftpHumanSize(e.loaded)+' / '+ftpHumanSize(e.total)+(p>=100?' · saving…':'');}};
+    xhr.onload=function(){var d;try{d=JSON.parse(xhr.responseText);}catch(e){d={ok:false,error:'Unexpected server response'};}onDone(d);};
+    xhr.onerror=function(){onDone({ok:false,error:'network error'});};
+    xhr.onabort=function(){q.running=false;c.xhr=null;fbUpMarkStopped(q);cb();};
+    xhr.send(fd);
+  }else{
+    fd.append('_src',j.kind);fd.append('url',j.url);
+    if(j.kind==='relay'){fd.append('mitm_url',j.relay);var rd=document.getElementById('fb-up-relay-del');if(rd&&rd.checked)fd.append('mitm_delete','1');}
+    var ac=('AbortController'in window)?new AbortController():null;c.abort=ac;
+    fetch('',{method:'POST',body:fd,signal:ac?ac.signal:undefined}).then(function(r){return r.json();}).then(onDone).catch(function(e){q.running=false;c.abort=null;if(ac&&e&&e.name==='AbortError'){fbUpMarkStopped(q);cb();}else onDone({ok:false,error:(e&&e.message)||'network error'});});
+  }
+}
+function fbUpProgress(){if(!_fbUpCtl)return;var q=_fbUpCtl.queue;var done=q.filter(function(x){return x.done||x.failed||x.stopped;}).length;if(_fbUpCtl.bar)_fbUpCtl.bar.style.width=Math.round((done/q.length)*100)+'%';if(_fbUpCtl.counter)_fbUpCtl.counter.textContent=done+' / '+q.length+' done';}
+function fbUpNext(qi){if(!_fbUpCtl)return;var q=_fbUpCtl.queue;if(_fbUpCtl.stop||qi>=q.length){fbUpFinish();return;}var item=q[qi];if(item.done){fbUpNext(qi+1);return;}fbUpRunOne(item,function(){fbUpProgress();fbUpNext(qi+1);});}
+function fbUpFinish(){
+  fbUpProgress();
+  var q=_fbUpCtl.queue,failed=q.filter(function(x){return x.failed;});
+  var pending=q.filter(function(x){return !x.done&&!x.failed&&!x.stopped;});
+  if(_fbUpCtl.stop&&pending.length){pending.forEach(fbUpMarkStopped);showToast('Queue stopped');}
+  else showToast('Upload '+(failed.length?'finished with errors':'complete'));
+  fbUpRenderRetryAll(failed);
+  var b=document.getElementById('fb-up-stop-btn');if(b){b.disabled=true;b.innerHTML='&#9632; Stop queue';}
+  if(typeof fbCwd!=='undefined')fbLoad(fbCwd);
+}
+function fbUpClearStop(){if(_fbUpCtl)_fbUpCtl.stop=false;var b=document.getElementById('fb-up-stop-btn');if(b){b.disabled=false;b.innerHTML='&#9632; Stop queue';}}
+function fbUpRetryItem(q){if(!_fbUpCtl)return;fbUpItemReset(q);fbUpClearStop();fbUpRunOne(q,function(){fbUpProgress();fbUpRenderRetryAll(_fbUpCtl.queue.filter(function(x){return x.failed;}));});}
+function fbUpRenderRetryAll(failed){var st=document.getElementById('fb-up-status');if(!st||!st.parentNode)return;var wrap=document.getElementById('fb-up-retry-all');if(!wrap){wrap=document.createElement('div');wrap.id='fb-up-retry-all';wrap.className='bulk-retry-all';st.parentNode.insertBefore(wrap,st.nextSibling);}wrap.innerHTML='';if(!failed.length){wrap.style.display='none';return;}wrap.style.display='';var b=document.createElement('button');b.type='button';b.className='btn btn-d btn-sm';b.innerHTML='&#8635; Retry failed ('+failed.length+')';b.onclick=function(){wrap.style.display='none';fbUpClearStop();failed.forEach(function(x){fbUpItemReset(x);});fbUpRetryQueue(failed);};wrap.appendChild(b);}
+function fbUpRetryQueue(list){var i=0;(function nx(){if(!_fbUpCtl||_fbUpCtl.stop||i>=list.length){fbUpProgress();fbUpRenderRetryAll(_fbUpCtl.queue.filter(function(x){return x.failed;}));return;}var q=list[i++];if(q.done){nx();return;}fbUpRunOne(q,function(){fbUpProgress();nx();});})();}
+function fbUpQueueCtl(){var st=document.getElementById('fb-up-status');if(!st||!st.parentNode)return;var wrap=document.getElementById('fb-up-queue-ctl');if(!wrap){wrap=document.createElement('div');wrap.id='fb-up-queue-ctl';wrap.className='queue-ctl';st.parentNode.insertBefore(wrap,st);}wrap.innerHTML='';var stop=document.createElement('button');stop.type='button';stop.id='fb-up-stop-btn';stop.className='btn btn-d btn-sm';stop.innerHTML='&#9632; Stop queue';stop.onclick=fbUpStopAll;wrap.appendChild(stop);}
+function fbUpStart(){
+  var dir=fbUpDir||fbCwd||'__ROOT__';var jobs=[];
+  if(fbUpSrc==='pc'){
+    if(!_fbUpFiles.length){showToast('Choose a file first');return;}
+    _fbUpFiles.forEach(function(f){jobs.push({kind:'pc',file:f,label:f.name,name:f.name});});
+  }else{
+    var ta=document.getElementById(fbUpSrc==='relay'?'fb-up-urls-relay':'fb-up-urls');var lines=ta?ta.value.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;}):[];
+    if(!lines.length){showToast('Enter at least one URL');return;}
+    var relay='';
+    if(fbUpSrc==='relay'){relay=(document.getElementById('fb-up-relay-url').value||'').trim();if(!relay){showToast('Enter the relay URL');return;}}
+    lines.forEach(function(u){var nm=u.split('?')[0].split('#')[0].split('/').pop()||('file_'+Date.now());jobs.push({kind:fbUpSrc,url:u,label:u,name:nm,relay:relay});});
+  }
+  var status=document.getElementById('fb-up-status');status.innerHTML='';
+  var bar=document.getElementById('fb-up-bar');bar.style.width='0%';bar.parentElement.style.display='';
+  var counter=document.getElementById('fb-up-counter');counter.style.display='';counter.textContent='0 / '+jobs.length+' done';
+  var queue=jobs.map(function(j){
+    var el=document.createElement('div');el.className='bulk-item queued';
+    el.innerHTML='<span class="bulk-item-ic"><span class="spin">&#8635;</span></span><span class="bulk-item-name">'+_esc(j.label)+'</span><span class="bulk-item-meta">queued</span><div class="bulk-item-prog'+(j.kind==='pc'?'':' indet')+'"><i></i></div>';
+    var q={j:j,el:el,done:false,failed:false,stopped:false,running:false};
+    var stop=document.createElement('button');stop.type='button';stop.className='bulk-item-stop';stop.textContent='Stop';stop.onclick=function(){fbUpStopItem(q);};
+    el.appendChild(stop);status.appendChild(el);return q;
+  });
+  _fbUpCtl={stop:false,queue:queue,dir:dir,bar:bar,counter:counter,xhr:null,abort:null};
+  fbUpQueueCtl();
+  fbUpNext(0);
 }
 /* ── Compare & Sync ─────────────────────────────────────────────── */
 var cmpState={l:{kind:'local',cwd:'',root:'',creds:null,tv:null},r:{kind:'local',cwd:'',root:'',creds:null,tv:null}};
@@ -1969,7 +2069,36 @@ function render_form(){
     <div class="fb-bar">
       <button class="btn btn-g btn-sm btn-icon" onclick="fbUp()" title="Up one level"><?=ph('arrow-up',14)?></button>
       <div id="fb-path" class="fb-path" onclick="fbPathClick(event)" title="Click empty space to type a path"><span style="color:var(--t2)">Loading&hellip;</span></div>
+      <button class="btn btn-p btn-sm" onclick="fbUpToggle()" title="Upload into the current folder"><?=ph('arrow-up',14)?> Upload here</button>
       <button class="btn btn-g btn-sm btn-icon" onclick="fbLoad(fbCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
+    </div>
+    <div class="ftp-up-panel" id="fb-up-panel" style="display:none">
+      <div style="font-size:.78rem;color:var(--t2);margin-bottom:.6rem">Uploading into <code id="fb-cur-dir" style="color:var(--t1);font-weight:600">this folder</code> &mdash; the folder open below. Navigate into another folder to change the target.</div>
+      <div class="seg" id="fb-up-seg" style="margin-bottom:.6rem">
+        <button type="button" class="active" data-s="pc" onclick="fbUpSetSrc('pc')"><?=ph('arrow-up',13)?> From PC</button>
+        <button type="button" data-s="url" onclick="fbUpSetSrc('url')"><?=ph('link',13)?> From URL</button>
+        <button type="button" data-s="relay" onclick="fbUpSetSrc('relay')"><?=ph('shuffle',13)?> Relay</button>
+      </div>
+      <div id="fb-up-pc">
+        <div class="field"><label>Choose File(s) <span style="font-weight:400;text-transform:none;font-size:.9em">(pick more than once to add)</span></label><input type="file" id="fb-up-file" multiple onchange="fbUpPcPicked()"></div>
+        <div id="fb-up-filelist"></div>
+      </div>
+      <div id="fb-up-url" style="display:none">
+        <div class="field"><label>Source URL(s) <span style="font-weight:400;text-transform:none;font-size:.9em">(one per line for bulk)</span></label>
+          <div class="bulk-url-area" style="display:block;margin-bottom:0"><textarea id="fb-up-urls" placeholder="https://example.com/file.zip&#10;https://example.com/file2.tar.gz"></textarea></div>
+        </div>
+      </div>
+      <div id="fb-up-relay" style="display:none">
+        <div class="field"><label>Relay (MITM) Server URL</label><input type="url" id="fb-up-relay-url" placeholder="https://relay.example.com/upload.php" onclick="this.select()"></div>
+        <div class="field"><label>Source URL(s) <span style="font-weight:400;text-transform:none;font-size:.9em">(one per line for bulk)</span></label>
+          <div class="bulk-url-area" style="display:block;margin-bottom:0"><textarea id="fb-up-urls-relay" placeholder="https://restricted-source.com/file.zip"></textarea></div>
+        </div>
+        <div class="toggle-row"><div class="tgl-lbl">Delete from MITM after transfer<span class="tgl-hint">Auto-clean the relay server when done</span></div><label class="sw"><input type="checkbox" id="fb-up-relay-del" checked><span class="sw-s"></span></label></div>
+      </div>
+      <div class="queue-ctl"><button type="button" class="btn btn-p btn-sm" onclick="fbUpStart()"><?=ph('arrow-up',14)?> Upload to <span id="fb-up-dir">this folder</span></button></div>
+      <div class="bulk-counter" id="fb-up-counter"></div>
+      <div class="bulk-progress-wrap" id="fb-up-progress-wrap"><div class="bulk-bar" id="fb-up-bar"></div></div>
+      <div class="bulk-status" id="fb-up-status"></div>
     </div>
     <div id="fb-bulk" class="fb-bulk">
       <span id="fb-sel-n"></span>
@@ -2565,6 +2694,61 @@ function ajax_upload_local(){
   @chmod($target,0644);
   $rel=($folder!==''?$folder.'/':'').$name;
   return['ok'=>true,'url'=>build_base_url().'/'.$rel,'size'=>filesize($target),'name'=>$name,'folder'=>$folder];
+}
+
+// "Upload here" for the local File Explorer — drop a PC / URL / relay file into the folder being browsed.
+function ajax_fb_upload(){
+  set_time_limit(0);$start=microtime(true);
+  $dirReq=trim((string)($_POST['_dir']??''));
+  $src=trim((string)($_POST['_src']??'pc'));
+  $name=sanitize_filename((string)($_POST['_name']??''));
+  $dir=($dirReq===''||$dirReq==='__ROOT__')?__DIR__:(is_dir($dirReq)?realpath($dirReq):false);
+  if(!$dir||!is_dir($dir))return['ok'=>false,'error'=>'Target folder not found'];
+  if(!is_writable($dir))return['ok'=>false,'error'=>'Target folder is not writable'];
+  if($src==='pc'){
+    if(empty($_FILES['file'])||!isset($_FILES['file']['tmp_name']))return['ok'=>false,'error'=>'No file received (check upload_max_filesize / post_max_size)'];
+    $f=$_FILES['file'];
+    if(!empty($f['error'])){$map=[1=>'File exceeds server upload_max_filesize',2=>'File exceeds form limit',3=>'Partial upload — try again',4=>'No file selected',6=>'Missing server temp folder',7=>'Failed to write to disk',8=>'Upload blocked by a PHP extension'];return['ok'=>false,'error'=>$map[$f['error']]??('Upload error '.$f['error'])];}
+    if($name==='')$name=sanitize_filename((string)$f['name']);
+    if($name==='')return['ok'=>false,'error'=>'Invalid filename'];
+    if(!is_uploaded_file($f['tmp_name']))return['ok'=>false,'error'=>'Invalid upload source'];
+    $target=rtrim($dir,'/\\').'/'.$name;
+    if(!@move_uploaded_file($f['tmp_name'],$target))return['ok'=>false,'error'=>'Failed to save the uploaded file'];
+    @chmod($target,0644);
+    return['ok'=>true,'name'=>$name,'size'=>(int)@filesize($target),'path'=>$target,'elapsed'=>human_timing($start)];
+  }
+  // url / relay → download to temp, then move into the target folder
+  $tmp=tempnam(sys_get_temp_dir(),'bsf');
+  if(!$tmp)return['ok'=>false,'error'=>'Cannot create temp file'];
+  if($src==='url'){
+    $url=trim((string)($_POST['url']??''));
+    if(!filter_var($url,FILTER_VALIDATE_URL)){@unlink($tmp);return['ok'=>false,'error'=>'A valid source URL is required'];}
+    if($name==='')$name=sanitize_filename(basename(parse_url($url,PHP_URL_PATH)?:'')?:('file_'.time()));
+    $fp=fopen($tmp,'wb');if(!$fp){@unlink($tmp);return['ok'=>false,'error'=>'Cannot open temp file'];}
+    $ch=curl_init($url);
+    curl_setopt_array($ch,[CURLOPT_FILE=>$fp,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_SSL_VERIFYPEER=>0,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,CURLOPT_USERAGENT=>'Mozilla/5.0 (compatible; BlackSwanUpload/'.APP_VER.')']);
+    curl_exec($ch);$err=curl_error($ch);curl_close($ch);fclose($fp);
+    if($err||@filesize($tmp)<1){@unlink($tmp);return['ok'=>false,'error'=>'Download failed: '.($err?:'empty file')];}
+  }elseif($src==='relay'){
+    $relay=trim((string)($_POST['mitm_url']??''));$url=trim((string)($_POST['url']??''));
+    if(!filter_var($relay,FILTER_VALIDATE_URL)||!filter_var($url,FILTER_VALIDATE_URL)){@unlink($tmp);return['ok'=>false,'error'=>'Both the relay URL and the source URL are required'];}
+    if($name==='')$name=sanitize_filename(basename(parse_url($url,PHP_URL_PATH)?:'')?:('file_'.time()));
+    $r=mitm_post($relay,['_a'=>'fetch','url'=>$url,'_name'=>$name]);
+    if(!$r||empty($r['ok'])||empty($r['url'])){@unlink($tmp);return['ok'=>false,'error'=>'Relay fetch failed: '.($r['error']??'no response from relay')];}
+    $fp=fopen($tmp,'wb');if(!$fp){@unlink($tmp);return['ok'=>false,'error'=>'Cannot open temp file'];}
+    $ch=curl_init($r['url']);
+    curl_setopt_array($ch,[CURLOPT_FILE=>$fp,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_SSL_VERIFYPEER=>0,CURLOPT_SSL_VERIFYHOST=>0,CURLOPT_TIMEOUT=>0,CURLOPT_CONNECTTIMEOUT=>30,CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER]);
+    curl_exec($ch);$err=curl_error($ch);curl_close($ch);fclose($fp);
+    if($err||@filesize($tmp)<1){@unlink($tmp);return['ok'=>false,'error'=>'Relay download failed: '.($err?:'empty file')];}
+    if(($_POST['mitm_delete']??'')==='1')@mitm_post($relay,['_a'=>'del_by_name','_name'=>$name]);
+  }else{@unlink($tmp);return['ok'=>false,'error'=>'Unknown upload source'];}
+  if($name===''){@unlink($tmp);return['ok'=>false,'error'=>'Could not determine a destination filename'];}
+  $size=@filesize($tmp);
+  $target=rtrim($dir,'/\\').'/'.$name;
+  if(file_exists($target))@unlink($target);
+  if(!@rename($tmp,$target)){if(@copy($tmp,$target)){@unlink($tmp);}else{@unlink($tmp);return['ok'=>false,'error'=>'Failed to write into the target folder'];}}
+  @chmod($target,0644);
+  return['ok'=>true,'name'=>$name,'size'=>(int)$size,'path'=>$target,'elapsed'=>human_timing($start)];
 }
 
 function ajax_mitm_fetch(){

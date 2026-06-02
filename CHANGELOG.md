@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.4.0 — 2026-06-02
+
+### Added
+- **"Upload here" in the local File Explorer** — an **Upload here** button next to the breadcrumb opens an upload panel that drops files straight into the **folder you're currently viewing**, mirroring the FTP Explorer's uploader. Three sources: **From PC** (true per-file byte progress via `XHR.upload`), **From URL** (server downloads the link into the folder), and **Relay (MITM)** (fetch through a second server, then save locally). Bulk-capable (multiple files / one URL per line) with per-item rows, **Stop** (whole queue or a single in-flight item), and **Retry** (per item or all failed). Backed by a new `_a=fb_upload` endpoint that validates the target is a writable directory; the listing auto-refreshes when the queue finishes.
+
+---
+
 ## v3.3.4 — 2026-06-02
 
 ### Fixed
