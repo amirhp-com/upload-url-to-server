@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.1.1 · 2026-06-02<br>
+> **Latest release:** v3.1.2 · 2026-06-02<br>
 > **Single file:** `upload.php` — no install, no Composer, no CDN, no build step.<br>
 > **Zero dependencies:** pure PHP + vanilla JS + vanilla CSS. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 

@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.1.2 — 2026-06-02
+
+### Fixed
+- **Address-bar control heights** — the **Up / Go / Refresh** buttons in the File / FTP Explorer address bar now match the input height (`--ctl-h`) so inputs and buttons line up (`.fb-bar .btn` sizing).
+
+---
+
 ## v3.1.1 — 2026-06-02
 
 ### Fixed
