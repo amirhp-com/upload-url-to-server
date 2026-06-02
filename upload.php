@@ -4,7 +4,7 @@
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
  * @Last modified time: 2026/06/02 20:00:00
- * @Version: 3.3.1
+ * @Version: 3.3.2
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.3.1');
+define('APP_VER','3.3.2');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -185,6 +185,32 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 .fe-foot .fe-spacer{flex:1}
 .fe-status{font-size:.78rem;color:var(--t2)}
 .fe-loading{padding:3rem;text-align:center;color:var(--t2)}
+/* ===== CodeMirror "github" theme — reuses the app's GitHub palette, follows light/dark ===== */
+:root{--cm-fg:#24292f;--cm-com:#6e7781;--cm-kw:#cf222e;--cm-str:#0a3069;--cm-num:#0550ae;--cm-fn:#8250df;--cm-tag:#116329;--cm-attr:#0550ae;--cm-var:#953800;--cm-def:#0550ae;--cm-sel:rgba(9,105,218,.18)}
+@media(prefers-color-scheme:dark){:root{--cm-fg:#e6edf3;--cm-com:#8b949e;--cm-kw:#ff7b72;--cm-str:#a5d6ff;--cm-num:#79c0ff;--cm-fn:#d2a8ff;--cm-tag:#7ee787;--cm-attr:#79c0ff;--cm-var:#ffa657;--cm-def:#d2a8ff;--cm-sel:rgba(56,139,253,.25)}}
+html[data-theme=light]{--cm-fg:#24292f;--cm-com:#6e7781;--cm-kw:#cf222e;--cm-str:#0a3069;--cm-num:#0550ae;--cm-fn:#8250df;--cm-tag:#116329;--cm-attr:#0550ae;--cm-var:#953800;--cm-def:#0550ae;--cm-sel:rgba(9,105,218,.18)}
+html[data-theme=dark]{--cm-fg:#e6edf3;--cm-com:#8b949e;--cm-kw:#ff7b72;--cm-str:#a5d6ff;--cm-num:#79c0ff;--cm-fn:#d2a8ff;--cm-tag:#7ee787;--cm-attr:#79c0ff;--cm-var:#ffa657;--cm-def:#d2a8ff;--cm-sel:rgba(56,139,253,.25)}
+.cm-s-github.CodeMirror{background:var(--bg);color:var(--cm-fg)}
+.cm-s-github .CodeMirror-gutters{background:var(--s1);border-right:1px solid var(--bd)}
+.cm-s-github .CodeMirror-linenumber{color:var(--t2)}
+.cm-s-github .CodeMirror-cursor{border-left:1px solid var(--cm-fg)}
+.cm-s-github .CodeMirror-selected,.cm-s-github.CodeMirror-focused .CodeMirror-selected{background:var(--cm-sel)}
+.cm-s-github .CodeMirror-line::selection,.cm-s-github .CodeMirror-line>span::selection{background:var(--cm-sel)}
+.cm-s-github .CodeMirror-activeline-background{background:var(--rowhover)}
+.cm-s-github .CodeMirror-matchingbracket{color:var(--ac)!important;font-weight:700}
+.cm-s-github .cm-comment{color:var(--cm-com);font-style:italic}
+.cm-s-github .cm-keyword,.cm-s-github .cm-operator{color:var(--cm-kw)}
+.cm-s-github .cm-string,.cm-s-github .cm-string-2{color:var(--cm-str)}
+.cm-s-github .cm-number,.cm-s-github .cm-atom,.cm-s-github .cm-bool{color:var(--cm-num)}
+.cm-s-github .cm-def,.cm-s-github .cm-property{color:var(--cm-def)}
+.cm-s-github .cm-variable,.cm-s-github .cm-punctuation{color:var(--cm-fg)}
+.cm-s-github .cm-variable-2,.cm-s-github .cm-variable-3,.cm-s-github .cm-type{color:var(--cm-var)}
+.cm-s-github .cm-tag{color:var(--cm-tag)}
+.cm-s-github .cm-attribute,.cm-s-github .cm-qualifier,.cm-s-github .cm-builtin{color:var(--cm-attr)}
+.cm-s-github .cm-meta{color:var(--cm-com)}
+.cm-s-github .cm-link{color:var(--bl);text-decoration:underline}
+.cm-s-github .cm-header{color:var(--cm-def);font-weight:700}
+.cm-s-github .cm-error{color:var(--rd)}
 .sb-foot-row{display:flex;gap:.4rem;align-items:center;width:100%}
 .sb-icon-btn{flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;padding:.5rem;border:1px solid var(--bd);background:var(--s2);color:var(--t2);border-radius:var(--rad);cursor:pointer;transition:background .15s,color .15s}
 .sb-icon-btn:hover{color:var(--t1);background:var(--bd)}
@@ -590,7 +616,6 @@ function loadCM(cb){
   if(_cmState===1)return;
   _cmState=1;
   _loadCss(CM_BASE+'codemirror.min.css');
-  _loadCss(CM_BASE+'theme/material-darker.min.css');
   _loadJs(CM_BASE+'codemirror.min.js',function(err){
     if(err||!window.CodeMirror){_cmState=0;var cbs=_cmCbs.splice(0);cbs.forEach(function(f){f(err||new Error('CodeMirror failed'));});return;}
     var modes=['mode/xml/xml.min.js','mode/javascript/javascript.min.js','mode/css/css.min.js','mode/htmlmixed/htmlmixed.min.js','mode/clike/clike.min.js','mode/php/php.min.js','mode/markdown/markdown.min.js','mode/sql/sql.min.js','mode/yaml/yaml.min.js','mode/python/python.min.js','mode/shell/shell.min.js'];
@@ -647,7 +672,7 @@ function feRender(text,d){
       return;
     }
     _fe.cm=window.CodeMirror.fromTextArea(ta,{
-      mode:modeInfo||null,theme:'material-darker',lineNumbers:true,readOnly:ro,
+      mode:modeInfo||null,theme:'github',lineNumbers:true,readOnly:ro,
       lineWrapping:false,indentUnit:2,tabSize:2,autofocus:!ro
     });
     if(!ro)_fe.cm.on('change',function(){feMarkDirty();});

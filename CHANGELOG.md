@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.3.2 — 2026-06-02
+
+### Changed
+- **CodeMirror now uses a GitHub theme** matching the rest of the app. Replaced the CDN `material-darker` theme with a built-in `cm-s-github` theme that reuses the app's GitHub colour palette (CSS variables) and follows light/dark automatically — light shows the GitHub light editor (white background, `#cf222e` keywords, `#0a3069` strings, …) and dark shows the GitHub dark editor (`#0d1117` background, `#ff7b72` keywords, `#a5d6ff` strings, …). One less CDN request, too.
+
+---
+
 ## v3.3.1 — 2026-06-02
 
 ### Fixed
