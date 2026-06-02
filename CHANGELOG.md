@@ -4,6 +4,16 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.2.0 — 2026-06-02
+
+### Changed
+- **Editable breadcrumb address bar** — the File Explorer and FTP Explorer no longer show a separate path input row. The breadcrumb itself is now editable: clicking a crumb navigates as before, but **clicking the empty space turns the strip into a text input** pre-filled with the current path (focused + selected). Press **Enter** to go, **Esc** or click away to revert to the breadcrumb. This removes the redundant input + **Go** button, leaving a single bar: **Up · breadcrumb · Refresh** (FTP keeps its **Upload** button).
+- New shared helpers `fvPathEdit` / `fvPathCancel` (+ `fbPathClick` / `ftpPathClick`); a `_crumbHtml` cache (populated by `fvCrumbs`) restores the breadcrumb instantly on cancel. Removed the dead `fbGo` / `ftpGo` functions and the `#fb-addr` / `#ftp-addr` sync.
+- On hover the breadcrumb shows a subtle inset border (`cursor:text`) to signal it's clickable, and aligns to the control height (`--ctl-h`).
+- Version bumped to **3.2.0**.
+
+---
+
 ## v3.1.2 — 2026-06-02
 
 ### Fixed
