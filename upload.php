@@ -4,7 +4,7 @@
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
  * @Last modified time: 2026/06/02 20:00:00
- * @Version: 3.3.0
+ * @Version: 3.3.1
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.3.0');
+define('APP_VER','3.3.1');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -583,7 +583,7 @@ function fvRowMenu(btn){
 /* ===== CodeMirror lazy loader (CDN) ===== */
 var CM_BASE='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/',_cmState=0,_cmCbs=[];
 function _loadCss(href){var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);}
-function _loadJs(src,cb){var s=document.createElement('script');s.src=src;s.onload=cb;s.onerror=function(){cb&&cb(new Error('load failed'));};document.head.appendChild(s);}
+function _loadJs(src,cb){var s=document.createElement('script');s.onload=function(){cb&&cb();};s.onerror=function(){cb&&cb(new Error('load failed'));};s.src=src;document.head.appendChild(s);}
 function loadCM(cb){
   if(_cmState===2){cb();return;}
   _cmCbs.push(cb);
@@ -622,7 +622,7 @@ function feRender(text,d){
   var mode=_fe.mode,ro=mode==='view';
   var modeInfo=cmMode(_fe.name);
   var hb='<div class="fe-meta"><span>'+_esc(_fe.path)+'</span>';
-  if(modeInfo)hb+='<span class="fe-badge">'+_esc(_ext(_fe.name)||'code')+'</span>';
+  hb+='<span class="fe-badge">'+_esc(_ext(_fe.name)||'text')+'</span>';
   hb+='<span style="margin-left:auto">'+_esc(ftpHumanSize(d.size||0))+'</span></div>';
   hb+='<div class="fe-edit-wrap"><textarea class="fe-ta" id="fe-ta" spellcheck="false"></textarea></div>';
   if(mode==='edit'){
@@ -637,19 +637,21 @@ function feRender(text,d){
   }
   document.getElementById('fe-body').innerHTML=hb;
   initTips(document.getElementById('fe-body'));
-  var ta=document.getElementById('fe-ta');ta.value=text;_fe.ta=ta;
-  if(modeInfo){
-    loadCM(function(err){
-      if(err||!_fe.open||document.getElementById('fe-ta')!==ta){return;}
-      _fe.cm=window.CodeMirror.fromTextArea(ta,{
-        mode:modeInfo,theme:'material-darker',lineNumbers:true,readOnly:ro,
-        lineWrapping:false,indentUnit:2,tabSize:2,autofocus:!ro
-      });
-      if(!ro)_fe.cm.on('change',function(){feMarkDirty();});
+  var ta=document.getElementById('fe-ta');ta.value=text;_fe.ta=ta;ta.readOnly=ro;
+  // Always use CodeMirror so even plain-text files get line numbers (mode:null = no highlighting).
+  loadCM(function(err){
+    if(!_fe.open||document.getElementById('fe-ta')!==ta)return;
+    if(err||!window.CodeMirror){ // CDN unreachable: fall back to a plain textarea
+      var st=document.getElementById('fe-status');if(st&&mode==='edit')st.textContent='Plain editor (CodeMirror unavailable)';
+      if(!ro){ta.addEventListener('input',feMarkDirty);if(mode==='edit')ta.focus();}
+      return;
+    }
+    _fe.cm=window.CodeMirror.fromTextArea(ta,{
+      mode:modeInfo||null,theme:'material-darker',lineNumbers:true,readOnly:ro,
+      lineWrapping:false,indentUnit:2,tabSize:2,autofocus:!ro
     });
-  }else{
-    ta.readOnly=ro;if(!ro){ta.addEventListener('input',feMarkDirty);if(mode==='edit')ta.focus();}
-  }
+    if(!ro)_fe.cm.on('change',function(){feMarkDirty();});
+  });
 }
 function feMarkDirty(){if(!_fe.dirty){_fe.dirty=true;var s=document.getElementById('fe-status');if(s)s.textContent='Unsaved changes';}}
 function feValue(){return _fe.cm?_fe.cm.getValue():(_fe.ta?_fe.ta.value:'');}

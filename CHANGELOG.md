@@ -4,6 +4,16 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.3.1 — 2026-06-02
+
+### Fixed
+- **CodeMirror editor never rendered** — the script loader passed each `<script>`'s load **Event** into its callback, which `loadCM()` mistook for an error, so it bailed out before creating the editor or loading any syntax modes (CodeMirror core loaded but the viewer/editor fell back to a bare textarea with no line numbers or highlighting). Fixed the loader to signal success with no argument.
+
+### Changed
+- **Line numbers for every text file** — the viewer/editor now always uses CodeMirror, so plain-text files that don't need syntax highlighting (`.txt`, `.log`, unknown extensions, …) still get line numbers (`mode: null`). A bare textarea is used only if CodeMirror can't be loaded from the CDN.
+
+---
+
 ## v3.3.0 — 2026-06-02
 
 ### Added
