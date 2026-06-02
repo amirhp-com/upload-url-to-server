@@ -4,6 +4,19 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.4.1 — 2026-06-02
+
+### Added
+- **Update log console** — the **Update** page now has a live log panel that records each step of a check/update: the request, GitHub's HTTP status, current vs latest version, the resolved download source (release asset vs raw-file-at-tag), the download URL, and the final result. Makes self-update failures diagnosable at a glance.
+
+### Fixed
+- **Clearer update-check errors** — a failed check used to say only "Invalid GitHub response". It now reports GitHub's HTTP status and message, and specifically calls out the most common cause: the server IP hitting GitHub's **unauthenticated API rate limit** (60 requests/hour). `check_update` / `do_update` now also return `http` (and a `raw` snippet) for the log.
+
+### Note
+- Release assets: `upload.php` is now attached to each GitHub release (and was backfilled onto recent ones), so the self-updater can use the preferred release-asset download path instead of only the raw-file fallback.
+
+---
+
 ## v3.4.0 — 2026-06-02
 
 ### Added

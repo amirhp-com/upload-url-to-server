@@ -4,7 +4,7 @@
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
  * @Last modified time: 2026/06/02 20:00:00
- * @Version: 3.4.0
+ * @Version: 3.4.1
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.4.0');
+define('APP_VER','3.4.1');
 define('BUILD_DATE','2026-06-02 &middot; 1405-03-12');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -1724,29 +1724,42 @@ function pcUpload(){
   setPg(0);next();
 }
 function _us(t){var e=document.getElementById('update-status');if(e)e.textContent=t;}
+function updLog(msg,type){var log=document.getElementById('update-log');if(!log)return;var d=document.createElement('div');d.className='ftp-log-entry '+(type||'info');d.textContent='['+new Date().toLocaleTimeString()+'] '+msg;log.appendChild(d);log.scrollTop=log.scrollHeight;}
 function checkUpdate(){
   showToast('Checking for updates…');_us('Checking for updates…');
+  updLog('→ POST _a=check_update → api.github.com/repos/amirhp-com/upload-url-to-server/releases/latest','info');
   var fd=new FormData();fd.append('_a','check_update');
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
-    if(!d.ok){showToast('Update check failed: '+(d.msg||'error'));_us('Update check failed: '+(d.msg||'error'));return;}
+    if(d&&d.http)updLog('← HTTP '+d.http+' from GitHub','info');
+    if(!d.ok){
+      updLog('✗ '+(d.msg||'error'),'err');
+      if(d.raw)updLog('  raw: '+d.raw,'err');
+      showToast('Update check failed');_us('Update check failed: '+(d.msg||'error'));return;
+    }
+    updLog('current v'+d.current+' · latest v'+d.latest+(d.asset?' · source: release asset':' · source: raw file @ tag'),'info');
+    updLog('download URL: '+d.download_url,'info');
     if(d.needs_update){
+      updLog('✓ Update available: v'+d.current+' → v'+d.latest,'ok');
       _us('Update available — current v'+d.current+', latest v'+d.latest+'.');
       if(confirm('Update available!\nCurrent: v'+d.current+'\nLatest: v'+d.latest+'\n\nUpdate now? (current file will be backed up as upload.php.bak)')){
         doUpdate(d.download_url);
-      }
+      }else updLog('Update postponed by user','info');
     }else{
+      updLog('✓ Already up to date (v'+d.current+')','ok');
       showToast('Up to date ✓ (v'+d.current+')');_us('You are up to date ✓ (v'+d.current+')');
     }
-  }).catch(function(e){showToast('Update check failed: '+(e.message||e));_us('Update check failed: '+(e.message||e));});
+  }).catch(function(e){updLog('✗ Request failed: '+(e.message||e),'err');showToast('Update check failed');_us('Update check failed: '+(e.message||e));});
 }
 function doUpdate(url){
   showToast('Downloading update…');
+  updLog('→ POST _a=do_update → downloading '+url,'info');
   var fd=new FormData();fd.append('_a','do_update');fd.append('_url',url);fd.append('_confirm','yes');
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
     if(d.ok){
+      updLog('✓ '+d.msg+(d.bytes?(' ('+d.bytes+' bytes)'):''),'ok');
       if(confirm('Updated to v'+d.to+'!\nReload page to use the new version?')){location.reload();}
-    }else{showToast('Update failed: '+(d.msg||'error'));}
-  }).catch(function(e){showToast('Update failed: '+(e.message||e));});
+    }else{updLog('✗ '+(d.msg||'error')+(d.http?(' (HTTP '+d.http+')'):''),'err');showToast('Update failed: '+(d.msg||'error'));}
+  }).catch(function(e){updLog('✗ Request failed: '+(e.message||e),'err');showToast('Update failed: '+(e.message||e));});
 }
 document.addEventListener('DOMContentLoaded',function(){updateThemeBtn();checkPermBanner();restoreSidebar();initTips();});
 </script>
@@ -2243,6 +2256,13 @@ Both servers must run this upload.php (v2.0.0+).</div></div>
       <div class="upload-meta">Current version: <strong>v<?=APP_VER?></strong><br>Checks the GitHub Releases API; if a newer release exists it downloads and replaces this file (backing up the current one as <code>upload.php.bak</code>).</div>
       <button class="btn btn-p" onclick="checkUpdate()"><?=ph('arrow-clockwise',16)?> Check for updates</button>
       <div id="update-status" class="status-line" style="margin-top:.7rem"></div>
+      <div class="ftp-log-wrap">
+        <div class="ftp-log-hdr">
+          <span><?=ph('terminal-window',13)?> Update Log</span>
+          <button class="btn btn-g btn-sm" style="padding:.18rem .55rem;font-size:.72rem;border-radius:6px" onclick="document.getElementById('update-log').innerHTML=''">Clear</button>
+        </div>
+        <div id="update-log" class="ftp-log"><div class="ftp-log-entry info">Ready &mdash; click “Check for updates”.</div></div>
+      </div>
     </div>
   </div>
 
@@ -3748,10 +3768,16 @@ function ajax_check_update(){
     CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER,
     CURLOPT_HTTPHEADER=>['Accept: application/vnd.github+json'],
   ]);
-  $resp=curl_exec($ch);$err=curl_error($ch);curl_close($ch);
-  if(!$resp||$err)return['ok'=>false,'msg'=>'Could not reach GitHub: '.($err?:'empty response')];
+  $resp=curl_exec($ch);$err=curl_error($ch);$code=(int)curl_getinfo($ch,CURLINFO_HTTP_CODE);curl_close($ch);
+  if($resp===false||$err)return['ok'=>false,'msg'=>'Could not reach GitHub: '.($err?:'empty response'),'http'=>$code];
   $data=@json_decode($resp,true);
-  if(!$data||empty($data['tag_name']))return['ok'=>false,'msg'=>'Invalid GitHub response'];
+  if(!is_array($data))return['ok'=>false,'msg'=>'GitHub returned non-JSON (HTTP '.$code.')','http'=>$code,'raw'=>substr(preg_replace('/\s+/',' ',(string)$resp),0,200)];
+  if(empty($data['tag_name'])){
+    $gh=isset($data['message'])?(string)$data['message']:'no "tag_name" in response';
+    $rate=($code===403||$code===429||stripos($gh,'rate limit')!==false);
+    $hint=$rate?' — this server\'s IP hit GitHub\'s unauthenticated API limit (60 requests/hour). Wait and retry, or update manually.':'';
+    return['ok'=>false,'msg'=>'GitHub: '.$gh.$hint,'http'=>$code];
+  }
   $latest=ltrim($data['tag_name'],'v');
   $dl_url='';
   if(!empty($data['assets'])&&is_array($data['assets'])){
@@ -3764,7 +3790,7 @@ function ajax_check_update(){
     $dl_url='https://raw.githubusercontent.com/amirhp-com/upload-url-to-server/refs/tags/v'.$latest.'/upload.php';
   }
   $needs=version_compare($latest,APP_VER,'>');
-  return['ok'=>true,'current'=>APP_VER,'latest'=>$latest,'download_url'=>$dl_url,'needs_update'=>$needs];
+  return['ok'=>true,'current'=>APP_VER,'latest'=>$latest,'download_url'=>$dl_url,'needs_update'=>$needs,'http'=>$code,'asset'=>(strpos($dl_url,'/releases/download/')!==false)];
 }
 
 function ajax_do_update(){
@@ -3780,15 +3806,15 @@ function ajax_do_update(){
     CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,
     CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER,
   ]);
-  $content=curl_exec($ch);$err=curl_error($ch);curl_close($ch);
-  if($content===false||$err)return['ok'=>false,'msg'=>'Download failed: '.($err?:'empty')];
-  if(!preg_match("/define\('APP_VER','([^']+)'\)/",$content,$m))return['ok'=>false,'msg'=>'Downloaded file does not look like upload.php (no APP_VER)'];
+  $content=curl_exec($ch);$err=curl_error($ch);$code=(int)curl_getinfo($ch,CURLINFO_HTTP_CODE);curl_close($ch);
+  if($content===false||$err)return['ok'=>false,'msg'=>'Download failed: '.($err?:'empty'),'http'=>$code];
+  if(!preg_match("/define\('APP_VER','([^']+)'\)/",$content,$m))return['ok'=>false,'msg'=>'Downloaded file does not look like upload.php (no APP_VER)','http'=>$code,'bytes'=>strlen((string)$content)];
   $new_ver=$m[1];
   if(version_compare($new_ver,APP_VER,'<='))return['ok'=>false,'msg'=>"Downloaded version ($new_ver) is not newer than current (".APP_VER.")"];
   $bak=__DIR__.'/upload.php.bak';
   @copy(__FILE__,$bak);
   if(file_put_contents(__FILE__,$content)===false)return['ok'=>false,'msg'=>'Failed to write new version'];
-  return['ok'=>true,'from'=>APP_VER,'to'=>$new_ver,'msg'=>'Updated from '.APP_VER.' to '.$new_ver.'. Backup saved as upload.php.bak'];
+  return['ok'=>true,'from'=>APP_VER,'to'=>$new_ver,'bytes'=>strlen((string)$content),'msg'=>'Updated from '.APP_VER.' to '.$new_ver.'. Backup saved as upload.php.bak'];
 }
 
 /*

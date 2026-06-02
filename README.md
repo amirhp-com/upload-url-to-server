@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.4.0 · 2026-06-02<br>
+> **Latest release:** v3.4.1 · 2026-06-02<br>
 > **Single file:** `upload.php` — no install, no Composer, no build step. Tooltips (Tippy.js) are inlined; the optional in-browser code editor lazy-loads CodeMirror from a CDN only when you open it.<br>
 > **Zero server dependencies:** pure PHP back-end + vanilla JS/CSS front-end. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
