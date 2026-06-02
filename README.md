@@ -8,9 +8,9 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.1.2 · 2026-06-02<br>
-> **Single file:** `upload.php` — no install, no Composer, no CDN, no build step.<br>
-> **Zero dependencies:** pure PHP + vanilla JS + vanilla CSS. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
+> **Latest release:** v3.3.2 · 2026-06-02<br>
+> **Single file:** `upload.php` — no install, no Composer, no build step. Tooltips (Tippy.js) are inlined; the optional in-browser code editor lazy-loads CodeMirror from a CDN only when you open it.<br>
+> **Zero server dependencies:** pure PHP back-end + vanilla JS/CSS front-end. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
 ---
 
@@ -41,13 +41,17 @@ Then click **Self-Destruct** and it's gone.
 ### 🗂️ Browse
 | Tool | What it does |
 | --- | --- |
-| **File Explorer** | A **single-folder** view of the local server (classic file-manager style): click a folder to open it, use the clickable **breadcrumb**, the **editable address bar** (type a path + Enter or **Go**), or the **Up** button. Copy HTTP URLs, multi-select bulk delete/copy, rename, duplicate, move, delete. Shows size, modified time, and **octal + symbolic permissions** with plain-language tooltips. |
-| **FTP Explorer** | Connect to **FTP / FTPS (TLS) / SFTP** (self-signed certs OK) and browse the remote server the same single-folder way (breadcrumb + address bar + Up). Rename / move / duplicate / delete remotely; copy bare path or full HTTP URL; **save any file down to this server** with a progress row. **Upload into the folder you're viewing** from **PC, URL, or Relay** — bulk, with per-item progress, **Stop**, and **Retry**. Set an **Initial Directory** so a connection opens straight into `/public_html` (or anywhere). |
+| **File Explorer** | A **single-folder** view of the local server (classic file-manager style): click a folder to open it, or use the **editable breadcrumb** — click a crumb to jump, click the empty space to type a path (Enter to go) — plus an **Up** button. Each row's actions live in one **⋯ menu**: **View as text**, **Edit as text**, copy HTTP URL, rename, duplicate, move, delete. Multi-select bulk delete/copy. Shows size, modified time, and **octal + symbolic permissions** with plain-language tooltips. |
+| **FTP Explorer** | Connect to **FTP / FTPS (TLS) / SFTP** (self-signed certs OK) and browse the remote server the same single-folder way (editable breadcrumb + Up). Per-row **⋯ menu**: **View / Edit as text**, rename, move, duplicate, delete, copy bare path or full HTTP URL, and **save the file down to this server** with a progress row. **Upload into the folder you're viewing** from **PC, URL, or Relay** — bulk, with per-item progress, **Stop**, and **Retry**. Set an **Initial Directory** so a connection opens straight into `/public_html` (or anywhere). |
 
 ### 🔄 Sync
 | Tool | What it does |
 | --- | --- |
 | **FTPS Sync** | Two panes, each independently **Local** or **FTP/FTPS/SFTP**, each with its own **Root folder**. Compare diffs the entire tree by each file's path **relative to its root** (so `/public_html/x.zip` lines up with `/w2w/x.zip`), flagging *identical / differs / only-left / only-right*. Differing & one-side-only files are **auto-selected**. **Sync** in either direction — recreating sub-folders on the destination — via **Direct** (download+upload through this server), **Plain FTP**, **Relay (MITM)**, or **FXP** (best-effort, falls back to Direct). The queue has a **progress bar, per-item progress, Stop (whole queue or a single item), Retry (per item or all failed)**, and **unchecks each file as it succeeds** so a re-run only does what's left. |
+
+### ✏️ View & edit
+- **In-browser text editor** — from either explorer, open any text file as **View** (read-only) or **Edit** in a popup. **CodeMirror** gives **GitHub-style syntax highlighting** (light/dark, matching the app) for web/code files — PHP, JS / TS / JSX, CSS, HTML, JSON, XML, Markdown, SQL, YAML, shell, `.htaccess`, … — and **line numbers for every other text file** too. Files over **10 MB** or binary types (images, video, archives, fonts, …) have View/Edit disabled, with a tooltip explaining why; the server also refuses binary content.
+- **Save & Save with backup** — **Save** writes in place; **Save with backup** first copies the current file to `<name>.back` (FTP backups round-trip through this server), then saves — and if the backup step fails, nothing is overwritten. The running `upload.php` itself can't be overwritten.
 
 ### 🛠️ Tools
 - **PHP Info** — curated server diagnostics in-page, full native `phpinfo()` one click away.
@@ -56,6 +60,7 @@ Then click **Self-Destruct** and it's gone.
 
 ### ✨ Interface
 - **GitHub-style light/dark UI** with a sidebar app shell, grouped into **Upload · Browse · Sync · Tools**. Collapse / theme controls are icon-only at the bottom; the sidebar collapses to an icon rail (full height) that expands on hover.
+- **Tidy file rows** — every action (view, edit, copy, rename, duplicate, move, delete, save-to-server) is tucked into a single **⋯ dropdown** per row, with **Tippy.js** tooltips (inlined, dark theme) throughout.
 - **Collapsible connection forms** — after you connect, the FTP credentials form auto-collapses to a one-line summary (with **Edit**), on both FTP Explorer and FTPS Sync, so the form doesn't eat space while you browse.
 - **Saved connections** — store FTP credentials + settings (incl. initial directory) as named profiles and reload them into FTP Explorer or either Sync side in one click (stored unencrypted, in your browser only).
 - **No-timeout best effort** — the script raises `max_execution_time`, `memory_limit`, socket timeout and `ignore_user_abort` at runtime so long transfers don't die mid-way (with server-level recipes in Help for hosts that override it).
@@ -67,8 +72,8 @@ Then click **Self-Destruct** and it's gone.
 
 `upload.php` is a single PHP file that serves **both** the HTML/CSS/JS front-end **and** a tiny JSON API from the same endpoint:
 
-- **Front-end:** one page, no framework. Views (Upload/Browse/Sync/Tools) are inline sections toggled client-side. File Explorer and FTP Explorer use a shared single-folder renderer (breadcrumb + address bar); both Sync panes use a lazy-loading recursive tree.
-- **Back-end:** `POST` with an `_a=` action returns JSON — e.g. `ls` / `ls_tree` (local tree), `ftp_ls` / `ftp_tree` (remote tree), `fetch` (URL→server), `upload_local` (PC→server), `mitm_fetch` (relay), `ftp_copy` (FTP→server), `ftp_upload` (PC/URL/relay→FTP), `xfer_direct|ftp|relay|fxp` (sync engine), and `check_update` / `do_update`.
+- **Front-end:** one page, no framework. Views (Upload/Browse/Sync/Tools) are inline sections toggled client-side. File Explorer and FTP Explorer use a shared single-folder renderer (editable breadcrumb); both Sync panes use a lazy-loading recursive tree.
+- **Back-end:** `POST` with an `_a=` action returns JSON — e.g. `ls` / `ls_tree` (local tree), `ftp_ls` / `ftp_tree` (remote tree), `fetch` (URL→server), `upload_local` (PC→server), `mitm_fetch` (relay), `ftp_copy` (FTP→server), `ftp_upload` (PC/URL/relay→FTP), `read` / `write` and `ftp_read` / `ftp_write` (in-browser text view/edit, local & remote), `xfer_direct|ftp|relay|fxp` (sync engine), and `check_update` / `do_update`.
 - **Progress:** the browser-side leg of **Upload from PC** and **FTP Explorer → From PC** shows *true* byte progress via `XHR.upload`. Server-side legs (URL fetch, FTP↔server, relay, sync) run as one request and show an honest indeterminate/animated bar with the known size — not a fake percentage.
 - **Engine:** cURL-first (handles FTP/FTPS/SFTP URLs, redirects, self-signed certs) with native `ftp_*` / `ssh2` fallbacks.
 
@@ -182,6 +187,7 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 | `upload.php?delete=true` | Self-destruct. |
 | `POST _a=fetch` / `mitm_fetch` / `del_by_name` | MITM relay JSON API. |
 | `POST _a=ftp_upload` | Upload PC/URL/relay file into an FTP folder. |
+| `POST _a=read \| write \| ftp_read \| ftp_write` | Read/save a text file (local or FTP) for the in-browser editor. |
 | `POST _a=xfer_direct\|ftp\|relay\|fxp` | Compare-&-Sync transfer engine. |
 | `POST _a=check_update` / `do_update` | Self-update. |
 
@@ -198,6 +204,8 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 Full history: [CHANGELOG.md](CHANGELOG.md). Recent highlights:
 
+- **v3.3.x** — **In-browser text viewer & editor** in both explorers with **CodeMirror** (GitHub-style highlighting, light/dark; line numbers for plain text too), **Save** + **Save with backup** (`.back`), a 10 MB / binary guard, and protection against overwriting the script itself. Row actions consolidated into a single **⋯ dropdown**, and all tooltips moved to **Tippy.js** (inlined, dark theme).
+- **v3.2.0** — **Editable breadcrumb** address bar: click a crumb to navigate, click the empty space to type a path (Enter to go) — the separate input row is gone.
 - **v3.1.0** — File Explorer & FTP Explorer switched to a **single-folder view** (breadcrumb + editable address bar + Up); FTP uploads target the open folder; Compare keeps its tree; collapsed-sidebar footer icons sit side-by-side on hover.
 - **v3.0.0** — FTP Explorer **upload** (PC/URL/Relay, bulk, per-item progress, Stop, Retry) into the **clicked target folder**; **FTP→server download** progress; Sync queue **Stop / Retry / per-item progress / uncheck-on-success**; **collapsible** connection forms (auto-collapse after connect) on FTP Explorer & Sync; **Initial Directory** for FTP connections (saved in profiles); sidebar regrouped into **Upload · Browse · Sync · Tools** with icon-only collapse/theme; footer shows server + your IP; runtime **no-timeout** best-effort + Help recipes for php.ini/.user.ini/.htaccess/Nginx; compare diff **tags** + auto-select; recursive folder sizes.
 - **v2.9.0** — GitHub-style redesign, sidebar app shell, inline tool views, Upload-from-PC (bulk).
