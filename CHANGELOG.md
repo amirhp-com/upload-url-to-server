@@ -4,6 +4,41 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.5.2 — 2026-06-04
+
+### Changed
+- **secure_link settings moved into the connection form** — the nginx `secure_link` / web-URL config for the *HTTP via secure_link* sync method now lives in a collapsible **🔒 nginx secure_link / web URL** panel inside each Compare pane's connection form (per side, collapses with the connection), instead of a block under the Method dropdown. The sync uses the **source** side's settings; when *HTTP via secure_link* is selected the sync panel just shows a short pointer to that panel. Fixes the cramped/broken layout in the sync section.
+
+---
+
+## v3.5.1 — 2026-06-04
+
+### Added
+- **HTTP via secure_link sync method (Compare/Sync)** — a new **Method** option that browses the source over FTP but downloads each file over its **web URL** (optionally **nginx `secure_link`**-signed), then uploads to the destination FTP/local. Use it when the source bytes are reachable only over HTTP behind `secure_link` (FTP download blocked/unavailable). Each compare pane's connection form gains a collapsible **🔒 nginx secure_link / web URL** panel (Web Base URL, strip prefix, secret, TTL, query-param names, hash expression, and `$remote_addr` toggle + IP); the sync uses the **source** side's settings. Because the download is server-side, bind to **this server's** public IP when your `secure_link_md5` uses `$remote_addr`. The secret is session-only.
+
+### Changed
+- **Compare/Sync controls consolidated** — the three stacked panels (guide + the near-empty *Step 1 · Compare* + *Step 2 · Sync settings*) are merged into a **single full-width panel under the panes**: the *How comparison works* legend, then Direction/Method, then the **Compare and Sync Selected buttons side by side**. The `.tree-tools` controls share one uniform control height.
+- **Connection form collapses fully** — the per-side connection form now wraps the **header (type + Load)**, the credentials, **and** the *Root folder* field, so connecting over FTP collapses all of it to a compact summary with an **Edit** button. The *Root folder* is no longer a separate self-collapsing block.
+- **Editable breadcrumbs in Compare** — each pane's path bar behaves like the File Explorer: click a crumb to navigate, click empty space to type a path (Enter to go), in both Tree and Explorer views.
+- **Unified Check toggle** — the *Check all* / *Check none* pair (Compare panes) and *Select all* / *Clear* pair (FTP Explorer + local File Explorer) are each replaced by a **single** button with a checkbox icon that reads *Check all* or *Check none* per the current selection. Explorer bulk bars now show the `files · folders · size` summary too.
+- **Tooltip wrapping** — multi-sentence tooltips (e.g. the Tree/Explorer hint) break onto a new line.
+
+---
+
+## v3.5.0 — 2026-06-03
+
+### Added
+- **Tree ⇄ Explorer view toggle (FTP Explorer + Compare/Sync)** — every remote browser can now switch between the recursive **Tree** view and a **File Explorer** view that opens one folder at a time (click a folder to drill in, breadcrumb to go back). The choice is remembered per side. In Compare, **Tree** diffs the full recursive tree while **Explorer** compares only the folder you have open (faster, clearer for big trees).
+- **Selection summary (files · folders · total size)** — the FTP Explorer bulk bar and each Compare pane now show exactly what is checked, e.g. `3 files · 1 folder · 1.4 GB selected`, and the Sync panel shows a combined `Will sync … Left → Right` readout so you know the payload before syncing.
+- **Check all / Check none** on both Compare panes (kept on the FTP Explorer too), wired to the live selection summary.
+- **nginx `secure_link` signed download URLs** — a new collapsible **secure_link** panel in the FTP connection card generates valid `?md5=…&expires=…` tokens (`base64url(md5_raw(expr))`) so you can download from a folder protected by nginx's `secure_link_md5`. Configurable secret, expiry TTL, query-param names, hash expression (`{expires}{uri}{addr}{secret}`), and an **Include `$remote_addr`** toggle with an optional IP override. Applied to **Copy web URL** (single + bulk). The secret is kept in the browser session only and never saved with the connection. FTP/FTPS/SFTP transfers (Direct, Plain FTP, FXP, Save-to-server, Relay) use the FTP protocol and bypass nginx, so they never need a token.
+- **Redesigned toast notifications** — toasts now stack in the **top-right**, slide in from the right and dissolve out, stay **at least 5 s**, **pause on hover**, **dismiss on click**, show a **lifespan progress bar** on top, a **left type icon** (info / success / warning / error) on a colored badge, and a **timestamp** in the footer. Multiple toasts stack; the type is auto-detected from the message when not given explicitly. Connection-established events now raise a toast.
+
+### Changed
+- **Compare/Sync screen restructured** — the legend/guide moved to the **top**, and the **Compare** action and **Sync settings** (direction · method · relay · selected total · Sync button) are now grouped into clearly **bordered step panels** instead of floating loose on the page. The **Root folder** field per side is tucked into a collapsible section to reduce clutter.
+
+---
+
 ## v3.4.1 — 2026-06-02
 
 ### Added

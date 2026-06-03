@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.4.1 · 2026-06-02<br>
+> **Latest release:** v3.5.2 · 2026-06-04<br>
 > **Single file:** `upload.php` — no install, no Composer, no build step. Tooltips (Tippy.js) are inlined; the optional in-browser code editor lazy-loads CodeMirror from a CDN only when you open it.<br>
 > **Zero server dependencies:** pure PHP back-end + vanilla JS/CSS front-end. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
@@ -205,6 +205,9 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 Full history: [CHANGELOG.md](CHANGELOG.md). Recent highlights:
 
+- **v3.5.2** — New **HTTP via secure_link** sync method (browse over FTP, download each file via its nginx `secure_link`-signed web URL, upload to the destination); secure_link config lives in a collapsible panel inside each Compare pane's connection form.
+- **v3.5.1** — Compare/Sync polish: full-width step panels, connection form collapses fully (header + creds + root folder), **editable breadcrumbs** in Compare, a **single Check all/none** toggle across all explorers, and tooltip line-wrapping.
+- **v3.5.0** — **Tree ⇄ Explorer** view toggle in the FTP Explorer and both Compare panes (Explorer compares the open folder only); **selection summary** (files · folders · total size) + **Check all / none**; **nginx `secure_link`** signed download URLs (configurable secret/TTL/params/expression + `$remote_addr` toggle) for Copy web URL; **redesigned toasts** (top-right stack, slide-in, 5 s min, hover-pause, click-dismiss, lifespan bar, type icon, timestamp); Compare screen reorganized into bordered step panels with a collapsible Root-folder field.
 - **v3.4.0** — **Upload here** in the local File Explorer: drop files into the open folder from **PC / URL / Relay**, bulk with per-item progress, Stop and Retry (new `_a=fb_upload` endpoint).
 - **v3.3.x** — **In-browser text viewer & editor** in both explorers with **CodeMirror** (GitHub-style highlighting, light/dark; line numbers for plain text too), **Save** + **Save with backup** (`.back`), a 10 MB / binary guard, and protection against overwriting the script itself. Row actions consolidated into a single **⋯ dropdown**, and all tooltips moved to **Tippy.js** (inlined, dark theme).
 - **v3.2.0** — **Editable breadcrumb** address bar: click a crumb to navigate, click the empty space to type a path (Enter to go) — the separate input row is gone.
