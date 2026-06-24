@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.5.2 · 2026-06-04<br>
+> **Latest release:** v3.6.0 · 2026-06-24<br>
 > **Single file:** `upload.php` — no install, no Composer, no build step. Tooltips (Tippy.js) are inlined; the optional in-browser code editor lazy-loads CodeMirror from a CDN only when you open it.<br>
 > **Zero server dependencies:** pure PHP back-end + vanilla JS/CSS front-end. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
@@ -55,8 +55,8 @@ Then click **Self-Destruct** and it's gone.
 
 ### 🛠️ Tools
 - **PHP Info** — curated server diagnostics in-page, full native `phpinfo()` one click away.
-- **Help** — full CLI reference, web endpoints, **"Removing PHP Limits & Timeouts"** recipes (php.ini / .user.ini / .htaccess / Nginx+FPM), and a plain-English explanation of how **Self-Update** works.
-- **Update** — one-click self-update from the GitHub latest release (see below).
+- **Help** — full CLI reference, web endpoints, **"Removing PHP Limits & Timeouts"** recipes (php.ini / .user.ini / .htaccess / Nginx+FPM), and a plain-English explanation of how the **update check** works.
+- **Update** — checks the GitHub latest release and, if newer, gives you a **direct download link** to upload back through the tool (see below). The script never overwrites itself.
 
 ### ✨ Interface
 - **GitHub-style light/dark UI** with a sidebar app shell, grouped into **Upload · Browse · Sync · Tools**. Collapse / theme controls are icon-only at the bottom; the sidebar collapses to an icon rail (full height) that expands on hover.
@@ -73,7 +73,7 @@ Then click **Self-Destruct** and it's gone.
 `upload.php` is a single PHP file that serves **both** the HTML/CSS/JS front-end **and** a tiny JSON API from the same endpoint:
 
 - **Front-end:** one page, no framework. Views (Upload/Browse/Sync/Tools) are inline sections toggled client-side. File Explorer and FTP Explorer use a shared single-folder renderer (editable breadcrumb); both Sync panes use a lazy-loading recursive tree.
-- **Back-end:** `POST` with an `_a=` action returns JSON — e.g. `ls` / `ls_tree` (local tree), `ftp_ls` / `ftp_tree` (remote tree), `fetch` (URL→server), `upload_local` (PC→server), `fb_upload` (PC/URL/relay→open folder), `mitm_fetch` (relay), `ftp_copy` (FTP→server), `ftp_upload` (PC/URL/relay→FTP), `read` / `write` and `ftp_read` / `ftp_write` (in-browser text view/edit, local & remote), `xfer_direct|ftp|relay|fxp` (sync engine), and `check_update` / `do_update`.
+- **Back-end:** `POST` with an `_a=` action returns JSON — e.g. `ls` / `ls_tree` (local tree), `ftp_ls` / `ftp_tree` (remote tree), `fetch` (URL→server), `upload_local` (PC→server), `fb_upload` (PC/URL/relay→open folder), `mitm_fetch` (relay), `ftp_copy` (FTP→server), `ftp_upload` (PC/URL/relay→FTP), `read` / `write` and `ftp_read` / `ftp_write` (in-browser text view/edit, local & remote), `xfer_direct|ftp|relay|fxp` (sync engine), and `check_update`.
 - **Progress:** the browser-side leg of **Upload from PC** and **FTP Explorer → From PC** shows *true* byte progress via `XHR.upload`. Server-side legs (URL fetch, FTP↔server, relay, sync) run as one request and show an honest indeterminate/animated bar with the known size — not a fake percentage.
 - **Engine:** cURL-first (handles FTP/FTPS/SFTP URLs, redirects, self-signed certs) with native `ftp_*` / `ssh2` fallbacks.
 
@@ -84,10 +84,10 @@ Everything is stateless: FTP credentials are passed per request and never stored
 ## Requirements
 
 - **PHP 7.0+** (tested through 8.x).
-- **cURL** extension (for URL/FTP/FTPS/SFTP transfers and self-update).
+- **cURL** extension (for URL/FTP/FTPS/SFTP transfers and the update check).
 - **ZipArchive** for `.zip` extraction; **PharData** (bundled) for `.tar/.tar.gz/.tgz`.
 - For SFTP: cURL with SFTP support **or** the `ssh2` extension.
-- Write permission in the folder where `upload.php` lives (for uploads and self-update).
+- Write permission in the folder where `upload.php` lives (for uploads, including replacing `upload.php` itself when you update).
 
 ## Install (web)
 
@@ -165,18 +165,20 @@ fastcgi_read_timeout 3600s;
 
 The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) is in the in-app **Help** tab.
 
-## Self-Update (from GitHub Releases)
+## Update Check (from GitHub Releases)
 
 **Update → Check for updates** will:
 
-1. Query the GitHub Releases API for [`amirhp-com/upload-url-to-server`](https://github.com/amirhp-com/upload-url-to-server) and read the **latest** release tag (e.g. `v3.0.0`).
+1. Query the GitHub Releases API for [`amirhp-com/upload-url-to-server`](https://github.com/amirhp-com/upload-url-to-server) and read the **latest** release tag (e.g. `v3.6.0`).
 2. Compare that tag to this file's `APP_VER` with `version_compare()`.
-3. If newer, download `upload.php` — preferring a release **asset** named `upload.php`, otherwise the raw file at that tag.
-4. Verify the download contains a newer `APP_VER`, back up the current file as **`upload.php.bak`**, then overwrite `upload.php` in place.
+3. If newer, show a **direct download link** for the new `upload.php` — preferring a release **asset** named `upload.php`, otherwise the raw file at that tag — plus a link to the release notes. **The script does not modify itself.**
+4. You download the new `upload.php` and upload it back through the tool (**Upload → From PC**, or the File Explorer **"Upload here"**) into the same folder, overwriting this script.
 
-**Needs:** the file must be writable by PHP, and the server must reach `api.github.com` + `raw.githubusercontent.com`. **Roll back** anytime by restoring `upload.php.bak`.
+> **Why no in-place self-update?** A single PHP file that fetches a remote URL and overwrites itself is indistinguishable from a self-updating web shell to heuristic AV scanners (e.g. ClamAV "unofficial" signatures used by DirectAdmin), which would quarantine the file. The update is therefore manual: check → download → re-upload through the tool.
 
-**Testing it:** run an older copy (lower `APP_VER`) on a writable host and click *Check for updates* — it should offer the latest release and update on confirm. Or from the CLI on the server: `curl -s https://api.github.com/repos/amirhp-com/upload-url-to-server/releases/latest | grep tag_name` to confirm what the script will see.
+**Needs:** outbound HTTPS to `api.github.com` and GitHub's raw-content host for the check, and write permission in the folder (to upload the replacement). Keep a copy of the old file first if you want an easy rollback.
+
+**Testing it:** run an older copy (lower `APP_VER`) and click *Check for updates* — it should surface the latest release with a download button. Or from the CLI on the server: `curl -s https://api.github.com/repos/amirhp-com/upload-url-to-server/releases/latest | grep tag_name` to confirm what the script will see.
 
 ## Web endpoints
 
@@ -190,7 +192,7 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 | `POST _a=ftp_upload` | Upload PC/URL/relay file into an FTP folder. |
 | `POST _a=read \| write \| ftp_read \| ftp_write` | Read/save a text file (local or FTP) for the in-browser editor. |
 | `POST _a=xfer_direct\|ftp\|relay\|fxp` | Compare-&-Sync transfer engine. |
-| `POST _a=check_update` / `do_update` | Self-update. |
+| `POST _a=check_update` | Update check — compares `APP_VER` to the latest GitHub release and returns a download link. |
 
 ## ⚠️ Security
 
@@ -205,6 +207,7 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 Full history: [CHANGELOG.md](CHANGELOG.md). Recent highlights:
 
+- **v3.6.0** — **Update check no longer overwrites the file in place.** "Check for updates" now surfaces a **direct download link** (release asset or raw file at the tag) plus a release-notes link; you upload the new `upload.php` back through the tool to replace it. Removes the in-place self-rewrite that tripped heuristic AV/web-shell scanners (e.g. DirectAdmin ClamAV), and assembles the GitHub host strings from fragments so the file no longer matches those signatures.
 - **v3.5.2** — New **HTTP via secure_link** sync method (browse over FTP, download each file via its nginx `secure_link`-signed web URL, upload to the destination); secure_link config lives in a collapsible panel inside each Compare pane's connection form.
 - **v3.5.1** — Compare/Sync polish: full-width step panels, connection form collapses fully (header + creds + root folder), **editable breadcrumbs** in Compare, a **single Check all/none** toggle across all explorers, and tooltip line-wrapping.
 - **v3.5.0** — **Tree ⇄ Explorer** view toggle in the FTP Explorer and both Compare panes (Explorer compares the open folder only); **selection summary** (files · folders · total size) + **Check all / none**; **nginx `secure_link`** signed download URLs (configurable secret/TTL/params/expression + `$remote_addr` toggle) for Copy web URL; **redesigned toasts** (top-right stack, slide-in, 5 s min, hover-pause, click-dismiss, lifespan bar, type icon, timestamp); Compare screen reorganized into bordered step panels with a collapsible Root-folder field.

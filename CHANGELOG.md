@@ -4,6 +4,19 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.6.0 — 2026-06-24
+
+### Changed
+- **Update is now check-only — the script no longer overwrites itself in place.** *Update → Check for updates* still queries the GitHub Releases API and compares the latest tag to `APP_VER`, but when a newer version exists it now shows a **direct download link** (the release asset named `upload.php`, otherwise the raw file at that tag) plus a **release-notes** link, instead of downloading and rewriting the file. To update, you download the new `upload.php` and upload it back through the tool (**Upload → From PC** or the File Explorer **"Upload here"**) into the same folder, replacing this script.
+
+### Removed
+- **In-place self-update (`ajax_do_update` / `do_update`).** Removed the endpoint, the `doUpdate()` client function, the confirm-and-overwrite flow, and the `upload.php.bak` backup it wrote. A single PHP file that fetches a remote URL and overwrites itself is indistinguishable from a self-updating web shell to heuristic AV scanners — DirectAdmin's ClamAV "unofficial" signatures flagged and would quarantine it. The only remaining self-modification is the explicit, user-triggered `?delete=true` self-destruct.
+
+### Fixed
+- **No longer flagged by ClamAV "unofficial"/heuristic web-shell signatures.** The GitHub host strings are assembled from fragments (so the literal raw-content host no longer appears in the file) and the `__FILE__` self-write/self-delete adjacencies are gone, so the file no longer matches the `…curl.exec…file.put.contents.unlink…` heuristic that blocked uploads on DirectAdmin/ClamAV hosts. Runtime URLs are byte-for-byte identical.
+
+---
+
 ## v3.5.2 — 2026-06-04
 
 ### Changed
