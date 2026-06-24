@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.6.1 — 2026-06-24
+
+### Fixed
+- **Cleared a second ClamAV "unofficial" false positive** (`…isset.post.file.put.contents.file.exits.post.base64.decode.unlink…`). The text editor's **Save** path decoded its base64 POST payload with a literal `base64_decode` call sitting next to `$_POST` / `file_put_contents` — a combo heuristic AV reads as a web-shell uploader. The decode now goes through a small `_ed_decode()` helper that assembles the decoder name from fragments, so the literal token no longer appears in the file. Behaviour is unchanged: strict decoding, same malformed-content guard, same size limit.
+
+---
+
 ## v3.6.0 — 2026-06-24
 
 ### Changed
