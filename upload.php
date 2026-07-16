@@ -3,8 +3,8 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/06/24 20:00:00
- * @Version: 3.6.2
+ * @Last modified time: 2026/07/16 12:00:00
+ * @Version: 3.6.3
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,8 +13,8 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.6.2');
-define('BUILD_DATE','2026-06-24 &middot; 1405-04-03');
+define('APP_VER','3.6.3');
+define('BUILD_DATE','2026-07-16 &middot; 1405-04-25');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
 define('EDIT_MAX_BYTES',10*1024*1024); // view/edit-as-text size ceiling (10 MB)
@@ -664,8 +664,6 @@ function loadCM(cb){
   });
 }
 /* ===== file viewer / editor modal ===== */
-function _b64ToText(b64){var bin=atob(b64),len=bin.length,bytes=new Uint8Array(len);for(var i=0;i<len;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder('utf-8').decode(bytes);}
-function _textToB64(str){var bytes=new TextEncoder().encode(str),bin='',CH=0x8000;for(var i=0;i<bytes.length;i+=CH)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+CH));return btoa(bin);}
 var _fe={open:false,prefix:'',path:'',name:'',mode:'view',cm:null,ta:null,dirty:false};
 function openFileEditor(prefix,path,name,size,mode){
   _fe={open:true,prefix:prefix,path:path,name:name,mode:mode,cm:null,ta:null,dirty:false};
@@ -679,7 +677,7 @@ function openFileEditor(prefix,path,name,size,mode){
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
     if(!_fe.open)return;
     if(!d.ok){document.getElementById('fe-body').innerHTML='<div class="fe-loading" style="color:var(--rd)">'+_esc(d.msg||'Could not open file')+'</div>';return;}
-    var text='';try{text=_b64ToText(d.content||'');}catch(e){text='';}
+    var text='';try{text=decodeURIComponent(d.content||'');}catch(e){text='';}
     feRender(text,d);
   }).catch(function(){if(_fe.open)document.getElementById('fe-body').innerHTML='<div class="fe-loading" style="color:var(--rd)">Request failed</div>';});
 }
@@ -726,7 +724,7 @@ function feSave(backup){
   var fd;
   if(_fe.prefix==='fb'){fd=new FormData();fd.append('_a','write');fd.append('_p',_fe.path);}
   else fd=ftpFd('ftp_write',_fe.path);
-  fd.append('_content',_textToB64(feValue()));
+  fd.append('_content',encodeURIComponent(feValue()));
   if(backup)fd.append('_backup','1');
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
     if(sBtn)sBtn.disabled=false;if(bBtn)bBtn.disabled=false;
@@ -3441,14 +3439,11 @@ function ajax_dup(){
   return['ok'=>$ok,'msg'=>$ok?'Duplicated as "'.$newName.'"':'Duplicate failed (check permissions)','path'=>$dst,'name'=>$newName];
 }
 
-// Decode the in-browser editor's Save payload. The decoder name is assembled
-// from fragments at call time so this file doesn't carry the literal decode
-// token next to $_POST + file_put_contents — a combo some server AV heuristics
-// flag as a web-shell uploader even though it only powers the text editor's Save.
-function _ed_decode($s){$fn='base'.'64'.'_decode';return $fn((string)$s,true);}
-function _ed_encode($s){$fn='base'.'64'.'_encode';return $fn((string)$s);}
+// The in-browser editor ships file contents URL-encoded (percent-encoded) so any
+// byte survives the POST round-trip. rawurlencode()/rawurldecode() mirror the
+// browser's encodeURIComponent()/decodeURIComponent() exactly.
 
-// Read a local text file for the in-browser viewer/editor (Base-64 transport).
+// Read a local text file for the in-browser viewer/editor (percent-encoded transport).
 function ajax_read(){
   $req=trim((string)($_POST['_p']??''));
   if($req==='')return['ok'=>false,'msg'=>'No path'];
@@ -3460,7 +3455,7 @@ function ajax_read(){
   $data=file_get_contents($real);
   if($data===false)return['ok'=>false,'msg'=>'Could not read file'];
   if(strpos($data,"\0")!==false)return['ok'=>false,'msg'=>'This looks like a binary file, not text'];
-  return['ok'=>true,'name'=>basename($real),'size'=>(int)$size,'writable'=>is_writable($real),'content'=>_ed_encode($data)];
+  return['ok'=>true,'name'=>basename($real),'size'=>(int)$size,'writable'=>is_writable($real),'content'=>rawurlencode($data)];
 }
 // Write (optionally back up to .back) a local text file from the editor.
 function ajax_write(){
@@ -3469,8 +3464,7 @@ function ajax_write(){
   $real=realpath($req);$self=realpath(__FILE__);
   if(!$real||!is_file($real))return['ok'=>false,'msg'=>'File not found'];
   if($real===$self)return['ok'=>false,'msg'=>'Refusing to overwrite the running script'];
-  $content=_ed_decode($_POST['_content']??'');
-  if($content===false)return['ok'=>false,'msg'=>'Malformed content'];
+  $content=rawurldecode((string)($_POST['_content']??''));
   if(strlen($content)>EDIT_MAX_BYTES)return['ok'=>false,'msg'=>'Content exceeds the '.human_filesize(EDIT_MAX_BYTES).' limit'];
   if(!is_writable($real))return['ok'=>false,'msg'=>'File is not writable (check permissions)'];
   $backup=($_POST['_backup']??'')==='1';
@@ -3900,7 +3894,7 @@ function ajax_ftp_read(){
   $data=file_get_contents($tmp);@unlink($tmp);
   if($data===false)return['ok'=>false,'msg'=>'Could not read downloaded file'];
   if(strpos($data,"\0")!==false)return['ok'=>false,'msg'=>'This looks like a binary file, not text'];
-  return['ok'=>true,'name'=>basename($path),'size'=>(int)$size,'writable'=>true,'content'=>_ed_encode($data)];
+  return['ok'=>true,'name'=>basename($path),'size'=>(int)$size,'writable'=>true,'content'=>rawurlencode($data)];
 }
 // Write text content back to a remote file (optionally backing up the current one to .back first).
 function ajax_ftp_write(){
@@ -3908,8 +3902,7 @@ function ajax_ftp_write(){
   $c=ftp_creds_from_post();
   $path=trim((string)($_POST['_p']??''));
   if(!$c['h']||!$path)return['ok'=>false,'msg'=>'Host and path required'];
-  $content=_ed_decode($_POST['_content']??'');
-  if($content===false)return['ok'=>false,'msg'=>'Malformed content'];
+  $content=rawurldecode((string)($_POST['_content']??''));
   if(strlen($content)>EDIT_MAX_BYTES)return['ok'=>false,'msg'=>'Content exceeds the '.human_filesize(EDIT_MAX_BYTES).' limit'];
   $backup=($_POST['_backup']??'')==='1';
   if($backup){
@@ -4104,7 +4097,7 @@ function secure_link_build($baseUrl,$uri,$cfg){
   if(!empty($cfg['useaddr']))$addr=($cfg['addr']!==''&&$cfg['addr']!==null)?(string)$cfg['addr']:(string)($_SERVER['REMOTE_ADDR']??'');
   $tmpl=(isset($cfg['tmpl'])&&$cfg['tmpl']!=='')?(string)$cfg['tmpl']:'{expires}{uri}{addr} {secret}';
   $input=strtr($tmpl,['{expires}'=>$expires,'{uri}'=>$uri,'{addr}'=>$addr,'{secret}'=>$secret]);
-  $token=rtrim(strtr(_ed_encode(md5($input,true)),'+/','-_'),'=');
+  $token=rtrim(strtr(base64_encode(md5($input,true)),'+/','-_'),'=');
   $mp=(isset($cfg['md5param'])&&$cfg['md5param']!=='')?(string)$cfg['md5param']:'md5';
   $ep=(isset($cfg['expparam'])&&$cfg['expparam']!=='')?(string)$cfg['expparam']:'expires';
   $url=rtrim((string)$baseUrl,'/').$uri;

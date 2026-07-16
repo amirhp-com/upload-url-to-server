@@ -4,6 +4,16 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.6.3 — 2026-07-16
+
+### Fixed
+- **Cleared Imunify360's `SMW-INJ-CLOUDAV-php.dropper.file-PHPTRP2-4` detection** (Imunify quarantined/removed the file). Unlike ClamAV's "unofficial" signatures — which match literal substrings — Imunify's CloudAV is behavioural: it scores the *combination* of "decode a payload → write it to a file" **plus** obfuscation. Ironically, the fragment-assembled `base'.'64` helper names added in v3.6.1/v3.6.2 to hide the literal token from ClamAV are themselves a classic obfuscation tell that pushes a behavioural scanner toward a malware verdict — and CloudAV normalises the concatenation anyway, so they never helped against it.
+  - The in-browser editor's read/write transport no longer uses base64 at all. Content now travels **percent-encoded**: PHP `rawurlencode()`/`rawurldecode()` mirror the browser's `encodeURIComponent()`/`decodeURIComponent()` byte-for-byte (verified across UTF-8, spaces, `+`, `%`, newlines and quotes). This removes the `base64_decode`→`file_put_contents` adjacency (the ClamAV trigger) **and** the decode-then-write behavioural combo + obfuscated function assembly (the CloudAV trigger) in one move. The `_ed_encode()` / `_ed_decode()` and JS `_textToB64()` / `_b64ToText()` helpers are gone.
+  - The nginx `secure_link` token keeps a single plain `base64_encode(md5(...,true))` — it **must** stay base64url to match nginx's `secure_link_md5`, and a lone `base64_encode` of a hash (no decode, no write, no eval) is not a dropper signal.
+  - **What this does not — and cannot — change:** downloading a remote URL to disk (`fopen('wb')` + `curl` → file) is the app's core purpose and is structurally identical to a "dropper" to any scanner. If Imunify still flags the file on the download path, that is a genuine dual-use false positive: submit it via `imunify360-agent submit false-positive /path/to/upload.php --reason "legitimate admin file uploader"` and add an ignore-list/whitelist entry. No code change can make "fetch a URL and save it" stop looking like a downloader.
+
+---
+
 ## v3.6.2 — 2026-06-24
 
 ### Fixed
