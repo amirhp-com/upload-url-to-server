@@ -4,6 +4,22 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.7.0 — 2026-07-19
+
+### Fixed
+- **Compare no longer reports mismatched files as `IDENTICAL`.** The size test bailed out to "same" whenever *either* side reported 0 bytes, so a 1.25 GB file on the left vs a 0-byte file on the right (a truncated/failed upload, or a size the listing couldn't read) was hidden as identical — exactly the file that needed re-syncing. Sizes are now compared directly: `0 vs 0` is identical, `0 vs non-zero` is **DIFFERS** and stays auto-checked for sync.
+
+### Added
+- **Create & remove folders** in the File Explorer, FTP Explorer, and both Compare/Sync panes. "New Folder" creates a folder in the currently-open directory; folder delete is **recursive** (removes everything inside) behind an explicit confirm. Works for Local, FTP, FTPS and (where the `ssh2` extension is present) SFTP.
+- **Rename in the Compare/Sync panes.** Each Explorer-view row now has a three-dots menu with Rename / New folder / Delete (rename already existed in the two standalone explorers).
+- **Recursive folder sync in Explorer view.** Ticking a sub-folder now expands it and syncs every file inside, recreating the sub-folder structure on the destination — previously Explorer view skipped folders and told you to switch to Tree.
+- **Clearer comparison results panel.** The Compare and Sync Selected buttons now sit inline next to Direction and Method. Results show colour-coded counts (identical / differs / only-left / only-right) plus **total files and total size compared on each side**, with the size delta.
+- **In-place self-update.** The Updates tab can now overwrite the running `upload.php` two ways: **Update now** downloads the latest GitHub release, and **Replace from PC** takes a build you upload. Both verify the candidate is genuinely valid PHP for this server (size window, `<?php` header, app fingerprints, and a full `token_get_all(…, TOKEN_PARSE)` parse) and swap it in **atomically** via a temp file + `rename()`, so the live script is only ever replaced by a whole, parseable copy — and is left untouched if anything fails. No backup is kept, so the parse-verification is the safety net. Requires the file to be writable by the PHP user.
+  - **Security:** because the downloaded bytes are executed (they become the running script), the GitHub path is MITM-hardened: the release-lookup and the download both use **strict TLS** (`SSL_VERIFYPEER`/`VERIFYHOST` on — unlike the general file-fetcher, which pulls inert user URLs), the download URL is derived server-side (never client-supplied — no SSRF) and is **pinned to GitHub-owned hosts over HTTPS only**, so a poisoned API response can't redirect the fetch to an attacker. Self-update fails closed on a TLS error rather than falling back to unverified transport. Note: like every action in this single-file tool, self-update is **unauthenticated** — protect the file at the server level (auth/firewall) or remove it after use; an attacker who can reach it can already gain RCE by uploading a `.php`.
+- **Old-PHP notice.** On a runtime below the supported minimum (PHP 7.4), the app shows a friendly page — current vs required version, a link to GitHub, and a link to older releases that may run on legacy PHP — instead of misbehaving. (PHP older than the parser floor still can't load a file that uses 7+ syntax; that's inherent.)
+
+---
+
 ## v3.6.3 — 2026-07-16
 
 ### Fixed

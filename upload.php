@@ -3,8 +3,8 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/07/16 12:00:00
- * @Version: 3.6.3
+ * @Last modified time: 2026/07/19 12:00:00
+ * @Version: 3.7.0
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,8 +13,8 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.6.3');
-define('BUILD_DATE','2026-07-16 &middot; 1405-04-25');
+define('APP_VER','3.7.0');
+define('BUILD_DATE','2026-07-19 &middot; 1405-04-28');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
 define('EDIT_MAX_BYTES',10*1024*1024); // view/edit-as-text size ceiling (10 MB)
@@ -29,6 +29,48 @@ define('GH_RAW','https://raw.git'.'hubusercontent.com/amirhp-com/upload-url-to-s
 
 $_svg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 593.98 611.09'%3E%3Cdefs%3E%3ClinearGradient id='b71a6815-b2dd-4cdc-8829-681ded6965f8' x1='3.19' y1='309' x2='597.16' y2='309' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3ClinearGradient id='a74c5198-c584-4949-bbfa-abba96f490d8' x1='228.39' y1='243.82' x2='250.14' y2='224.92' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='0' stop-color='%23f37248'/%3E%3Cstop offset='0.03' stop-color='%23f3764c'/%3E%3Cstop offset='0.48' stop-color='%23f4a47f'/%3E%3Cstop offset='0.81' stop-color='%23f5c19e'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%3E%3Cpath d='M198.81,7.32C154.67,24.69,117.57,57.52,96.74,97.7A212.73,212.73,0,0,0,76.6,157.22c-2.09,11.8-1.79,55.26.49,68.75a334.57,334.57,0,0,0,10.42,42.56c1.69,4.86,2.68,8.92,2.28,9.12-1.19.8-10.42-3.67-16.57-8C58.34,259.3,48.52,238.76,43,206.82c-3.38-19.54-3.08-54.06.69-67.95l.6-2-1.39,2C39.4,143.73,32.35,168.63,29.28,187c-1.09,6.25-2.48,18-3.18,26-2.87,36.51,5.76,74.9,22.52,100.1,8.53,12.89,3,8.23-9.62-8a368.39,368.39,0,0,1-25-37.2c-2.48-4.36-5.95-10.42-7.64-13.39L3.19,249l.59,10.91c1.69,34.13,15,70.74,36.61,100.89C48.13,371.7,63.7,389.06,72.83,397c8.43,7.44,11,11,7,9.72-7-2.18-42.26-6.25-43.55-5-.3.39.4,1.28,1.59,2.08s7,9,13.19,18.15,13.59,19.94,16.67,24c28.67,39,64.68,69.14,106.54,89,4.17,2,7.64,4.27,7.64,5a1.22,1.22,0,0,1-1.09,1.29c-.6,0-9.43,4-19.64,8.83s-20.44,9.43-22.92,10.12c-10.32,2.88-5.55,4.47,10.12,3.47a108.54,108.54,0,0,0,40.08-10.41c9.72-4.66,16.27-6.85,16.27-5.66,0,1.69-11.31,24.21-13.2,26.29a41.9,41.9,0,0,1-6.64,5.26l-4.47,3,7.94-.7c15.47-1.39,33.53-7.14,50-16,4.56-2.48,8.53-4.17,8.92-3.87,1.29,1.29.2,9.23-2.28,16.27l-2.58,7.34L254.17,573c8-8.33,12.3-12,13.79-12,3.07,0,6.35,4.77,11.41,16.37,2.58,6,5.75,11.41,8,13.79a33.14,33.14,0,0,1,3.67,4.27c0,.2-2.48,4.46-5.45,9.42s-5.26,9.23-5.06,9.43c.59.69,8.53-3.57,14.68-7.94l5.56-4,4.86,3.47c5.15,3.77,13.49,8.73,14.48,8.73,1.49,0,.5-2.08-4.27-9.82-2.67-4.36-5-8.53-5-9.12s1.69-3.08,3.87-5.46a61.39,61.39,0,0,0,7.64-13.49c3.77-9.13,8.33-15.68,10.81-15.68,2.19,0,10.62,7.35,17.86,15.68,3.87,4.36,7,7.84,7.24,7.64s-.79-3.47-2.18-7.44c-2.58-7.05-3.37-14.29-1.69-15.28.5-.3,3.48.89,6.75,2.68,14.48,8.13,32.34,14.38,47.62,16.57,10.91,1.58,12.89,1.09,7.64-1.89-6.55-3.67-11.71-11.61-18-27.18-.89-2.08-1.29-4.07-.89-4.37s2.77.3,5.35,1.39,8.34,3.67,12.8,5.66a124.91,124.91,0,0,0,17.76,6.05c11,2.88,30.65,4.36,33.73,2.68,1.49-.9,1.58-1.19.39-1.49-7.83-2.48-16.66-6.15-28.76-12.2-7.94-3.87-15.38-7.44-16.57-7.84-4.37-1.29-2.38-3.47,7.14-7.84,15.87-7.44,37.4-21.13,53.07-33.63,11.12-8.92,35.12-33.43,44.55-45.63,4.66-5.85,13.88-18.75,20.63-28.77S561.2,406.52,562.59,405s2.28-3.08,2-3.47c-.89-.8-29.46,2.28-38.09,4.06-3.37.7-6.35,1.09-6.65.9s4.67-5.46,11-11.61c31.74-30.46,51.28-62.5,61.6-100.79,3.47-12.6,5.26-27.18,4.56-35.32l-.69-7.44-4.56,8.73c-5,9.33-5.56,10.22-13.89,23.12-6.25,9.62-15.87,22.71-20.54,27.77-1.78,1.89-4.16,4.77-5.35,6.25-4.07,5.16-3.08,2,1.48-4.66a74.82,74.82,0,0,0,4.47-6.94c0-.2,1.49-3.67,3.37-7.74,16.07-34.23,18.75-80.65,7.54-127.28-3.27-13.69-7.14-26-9.42-30l-1.59-2.77.69,4c2,12.4,2.38,17.26,2.38,30.76,0,22.42-3.47,46.22-9.32,62.59-6.05,17.26-16.77,31.65-27.48,37.2-5,2.48-12,5.06-12.5,4.47-.2-.2.5-2.78,1.59-5.66,4.36-12.3,6.84-22.12,10-39.08,12.4-67.86-5.36-131.54-49.41-177.28C454,34.21,429,17.44,403.27,7.52c-5.75-2.28-10.61-4.06-10.81-4.06-1.19,0,1,2.28,6.74,7,38.69,31.84,74.11,99.8,82.44,158.43,1.39,10.31.6,38.19-1.39,45.83-5.75,22.12-11.31,33.63-24.4,50.59-8.73,11.21-23.61,26-39.19,38.69-35.81,29.17-43.55,35.81-52.28,44.74l-9.52,9.82-6.94-3.47-6.85-3.37,1.19-11.71c9.43-86.6-2.58-140.37-39.68-178.66-17.46-18.06-32.74-26-50.2-26-22.61,0-41,14.88-49.89,40.37-5.06,14.58-4.07,30.06,2.57,40.87l2.09,3.47.69-2.48a30.94,30.94,0,0,1,3.37-6.84,38,38,0,0,0,3.87-10.12c.6-3.17,1.39-5.75,1.79-5.75s2.58,2.38,4.76,5.35c6.35,8.34,12.5,10.32,21.93,6.85,4.26-1.49,4.66-1.89,5.25-5.66,1-5.85,5-11.3,9.82-13.59,7.74-3.47,11.31-2.18,19.94,7,6.65,7.24,10,13.39,12.6,23.61,4.07,16.07,1.59,36-9,71.13-6.64,21.82-11,40.87-11.7,50.09l-.7,9.43-4,1.29a119.24,119.24,0,0,0-11.61,4.86l-7.74,3.57-6.64-7.24c-7.74-8.34-23.32-22.13-41-36.21-56.64-45.14-75.09-72-79.56-115.47C114.59,154.14,139.39,84.7,177.88,35.7c6.65-8.53,24.31-26.19,28.67-28.77,2.88-1.79,4.27-3.57,2.48-3.38C208.54,3.55,204,5.34,198.81,7.32Z' transform='translate(-3.19 -3.46)' style='fill:url(%23b71a6815-b2dd-4cdc-8829-681ded6965f8)'/%3E%3Cpath d='M222.62,213.67c-4.06.79-5.45,1.58-10,5.45l-3.27,2.78,2.38,2a55,55,0,0,0,7,4.37c6.75,3.37,14.49,12.6,21.13,25.1,6.25,11.7,7.74,12.89,11.41,8.93s4.47-10.72,2.58-23.52l-1.78-11.6L246,221.4C237.31,213.07,233,211.68,222.62,213.67Z' transform='translate(-3.19 -3.46)' style='fill:url(%23a74c5198-c584-4949-bbfa-abba96f490d8)'/%3E%3C/g%3E%3C/svg%3E";
 
+// ── Minimum PHP version gate ─────────────────────────────────────────────────
+// This build uses PHP 7+ syntax, so a runtime older than the parser floor (~7.1)
+// can't even compile this file and will just show a blank / 500 page — nothing we
+// can do about that from inside the file. For runtimes that DO parse it but sit
+// below the supported minimum, show a friendly notice (with links to GitHub and to
+// older releases that may run on legacy PHP) instead of letting people wonder why
+// features misbehave. Older app versions on GitHub target much older PHP.
+define('MIN_PHP','7.4');
+if(version_compare(PHP_VERSION,MIN_PHP,'<')){
+  $_repo='https://git'.'hub.com/amirhp-com/upload-url-to-server';
+  $_rel=$_repo.'/releases';
+  if(PHP_SAPI==='cli'){
+    fwrite(STDERR,"BlackSwan Upload v".APP_VER." requires PHP ".MIN_PHP." or newer (this server runs ".PHP_VERSION.").\n".
+      "Latest version : ".$_repo."\nOlder builds for legacy PHP : ".$_rel."\n");
+    exit(1);
+  }
+  if(!headers_sent())header('Content-Type: text/html; charset=utf-8',true,200);
+  echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+    .'<title>PHP too old &mdash; BlackSwan Upload</title><link rel="icon" href="'.$_svg.'" sizes="any">'
+    .'<style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem;'
+    .'background:#0d1117;color:#e6edf3;font:400 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}'
+    .'.card{max-width:520px;width:100%;background:#161b22;border:1px solid #30363d;border-radius:16px;padding:2rem 1.8rem;box-shadow:0 20px 60px rgba(0,0,0,.5)}'
+    .'.ic{width:52px;height:52px;border-radius:12px;background:rgba(227,101,11,.15);display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:1.1rem}'
+    .'h1{font-size:1.35rem;margin:0 0 .5rem}p{color:#9da7b3;margin:.5rem 0}'
+    .'.vers{display:flex;gap:.6rem;margin:1.1rem 0;flex-wrap:wrap}.vers span{flex:1 1 auto;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:.6rem .8rem;font-size:.85rem}'
+    .'.vers b{display:block;color:#e6edf3;font-size:1.05rem;margin-top:.15rem}.need{color:#3fb950}.have{color:#f85149}'
+    .'.btns{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.3rem}'
+    .'a.btn{flex:1 1 auto;text-align:center;text-decoration:none;padding:.7rem 1rem;border-radius:10px;font-weight:600;font-size:.9rem}'
+    .'a.p{background:#238636;color:#fff}a.g{background:#21262d;color:#e6edf3;border:1px solid #30363d}'
+    .'small{display:block;color:#6e7681;margin-top:1.1rem;font-size:.8rem}</style></head><body><div class="card">'
+    .'<div class="ic">&#9888;</div><h1>This server&rsquo;s PHP is too old</h1>'
+    .'<p><strong>BlackSwan Upload v'.htmlspecialchars(APP_VER).'</strong> needs <strong>PHP '.htmlspecialchars(MIN_PHP).' or newer</strong> to run reliably.</p>'
+    .'<div class="vers"><span>Required<b class="need">PHP '.htmlspecialchars(MIN_PHP).'+</b></span>'
+    .'<span>This server<b class="have">PHP '.htmlspecialchars(PHP_VERSION).'</b></span></div>'
+    .'<p>Ask your host to switch the PHP version (most control panels &mdash; cPanel, DirectAdmin, Plesk &mdash; let you pick it per-site), or grab an older build of this tool that may run on your PHP.</p>'
+    .'<div class="btns"><a class="btn p" href="'.htmlspecialchars($_repo).'" target="_blank" rel="noopener">Latest on GitHub</a>'
+    .'<a class="btn g" href="'.htmlspecialchars($_rel).'" target="_blank" rel="noopener">Older releases</a></div>'
+    .'<small>Once you&rsquo;re on PHP '.htmlspecialchars(MIN_PHP).'+, reload this page to use the uploader.</small>'
+    .'</div></body></html>';
+  exit;
+}
+
 if(PHP_SAPI==='cli'){cli_main();exit;}
 
 if(isset($_POST['_a'])){
@@ -39,6 +81,7 @@ if(isset($_POST['_a'])){
   if($a==='rename')      {echo json_encode(ajax_rename());exit;}
   if($a==='move')        {echo json_encode(ajax_move());exit;}
   if($a==='dup')         {echo json_encode(ajax_dup());exit;}
+  if($a==='mkdir')       {echo json_encode(ajax_mkdir());exit;}
   if($a==='read')        {echo json_encode(ajax_read());exit;}
   if($a==='write')       {echo json_encode(ajax_write());exit;}
   if($a==='ftp_read')    {echo json_encode(ajax_ftp_read());exit;}
@@ -58,6 +101,7 @@ if(isset($_POST['_a'])){
   if($a==='ftp_rename')  {echo json_encode(ajax_ftp_rename());exit;}
   if($a==='ftp_move')    {echo json_encode(ajax_ftp_move());exit;}
   if($a==='ftp_dup')     {echo json_encode(ajax_ftp_dup());exit;}
+  if($a==='ftp_mkdir')   {echo json_encode(ajax_ftp_mkdir());exit;}
   if($a==='xfer_direct') {echo json_encode(ajax_xfer_direct());exit;}
   if($a==='xfer_relay')  {echo json_encode(ajax_xfer_relay());exit;}
   if($a==='xfer_ftp')    {echo json_encode(ajax_xfer_ftp());exit;}
@@ -65,6 +109,7 @@ if(isset($_POST['_a'])){
   if($a==='xfer_http')   {echo json_encode(ajax_xfer_http());exit;}
   if($a==='secure_sign') {echo json_encode(ajax_secure_sign());exit;}
   if($a==='check_update'){echo json_encode(ajax_check_update());exit;}
+  if($a==='self_update') {echo json_encode(ajax_self_update());exit;}
   echo '{"ok":false}';exit;
 }
 
@@ -98,7 +143,7 @@ if(isset($_GET['phpinfo'])&&$_GET['phpinfo']==='1'){phpinfo();exit;}
 .ftp-conn-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem;margin-bottom:.9rem}.ftp-conn-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem .75rem}@media(max-width:520px){.ftp-conn-grid{grid-template-columns:1fr}}.ftp-conn-grid .field{margin-bottom:0}.field select{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .15s,box-shadow .15s}.field select:focus{border-color:var(--ac)}.ftp-browser{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.9rem;margin-bottom:.9rem;min-height:180px}.ftp-log-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:10px;overflow:hidden;margin-top:.75rem}.ftp-log-hdr{display:flex;align-items:center;justify-content:space-between;padding:.38rem .75rem;background:var(--s2);border-bottom:1px solid var(--bd);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2)}.ftp-log{height:150px;overflow-y:auto;padding:.5rem .75rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;color:var(--t2);line-height:1.65}.ftp-log-entry{margin:.1rem 0;word-break:break-all}.ftp-log-entry.ok{color:var(--gr)}.ftp-log-entry.err{color:var(--rd)}.ftp-log-entry.info{color:var(--t2)}.ftp-perms{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;color:var(--t2);letter-spacing:.5px}.ftp-acts{display:flex;gap:.2rem;justify-content:flex-end;flex-wrap:wrap}.ftp-empty{text-align:center;padding:2.5rem;color:var(--t2);font-size:.88rem}.btn-url{background:var(--s2);color:var(--bl);border:1px solid var(--bd)}.btn-url:hover{border-color:var(--bl);opacity:.88}.btn-url.disabled-url{opacity:.35;cursor:not-allowed;pointer-events:none}.seclink-box{border:1px solid var(--bd);border-radius:12px;background:var(--s2);margin:.9rem 0;padding:0 .9rem}.seclink-box>summary{cursor:pointer;list-style:none;padding:.65rem .1rem;font-size:.82rem;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:.4rem}.seclink-box>summary::-webkit-details-marker{display:none}.seclink-box>summary::after{content:'▾';margin-left:auto;color:var(--t2);transition:transform .15s}.seclink-box[open]>summary::after{transform:rotate(180deg)}.seclink-box[open]>summary{border-bottom:1px solid var(--bd);margin-bottom:.7rem}.seclink-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem .75rem;padding-bottom:.5rem}.seclink-grid .full{grid-column:1/-1}.seclink-grid .field{margin-bottom:0}.seclink-grid .toggle-row{margin-bottom:0}@media(max-width:520px){.seclink-grid{grid-template-columns:1fr}}
 .bulk-toggle-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}.bulk-toggle-row label{font-size:.76rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}.bulk-url-area{display:none;margin-bottom:.75rem}.bulk-url-area textarea{width:100%;padding:.6rem .85rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-size:.88rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical;outline:none;min-height:90px;transition:border-color .15s}.bulk-url-area textarea:focus{border-color:var(--ac)}.bulk-progress-wrap{height:4px;background:var(--s2);border-radius:2px;margin:.55rem 0;overflow:hidden;display:none}.bulk-bar{height:100%;background:linear-gradient(90deg,var(--ac),#f5c47a);width:0%;transition:width .3s ease;border-radius:2px}.bulk-counter{font-size:.8rem;color:var(--t2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;display:none;margin-bottom:.4rem}.bulk-status{margin-top:.55rem}.bulk-item{display:flex;align-items:flex-start;gap:.5rem;padding:.35rem .5rem;border-radius:7px;margin-bottom:.28rem;font-size:.82rem;background:var(--s2);border:1px solid var(--bd)}.bulk-item-ic{flex-shrink:0;width:16px;text-align:center}.bulk-item-name{flex:1;word-break:break-all;color:var(--t1)}.bulk-item-meta{font-size:.76rem;color:var(--t2);white-space:nowrap}.bulk-item.ok .bulk-item-ic{color:var(--gr)}.bulk-item.err .bulk-item-ic{color:var(--rd)}.bulk-item.busy .bulk-item-ic{color:var(--ac)}.bulk-item-retry{flex-shrink:0;background:var(--s2);color:var(--rd);border:1px solid var(--rd);border-radius:6px;padding:.15rem .55rem;font-size:.74rem;cursor:pointer;white-space:nowrap;line-height:1.4}.bulk-item-retry:hover{background:var(--rd);color:#fff}.bulk-retry-all{margin-top:.6rem;display:none}@keyframes spin{to{transform:rotate(360deg)}}.spin{animation:spin .8s linear infinite;display:inline-block}.perms-octal{font-weight:700;color:var(--t1);margin-left:.3rem}
 .banner{display:flex;align-items:center;gap:.6rem;max-width:1000px;margin:0 auto 1rem;padding:.7rem 1rem;border-radius:12px;font-size:.86rem;line-height:1.45}.banner-err{background:rgba(255,59,48,.12);border:1px solid var(--rd);color:var(--rd)}.banner-warn{background:rgba(154,106,0,.12);border:1px solid var(--rw);color:var(--rw)}.banner-ic{flex-shrink:0;display:inline-flex}.banner-msg{flex:1}.banner-msg code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82em;opacity:.85}.banner-msg b{color:inherit}.banner-x{background:none;border:none;color:inherit;cursor:pointer;padding:.2rem;opacity:.7;display:inline-flex;flex-shrink:0}.banner-x:hover{opacity:1}
-.cmp-grid{display:flex;gap:1rem;align-items:flex-start}@media(max-width:820px){.cmp-grid{flex-direction:column}}.cmp-pane{flex:1 1 0;min-width:0;background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.85rem}.cmp-pane-hd{display:flex;align-items:center;gap:.45rem;margin-bottom:.6rem}.cmp-pane-hd select{flex:1}.cmp-creds{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .6rem;margin-bottom:.6rem}.cmp-creds .field{margin-bottom:0}.cmp-creds .full{grid-column:1/-1}.cmp-pane .fb-bar{margin-bottom:.5rem}.cmp-tbl-wrap{max-height:46vh;overflow:auto;border:1px solid var(--bd);border-radius:10px}.cmp-tbl-wrap .fb-empty{padding:1.4rem}.cmp-bar{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;justify-content:center;margin:1rem auto;max-width:1000px}.cmp-legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center;font-size:.76rem;color:var(--t2);margin:.4rem 0}.cmp-legend span{display:inline-flex;align-items:center;gap:.3rem}.cmp-dot{width:11px;height:11px;border-radius:3px;display:inline-block}.cmp-dot.only-l{background:var(--bl)}.cmp-dot.only-r{background:var(--t2)}.cmp-dot.diff{background:var(--ac)}.cmp-dot.same{background:var(--gr)}tr.cmp-only-l td{background:rgba(0,122,255,.1)}tr.cmp-only-r td{background:rgba(142,142,147,.12)}tr.cmp-diff td{background:rgba(227,101,11,.13)}tr.cmp-same td{background:rgba(52,199,89,.1)}.cmp-opts{display:flex;flex-wrap:wrap;gap:.6rem;align-items:flex-end;justify-content:center;margin:.6rem auto;max-width:1000px}.cmp-opts .field{margin-bottom:0;min-width:150px}.cmp-tag{font-size:.7rem;font-weight:700;padding:.05rem .4rem;border-radius:5px;text-transform:uppercase;letter-spacing:.3px}.cmp-step{border:1px solid var(--bd);border-radius:14px;background:var(--s1);padding:1rem 1.1rem;margin:.9rem 0}.cmp-step.cmp-guide{background:var(--s2)}.cmp-step-title{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t2);margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem}.cmp-step .cmp-bar,.cmp-step .cmp-opts,.cmp-step .cmp-legend{margin:0}.cmp-sync-total{font-size:.85rem;font-weight:600;color:var(--t1);margin:.7rem 0;text-align:center}.cmp-actions{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}.cmp-actions .btn{min-width:160px}.cmp-http-hint{font-size:.78rem;color:var(--t2);background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:.6rem .8rem;margin:.3rem 0;text-align:center;line-height:1.6}.cmp-sel{font-size:.76rem;color:var(--t2);margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--bd)}.cmp-collapse{margin-bottom:.55rem}.cmp-collapse>summary{cursor:pointer;list-style:none;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2);display:flex;align-items:center;gap:.35rem}.cmp-collapse>summary::-webkit-details-marker{display:none}.cmp-collapse>summary::before{content:'▸';color:var(--t2);transition:transform .15s}.cmp-collapse[open]>summary::before{transform:rotate(90deg)}.cmp-view-seg button svg{margin-right:.1rem}.tree-tools.explorer-mode .tree-only{display:none}.tree-tools{align-items:center}.tree-tools .btn{height:var(--ctl-h);padding:0 .7rem;font-size:.82rem}.tree-tools .btn-icon{padding:0 .55rem}.tree-tools .seg{height:var(--ctl-h)}.tree-tools .seg button{height:var(--ctl-h)}
+.cmp-grid{display:flex;gap:1rem;align-items:flex-start}@media(max-width:820px){.cmp-grid{flex-direction:column}}.cmp-pane{flex:1 1 0;min-width:0;background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.85rem}.cmp-pane-hd{display:flex;align-items:center;gap:.45rem;margin-bottom:.6rem}.cmp-pane-hd select{flex:1}.cmp-creds{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .6rem;margin-bottom:.6rem}.cmp-creds .field{margin-bottom:0}.cmp-creds .full{grid-column:1/-1}.cmp-pane .fb-bar{margin-bottom:.5rem}.cmp-tbl-wrap{max-height:46vh;overflow:auto;border:1px solid var(--bd);border-radius:10px}.cmp-tbl-wrap .fb-empty{padding:1.4rem}.cmp-bar{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;justify-content:center;margin:1rem auto;max-width:1000px}.cmp-legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center;font-size:.76rem;color:var(--t2);margin:.4rem 0}.cmp-legend span{display:inline-flex;align-items:center;gap:.3rem}.cmp-dot{width:11px;height:11px;border-radius:3px;display:inline-block}.cmp-dot.only-l{background:var(--bl)}.cmp-dot.only-r{background:var(--t2)}.cmp-dot.diff{background:var(--ac)}.cmp-dot.same{background:var(--gr)}tr.cmp-only-l td{background:rgba(0,122,255,.1)}tr.cmp-only-r td{background:rgba(142,142,147,.12)}tr.cmp-diff td{background:rgba(227,101,11,.13)}tr.cmp-same td{background:rgba(52,199,89,.1)}.cmp-opts{display:flex;flex-wrap:wrap;gap:.6rem;align-items:flex-end;justify-content:center;margin:.6rem auto;max-width:1000px}.cmp-opts .field{margin-bottom:0;min-width:150px}.cmp-tag{font-size:.7rem;font-weight:700;padding:.05rem .4rem;border-radius:5px;text-transform:uppercase;letter-spacing:.3px}.cmp-step{border:1px solid var(--bd);border-radius:14px;background:var(--s1);padding:1rem 1.1rem;margin:.9rem 0}.cmp-step.cmp-guide{background:var(--s2)}.cmp-step-title{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t2);margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem}.cmp-step .cmp-bar,.cmp-step .cmp-opts,.cmp-step .cmp-legend{margin:0}.cmp-sync-total{font-size:.85rem;font-weight:600;color:var(--t1);margin:.7rem 0;text-align:center}.cmp-actions{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}.cmp-actions .btn{min-width:160px}.cmp-controls{display:flex;flex-wrap:wrap;gap:.7rem;align-items:flex-end;justify-content:center;max-width:1000px;margin:.2rem auto}.cmp-controls .field{margin-bottom:0;min-width:170px}.cmp-controls .cmp-run{display:flex;gap:.55rem;flex-wrap:wrap}.cmp-controls .cmp-run .btn{height:var(--ctl-h);min-width:150px}.cmp-results{max-width:1000px;margin:.85rem auto 0;background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:.9rem 1rem}.cmp-counts{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center}.cmp-counts .pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.9rem}.cmp-counts .pill .n{font-weight:700;color:var(--t1)}.cmp-totals{margin-top:.75rem;padding-top:.7rem;border-top:1px dashed var(--bd);font-size:.82rem;color:var(--t2);display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;justify-content:center}.cmp-totals b{color:var(--t1);font-weight:700}.cmp-legend-wrap{max-width:1000px;margin:.7rem auto 0}.cmp-http-hint{font-size:.78rem;color:var(--t2);background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:.6rem .8rem;margin:.3rem 0;text-align:center;line-height:1.6}.cmp-sel{font-size:.76rem;color:var(--t2);margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--bd)}.cmp-collapse{margin-bottom:.55rem}.cmp-collapse>summary{cursor:pointer;list-style:none;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2);display:flex;align-items:center;gap:.35rem}.cmp-collapse>summary::-webkit-details-marker{display:none}.cmp-collapse>summary::before{content:'▸';color:var(--t2);transition:transform .15s}.cmp-collapse[open]>summary::before{transform:rotate(90deg)}.cmp-view-seg button svg{margin-right:.1rem}.tree-tools.explorer-mode .tree-only{display:none}.tree-tools:not(.explorer-mode) .explorer-only{display:none}.tree-tools{align-items:center}.tree-tools .btn{height:var(--ctl-h);padding:0 .7rem;font-size:.82rem}.tree-tools .btn-icon{padding:0 .55rem}.tree-tools .seg{height:var(--ctl-h)}.tree-tools .seg button{height:var(--ctl-h)}
 /* compare diff tags (shown on the node instead of a background tint) */
 .cmp-tag.t-only-l{background:rgba(9,105,218,.15);color:var(--bl)}
 .cmp-tag.t-only-r{background:rgba(142,142,147,.18);color:var(--t2)}
@@ -632,7 +677,7 @@ function fvRowMenu(btn){
   add(_icRename,'Rename',function(){(prefix==='fb'?fbRename:ftpRename)(path,name);});
   add(_icMove,'Move to folder',function(){(prefix==='fb'?fbMove:ftpMove)(path,name);});
   sep();
-  add(_icTrash,'Delete',function(){if(prefix==='fb')fbDel(path,name);else ftpDel(path,name,type);},{danger:true});
+  add(_icTrash,isDir?'Delete folder':'Delete',function(){if(prefix==='fb')fbDel(path,name,type);else ftpDel(path,name,type);},{danger:true});
   document.body.appendChild(menu);
   var r=btn.getBoundingClientRect(),mw=menu.offsetWidth,mh=menu.offsetHeight;
   var left=Math.max(8,Math.min(r.right-mw,window.innerWidth-mw-8));
@@ -797,10 +842,17 @@ function fbDelSelected(){
   var done=0,total=paths.length;
   paths.forEach(function(p){var fd=new FormData();fd.append('_a','del');fd.append('_p',p);fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(){done++;if(done===total){showToast('Deleted '+total+' item(s)');fbLoad(fbCwd);}});});
 }
-function fbDel(path,name){
-  if(!confirm('Delete "'+name+'"?\nThis cannot be undone.'))return;
+function fbDel(path,name,type){
+  var msg=type==='dir'?'Delete folder "'+name+'" and everything inside it?\nThis is recursive and cannot be undone.':'Delete "'+name+'"?\nThis cannot be undone.';
+  if(!confirm(msg))return;
   var fd=new FormData();fd.append('_a','del');fd.append('_p',path);
   fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){if(d.ok){showToast('Deleted: '+name);fbLoad(fbCwd);}else showToast('Error: '+(d.msg||'failed'));});
+}
+function fbMkdir(){
+  var name=prompt('New folder name (created in the open folder):','');
+  if(name===null||name.trim()==='')return;
+  var fd=new FormData();fd.append('_a','mkdir');fd.append('_p',fbCwd);fd.append('_name',name.trim());
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){showToast(d.ok?'Folder created: '+name.trim():'Error: '+(d.msg||'failed'),d.ok?'ok':'');if(d.ok)fbLoad(fbCwd);}).catch(function(){showToast('Network error');});
 }
 function fbRename(path,name){
   var nn=prompt('Rename "'+name+'" to:',name);
@@ -824,7 +876,7 @@ var VIEW_META={
   mitm:{t:'MITM Relay',d:'Route the transfer through a second server when this one can\'t reach the URL directly.'},
   ftp:{t:'FTP Explorer',d:'Connect over FTP, FTPS, or SFTP and browse, upload, download, or manage remote files.'},
   compare:{t:'FTPS Sync',d:'Diff two locations side by side and sync files in either direction.'},
-  explorer:{t:'File Explorer',d:'Browse, download, rename, and delete files on this server.'},
+  explorer:{t:'File Explorer',d:'Browse, upload, create folders, rename, and delete files &amp; folders on this server.'},
   phpinfo:{t:'PHP Info',d:'Server environment and PHP configuration at a glance.'},
   help:{t:'Help & CLI Guide',d:'Every command-line flag and web endpoint, documented.'},
   update:{t:'Update',d:'Check for and install the latest version from GitHub.'}
@@ -1064,7 +1116,8 @@ function ftpBulkDelete(){
   });
 }
 function ftpDel(path,name,type){
-  if(!confirm('Delete "'+name+'"?\nThis cannot be undone.'))return;
+  var msg=type==='dir'?'Delete folder "'+name+'" and ALL of its contents on the server?\nThis is recursive and cannot be undone.':'Delete "'+name+'"?\nThis cannot be undone.';
+  if(!confirm(msg))return;
   ftpLog('Deleting: '+path,'info');
   var fd=new FormData();
   fd.append('_a','ftp_del');fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');
@@ -1079,6 +1132,14 @@ function ftpDel(path,name,type){
     .catch(function(e){ftpLog('Network error: '+(e.message||e),'err');});
 }
 function ftpOpFd(action,path){var fd=new FormData();fd.append('_a',action);fd.append('_h',ftpCreds.h||'');fd.append('_port',ftpCreds.port||'21');fd.append('_u',ftpCreds.u||'');fd.append('_pw',ftpCreds.pw||'');fd.append('_method',ftpCreds.method||'ftp');fd.append('_p',path);return fd;}
+function ftpMkdir(){
+  if(!ftpCreds||!ftpCreds.h){showToast('Connect to a server first');return;}
+  var name=prompt('New folder name (created in the open folder):','');
+  if(name===null||name.trim()==='')return;
+  var fd=ftpOpFd('ftp_mkdir',ftpCwd);fd.append('_name',name.trim());
+  ftpLog('Creating folder "'+name.trim()+'" in '+ftpCwd+'…','info');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){ftpLog((d.ok?'Folder created: ':'Create failed: ')+(d.msg||name),d.ok?'ok':'err');if(d.ok){showToast('Folder created');ftpLoad(ftpCwd);}else showToast('Error: '+(d.msg||'failed'));}).catch(function(e){ftpLog('Network error: '+(e.message||e),'err');});
+}
 function ftpRename(path,name){
   var nn=prompt('Rename "'+name+'" to:',name);
   if(nn===null||nn.trim()===''||nn===name)return;
@@ -1376,6 +1437,53 @@ function cmpUpdateSyncTotal(){
   var el=document.getElementById('cmp-sync-total');if(!el)return;
   el.textContent=checks.length?('Will sync '+selSummaryText(selSummaryFrom(checks))+' — '+(cmpDir==='lr'?'Left → Right':'Right → Left')):'Select files on the '+(srcS==='l'?'Left':'Right')+' (source) side to sync';
 }
+/* ── Compare/Sync pane: per-row actions (rename / delete) + create folder ──
+   Each side may be a local folder (kind 'local') or an FTP/SFTP server (kind
+   'ftp'); cmpFd() attaches the right credentials, and we pick the local vs FTP
+   action name accordingly, so the same buttons work on both. */
+function cmpRowMenu(s,btn){
+  if(_rowMenu&&_rowMenu._btn===btn){fvCloseRowMenu();return;}
+  fvCloseRowMenu();
+  var d=btn.dataset,path=d.path,name=d.name,type=d.type,isDir=type==='dir';
+  var menu=document.createElement('div');menu.className='rowmenu';menu._btn=btn;
+  function add(ic,label,handler,danger){var b=document.createElement('button');b.className='rowmenu-item'+(danger?' danger':'');b.innerHTML=ic+'<span>'+_esc(label)+'</span>';b.onclick=function(){fvCloseRowMenu();handler();};menu.appendChild(b);}
+  function sep(){var x=document.createElement('div');x.className='rowmenu-sep';menu.appendChild(x);}
+  if(isDir)add(_icOpen,'Open',function(){cmpExplorerLoad(s,path);});
+  add(_icRename,'Rename',function(){cmpRename(s,path,name);});
+  add(_icFolder,'New folder here',function(){cmpMkdir(s);});
+  sep();
+  add(_icTrash,isDir?'Delete folder':'Delete',function(){cmpDel(s,path,name,type);},true);
+  document.body.appendChild(menu);
+  var r=btn.getBoundingClientRect(),mw=menu.offsetWidth,mh=menu.offsetHeight;
+  var left=Math.max(8,Math.min(r.right-mw,window.innerWidth-mw-8));
+  var top=r.bottom+6;if(top+mh>window.innerHeight-8)top=Math.max(8,r.top-mh-6);
+  menu.style.left=left+'px';menu.style.top=top+'px';
+  btn.classList.add('open');_rowMenu=menu;initTips(menu);
+  setTimeout(function(){document.addEventListener('mousedown',_rowMenuOutside,true);document.addEventListener('keydown',_rowMenuEsc,true);window.addEventListener('resize',fvCloseRowMenu);window.addEventListener('scroll',fvCloseRowMenu,true);},0);
+}
+function cmpMkdir(s){
+  if(!cmpLoaded(s)){showToast('Load this side first');return;}
+  if(cmpState[s].mode!=='explorer'){showToast('Switch this side to Explorer view to add a folder');return;}
+  var name=prompt('New folder name (created in the open folder):','');
+  if(name===null||name.trim()==='')return;
+  var st=cmpState[s],parent=st.cwd||st.root,action=st.kind==='local'?'mkdir':'ftp_mkdir';
+  var fd=cmpFd(s,action,parent);fd.append('_name',name.trim());
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){cmpLog((s==='l'?'Left':'Right')+(d.ok?' created folder: ':' create failed: ')+(d.msg||name),d.ok?'ok':'err');showToast(d.ok?'Folder created':'Error: '+(d.msg||'failed'),d.ok?'ok':'');if(d.ok)cmpReload(s);}).catch(function(e){cmpLog('Network error: '+(e.message||e),'err');});
+}
+function cmpRename(s,path,name){
+  var nn=prompt('Rename "'+name+'" to:',name);
+  if(nn===null||nn.trim()===''||nn===name)return;
+  var st=cmpState[s],action=st.kind==='local'?'rename':'ftp_rename';
+  var fd=cmpFd(s,action,path);fd.append('_to',nn.trim());
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){cmpLog((s==='l'?'Left':'Right')+(d.ok?' renamed: ':' rename failed: ')+(d.msg||name),d.ok?'ok':'err');showToast(d.ok?'Renamed':'Error: '+(d.msg||'failed'),d.ok?'ok':'');if(d.ok)cmpReload(s);}).catch(function(e){cmpLog('Network error: '+(e.message||e),'err');});
+}
+function cmpDel(s,path,name,type){
+  var msg=type==='dir'?'Delete folder "'+name+'" and ALL of its contents?\nThis is recursive and cannot be undone.':'Delete "'+name+'"?\nThis cannot be undone.';
+  if(!confirm(msg))return;
+  var st=cmpState[s],action=st.kind==='local'?'del':'ftp_del';
+  var fd=cmpFd(s,action,path);fd.append('_type',type||'file');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){cmpLog((s==='l'?'Left':'Right')+(d.ok?' deleted: ':' delete failed: ')+(d.msg||name),d.ok?'ok':'err');showToast(d.ok?'Deleted':'Error: '+(d.msg||'failed'),d.ok?'ok':'');if(d.ok)cmpReload(s);}).catch(function(e){cmpLog('Network error: '+(e.message||e),'err');});
+}
 function cmpSetView(s,v){
   cmpState[s].mode=v;
   document.querySelectorAll('#cmp-'+s+'-view button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-v')===v);});
@@ -1414,7 +1522,8 @@ function cmpExplorerRender(s,d){
     var isDir=n.type==='dir',dp=_attr(n.path);
     var chk='<input type="checkbox" class="cmp-chk-'+s+'" data-path="'+dp+'" data-name="'+_attr(n.name)+'" data-type="'+n.type+'" data-size="'+(n.size_bytes||0)+'">';
     var name=isDir?'<span class="tname tname-dir" onclick=\'cmpExplorerLoad("'+s+'",'+JSON.stringify(n.path)+')\'>'+_icFolder+' '+_esc(n.name)+'</span>':'<span class="tname tname-file">'+_icFile+' '+_esc(n.name)+'</span>';
-    rows+='<div class="tnode" data-relpath="'+_attr(n.name)+'"><span class="tcaret empty"></span>'+chk+name+'<span class="tsize">'+_esc(n.size||'')+'</span></div>';
+    var mb='<button type="button" class="rowmenu-btn" title="Rename / New folder / Delete" data-path="'+dp+'" data-name="'+_attr(n.name)+'" data-type="'+n.type+'" onclick="cmpRowMenu(\''+s+'\',this)">'+_icDots+'</button>';
+    rows+='<div class="tnode" data-relpath="'+_attr(n.name)+'"><span class="tcaret empty"></span>'+chk+name+'<span class="tsize">'+_esc(n.size||'')+'</span>'+mb+'</div>';
   });
   document.getElementById('cmp-'+s+'-tbl').innerHTML=rows||'<div class="tree-empty">This folder is empty.</div>';
 }
@@ -1427,12 +1536,12 @@ function cmpCurrentList(s){
 function cmpCollectSync(s){
   var st=cmpState[s];
   if(st.mode==='explorer'){
-    var files=[],unloaded=0;
+    var files=[],folders=[];
     document.querySelectorAll('#cmp-'+s+'-tbl .cmp-chk-'+s+':checked').forEach(function(c){
       if(c.dataset.type==='file')files.push({path:c.dataset.path,name:c.dataset.name,size_bytes:+c.dataset.size||0});
-      else unloaded++;
+      else folders.push({path:c.dataset.path,name:c.dataset.name});
     });
-    return{files:files,unloaded:unloaded,mode:'explorer'};
+    return{files:files,folders:folders,unloaded:0,mode:'explorer'};
   }
   var col=cmpCollectFiles(st.tv);col.mode='tree';return col;
 }
@@ -1498,7 +1607,10 @@ function cmpDiff(){
   var L=cmpCurrentList('l'),R=cmpCurrentList('r');
   if(!L.length&&!R.length){showToast('Load both sides first');return;}
   var rmap={},lmap={};R.forEach(function(n){rmap[n.rel]=n;});L.forEach(function(n){lmap[n.rel]=n;});
-  function classify(a,b){if(a.type!==b.type)return'diff';if(a.type==='dir')return'same';if(a.size===0||b.size===0)return'same';return a.size===b.size?'same':'diff';}
+  // Same name + same byte size = identical. A 0-byte side vs a non-zero side
+  // (e.g. a truncated / failed upload, or a size the listing couldn't read) is a
+  // real difference and MUST surface so it gets re-synced — never treat it as same.
+  function classify(a,b){if(a.type!==b.type)return'diff';if(a.type==='dir')return'same';return a.size===b.size?'same':'diff';}
   var clsL={},clsR={},nSame=0,nDiff=0,nOnlyL=0,nOnlyR=0;
   L.forEach(function(n){if(rmap[n.rel]){var c=classify(n,rmap[n.rel]);clsL[n.rel]=c;if(n.type==='file'){c==='same'?nSame++:nDiff++;}}else{clsL[n.rel]='only-l';if(n.type==='file')nOnlyL++;}});
   R.forEach(function(n){if(lmap[n.rel])clsR[n.rel]=clsL[n.rel]||classify(lmap[n.rel],n);else{clsR[n.rel]='only-r';if(n.type==='file')nOnlyR++;}});
@@ -1506,8 +1618,13 @@ function cmpDiff(){
   // Auto-select files that need syncing on each side: only-here + differing (not identical).
   var nSelL=cmpAutoCheck('l',clsL),nSelR=cmpAutoCheck('r',clsR);
   cmpUpdateSel('l');cmpUpdateSel('r');
-  document.getElementById('cmp-diff-summary').textContent=nSame+' identical · '+nDiff+' differ · '+nOnlyL+' only left · '+nOnlyR+' only right';
-  cmpLog('Compared by relative path: '+nSame+' same, '+nDiff+' differ, '+nOnlyL+' only-left, '+nOnlyR+' only-right. Auto-selected '+nSelL+' left / '+nSelR+' right.','info');
+  function tot(list){var f=0,b=0;list.forEach(function(n){if(n.type==='file'){f++;b+=n.size||0;}});return{f:f,b:b};}
+  var tL=tot(L),tR=tot(R),delta=Math.abs(tL.b-tR.b);
+  function pill(cls,lbl,n){return'<span class="pill"><span class="cmp-tag '+cls+'">'+lbl+'</span><span class="n">'+n+'</span></span>';}
+  document.getElementById('cmp-diff-summary').innerHTML=pill('t-same','identical',nSame)+pill('t-diff','differs',nDiff)+pill('t-only-l','only left',nOnlyL)+pill('t-only-r','only right',nOnlyR);
+  document.getElementById('cmp-totals').innerHTML='<span><b>Left</b> '+tL.f+' files · '+ftpHumanSize(tL.b)+'</span><span><b>Right</b> '+tR.f+' files · '+ftpHumanSize(tR.b)+'</span><span><b>&Delta; size</b> '+ftpHumanSize(delta)+'</span>';
+  var res=document.getElementById('cmp-results');if(res)res.style.display='';
+  cmpLog('Compared by relative path: '+nSame+' same, '+nDiff+' differ, '+nOnlyL+' only-left, '+nOnlyR+' only-right. Auto-selected '+nSelL+' left / '+nSelR+' right. Left '+tL.f+' files/'+ftpHumanSize(tL.b)+', Right '+tR.f+' files/'+ftpHumanSize(tR.b)+'.','info');
 }
 var CMP_TAG={'only-l':'only here','only-r':'only here','diff':'differs','same':'identical'};
 function cmpApplyClasses(s,map){
@@ -1580,20 +1697,48 @@ function cmpSync(){
     if(_cmpSlEl(srcS,'on').checked&&!(slsec&&slsec.value)){showToast('Enter the secure_link secret (or turn signing off)');return;}
   }
   var col=cmpCollectSync(srcS);
-  if(!col.files.length){showToast('Select files on the source side ('+(srcS==='l'?'Left':'Right')+')');return;}
-  var items;
+  var hasFolders=col.mode==='explorer'&&col.folders&&col.folders.length;
+  if(!col.files.length&&!hasFolders){showToast('Select files or folders on the source side ('+(srcS==='l'?'Left':'Right')+')');return;}
   if(col.mode==='explorer'){
-    if(col.unloaded)cmpLog(col.unloaded+' selected folder(s) skipped — Explorer view syncs files in the open folder only; switch to Tree to sync whole folders','err');
     var destDir=String(dst.cwd||dst.root).replace(/\/+$/,'');
-    items=col.files.map(function(n){return{path:n.path,name:n.name,rel:n.name,destDir:destDir};});
-  }else{
-    if(col.unloaded)cmpLog(col.unloaded+' selected folder(s) were not fully loaded — run "Full tree" to include all of their files','err');
-    var destRoot=String(dst.root).replace(/\/+$/,'');
-    items=col.files.map(function(n){
-      var rel=tvRel(src.tv,n.path);var relDir=rel.indexOf('/')>=0?rel.replace(/\/[^/]*$/,''):'';
-      return{path:n.path,name:n.name,rel:rel,destDir:destRoot+(relDir?'/'+relDir:'')};
+    var baseItems=col.files.map(function(n){return{path:n.path,name:n.name,rel:n.name,destDir:destDir};});
+    if(!hasFolders){_cmpRunSync(baseItems,method,relay,srcS,dstS);return;}
+    cmpLog('Expanding '+col.folders.length+' selected folder(s) recursively…','info');showToast('Scanning folders…');
+    Promise.all(col.folders.map(function(f){return _cmpExpandFolder(srcS,f,destDir);})).then(function(lists){
+      var all=baseItems.slice();lists.forEach(function(l){all=all.concat(l);});
+      if(!all.length){showToast('Nothing to sync — the selected folder(s) are empty');cmpLog('Folder expansion produced no files','err');return;}
+      _cmpRunSync(all,method,relay,srcS,dstS);
     });
+    return;
   }
+  if(col.unloaded)cmpLog(col.unloaded+' selected folder(s) were not fully loaded — run "Full tree" to include all of their files','err');
+  var destRoot=String(dst.root).replace(/\/+$/,'');
+  var items=col.files.map(function(n){
+    var rel=tvRel(src.tv,n.path);var relDir=rel.indexOf('/')>=0?rel.replace(/\/[^/]*$/,''):'';
+    return{path:n.path,name:n.name,rel:rel,destDir:destRoot+(relDir?'/'+relDir:'')};
+  });
+  _cmpRunSync(items,method,relay,srcS,dstS);
+}
+// Recursively list a selected source folder and turn every file inside it into a
+// sync item, preserving each file's sub-path so the destination sub-folders are
+// recreated. Works for a local side (ls_tree) or an FTP/SFTP side (ftp_tree).
+function _cmpExpandFolder(srcS,folder,destBase){
+  var src=cmpState[srcS],action=src.kind==='local'?'ls_tree':'ftp_tree';
+  return fetch('',{method:'POST',body:cmpFd(srcS,action,folder.path)}).then(function(r){return r.json();}).then(function(d){
+    if(!d.ok||!d.tree){cmpLog('Could not expand folder "'+folder.name+'": '+((d&&d.msg)||'error'),'err');return[];}
+    if(d.capped)cmpLog('Folder "'+folder.name+'" is very large — its tree was truncated, some files may be skipped','err');
+    var out=[],base=String(folder.path).replace(/\/+$/,'');
+    (function walk(arr){if(!Array.isArray(arr))return;arr.forEach(function(n){
+      if(n.type==='dir'){if(n.children)walk(n.children);return;}
+      var full=String(n.path),sub=full.indexOf(base)===0?full.substring(base.length).replace(/^\/+/,''):n.name;
+      var rel=folder.name+'/'+sub,relDir=rel.indexOf('/')>=0?rel.replace(/\/[^/]*$/,''):'';
+      out.push({path:n.path,name:n.name,rel:rel,destDir:destBase+(relDir?'/'+relDir:'')});
+    });})(d.tree);
+    return out;
+  }).catch(function(e){cmpLog('Network error expanding "'+folder.name+'": '+((e&&e.message)||e),'err');return[];});
+}
+function _cmpRunSync(items,method,relay,srcS,dstS){
+  if(!items.length){showToast('Nothing to sync');return;}
   var status=document.getElementById('cmp-status');status.innerHTML='';
   var bar=document.getElementById('cmp-bar');bar.style.width='0%';bar.parentElement.style.display='';
   var counter=document.getElementById('cmp-counter');counter.style.display='';counter.textContent='0 / '+items.length+' done';
@@ -1988,10 +2133,11 @@ function checkUpdate(){
       if(st)st.innerHTML='<div class="result-box" style="margin-top:0">'
         +'<div class="upload-meta" style="margin-bottom:.6rem"><strong>Update available:</strong> v'+_esc(d.current)+' &rarr; <strong>v'+_esc(d.latest)+'</strong></div>'
         +'<div class="done-btns" style="justify-content:flex-start;margin-top:0">'
-        +'<a class="btn btn-p" href="'+_esc(d.download_url)+'" target="_blank" rel="noopener" download="upload.php">&#8595; Download upload.php v'+_esc(d.latest)+'</a>'
+        +'<button type="button" class="btn btn-p" id="selfupd-gh-btn" onclick="selfUpdate(\'github\',\''+_esc(d.latest)+'\')">&#8635; Update now to v'+_esc(d.latest)+'</button>'
+        +'<a class="btn btn-g" href="'+_esc(d.download_url)+'" target="_blank" rel="noopener" download="upload.php">&#8595; Download only</a>'
         +(d.release_page?'<a class="btn btn-g" href="'+_esc(d.release_page)+'" target="_blank" rel="noopener">Release notes</a>':'')
         +'</div>'
-        +'<div class="upload-meta" style="margin-top:.65rem;font-size:.8rem">Save the file, then use <strong>Upload &rarr; From PC</strong> (or the File Explorer &ldquo;Upload here&rdquo;) to upload the downloaded <code>upload.php</code> into this same folder, replacing this script.</div>'
+        +'<div class="upload-meta" style="margin-top:.65rem;font-size:.8rem"><strong>Update now</strong> replaces this file in place (downloaded, verified as valid PHP, swapped atomically &mdash; no backup). Or use <strong>Download only</strong> and upload it yourself.</div>'
         +'</div>';
       showToast('Update available — v'+d.latest);
     }else{
@@ -2000,6 +2146,37 @@ function checkUpdate(){
       showToast('Up to date ✓ (v'+d.current+')');_us('You are up to date ✓ (v'+d.current+')');
     }
   }).catch(function(e){updLog('✗ Request failed: '+(e.message||e),'err');showToast('Update check failed');_us('Update check failed: '+(e.message||e));});
+}
+function _selfUpdOk(d){
+  updLog('✓ '+(d.msg||'Updated')+' — now v'+(d.version||'?')+' (was v'+(d.from||'?')+')','ok');
+  _us('Updated to v'+(d.version||'?')+' ✓ — reloading…');
+  showToast('Updated to v'+(d.version||'?')+' — reloading');
+  setTimeout(function(){location.reload(true);},1400);
+}
+function selfUpdate(mode,latest){
+  if(!confirm('Update this script in place'+(latest?' to v'+latest:'')+'?\n\nThe running upload.php will be overwritten with the verified new version. No backup is kept.'))return;
+  var btn=document.getElementById('selfupd-gh-btn');if(btn){btn.disabled=true;btn.innerHTML='&#8635; Updating…';}
+  updLog('→ POST _a=self_update (mode='+mode+') — downloading + verifying + swapping','info');
+  var fd=new FormData();fd.append('_a','self_update');fd.append('_mode',mode||'github');
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    if(d&&d.ok){_selfUpdOk(d);return;}
+    updLog('✗ Update failed: '+((d&&d.msg)||'error'),'err');_us('Update failed: '+((d&&d.msg)||'error'));showToast('Update failed');
+    if(btn){btn.disabled=false;btn.innerHTML='&#8635; Update now'+(latest?' to v'+latest:'');}
+  }).catch(function(e){updLog('✗ Request failed: '+(e.message||e),'err');showToast('Update failed');if(btn){btn.disabled=false;btn.innerHTML='&#8635; Update now';}});
+}
+function selfUpdatePcPicked(){var f=document.getElementById('selfupd-file'),b=document.getElementById('selfupd-pc-btn');if(b)b.disabled=!(f&&f.files&&f.files.length);}
+function selfUpdatePc(){
+  var f=document.getElementById('selfupd-file');
+  if(!f||!f.files||!f.files.length){showToast('Choose an upload.php file first');return;}
+  if(!confirm('Replace this running script with the selected file?\n\nIt will be verified as valid PHP first, then overwritten. No backup is kept.'))return;
+  var btn=document.getElementById('selfupd-pc-btn');if(btn){btn.disabled=true;btn.innerHTML='&#8635; Verifying & replacing…';}
+  updLog('→ POST _a=self_update (mode=pc) — uploading + verifying + swapping','info');
+  var fd=new FormData();fd.append('_a','self_update');fd.append('_mode','pc');fd.append('file',f.files[0]);
+  fetch('',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+    if(d&&d.ok){_selfUpdOk(d);return;}
+    updLog('✗ Replace failed: '+((d&&d.msg)||'error'),'err');_us('Replace failed: '+((d&&d.msg)||'error'));showToast('Replace failed');
+    if(btn){btn.disabled=false;btn.innerHTML='&#8593; Replace this script';}
+  }).catch(function(e){updLog('✗ Request failed: '+(e.message||e),'err');showToast('Replace failed');if(btn){btn.disabled=false;btn.innerHTML='&#8593; Replace this script';}});
 }
 document.addEventListener('DOMContentLoaded',function(){updateThemeBtn();checkPermBanner();restoreSidebar();initTips();});
 </script>
@@ -2159,6 +2336,7 @@ function cmp_pane($s){
       </div>
       <button type="button" class="btn btn-g btn-sm tree-only" onclick="cmpExpandAll('<?=$s?>')" title="Load every folder"><?=ph('tree-structure',13)?> Full tree</button>
       <button type="button" class="btn btn-g btn-sm tree-only" onclick="cmpCollapseAll('<?=$s?>')">Collapse</button>
+      <button type="button" class="btn btn-g btn-sm explorer-only" onclick="cmpMkdir('<?=$s?>')" title="Create a new folder here"><?=ph('folder-simple-plus',13)?> New folder</button>
       <button type="button" class="btn btn-g btn-sm" id="cmp-<?=$s?>-checkbtn" onclick="cmpCheckToggle('<?=$s?>')"><?=ph('square',13)?> Check all</button>
       <button type="button" class="btn btn-g btn-sm btn-icon" title="Refresh" onclick="cmpReload('<?=$s?>')"><?=ph('arrow-clockwise',14)?></button>
     </div>
@@ -2274,6 +2452,7 @@ function render_form(){
           <button type="button" class="active" data-v="explorer" onclick="ftpSetView('explorer')"><?=ph('folder',13)?> Explorer</button>
           <button type="button" data-v="tree" onclick="ftpSetView('tree')"><?=ph('tree-structure',13)?> Tree</button>
         </div>
+        <button class="btn btn-g btn-sm" onclick="ftpMkdir()" title="Create a new folder here"><?=ph('folder-simple-plus',14)?> New Folder</button>
         <button class="btn btn-p btn-sm" onclick="ftpUpToggle()" title="Upload into the current folder"><?=ph('arrow-up',14)?> Upload</button>
         <button class="btn btn-g btn-sm btn-icon" onclick="ftpLoad(ftpCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
       </div>
@@ -2330,25 +2509,31 @@ function render_form(){
       <?=cmp_pane('r')?>
     </div>
     <div class="cmp-step">
-      <div class="cmp-step-title"><?=ph('question',13)?> How comparison works</div>
-      <div class="cmp-legend">
-        <span><span class="cmp-tag t-same">identical</span> name + size match</span>
-        <span><span class="cmp-tag t-diff">differs</span> size / type differs</span>
-        <span><span class="cmp-tag t-only-l">only left</span> / <span class="cmp-tag t-only-r">only right</span> exists on one side</span>
-        <span style="color:var(--t2)">Differing &amp; one-side-only files are auto-checked after Compare. <strong>Tree</strong> view compares full trees; <strong>Explorer</strong> view compares the open folder only.</span>
-      </div>
-      <div class="cmp-opts" style="margin-top:1rem">
+      <div class="cmp-step-title"><?=ph('arrows-left-right',13)?> Compare &amp; sync</div>
+      <div class="cmp-controls">
         <div class="field"><label>Direction</label><div class="seg" id="cmp-dir"><button type="button" class="active" data-dir="lr" onclick="cmpSetDir('lr')">Left &rarr; Right</button><button type="button" data-dir="rl" onclick="cmpSetDir('rl')">Right &rarr; Left</button></div></div>
         <div class="field"><label>Method</label><select id="cmp-method" onchange="cmpMethodChange()"><option value="direct">Direct (download + upload)</option><option value="ftp">Plain FTP</option><option value="relay">Relay (MITM)</option><option value="fxp">FXP (server-to-server)</option><option value="http">HTTP via secure_link (download + upload)</option></select></div>
-        <div class="field" id="cmp-relay-wrap" style="display:none"><label>Relay (MITM) URL</label><input type="url" id="cmp-relay" placeholder="https://relay.example.com/upload.php" onclick="this.select()"></div>
+        <div class="cmp-run">
+          <button type="button" class="btn btn-g" onclick="cmpDiff()"><?=ph('arrows-left-right',16)?> Compare</button>
+          <button type="button" class="btn btn-p" onclick="cmpSync()"><?=ph('arrow-up',16)?> Sync Selected</button>
+        </div>
       </div>
+      <div class="field" id="cmp-relay-wrap" style="display:none;max-width:1000px;margin:.6rem auto 0"><label>Relay (MITM) URL</label><input type="url" id="cmp-relay" placeholder="https://relay.example.com/upload.php" onclick="this.select()"></div>
       <div id="cmp-http-wrap" class="cmp-http-hint" style="display:none">Downloads each source file over its <strong>web URL</strong> (browse over FTP, fetch bytes over HTTP), then uploads to the destination. Set the source server's <strong>Web Base URL</strong> + <strong>secret</strong> in its connection form &rarr; <strong><?=ph('lock-key',12)?> nginx secure_link</strong> panel.</div>
       <div class="cmp-sync-total" id="cmp-sync-total">Compare, select files, then sync</div>
-      <div class="cmp-actions">
-        <button type="button" class="btn btn-g" onclick="cmpDiff()"><?=ph('arrows-left-right',16)?> Compare</button>
-        <button type="button" class="btn btn-p" onclick="cmpSync()"><?=ph('arrow-up',16)?> Sync Selected</button>
+      <div class="cmp-results" id="cmp-results" style="display:none">
+        <div class="cmp-counts" id="cmp-diff-summary"></div>
+        <div class="cmp-totals" id="cmp-totals"></div>
       </div>
-      <div id="cmp-diff-summary" style="font-size:.82rem;color:var(--t2);text-align:center;margin-top:.6rem"></div>
+      <details class="cmp-collapse cmp-legend-wrap">
+        <summary><?=ph('question',12)?> How comparison works</summary>
+        <div class="cmp-legend" style="margin-top:.6rem">
+          <span><span class="cmp-tag t-same">identical</span> name + size match</span>
+          <span><span class="cmp-tag t-diff">differs</span> size / type differs</span>
+          <span><span class="cmp-tag t-only-l">only left</span> / <span class="cmp-tag t-only-r">only right</span> exists on one side</span>
+          <span style="color:var(--t2)">Differing &amp; one-side-only files are auto-checked after Compare. <strong>Tree</strong> compares full trees (whole folders sync); <strong>Explorer</strong> compares the open folder &mdash; selected sub-folders sync recursively.</span>
+        </div>
+      </details>
     </div>
     <div class="bulk-counter" id="cmp-counter"></div>
     <div class="bulk-progress-wrap" id="cmp-progress-wrap"><div class="bulk-bar" id="cmp-bar"></div></div>
@@ -2366,6 +2551,7 @@ function render_form(){
     <div class="fb-bar">
       <button class="btn btn-g btn-sm btn-icon" onclick="fbUp()" title="Up one level"><?=ph('arrow-up',14)?></button>
       <div id="fb-path" class="fb-path" onclick="fbPathClick(event)" title="Click empty space to type a path"><span style="color:var(--t2)">Loading&hellip;</span></div>
+      <button class="btn btn-g btn-sm" onclick="fbMkdir()" title="Create a new folder here"><?=ph('folder-simple-plus',14)?> New Folder</button>
       <button class="btn btn-p btn-sm" onclick="fbUpToggle()" title="Upload into the current folder"><?=ph('arrow-up',14)?> Upload here</button>
       <button class="btn btn-g btn-sm btn-icon" onclick="fbLoad(fbCwd)" title="Refresh"><?=ph('arrow-clockwise',14)?></button>
     </div>
@@ -2499,15 +2685,22 @@ first if you want an easy rollback.</div></div>
 <div class="help-code">File Explorer and FTP Explorer use a single-folder view: click a folder to
 open it, use the address bar (type a path + Enter or Go), the Up arrow, or the
 breadcrumb to navigate. FTP uploads always target the folder currently open.
+Each explorer can also create a folder ("New Folder"), rename any item, and
+delete files or whole folders (folder delete is recursive, with a confirm).
 
-The Compare panes still use an expandable TREE: click a folder to load just it,
-or "Full tree" to load everything (recursively, capped for safety).
+The Compare panes offer a TREE view (click a folder to load just it, or "Full
+tree" to load everything recursively, capped for safety) and an Explorer view.
+In Explorer view the three-dots menu on each row gives Rename / New folder /
+Delete (working on both Local and FTP/FTPS/SFTP sides).
 
 Compare &amp; Sync tab: each side is Local or FTP/FTPS/SFTP, with its own ROOT
 folder. Compare matches files across the whole tree by path RELATIVE to each
-root (e.g. /public_html/x.zip vs /w2w/x.zip), flagging same / size-differs /
-only-left / only-right. Tick items (a folder ticks its subtree) and Sync in
-the chosen direction via Direct, Plain FTP, Relay (MITM) or FXP — sub-folder
+root (e.g. /public_html/x.zip vs /w2w/x.zip), flagging identical / differs /
+only-left / only-right. A file that is 0 bytes on one side but not the other
+counts as DIFFERS, so it re-syncs instead of hiding. The results panel shows the
+counts plus total files and total size compared on each side. Tick items (in
+Tree view a folder ticks its subtree; in Explorer view a ticked sub-folder is
+expanded and synced recursively) and Sync via Direct, Plain FTP, Relay, FXP/HTTP — sub-folder
 structure is recreated on the destination.
 
 Saved connections: store FTP credentials + settings locally (per browser) and
@@ -2538,9 +2731,15 @@ Both servers must run this upload.php (v2.0.0+).</div></div>
 
   <div class="view" data-view="update" id="view-update">
     <div class="upload-card">
-      <div class="upload-meta">Current version: <strong>v<?=APP_VER?></strong><br>Checks the GitHub Releases API. If a newer release exists it shows a direct download link &mdash; download the new <code>upload.php</code>, then upload it back here (Upload &rarr; From PC) to replace this file. This script never overwrites itself.</div>
+      <div class="upload-meta">Current version: <strong>v<?=APP_VER?></strong><br>Checks the GitHub Releases API. If a newer release exists you can update <strong>in place with one click</strong> &mdash; the new <code>upload.php</code> is downloaded, verified as valid PHP, and swapped over this file atomically. You can also replace it with your own build below.</div>
       <button class="btn btn-p" onclick="checkUpdate()"><?=ph('arrow-clockwise',16)?> Check for updates</button>
       <div id="update-status" class="status-line" style="margin-top:.7rem"></div>
+      <details class="cmp-collapse" style="margin-top:.9rem">
+        <summary><?=ph('arrow-up',12)?> Replace from PC (upload your own upload.php)</summary>
+        <div class="upload-meta" style="margin:.6rem 0">Pick an <code>upload.php</code> from your computer to overwrite this running script. It is verified (must be valid PHP for this server and look like this app) before replacing. There is no backup, so keep your own copy.</div>
+        <div class="field"><input type="file" id="selfupd-file" accept=".php" onchange="selfUpdatePcPicked()"></div>
+        <button class="btn btn-d" id="selfupd-pc-btn" onclick="selfUpdatePc()" disabled><?=ph('arrow-up',15)?> Replace this script</button>
+      </div>
       <div class="ftp-log-wrap">
         <div class="ftp-log-hdr">
           <span><?=ph('terminal-window',13)?> Update Log</span>
@@ -3439,6 +3638,20 @@ function ajax_dup(){
   return['ok'=>$ok,'msg'=>$ok?'Duplicated as "'.$newName.'"':'Duplicate failed (check permissions)','path'=>$dst,'name'=>$newName];
 }
 
+// Create a sub-folder inside a local directory. `_p` is the parent folder
+// (or '__ROOT__' / '' for the script's own directory); `_name` is the new folder.
+function ajax_mkdir(){
+  $req=trim((string)($_POST['_p']??''));
+  $name=sanitize_filename((string)($_POST['_name']??''));
+  if($name===''||$name==='.'||$name==='..')return['ok'=>false,'msg'=>'Folder name required'];
+  $base=($req===''||$req==='__ROOT__')?__DIR__:realpath($req);
+  if(!$base||!is_dir($base))return['ok'=>false,'msg'=>'Parent folder not found'];
+  $dst=rtrim($base,'/\\').'/'.$name;
+  if(file_exists($dst))return['ok'=>false,'msg'=>'"'.$name.'" already exists here'];
+  $ok=@mkdir($dst,0755);
+  return['ok'=>$ok,'msg'=>$ok?'Folder created':'Create failed (check permissions)','path'=>$dst,'name'=>$name];
+}
+
 // The in-browser editor ships file contents URL-encoded (percent-encoded) so any
 // byte survives the POST round-trip. rawurlencode()/rawurldecode() mirror the
 // browser's encodeURIComponent()/decodeURIComponent() exactly.
@@ -3636,6 +3849,8 @@ function ajax_ftp_del(){
   $type=trim((string)($_POST['_type']??'file'));
   if(!$c['h']||!$path)return['ok'=>false,'msg'=>'Host and path required'];
 
+  $isdir=($type==='dir');
+
   if($c['method']==='sftp'){
     if(function_exists('ssh2_connect')){
       $port=$c['port']?:22;
@@ -3643,7 +3858,7 @@ function ajax_ftp_del(){
       if($conn&&@ssh2_auth_password($conn,$c['u'],$c['pw'])){
         $sftp=@ssh2_sftp($conn);
         if($sftp){
-          $ok=$type==='dir'?@ssh2_sftp_rmdir($sftp,$path):@ssh2_sftp_unlink($sftp,$path);
+          $ok=$isdir?ftp_rmdir_recursive_sftp($c,$sftp,$path):@ssh2_sftp_unlink($sftp,$path);
           return['ok'=>(bool)$ok,'msg'=>$ok?'Deleted':'Delete failed'];
         }
       }
@@ -3653,9 +3868,61 @@ function ajax_ftp_del(){
 
   [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
   if(!$conn)return['ok'=>false,'msg'=>$err];
-  $ok=$type==='dir'?@ftp_rmdir($conn,$path):@ftp_delete($conn,$path);
+  $ok=$isdir?ftp_rmdir_recursive_native($conn,$path):@ftp_delete($conn,$path);
   @ftp_close($conn);
-  return['ok'=>(bool)$ok,'msg'=>$ok?'Deleted':'Delete failed (directory may not be empty)'];
+  return['ok'=>(bool)$ok,'msg'=>$ok?'Deleted':'Delete failed (check permissions)'];
+}
+
+// Recursively delete a remote folder over FTP/FTPS — depth-first: files first, then
+// each sub-folder, then the folder itself. Empty folders just rmdir straight away.
+function ftp_rmdir_recursive_native($conn,$path){
+  $raw=@ftp_rawlist($conn,$path);
+  $items=is_array($raw)?parse_ftp_rawlist($raw):[];
+  foreach($items as $it){
+    $child=rtrim($path,'/').'/'.$it['name'];
+    if($it['type']==='dir')ftp_rmdir_recursive_native($conn,$child);
+    else @ftp_delete($conn,$child);
+  }
+  return @ftp_rmdir($conn,$path);
+}
+// Same, over SFTP: listing comes via curl (ftp_list_dir), unlink/rmdir via ssh2.
+function ftp_rmdir_recursive_sftp($c,$sftp,$path){
+  $items=ftp_list_dir($c,null,$path);
+  if(is_array($items))foreach($items as $it){
+    $child=rtrim($path,'/').'/'.$it['name'];
+    if($it['type']==='dir')ftp_rmdir_recursive_sftp($c,$sftp,$child);
+    else @ssh2_sftp_unlink($sftp,$child);
+  }
+  return @ssh2_sftp_rmdir($sftp,$path);
+}
+
+// Create a sub-folder inside a remote folder. `_p` is the parent, `_name` the folder.
+function ajax_ftp_mkdir(){
+  $c=ftp_creds_from_post();
+  $dir=trim((string)($_POST['_p']??''));
+  $name=str_replace(["\0",'/','\\'],'',trim((string)($_POST['_name']??'')));
+  $name=trim($name);
+  if(!$c['h']||$name===''||$name==='.'||$name==='..')return['ok'=>false,'msg'=>'Host and folder name required'];
+  if($dir==='')$dir='/';
+  $target=rtrim($dir,'/').'/'.$name;
+
+  if($c['method']==='sftp'){
+    if(function_exists('ssh2_connect')){
+      $port=$c['port']?:22;
+      $conn=@ssh2_connect($c['h'],$port);
+      if($conn&&@ssh2_auth_password($conn,$c['u'],$c['pw'])){
+        $sftp=@ssh2_sftp($conn);
+        if($sftp){$ok=@ssh2_sftp_mkdir($sftp,$target,0755);return['ok'=>(bool)$ok,'msg'=>$ok?'Folder created':'Create failed (exists or no permission)'];}
+      }
+    }
+    return['ok'=>false,'msg'=>'SFTP requires the ssh2 PHP extension on this server'];
+  }
+
+  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  if(!$conn)return['ok'=>false,'msg'=>$err];
+  $ok=@ftp_mkdir($conn,$target);
+  @ftp_close($conn);
+  return['ok'=>(bool)$ok,'msg'=>$ok?'Folder created':'Create failed (exists or no permission)'];
 }
 
 function ajax_ftp_copy_to_server(){
@@ -4053,6 +4320,7 @@ function ajax_xfer_fxp(){
     $line=is_array($pasv)?implode(' ',$pasv):'';
     if(preg_match('/\((\d+,\d+,\d+,\d+,\d+,\d+)\)/',$line,$m)){
       if(@ftp_raw($src,'PORT '.$m[1])){
+        ftp_mkdir_p($dst,dirname($target)); // recreate the destination sub-folder tree (folder sync)
         @ftp_raw($dst,'STOR '.$target);
         $retr=@ftp_raw($src,'RETR '.$spath);
         $rl=is_array($retr)?implode(' ',$retr):'';
@@ -4131,13 +4399,21 @@ function ajax_secure_sign(){
   return['ok'=>true]+secure_link_build($base,$uri,$cfg);
 }
 
-function ajax_check_update(){
+function ajax_check_update(){return gh_latest();}
+
+// Ask GitHub for the latest release and derive a TRUSTED download URL for
+// upload.php. Shared by the update check and the self-updater (so the self-updater
+// never fetches a client-supplied URL — that would be a write-over-self RCE).
+function gh_latest(){
   $api=GH_API.'/releases/latest';
   $ch=curl_init($api);
   if(!$ch)return['ok'=>false,'msg'=>'curl init failed'];
+  // STRICT TLS on purpose: this response decides which code the self-updater will
+  // install, so a MITM here is an RCE vector. Unlike the general file-fetcher (which
+  // pulls arbitrary user URLs as inert data), certificate validation must stay ON.
   curl_setopt_array($ch,[
     CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>15,CURLOPT_CONNECTTIMEOUT=>10,
-    CURLOPT_SSL_VERIFYPEER=>false,CURLOPT_SSL_VERIFYHOST=>0,
+    CURLOPT_SSL_VERIFYPEER=>true,CURLOPT_SSL_VERIFYHOST=>2,
     CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER,
     CURLOPT_HTTPHEADER=>['Accept: application/vnd.github+json'],
   ]);
@@ -4164,6 +4440,79 @@ function ajax_check_update(){
   }
   $needs=version_compare($latest,APP_VER,'>');
   return['ok'=>true,'current'=>APP_VER,'latest'=>$latest,'download_url'=>$dl_url,'needs_update'=>$needs,'http'=>$code,'asset'=>(strpos($dl_url,'/releases/download/')!==false),'release_page'=>'https://github.com/amirhp-com/upload-url-to-server/releases/latest'];
+}
+
+// Sanity-check a candidate upload.php before we let it replace the running file.
+// Returns '' when it looks legit, or an error string. Belt-and-braces: size window,
+// PHP open tag, this app's own fingerprints, and a full parse via token_get_all()
+// with TOKEN_PARSE (throws on any syntax error) so a truncated download can't brick
+// the install. Returns the detected version via &$ver.
+function self_update_validate($content,&$ver){
+  $ver='';
+  $len=strlen((string)$content);
+  if($len<20000)return'File looks too small ('.$len.' bytes) — probably a truncated or error page, not upload.php';
+  if($len>8*1024*1024)return'File is unexpectedly large ('.human_filesize($len).') — refusing for safety';
+  if(substr($content,0,5)!=='<?php')return'File does not start with <?php — not a PHP script';
+  if(strpos($content,"APP_VER")===false||strpos($content,'BlackSwan')===false)return'File does not look like upload.php (missing expected markers)';
+  try{token_get_all($content,TOKEN_PARSE);}
+  catch(\Throwable $e){return'Candidate is not valid PHP for this server ('.PHP_VERSION.'): '.$e->getMessage();}
+  if(preg_match("/define\\('APP_VER','([^']+)'\\)/",$content,$m))$ver=$m[1];
+  return'';
+}
+
+// Replace the running upload.php in place. Source is either the latest GitHub
+// release (_mode=github) or a file the admin uploads (_mode=pc). The new bytes are
+// validated, written to a sibling temp file, then atomically rename()d over this
+// script — so the live file is only ever swapped for a whole, parseable copy, and
+// is left untouched if anything fails. No backup is kept (by design).
+function ajax_self_update(){
+  set_time_limit(0);
+  $self=realpath(__FILE__);
+  if(!$self)return['ok'=>false,'msg'=>'Cannot resolve own path'];
+  if(!is_writable($self))return['ok'=>false,'msg'=>'This script is not writable by PHP. chmod it to 0644 and make sure its owner matches the web/PHP user, then retry.'];
+  $mode=trim((string)($_POST['_mode']??'github'));
+  $content=null;$source='';
+
+  if($mode==='pc'){
+    if(empty($_FILES['file'])||!isset($_FILES['file']['tmp_name']))return['ok'=>false,'msg'=>'No file received (check upload_max_filesize / post_max_size)'];
+    $f=$_FILES['file'];
+    if(!empty($f['error']))return['ok'=>false,'msg'=>'Upload error '.$f['error']];
+    if(!is_uploaded_file($f['tmp_name']))return['ok'=>false,'msg'=>'Invalid upload source'];
+    $content=@file_get_contents($f['tmp_name']);
+    if($content===false)return['ok'=>false,'msg'=>'Could not read the uploaded file'];
+    $source='uploaded file';
+  }else{
+    $info=gh_latest();
+    if(empty($info['ok']))return['ok'=>false,'msg'=>($info['msg']??'GitHub lookup failed')];
+    $url=$info['download_url'];
+    if(!$url)return['ok'=>false,'msg'=>'No download URL from GitHub'];
+    // Only ever pull the replacement code from a GitHub-owned host. This blocks a
+    // hijacked/poisoned API response from pointing the download (which we then EXECUTE
+    // by writing it over ourselves) at an attacker-controlled server.
+    $host=strtolower((string)parse_url($url,PHP_URL_HOST));
+    $gh_hosts=['github.com','www.github.com','raw.githubusercontent.com','objects.githubusercontent.com','codeload.github.com','api.github.com'];
+    if(!in_array($host,$gh_hosts,true))return['ok'=>false,'msg'=>'Refusing to self-update from a non-GitHub host ('.$host.')'];
+    if(stripos($url,'https://')!==0)return['ok'=>false,'msg'=>'Refusing a non-HTTPS update URL'];
+    $ch=curl_init($url);
+    if(!$ch)return['ok'=>false,'msg'=>'curl init failed'];
+    // STRICT TLS: we are downloading code that will replace the running script.
+    // Certificate validation MUST stay on here — a MITM otherwise means RCE.
+    curl_setopt_array($ch,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_FOLLOWLOCATION=>true,CURLOPT_MAXREDIRS=>10,CURLOPT_TIMEOUT=>60,CURLOPT_CONNECTTIMEOUT=>15,CURLOPT_SSL_VERIFYPEER=>true,CURLOPT_SSL_VERIFYHOST=>2,CURLOPT_USERAGENT=>'BlackSwanUpload/'.APP_VER]);
+    $content=curl_exec($ch);$err=curl_error($ch);$hc=(int)curl_getinfo($ch,CURLINFO_HTTP_CODE);curl_close($ch);
+    if($content===false||$err)return['ok'=>false,'msg'=>'Download failed: '.($err?:'empty response').' — if this is a TLS/certificate error, update manually (your server may lack a CA bundle); self-update will not fall back to unverified TLS.'];
+    if($hc>=400)return['ok'=>false,'msg'=>'Download failed: HTTP '.$hc];
+    $source='GitHub v'.($info['latest']??'?');
+  }
+
+  $ver='';$vErr=self_update_validate($content,$ver);
+  if($vErr!=='')return['ok'=>false,'msg'=>$vErr];
+
+  $dir=dirname($self);
+  $tmp=$dir.'/.upload_update_'.substr(md5($self.strlen($content).microtime(true)),0,10).'.tmp';
+  if(@file_put_contents($tmp,$content)!==strlen($content)){@unlink($tmp);return['ok'=>false,'msg'=>'Could not write temp file in '.$dir.' (folder not writable?)'];}
+  if(!@rename($tmp,$self)){@unlink($tmp);return['ok'=>false,'msg'=>'Could not replace the script (rename failed — permission denied). The live file was NOT changed.'];}
+  @chmod($self,0644);
+  return['ok'=>true,'msg'=>'Updated from '.$source,'version'=>($ver?:'?'),'from'=>APP_VER];
 }
 
 
