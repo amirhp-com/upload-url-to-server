@@ -83,11 +83,15 @@ Everything is stateless: FTP credentials are passed per request and never stored
 
 ## Requirements
 
-- **PHP 7.0+** (tested through 8.x).
+- **PHP 7.4+ recommended** (tested through 8.x). It loads on **PHP 7.1+**; below 7.4 it shows a friendly upgrade notice instead of the app. **On older hosts (PHP 5.6 / 7.0), use the [minimal legacy build](#minimal-legacy-build-php-56) instead.**
 - **cURL** extension (for URL/FTP/FTPS/SFTP transfers and the update check).
 - **ZipArchive** for `.zip` extraction; **PharData** (bundled) for `.tar/.tar.gz/.tgz`.
 - For SFTP: cURL with SFTP support **or** the `ssh2` extension.
 - Write permission in the folder where `upload.php` lives (for uploads, including replacing `upload.php` itself when you update).
+
+### Minimal legacy build (PHP 5.6)
+
+If your server runs an old PHP (5.6 or 7.0) where the full app won't load, grab **[`upload-legacy.php`](upload-legacy.php)** — a tiny, dependency-light, single-purpose uploader that just **pulls a file from a URL onto your server**, with a live progress bar. It uses no PHP 7+ syntax, so it runs on **PHP 5.6+**. You can set the **destination folder** (created if missing, kept inside the script's directory) and the **saved filename**. It has none of the browser/FTP/compare/sync/editor/self-update features — for those, use `upload.php` on a modern PHP.
 
 ## Install (web)
 
@@ -169,14 +173,14 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 **Update → Check for updates** will:
 
-1. Query the GitHub Releases API for [`amirhp-com/upload-url-to-server`](https://github.com/amirhp-com/upload-url-to-server) and read the **latest** release tag (e.g. `v3.6.0`).
+1. Query the GitHub Releases API for [`amirhp-com/upload-url-to-server`](https://github.com/amirhp-com/upload-url-to-server) and read the **latest** release tag.
 2. Compare that tag to this file's `APP_VER` with `version_compare()`.
-3. If newer, show a **direct download link** for the new `upload.php` — preferring a release **asset** named `upload.php`, otherwise the raw file at that tag — plus a link to the release notes. **The script does not modify itself.**
-4. You download the new `upload.php` and upload it back through the tool (**Upload → From PC**, or the File Explorer **"Upload here"**) into the same folder, overwriting this script.
+3. If newer, offer **one-click in-place update** (**Update now**): the new `upload.php` is downloaded from the release (preferring a release **asset** named `upload.php`, else the raw file at that tag), **verified as valid PHP** (`token_get_all(…, TOKEN_PARSE)` + size / marker checks) and swapped over the live file **atomically** — leaving it untouched if anything fails. A **Download only** link and release notes are also shown.
+4. **Replace from PC** — upload your own `upload.php` (custom build) to overwrite the running one, with the same verification.
 
-> **Why no in-place self-update?** A single PHP file that fetches a remote URL and overwrites itself is indistinguishable from a self-updating web shell to heuristic AV scanners (e.g. ClamAV "unofficial" signatures used by DirectAdmin), which would quarantine the file. The update is therefore manual: check → download → re-upload through the tool.
+> **Security:** the update download becomes the running code, so both the release lookup and the download use **strict TLS**, the download URL is derived server-side (never client-supplied) and **pinned to GitHub hosts over HTTPS**. No backup is kept, so keep your own copy if you want an easy rollback. Like every action in this single file, self-update is **unauthenticated** — protect the file at the server level or remove it after use.
 
-**Needs:** outbound HTTPS to `api.github.com` and GitHub's raw-content host for the check, and write permission in the folder (to upload the replacement). Keep a copy of the old file first if you want an easy rollback.
+**Needs:** outbound HTTPS to `api.github.com` and GitHub's raw-content host, and the file (and its folder) **writable by the PHP user**.
 
 **Testing it:** run an older copy (lower `APP_VER`) and click *Check for updates* — it should surface the latest release with a download button. Or from the CLI on the server: `curl -s https://api.github.com/repos/amirhp-com/upload-url-to-server/releases/latest | grep tag_name` to confirm what the script will see.
 
@@ -207,6 +211,7 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 Full history: [CHANGELOG.md](CHANGELOG.md). Recent highlights:
 
+- **v3.8.0** — **Create / recursive-delete / rename folders** across the File Explorer, FTP Explorer and both Compare panes; **recursive folder sync** in Explorer view; fixed Compare hiding a 0-byte-vs-real file as *identical*; inline Compare controls with a **totals panel** (files + size per side); **in-place self-update** (one-click from GitHub or replace-from-PC, verified + atomic, MITM-hardened); an **old-PHP notice** below 7.4; and a **minimal [`upload-legacy.php`](upload-legacy.php)** for PHP 5.6 hosts (URL→server only, now with a destination-folder option).
 - **v3.6.3** — **Cleared Imunify360's `php.dropper.file` (`SMW-INJ-CLOUDAV-…-PHPTRP2-4`) detection.** The in-browser editor's read/write transport dropped base64 for **percent-encoding** (`rawurlencode`/`rawurldecode` ↔ `encodeURIComponent`/`decodeURIComponent`), removing the `base64_decode`→`file_put_contents` combo that behavioural scanners read as a dropper — and the obfuscated fragment-assembled helper names that made it look worse. No base64-encoded data remains in the file; the only base64 left is the lone `base64_encode()` nginx `secure_link` requires.
 - **v3.6.2** — Removed every literal `base64` token so content-scan AV can't match on the bare substring.
 - **v3.6.1** — Cleared a second ClamAV "unofficial" false positive on the editor **Save** path.
