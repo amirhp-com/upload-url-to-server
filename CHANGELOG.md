@@ -4,7 +4,7 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
-## v3.7.0 — 2026-07-19
+## v3.8.0 — 2026-07-20
 
 ### Fixed
 - **Compare no longer reports mismatched files as `IDENTICAL`.** The size test bailed out to "same" whenever *either* side reported 0 bytes, so a 1.25 GB file on the left vs a 0-byte file on the right (a truncated/failed upload, or a size the listing couldn't read) was hidden as identical — exactly the file that needed re-syncing. Sizes are now compared directly: `0 vs 0` is identical, `0 vs non-zero` is **DIFFERS** and stays auto-checked for sync.
