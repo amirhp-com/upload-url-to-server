@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.6.3 · 2026-07-16<br>
+> **Latest release:** v3.8.0 · 2026-07-20<br>
 > **Single file:** `upload.php` — no install, no Composer, no build step. Tooltips (Tippy.js) are inlined; the optional in-browser code editor lazy-loads CodeMirror from a CDN only when you open it.<br>
 > **Zero server dependencies:** pure PHP back-end + vanilla JS/CSS front-end. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
@@ -56,7 +56,7 @@ Then click **Self-Destruct** and it's gone.
 ### 🛠️ Tools
 - **PHP Info** — curated server diagnostics in-page, full native `phpinfo()` one click away.
 - **Help** — full CLI reference, web endpoints, **"Removing PHP Limits & Timeouts"** recipes (php.ini / .user.ini / .htaccess / Nginx+FPM), and a plain-English explanation of how the **update check** works.
-- **Update** — checks the GitHub latest release and, if newer, gives you a **direct download link** to upload back through the tool (see below). The script never overwrites itself.
+- **Update** — checks the GitHub latest release and, if newer, offers a **one-click in-place update** (download from the release, verify it's valid PHP, swap atomically) or **Replace from PC** with your own build; a **Download only** link is there too (see below).
 
 ### ✨ Interface
 - **GitHub-style light/dark UI** with a sidebar app shell, grouped into **Upload · Browse · Sync · Tools**. Collapse / theme controls are icon-only at the bottom; the sidebar collapses to an icon rail (full height) that expands on hover.
