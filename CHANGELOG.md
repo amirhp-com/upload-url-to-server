@@ -4,7 +4,7 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
-## v3.8.1 — 2026-07-20
+## v3.8.1 — 2026-08-10
 
 ### Fixed
 - **Lowered the PHP requirement to 7.0** (was 7.4, which wrongly blocked working hosts). The main `upload.php` only ever used two PHP-7 constructs — the `??` operator (7.0) and short list destructuring `[$a,$b]=` (7.1). The destructuring was rewritten to classic `list($a,$b)=` (identical behaviour, valid since PHP 5.x), so the real floor is now **PHP 7.0**. If you were on **PHP 7.1 / 7.2 / 7.3** and got the "too old" page, it now runs. (For PHP 5.6, use `upload-legacy.php`.)

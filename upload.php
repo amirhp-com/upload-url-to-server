@@ -3,7 +3,7 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/07/20 18:00:00
+ * @Last modified time: 2026/08/10 12:00:00
  * @Version: 3.8.1
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
@@ -14,7 +14,7 @@
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
 define('APP_VER','3.8.1');
-define('BUILD_DATE','2026-07-20 &middot; 1405-04-29');
+define('BUILD_DATE','2026-08-10 &middot; 1405-05-19');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
 define('EDIT_MAX_BYTES',10*1024*1024); // view/edit-as-text size ceiling (10 MB)
