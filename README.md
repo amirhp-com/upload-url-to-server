@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.8.1 · 2026-08-10<br>
+> **Latest release:** v3.8.2 · 2026-08-10<br>
 > **Single file:** `upload.php` — no install, no Composer, no build step. Tooltips (Tippy.js) are inlined; the optional in-browser code editor lazy-loads CodeMirror from a CDN only when you open it.<br>
 > **Zero server dependencies:** pure PHP back-end + vanilla JS/CSS front-end. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
@@ -211,6 +211,7 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 Full history: [CHANGELOG.md](CHANGELOG.md). Recent highlights:
 
+- **v3.8.2** — **Bulk "Save Selected to Server" in the FTP Explorer**: tick remote files/folders, set an optional destination subfolder, and download them all onto this server (folders expand recursively, sub-tree preserved), next to the existing Delete Selected.
 - **v3.8.1** — **Lowered the PHP requirement to 7.0** (was 7.4 — it wrongly blocked working 7.1/7.2/7.3 hosts; the only 7.x construct is `??`, and list destructuring was rewritten to classic `list()`). Also fixed `upload-legacy.php` so a nested path in the filename/folder field creates the sub-folders instead of collapsing into one file in the root.
 - **v3.8.0** — **Create / recursive-delete / rename folders** across the File Explorer, FTP Explorer and both Compare panes; **recursive folder sync** in Explorer view; fixed Compare hiding a 0-byte-vs-real file as *identical*; inline Compare controls with a **totals panel** (files + size per side); **in-place self-update** (one-click from GitHub or replace-from-PC, verified + atomic, MITM-hardened); an **old-PHP notice** below 7.4; and a **minimal [`upload-legacy.php`](upload-legacy.php)** for PHP 5.6 hosts (URL→server only, now with a destination-folder option).
 - **v3.6.3** — **Cleared Imunify360's `php.dropper.file` (`SMW-INJ-CLOUDAV-…-PHPTRP2-4`) detection.** The in-browser editor's read/write transport dropped base64 for **percent-encoding** (`rawurlencode`/`rawurldecode` ↔ `encodeURIComponent`/`decodeURIComponent`), removing the `base64_decode`→`file_put_contents` combo that behavioural scanners read as a dropper — and the obfuscated fragment-assembled helper names that made it look worse. No base64-encoded data remains in the file; the only base64 left is the lone `base64_encode()` nginx `secure_link` requires.

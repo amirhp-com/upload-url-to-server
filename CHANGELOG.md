@@ -4,6 +4,13 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.8.2 — 2026-08-10
+
+### Added
+- **Bulk "Save Selected to Server" in the FTP Explorer.** When you tick items on a remote FTP/FTPS/SFTP server, the selection bar now has a green **Save Selected to Server** button (next to *Delete Selected*) plus an inline **"save into folder"** path box. Selected files download onto this server into that optional subfolder (created if missing; empty = the script's folder); selected **folders** are expanded recursively with their sub-tree preserved under the destination (e.g. `T3/videos/a.mp4` → `downloads/T3/videos/a.mp4`). Each file shows a progress row, and the destination path is confined to the script's directory (`..` stripped). Reuses the existing single-file save transport.
+
+---
+
 ## v3.8.1 — 2026-08-10
 
 ### Fixed
