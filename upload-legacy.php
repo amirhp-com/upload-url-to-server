@@ -23,13 +23,18 @@ error_reporting(E_ERROR);
       if (isset($_POST['url'])) {
           set_time_limit(24 * 60 * 60);
           $url    = $_POST['url'];
-          $name   = lg_clean_name($_POST['name']);
-          $folder = lg_clean_folder(isset($_POST['folder']) ? $_POST['folder'] : '');
-          if ($name === '') { $name = 'download.bin'; }
-          $dir = ($folder !== '') ? __DIR__ . '/' . $folder : __DIR__;
-          if (!is_dir($dir)) { @mkdir($dir, 0755, true); }
-          $target = rtrim($dir, '/\\') . '/' . $name; // where the file is written (folder + filename)
-          if ($folder !== '') { $name = $folder . '/' . $name; } // shown in the progress UI
+          // Accept a nested path in EITHER field (folder and/or filename): join them,
+          // split into safe segments (dropping .. so nothing escapes this directory),
+          // then use the last segment as the filename and the rest as sub-folders.
+          $folder = isset($_POST['folder']) ? $_POST['folder'] : '';
+          $segs   = lg_path_segments($folder . '/' . $_POST['name']);
+          if (empty($segs)) { $segs = array('download.bin'); }
+          $fname  = array_pop($segs);
+          $subdir = implode('/', $segs);
+          $dir = ($subdir !== '') ? __DIR__ . '/' . $subdir : __DIR__;
+          if (!is_dir($dir)) { @mkdir($dir, 0755, true); } // create the nested folders
+          $target = rtrim($dir, '/\\') . '/' . $fname;             // where the bytes are written
+          $name   = ($subdir !== '' ? $subdir . '/' : '') . $fname; // shown in the progress UI
           ob_implicit_flush(true);
           ob_start();
           echo "<script>document.title = 'Uploading ...'; document.querySelector('h1').innerHTML += '<div style=\"font-size: 0;margin-top: 3rem;\"><small style=\"font-size: 1rem;font-family: initial;font-weight: initial;\">Transferring <u>{$url}</u> as <strong>{$name}</strong><br><span style=\"margin-top: 1rem;display: block;\">Please wait until process complete or Press ESC key to cancel</span></small></div><div id=\"progress\"></div>';</script>";
@@ -94,26 +99,19 @@ error_reporting(E_ERROR);
           ob_end_flush();
           exit;
       }
-      // Keep a filename to a bare name inside the target folder (no path escapes).
-      function lg_clean_name($n)
+      // Split a folder/filename string into safe path segments: normalise slashes,
+      // strip null bytes, collapse ".." so the result can never escape this directory.
+      function lg_path_segments($p)
       {
-          $n = trim((string)$n);
-          $n = str_replace(array("\0", "/", "\\"), "", $n);
-          $n = preg_replace('/\.\.+/', '.', $n);
-          return $n;
-      }
-      // Normalise an optional sub-folder to a safe relative path (drops .. and leading /).
-      function lg_clean_folder($f)
-      {
-          $f = trim((string)$f);
-          if ($f === "") { return ""; }
-          $f = str_replace(array("\0", "\\"), array("", "/"), $f);
-          $parts = array();
-          foreach (explode("/", $f) as $p) {
-              if ($p === "" || $p === "." || $p === "..") { continue; }
-              $parts[] = $p;
+          $p = str_replace(array("\0", "\\"), array("", "/"), (string)$p);
+          $out = array();
+          foreach (explode("/", $p) as $seg) {
+              $seg = trim($seg);
+              $seg = preg_replace('/\.\.+/', '.', $seg); // ".." -> "." (no traversal)
+              if ($seg === "" || $seg === "." || $seg === "..") { continue; }
+              $out[] = $seg;
           }
-          return implode("/", $parts);
+          return $out;
       }
       function human_filesize($bytes, $decimals = 2)
       {
@@ -141,7 +139,7 @@ error_reporting(E_ERROR);
       </div>
       <br>
       <div style='position: relative;'>
-        <span>Save as filename</span>
+        <span>Save as filename <small>(a path like <code>sub/dir/file.zip</code> works too &mdash; folders are created)</small></span>
         <input type='text' id='name' required="required" name='name' style="min-width: 500px;padding: 0.5rem;border-radius: 3px;border: 1px solid #0060df;" value="wordpress_latest.zip"/>
       </div>
       <br>

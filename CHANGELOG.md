@@ -4,6 +4,14 @@ All notable changes to **BlackSwan Upload File from URL to Web Server** are docu
 
 ---
 
+## v3.8.1 — 2026-07-20
+
+### Fixed
+- **Lowered the PHP requirement to 7.0** (was 7.4, which wrongly blocked working hosts). The main `upload.php` only ever used two PHP-7 constructs — the `??` operator (7.0) and short list destructuring `[$a,$b]=` (7.1). The destructuring was rewritten to classic `list($a,$b)=` (identical behaviour, valid since PHP 5.x), so the real floor is now **PHP 7.0**. If you were on **PHP 7.1 / 7.2 / 7.3** and got the "too old" page, it now runs. (For PHP 5.6, use `upload-legacy.php`.)
+- **`upload-legacy.php` nested folders.** Putting a path in the filename field (e.g. `sub/dir/file.zip`) previously had its slashes stripped, dumping one combined-name file in the root. Both the folder and filename fields now accept a nested path: they're joined, split into safe segments (`..` dropped so nothing escapes the script's directory), the sub-folders are created, and the file lands in the right place.
+
+---
+
 ## v3.8.0 — 2026-07-20
 
 ### Fixed

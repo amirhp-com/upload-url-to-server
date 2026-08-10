@@ -3,8 +3,8 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2020/11/15
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2026/07/20 12:00:00
- * @Version: 3.8.0
+ * @Last modified time: 2026/07/20 18:00:00
+ * @Version: 3.8.1
  */
 @ini_set('display_errors',1);@ini_set('memory_limit','512M');@ini_set('zlib.output_compression','Off');
 // Best-effort: never let long uploads/downloads hit a wall-clock timeout. Hosts may
@@ -13,7 +13,7 @@
 @set_time_limit(0);@ini_set('max_execution_time','0');@ini_set('max_input_time','-1');
 @ini_set('default_socket_timeout','3600');@ignore_user_abort(true);
 error_reporting(E_ERROR);
-define('APP_VER','3.8.0');
+define('APP_VER','3.8.1');
 define('BUILD_DATE','2026-07-20 &middot; 1405-04-29');
 define('TREE_MAX_NODES',2000);
 define('TREE_MAX_DEPTH',20);
@@ -30,13 +30,12 @@ define('GH_RAW','https://raw.git'.'hubusercontent.com/amirhp-com/upload-url-to-s
 $_svg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 593.98 611.09'%3E%3Cdefs%3E%3ClinearGradient id='b71a6815-b2dd-4cdc-8829-681ded6965f8' x1='3.19' y1='309' x2='597.16' y2='309' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3ClinearGradient id='a74c5198-c584-4949-bbfa-abba96f490d8' x1='228.39' y1='243.82' x2='250.14' y2='224.92' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23f37046'/%3E%3Cstop offset='0' stop-color='%23f37248'/%3E%3Cstop offset='0.03' stop-color='%23f3764c'/%3E%3Cstop offset='0.48' stop-color='%23f4a47f'/%3E%3Cstop offset='0.81' stop-color='%23f5c19e'/%3E%3Cstop offset='1' stop-color='%23f5ccaa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%3E%3Cpath d='M198.81,7.32C154.67,24.69,117.57,57.52,96.74,97.7A212.73,212.73,0,0,0,76.6,157.22c-2.09,11.8-1.79,55.26.49,68.75a334.57,334.57,0,0,0,10.42,42.56c1.69,4.86,2.68,8.92,2.28,9.12-1.19.8-10.42-3.67-16.57-8C58.34,259.3,48.52,238.76,43,206.82c-3.38-19.54-3.08-54.06.69-67.95l.6-2-1.39,2C39.4,143.73,32.35,168.63,29.28,187c-1.09,6.25-2.48,18-3.18,26-2.87,36.51,5.76,74.9,22.52,100.1,8.53,12.89,3,8.23-9.62-8a368.39,368.39,0,0,1-25-37.2c-2.48-4.36-5.95-10.42-7.64-13.39L3.19,249l.59,10.91c1.69,34.13,15,70.74,36.61,100.89C48.13,371.7,63.7,389.06,72.83,397c8.43,7.44,11,11,7,9.72-7-2.18-42.26-6.25-43.55-5-.3.39.4,1.28,1.59,2.08s7,9,13.19,18.15,13.59,19.94,16.67,24c28.67,39,64.68,69.14,106.54,89,4.17,2,7.64,4.27,7.64,5a1.22,1.22,0,0,1-1.09,1.29c-.6,0-9.43,4-19.64,8.83s-20.44,9.43-22.92,10.12c-10.32,2.88-5.55,4.47,10.12,3.47a108.54,108.54,0,0,0,40.08-10.41c9.72-4.66,16.27-6.85,16.27-5.66,0,1.69-11.31,24.21-13.2,26.29a41.9,41.9,0,0,1-6.64,5.26l-4.47,3,7.94-.7c15.47-1.39,33.53-7.14,50-16,4.56-2.48,8.53-4.17,8.92-3.87,1.29,1.29.2,9.23-2.28,16.27l-2.58,7.34L254.17,573c8-8.33,12.3-12,13.79-12,3.07,0,6.35,4.77,11.41,16.37,2.58,6,5.75,11.41,8,13.79a33.14,33.14,0,0,1,3.67,4.27c0,.2-2.48,4.46-5.45,9.42s-5.26,9.23-5.06,9.43c.59.69,8.53-3.57,14.68-7.94l5.56-4,4.86,3.47c5.15,3.77,13.49,8.73,14.48,8.73,1.49,0,.5-2.08-4.27-9.82-2.67-4.36-5-8.53-5-9.12s1.69-3.08,3.87-5.46a61.39,61.39,0,0,0,7.64-13.49c3.77-9.13,8.33-15.68,10.81-15.68,2.19,0,10.62,7.35,17.86,15.68,3.87,4.36,7,7.84,7.24,7.64s-.79-3.47-2.18-7.44c-2.58-7.05-3.37-14.29-1.69-15.28.5-.3,3.48.89,6.75,2.68,14.48,8.13,32.34,14.38,47.62,16.57,10.91,1.58,12.89,1.09,7.64-1.89-6.55-3.67-11.71-11.61-18-27.18-.89-2.08-1.29-4.07-.89-4.37s2.77.3,5.35,1.39,8.34,3.67,12.8,5.66a124.91,124.91,0,0,0,17.76,6.05c11,2.88,30.65,4.36,33.73,2.68,1.49-.9,1.58-1.19.39-1.49-7.83-2.48-16.66-6.15-28.76-12.2-7.94-3.87-15.38-7.44-16.57-7.84-4.37-1.29-2.38-3.47,7.14-7.84,15.87-7.44,37.4-21.13,53.07-33.63,11.12-8.92,35.12-33.43,44.55-45.63,4.66-5.85,13.88-18.75,20.63-28.77S561.2,406.52,562.59,405s2.28-3.08,2-3.47c-.89-.8-29.46,2.28-38.09,4.06-3.37.7-6.35,1.09-6.65.9s4.67-5.46,11-11.61c31.74-30.46,51.28-62.5,61.6-100.79,3.47-12.6,5.26-27.18,4.56-35.32l-.69-7.44-4.56,8.73c-5,9.33-5.56,10.22-13.89,23.12-6.25,9.62-15.87,22.71-20.54,27.77-1.78,1.89-4.16,4.77-5.35,6.25-4.07,5.16-3.08,2,1.48-4.66a74.82,74.82,0,0,0,4.47-6.94c0-.2,1.49-3.67,3.37-7.74,16.07-34.23,18.75-80.65,7.54-127.28-3.27-13.69-7.14-26-9.42-30l-1.59-2.77.69,4c2,12.4,2.38,17.26,2.38,30.76,0,22.42-3.47,46.22-9.32,62.59-6.05,17.26-16.77,31.65-27.48,37.2-5,2.48-12,5.06-12.5,4.47-.2-.2.5-2.78,1.59-5.66,4.36-12.3,6.84-22.12,10-39.08,12.4-67.86-5.36-131.54-49.41-177.28C454,34.21,429,17.44,403.27,7.52c-5.75-2.28-10.61-4.06-10.81-4.06-1.19,0,1,2.28,6.74,7,38.69,31.84,74.11,99.8,82.44,158.43,1.39,10.31.6,38.19-1.39,45.83-5.75,22.12-11.31,33.63-24.4,50.59-8.73,11.21-23.61,26-39.19,38.69-35.81,29.17-43.55,35.81-52.28,44.74l-9.52,9.82-6.94-3.47-6.85-3.37,1.19-11.71c9.43-86.6-2.58-140.37-39.68-178.66-17.46-18.06-32.74-26-50.2-26-22.61,0-41,14.88-49.89,40.37-5.06,14.58-4.07,30.06,2.57,40.87l2.09,3.47.69-2.48a30.94,30.94,0,0,1,3.37-6.84,38,38,0,0,0,3.87-10.12c.6-3.17,1.39-5.75,1.79-5.75s2.58,2.38,4.76,5.35c6.35,8.34,12.5,10.32,21.93,6.85,4.26-1.49,4.66-1.89,5.25-5.66,1-5.85,5-11.3,9.82-13.59,7.74-3.47,11.31-2.18,19.94,7,6.65,7.24,10,13.39,12.6,23.61,4.07,16.07,1.59,36-9,71.13-6.64,21.82-11,40.87-11.7,50.09l-.7,9.43-4,1.29a119.24,119.24,0,0,0-11.61,4.86l-7.74,3.57-6.64-7.24c-7.74-8.34-23.32-22.13-41-36.21-56.64-45.14-75.09-72-79.56-115.47C114.59,154.14,139.39,84.7,177.88,35.7c6.65-8.53,24.31-26.19,28.67-28.77,2.88-1.79,4.27-3.57,2.48-3.38C208.54,3.55,204,5.34,198.81,7.32Z' transform='translate(-3.19 -3.46)' style='fill:url(%23b71a6815-b2dd-4cdc-8829-681ded6965f8)'/%3E%3Cpath d='M222.62,213.67c-4.06.79-5.45,1.58-10,5.45l-3.27,2.78,2.38,2a55,55,0,0,0,7,4.37c6.75,3.37,14.49,12.6,21.13,25.1,6.25,11.7,7.74,12.89,11.41,8.93s4.47-10.72,2.58-23.52l-1.78-11.6L246,221.4C237.31,213.07,233,211.68,222.62,213.67Z' transform='translate(-3.19 -3.46)' style='fill:url(%23a74c5198-c584-4949-bbfa-abba96f490d8)'/%3E%3C/g%3E%3C/svg%3E";
 
 // ── Minimum PHP version gate ─────────────────────────────────────────────────
-// This build uses PHP 7+ syntax, so a runtime older than the parser floor (~7.1)
-// can't even compile this file and will just show a blank / 500 page — nothing we
-// can do about that from inside the file. For runtimes that DO parse it but sit
-// below the supported minimum, show a friendly notice (with links to GitHub and to
-// older releases that may run on legacy PHP) instead of letting people wonder why
-// features misbehave. Older app versions on GitHub target much older PHP.
-define('MIN_PHP','7.4');
+// The only PHP-7 construct left in this file is the `??` operator, so the real
+// floor is PHP 7.0 — anything older can't even compile the file (blank / 500 page),
+// which no in-file check can catch. For runtimes that DO parse it but sit below the
+// minimum, show a friendly notice (links to GitHub + older releases) instead. On
+// PHP 5.6, use the tiny `upload-legacy.php` (URL→server only) shipped alongside.
+define('MIN_PHP','7.0');
 if(version_compare(PHP_VERSION,MIN_PHP,'<')){
   $_repo='https://git'.'hub.com/amirhp-com/upload-url-to-server';
   $_rel=$_repo.'/releases';
@@ -2992,7 +2991,7 @@ function run_wordpress_installer($zip_file,$root_dir){
     echo "<script>appendStatus('&#9989; Wiped <strong>$rm</strong> default plugins');</script>";flush_buffers(true);
   }
   if(@file_put_contents($root_dir.'/robots.txt',"User-agent: *\nDisallow: /\n")!==false){echo "<script>appendStatus('&#9989; robots.txt written (block all crawlers)');</script>";flush_buffers(true);}
-  $ex=0;foreach(['license.txt','readme.html','xmlrpc.php','wp-config-sample.php']as $f){if(@unlink($root_dir.'/'.$f))$ex++;}
+  $ex=0;foreach(['license.txt','readme.html','xmlrpc.php']as $f){if(@unlink($root_dir.'/'.$f))$ex++;}
   if(@unlink($zip_file))$ex++;
   echo "<script>appendStatus('&#9989; Removed <strong>$ex</strong> extra files (incl. uploaded zip)');</script>";flush_buffers(true);
 }
@@ -3451,7 +3450,7 @@ function cli_spec_tree($spec,$label){
   }else{
     $c=$spec['creds'];$root=$spec['root']?:'/';
     if($c['method']==='sftp'){$tree=ftp_tree_walk($c,null,$root,0,$count,$capped);}
-    else{[$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);if(!$conn){echo "[error] $label connect failed: $err\n";exit(1);}$tree=ftp_tree_walk($c,$conn,$root,0,$count,$capped);@ftp_close($conn);}
+    else{list($conn,$err)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);if(!$conn){echo "[error] $label connect failed: $err\n";exit(1);}$tree=ftp_tree_walk($c,$conn,$root,0,$count,$capped);@ftp_close($conn);}
     cli_flatten($tree,strlen(rtrim($root,'/')),$out);
   }
   return[$out,$capped];
@@ -3471,7 +3470,7 @@ function cli_transfer($src,$dst,$rel,$srcPath,$method,$relay){
     if(@filesize($tmp)<1){@unlink($tmp);return['ok'=>false,'msg'=>'relay download failed'];}
     $localSrc=$tmp;$isTemp=true;
   }else{
-    [$tmp,$e]=ftp_download_to_tmp($src['creds'],$srcPath,$method==='ftp');
+    list($tmp,$e)=ftp_download_to_tmp($src['creds'],$srcPath,$method==='ftp');
     if(!$tmp)return['ok'=>false,'msg'=>$e];$localSrc=$tmp;$isTemp=true;
   }
   if($dst['kind']==='local'){
@@ -3479,7 +3478,7 @@ function cli_transfer($src,$dst,$rel,$srcPath,$method,$relay){
     $ok=@copy($localSrc,$destDir.'/'.$name);$msg=$ok?'':'copy failed (permissions?)';
   }else{
     $destDir=rtrim($dst['root'],'/').($relDir?'/'.$relDir:'');
-    [$ok,$msg]=ftp_upload_from_local($dst['creds'],$localSrc,$destDir.'/'.$name,$method==='ftp');
+    list($ok,$msg)=ftp_upload_from_local($dst['creds'],$localSrc,$destDir.'/'.$name,$method==='ftp');
   }
   if($isTemp)@unlink($localSrc);
   return['ok'=>(bool)$ok,'msg'=>$ok?'':($msg?:'failed')];
@@ -3489,8 +3488,8 @@ function cli_compare($opts){
   $right=parse_xfer_spec((string)($opts['right']??''));
   if(!$left||!$right){echo "[error] --left and --right specs required (local:/path or ftp://user:pass\@host/path)\n";exit(1);}
   echo "[info] Comparing (by relative path)\n  L = ".$left['root']."\n  R = ".$right['root']."\n\n";
-  [$lmap,$lcap]=cli_spec_tree($left,'left');
-  [$rmap,$rcap]=cli_spec_tree($right,'right');
+  list($lmap,$lcap)=cli_spec_tree($left,'left');
+  list($rmap,$rcap)=cli_spec_tree($right,'right');
   if($lcap||$rcap)echo "[warn] Tree truncated at ".TREE_MAX_NODES." nodes — comparison may be incomplete\n";
   $keys=array_keys($lmap+$rmap);sort($keys,SORT_STRING|SORT_FLAG_CASE);
   $nSame=$nDiff=$nOnlyL=$nOnlyR=0;
@@ -3805,7 +3804,7 @@ function ajax_ftp_tree(){
     $tree=ftp_tree_walk($c,null,$path,0,$count,$capped);
     return['ok'=>true,'path'=>$path,'root'=>$path,'tree'=>$tree,'count'=>$count,'capped'=>$capped];
   }
-  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  list($conn,$err)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
   if(!$conn)return['ok'=>false,'msg'=>$err];
   $tree=ftp_tree_walk($c,$conn,$path,0,$count,$capped);
   @ftp_close($conn);
@@ -3834,7 +3833,7 @@ function ajax_ftp_ls(){
     return ftp_build_listing($items,$path);
   }
 
-  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  list($conn,$err)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
   if(!$conn)return['ok'=>false,'msg'=>$err];
   $raw=@ftp_rawlist($conn,$path);
   @ftp_close($conn);
@@ -3866,7 +3865,7 @@ function ajax_ftp_del(){
     return['ok'=>false,'msg'=>'SFTP delete requires ssh2 PHP extension on this server'];
   }
 
-  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  list($conn,$err)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
   if(!$conn)return['ok'=>false,'msg'=>$err];
   $ok=$isdir?ftp_rmdir_recursive_native($conn,$path):@ftp_delete($conn,$path);
   @ftp_close($conn);
@@ -3918,7 +3917,7 @@ function ajax_ftp_mkdir(){
     return['ok'=>false,'msg'=>'SFTP requires the ssh2 PHP extension on this server'];
   }
 
-  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  list($conn,$err)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
   if(!$conn)return['ok'=>false,'msg'=>$err];
   $ok=@ftp_mkdir($conn,$target);
   @ftp_close($conn);
@@ -3960,7 +3959,7 @@ function ajax_ftp_copy_to_server(){
       $fp2=fopen($local,'wb');
       if($fp2){
         fclose($fp2);
-        [$conn2,$err2]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+        list($conn2,$err2)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
         if($conn2){
           $ok2=@ftp_get($conn2,$local,$rpath,FTP_BINARY);
           @ftp_close($conn2);
@@ -4023,7 +4022,7 @@ function ajax_ftp_upload(){
   if($name===''){if($isTemp)@unlink($tmp);return['ok'=>false,'error'=>'Could not determine a destination filename'];}
   $size=@filesize($tmp);
   $target=rtrim($dir,'/').'/'.$name;
-  [$ok,$uerr]=ftp_upload_from_local($c,$tmp,$target);
+  list($ok,$uerr)=ftp_upload_from_local($c,$tmp,$target);
   if($isTemp)@unlink($tmp);
   if(!$ok)return['ok'=>false,'error'=>$uerr?:'FTP upload failed'];
   return['ok'=>true,'name'=>$name,'size'=>(int)$size,'path'=>$target,'elapsed'=>human_timing($start)];
@@ -4051,7 +4050,7 @@ function ftp_download_to_tmp($c,$rpath,$native_only=false){
   }
   // Native ftp_get fallback (ftp/ftps only)
   if($c['method']!=='sftp'&&function_exists('ftp_connect')){
-    [$conn,$err2]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+    list($conn,$err2)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
     if($conn){
       $ok2=@ftp_get($conn,$tmp,$rpath,FTP_BINARY);@ftp_close($conn);
       if($ok2&&@filesize($tmp)>0)return[$tmp,null];
@@ -4087,7 +4086,7 @@ function ftp_upload_from_local($c,$local,$rpath,$native_only=false){
     }
     return[false,'SFTP upload failed (needs curl SFTP or ssh2 extension)'];
   }
-  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  list($conn,$err)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
   if(!$conn)return[false,$err];
   ftp_mkdir_p($conn,dirname($rpath));
   $ok=@ftp_put($conn,$rpath,$local,FTP_BINARY);@ftp_close($conn);
@@ -4128,7 +4127,7 @@ function ftp_rename_path($c,$from,$to){
     }
     return['ok'=>false,'msg'=>'SFTP rename requires the ssh2 extension or curl SFTP support'];
   }
-  [$conn,$err]=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
+  list($conn,$err)=ftp_make_connection($c['h'],$c['port'],$c['u'],$c['pw'],$c['method']);
   if(!$conn)return['ok'=>false,'msg'=>$err];
   $ok=@ftp_rename($conn,$from,$to);@ftp_close($conn);
   return['ok'=>(bool)$ok,'msg'=>$ok?'Done':'Rename/move failed (check path/permissions)'];
@@ -4142,9 +4141,9 @@ function ajax_ftp_dup(){
   if(strpos($base,'.')!==false&&$base[0]!=='.'){$ext='.'.pathinfo($base,PATHINFO_EXTENSION);$name=pathinfo($base,PATHINFO_FILENAME);}
   $newName=$name.' copy'.$ext;
   $target=rtrim(dirname($path),'/').'/'.$newName;
-  [$tmp,$derr]=ftp_download_to_tmp($c,$path);
+  list($tmp,$derr)=ftp_download_to_tmp($c,$path);
   if(!$tmp)return['ok'=>false,'msg'=>'Duplicate failed: '.$derr];
-  [$ok,$uerr]=ftp_upload_from_local($c,$tmp,$target);
+  list($ok,$uerr)=ftp_upload_from_local($c,$tmp,$target);
   @unlink($tmp);
   return['ok'=>$ok,'msg'=>$ok?'Duplicated as "'.$newName.'" (round-tripped via this server)':'Duplicate failed: '.$uerr,'name'=>$newName];
 }
@@ -4154,7 +4153,7 @@ function ajax_ftp_read(){
   $c=ftp_creds_from_post();
   $path=trim((string)($_POST['_p']??''));
   if(!$c['h']||!$path)return['ok'=>false,'msg'=>'Host and path required'];
-  [$tmp,$derr]=ftp_download_to_tmp($c,$path);
+  list($tmp,$derr)=ftp_download_to_tmp($c,$path);
   if(!$tmp)return['ok'=>false,'msg'=>'Could not download file: '.$derr];
   $size=@filesize($tmp);
   if($size>EDIT_MAX_BYTES){@unlink($tmp);return['ok'=>false,'msg'=>'File is larger than '.human_filesize(EDIT_MAX_BYTES).' — too big to open as text'];}
@@ -4173,15 +4172,15 @@ function ajax_ftp_write(){
   if(strlen($content)>EDIT_MAX_BYTES)return['ok'=>false,'msg'=>'Content exceeds the '.human_filesize(EDIT_MAX_BYTES).' limit'];
   $backup=($_POST['_backup']??'')==='1';
   if($backup){
-    [$btmp,$berr]=ftp_download_to_tmp($c,$path);
+    list($btmp,$berr)=ftp_download_to_tmp($c,$path);
     if(!$btmp)return['ok'=>false,'msg'=>'Could not read current file for backup: '.$berr.' — nothing was saved'];
-    [$bok,$buerr]=ftp_upload_from_local($c,$btmp,$path.'.back');
+    list($bok,$buerr)=ftp_upload_from_local($c,$btmp,$path.'.back');
     @unlink($btmp);
     if(!$bok)return['ok'=>false,'msg'=>'Backup upload failed: '.$buerr.' — nothing was saved'];
   }
   $tmp=tempnam(sys_get_temp_dir(),'bsw');
   if(!$tmp||@file_put_contents($tmp,$content)===false){if($tmp)@unlink($tmp);return['ok'=>false,'msg'=>'Cannot stage content for upload'];}
-  [$ok,$uerr]=ftp_upload_from_local($c,$tmp,$path);
+  list($ok,$uerr)=ftp_upload_from_local($c,$tmp,$path);
   @unlink($tmp);
   if(!$ok)return['ok'=>false,'msg'=>'Upload failed: '.$uerr];
   return['ok'=>true,'msg'=>$backup?'Saved (backup: '.basename($path).'.back)':'Saved','size'=>strlen($content),'backup'=>$backup];
@@ -4234,7 +4233,7 @@ function xfer_fetch_source($skind,$sc,$spath,$opts=[]){
     if(!empty($opts['relay_del']))@mitm_post($opts['relay'],['_a'=>'del_by_name','_name'=>basename($spath)]);
     return[$tmp,true,null];
   }
-  [$tmp,$err]=ftp_download_to_tmp($sc,$spath,!empty($opts['native_only']));
+  list($tmp,$err)=ftp_download_to_tmp($sc,$spath,!empty($opts['native_only']));
   if(!$tmp)return[null,false,$err];
   return[$tmp,true,null];
 }
@@ -4252,7 +4251,7 @@ function xfer_place_dest($dkind,$dc,$ddir,$name,$local,$opts=[]){
     return[(bool)$ok,$name,$ok?null:'Cannot write to destination folder'];
   }
   $target=rtrim($ddir,'/').'/'.$name;
-  [$ok,$err]=ftp_upload_from_local($dc,$local,$target,!empty($opts['native_only']));
+  list($ok,$err)=ftp_upload_from_local($dc,$local,$target,!empty($opts['native_only']));
   return[(bool)$ok,$name,$ok?null:$err];
 }
 // Shared driver for direct / plain-ftp / relay transfers.
@@ -4266,10 +4265,10 @@ function xfer_run($srcOpts){
   $ddir=trim((string)($_POST['_dp']??''));
   $name=(string)($_POST['_name']??basename($spath));
   if($spath===''||$ddir==='')return['ok'=>false,'msg'=>'Source path and destination required'];
-  [$local,$isTemp,$err]=xfer_fetch_source($skind,$sc,$spath,$srcOpts);
+  list($local,$isTemp,$err)=xfer_fetch_source($skind,$sc,$spath,$srcOpts);
   if(!$local)return['ok'=>false,'msg'=>$err];
   $size=@filesize($local);
-  [$ok,$finalName,$perr]=xfer_place_dest($dkind,$dc,$ddir,$name,$local,$srcOpts);
+  list($ok,$finalName,$perr)=xfer_place_dest($dkind,$dc,$ddir,$name,$local,$srcOpts);
   if($isTemp)@unlink($local);
   if(!$ok)return['ok'=>false,'msg'=>$perr];
   return['ok'=>true,'msg'=>'Transferred','name'=>$finalName,'size'=>(int)$size,'elapsed'=>human_timing($start)];
@@ -4312,8 +4311,8 @@ function ajax_xfer_fxp(){
     return['ok'=>false,'msg'=>'FXP is not defined for SFTP — use Direct'];
   if(!function_exists('ftp_raw')){$r=xfer_run([]);if($r['ok'])$r['msg']='FXP unavailable (ftp_raw missing) — used Direct fallback';return $r;}
   $target=rtrim($ddir,'/').'/'.$name;
-  [$src,$e1]=ftp_make_connection($sc['h'],$sc['port'],$sc['u'],$sc['pw'],$sc['method']);
-  [$dst,$e2]=ftp_make_connection($dc['h'],$dc['port'],$dc['u'],$dc['pw'],$dc['method']);
+  list($src,$e1)=ftp_make_connection($sc['h'],$sc['port'],$sc['u'],$sc['pw'],$sc['method']);
+  list($dst,$e2)=ftp_make_connection($dc['h'],$dc['port'],$dc['u'],$dc['pw'],$dc['method']);
   if($src&&$dst){
     @ftp_raw($dst,'TYPE I');@ftp_raw($src,'TYPE I');
     $pasv=@ftp_raw($dst,'PASV');

@@ -8,7 +8,7 @@
 
 <a href="screenshot-full.jpeg" target="_blank"><img src="screenshot.jpeg" style="border-radius:0.5rem;" alt="The upload.php interface: sidebar app shell, upload form with live progress, and the file-tree browser." width="460"></a>
 
-> **Latest release:** v3.8.0 · 2026-07-20<br>
+> **Latest release:** v3.8.1 · 2026-07-20<br>
 > **Single file:** `upload.php` — no install, no Composer, no build step. Tooltips (Tippy.js) are inlined; the optional in-browser code editor lazy-loads CodeMirror from a CDN only when you open it.<br>
 > **Zero server dependencies:** pure PHP back-end + vanilla JS/CSS front-end. Works on shared hosting, cPanel, DirectAdmin, managed WordPress.
 
@@ -83,7 +83,7 @@ Everything is stateless: FTP credentials are passed per request and never stored
 
 ## Requirements
 
-- **PHP 7.4+ recommended** (tested through 8.x). It loads on **PHP 7.1+**; below 7.4 it shows a friendly upgrade notice instead of the app. **On older hosts (PHP 5.6 / 7.0), use the [minimal legacy build](#minimal-legacy-build-php-56) instead.**
+- **PHP 7.0+** (tested through 8.x). The only PHP-7 construct left is the `??` operator, so 7.0 is the real floor; 7.4+ is still recommended for security. Below 7.0 it can't compile at all — **on PHP 5.6 use the [minimal legacy build](#minimal-legacy-build-php-56) instead.**
 - **cURL** extension (for URL/FTP/FTPS/SFTP transfers and the update check).
 - **ZipArchive** for `.zip` extraction; **PharData** (bundled) for `.tar/.tar.gz/.tgz`.
 - For SFTP: cURL with SFTP support **or** the `ssh2` extension.
@@ -211,6 +211,7 @@ The full matrix (including `mod_fcgid`, `mod_proxy_fcgi`, and Apache `Timeout`) 
 
 Full history: [CHANGELOG.md](CHANGELOG.md). Recent highlights:
 
+- **v3.8.1** — **Lowered the PHP requirement to 7.0** (was 7.4 — it wrongly blocked working 7.1/7.2/7.3 hosts; the only 7.x construct is `??`, and list destructuring was rewritten to classic `list()`). Also fixed `upload-legacy.php` so a nested path in the filename/folder field creates the sub-folders instead of collapsing into one file in the root.
 - **v3.8.0** — **Create / recursive-delete / rename folders** across the File Explorer, FTP Explorer and both Compare panes; **recursive folder sync** in Explorer view; fixed Compare hiding a 0-byte-vs-real file as *identical*; inline Compare controls with a **totals panel** (files + size per side); **in-place self-update** (one-click from GitHub or replace-from-PC, verified + atomic, MITM-hardened); an **old-PHP notice** below 7.4; and a **minimal [`upload-legacy.php`](upload-legacy.php)** for PHP 5.6 hosts (URL→server only, now with a destination-folder option).
 - **v3.6.3** — **Cleared Imunify360's `php.dropper.file` (`SMW-INJ-CLOUDAV-…-PHPTRP2-4`) detection.** The in-browser editor's read/write transport dropped base64 for **percent-encoding** (`rawurlencode`/`rawurldecode` ↔ `encodeURIComponent`/`decodeURIComponent`), removing the `base64_decode`→`file_put_contents` combo that behavioural scanners read as a dropper — and the obfuscated fragment-assembled helper names that made it look worse. No base64-encoded data remains in the file; the only base64 left is the lone `base64_encode()` nginx `secure_link` requires.
 - **v3.6.2** — Removed every literal `base64` token so content-scan AV can't match on the bare substring.
